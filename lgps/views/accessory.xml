@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="accessory_form_view">
+        <field name="name">accessory.form</field>
+        <field name="model">lgps.accessory</field>
+        <field name="arch" type="xml">
+            <form string="Accessory Form">
+                <sheet>
+                    <group>
+                        <group string="Device Info">
+                            <separator/>
+                            <field name="name"/>
+                            <field name="client_id"/>
+                            <field name="serialnumber_id"/>
+                            <field name="installation_date"/>
+                        </group>
+                        <group string="More Info">
+                            <separator/>
+                            <field name="status"/>
+                            <field name="product_id"/>
+                            <field name="invoice_id"/>
+                            <field name="gpsdevice_id"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Warranty">
+                            <group>
+                                <group string="Warranty Information">
+                                    <separator/>
+                                    <field name="warranty_start_date"/>
+                                    <field name="warranty_end_date"/>
+                                </group>
+                                <group string="Term">
+                                    <separator/>
+                                    <field name="warranty_term"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="accessory_search_view">
+        <field name="name">accessory.search</field>
+        <field name="model">lgps.accessory</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="client_id"/>
+                <field name="serialnumber_id"/>
+                <field name="installation_date"/>
+                <field name="status"/>
+                <field name="product_id"/>
+                <field name="invoice_id"/>
+                <field name="gpsdevice_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="accessory_tree_view">
+        <field name="name">accessory.tree</field>
+        <field name="model">lgps.accessory</field>
+        <field name="arch" type="xml">
+            <tree string="accessorys Tree">
+                <field name="name"/>
+                <field name="client_id"/>
+                <field name="serialnumber_id"/>
+                <field name="installation_date"/>
+                <field name="status"/>
+                <field name="product_id"/>
+                <field name="invoice_id"/>
+                <field name="gpsdevice_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="accessory_list_action">
+        <field name="name">accessories</field>
+        <field name="res_model">lgps.accessory</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Create the first Accessory</p>
+        </field>
+    </record>
+
+    <menuitem id="main_lgps_menu" name="Intralix" web_icon="GpsDevices,static/description/icon.png"/>
+    <menuitem id="lgps_menu" name="Lgps" parent="main_lgps_menu"/>
+    <menuitem id="accessory_menu" name="Accessories" parent="lgps_menu" action="accessory_list_action"/>
+</odoo>

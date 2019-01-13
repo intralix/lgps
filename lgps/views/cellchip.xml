@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="cellchip_form_view">
+        <field name="name">cellchip.form</field>
+        <field name="model">lgps.cellchip</field>
+        <field name="arch" type="xml">
+            <form string="Cellchip Form">
+                <sheet>
+                    <group>
+                        <group string="Cellchip Info">
+                            <separator/>
+                            <field name="name"/>
+                            <field name="plan"/>
+                            <field name="status"/>
+                            <field name="linenumber_id"/>
+                            <field name="voice"/>
+                        </group>
+                        <group string="Provider Info">
+                            <separator/>
+                            <field name="cellchip_owner_id"/>
+                            <field name="provider"/>
+                            <field name="warranty_payment_date"/>
+                        </group>
+                    </group>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="cellchip_search_view">
+        <field name="name">cellchip.search</field>
+        <field name="model">lgps.cellchip</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="linenumber_id"/>
+                <field name="status"/>
+                <field name="cellchip_owner_id"/>
+            </search>
+        </field>
+    </record>
+
+        <record model="ir.ui.view" id="cellchip_tree_view">
+        <field name="name">gpsdevice.tree</field>
+        <field name="model">lgps.cellchip</field>
+        <field name="arch" type="xml">
+            <tree string="Cellchips Tree">
+                <field name="name"/>
+                <field name="plan"/>
+                <field name="linenumber_id"/>
+                <field name="status"/>
+                <field name="provider"/>
+                <field name="cellchip_owner_id"/>
+                <field name="voice"/>
+                <field name="warranty_payment_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="cellchip_list_action">
+        <field name="name">Cellchips</field>
+        <field name="res_model">lgps.cellchip</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Create the first cellchip
+            </p>
+        </field>
+    </record>
+
+    <record id="lgps.main_lgps_menu" model="ir.ui.menu">
+        <field name="action" eval="False"/>
+        <field name="active" eval="True"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="name">Intralix</field>
+        <field name="parent_id" eval="False"/>
+        <field name="sequence">10</field>
+        <field name="web_icon">GpsDevices,static/description/icon.png</field>
+    </record>
+    <menuitem id="main_lgps_menu" name="Intralix"/>
+    <menuitem id="lgps_menu" name="Lgps" parent="main_lgps_menu"/>
+    <menuitem id="cellchips_menu" name="Cellchips" parent="lgps_menu" action="cellchip_list_action"/>
+</odoo>
