@@ -276,53 +276,6 @@ class GpsDevice(models.Model):
 
         return super(GpsDevice, self).copy(default)
 
-    @api.one
-    def crear_progressbar(self):
-        self.message_post(body="crear")
-        self.write({
-            'state': 'crear',
-        })
-
-    # This function is triggered when the user clicks on the button 'Set to started'
-    @api.one
-    def asignar_progressbar(self):
-        self.message_post(body="asignar")
-        self.write({
-            'state': 'asignar'
-        })
-
-    # This function is triggered when the user clicks on the button 'In progress'
-    @api.one
-    def programar_progressbar(self):
-        self.message_post(body="programar")
-        self.write({
-            'state': 'programar'
-        })
-
-    # This function is triggered when the user clicks on the button 'Done'
-    @api.one
-    def pruebas_progressbar(self):
-        self.message_post(body="pruebas")
-        self.write({
-            'state': 'pruebas',
-        })
-
-    # This function is triggered when the user clicks on the button 'Done'
-    @api.one
-    def instalado_progressbar(self):
-        self.message_post(body="instalado")
-
-        #list = self.env['lgps.cellchip'].search([
-#            ('status', '=' , 'Suspendida')
-#        ], limit=1)
-        # limit=1 devuelve una referencia al modelo
-        # limit > 1 devuelve una lista de referencias
-
-        #self.cellchip_id.name = "01928172"
-        self.write({
-            'state': 'instalado',
-        })
-
     _sql_constraints = [
         ('name_unique',
          'UNIQUE(name)',

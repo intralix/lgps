@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="main_lgps_menu" name="Intralix" web_icon="GpsDevices,static/description/icon.png"/>
+
+    <menuitem id="lgps_menu" name="Lgps" parent="main_lgps_menu"/>
+    <menuitem id="configuration_menu" name="Configuration" parent="main_lgps_menu"/>
+</odoo>

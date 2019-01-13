@@ -11,18 +11,6 @@
         <field name="model">lgps.gpsdevice</field>
         <field name="arch" type="xml">
             <form string="Gps Device Form">
-                <header>
-	                <button string="Crear" type="object" name="crear_progressbar" class="{'oe_highlight': [('state', '=', 'crear')]}" attrs="{'invisible': [('state', '=', 'crear')]}"/>
-	                <!--The oe_highlight class gives the button a red color when it is saved.
-	                It is usually used to indicate the expected behaviour. -->
-	                <button string="Asignar" type="object" name="asignar_progressbar" class="oe_highlight" attrs="{'invisible': [('state','=','asignar')]}"/>
-	                <button string="Programar" type="object" name="programar_progressbar" class="oe_highlight" attrs="{'invisible': [('state','=','programar')]}"/>
-	                <button string="Pruebas" type="object" name="pruebas_progressbar" class="oe_highlight" attrs="{'invisible': [('state','=','pruebas')]}"/>
-                    <button string="Instalado" type="object" name="instalado_progressbar" class="oe_highlight" attrs="{'invisible': [('state','=','instalado')]}"/>
-	                <!--This will create the statusbar, thanks to the widget. -->
-	                <field name="state" widget="statusbar"/>
-	            </header>
-
                 <sheet>
                     <div name="button_box" class="oe_button_box">
                         <button class="oe_stat_button o_res_partner_tip_opp"

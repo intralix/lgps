@@ -73,16 +73,6 @@
         </field>
     </record>
 
-    <record id="lgps.main_lgps_menu" model="ir.ui.menu">
-        <field name="action" eval="False"/>
-        <field name="active" eval="True"/>
-        <field name="groups_id" eval="[(6, 0, [])]"/>
-        <field name="name">Intralix</field>
-        <field name="parent_id" eval="False"/>
-        <field name="sequence">10</field>
-        <field name="web_icon">GpsDevices,static/description/icon.png</field>
-    </record>
-    <menuitem id="main_lgps_menu" name="Intralix"/>
-    <menuitem id="lgps_menu" name="Lgps" parent="main_lgps_menu"/>
+
     <menuitem id="cellchips_menu" name="Cellchips" parent="lgps_menu" action="cellchip_list_action"/>
 </odoo>

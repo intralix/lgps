@@ -28,6 +28,6 @@
     <field name="res_model">res.partner</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <menuitem id="configuration_menu" name="Configuration" parent="main_lgps_menu"/>
+
   <menuitem id="contact_menu" name="Contacts" parent="configuration_menu" action="contact_list_action"/>
 </odoo>

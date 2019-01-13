@@ -15,9 +15,10 @@
         'security/security.xml',
         'security/ir.model.access.csv',
         'reports/devices.xml',
+        'views/lgps_main_menu.xml',
         'views/gpsdevice.xml',
         'views/cellchip.xml',
-        'views/partner.xml',        
+        'views/partner.xml',
         'views/accessory.xml',
     ],
 }

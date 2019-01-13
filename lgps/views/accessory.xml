@@ -92,7 +92,6 @@
         </field>
     </record>
 
-    <menuitem id="main_lgps_menu" name="Intralix" web_icon="GpsDevices,static/description/icon.png"/>
-    <menuitem id="lgps_menu" name="Lgps" parent="main_lgps_menu"/>
+
     <menuitem id="accessory_menu" name="Accessories" parent="lgps_menu" action="accessory_list_action"/>
 </odoo>
