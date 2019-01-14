@@ -399,7 +399,7 @@ msgstr "Externo"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice_fuel
 msgid "Fuel"
-msgstr "Fuel"
+msgstr "Combustible"
 
 #. module: lgps
 #: model:ir.ui.view,arch_db:lgps.gpsdevice_form_view
@@ -570,7 +570,7 @@ msgstr "Número de Línea"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice_load_drivers
 msgid "Load Drivers"
-msgstr "Load Drivers"
+msgstr "Controlador de Carga"
 
 #. module: lgps
 #: model:ir.ui.view,arch_db:lgps.gpsdevice_form_view
@@ -638,7 +638,7 @@ msgstr "Plan"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice_platform
 msgid "Platform"
-msgstr "Platforma"
+msgstr "Plataforma"
 
 #. module: lgps
 #: selection:lgps.accessory,status:0
@@ -713,7 +713,7 @@ msgstr "Reemplazo"
 #: selection:lgps.cellchip,status:0
 #, python-format
 msgid "Replaced"
-msgstr "Replaced"
+msgstr "Reemplazada"
 
 #. module: lgps
 #: code:addons/lgps/models/gpsdevice.py:154
@@ -751,7 +751,7 @@ msgstr "Servicios"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice_sheet
 msgid "Sheet"
-msgstr "Sheet"
+msgstr "Chapa"
 
 #. module: lgps
 #: selection:lgps.cellchip,provider:0
@@ -796,7 +796,7 @@ msgstr "Estado"
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice_status
 #: model:ir.ui.view,arch_db:lgps.report_gpsdevice_view
 msgid "Status"
-msgstr "Estado"
+msgstr "Estatus"
 
 #. module: lgps
 #: code:addons/lgps/models/cellchip.py:17
@@ -836,17 +836,17 @@ msgstr "Pruebas"
 #. module: lgps
 #: sql_constraint:lgps.accessory:0
 msgid "The accessory id must be unique"
-msgstr "The accessory id must be unique"
+msgstr "El identificador del accesorio debe ser único"
 
 #. module: lgps
 #: sql_constraint:lgps.gpsdevice:0
 msgid "The gps device id must be unique"
-msgstr "The gps device id must be unique"
+msgstr "El identificador del dispositivo gps debe ser único"
 
 #. module: lgps
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice_last_report
 msgid "Time without reporting in platforms expressed in hours"
-msgstr "Time without reporting in platforms expressed in hours"
+msgstr "Tiempo que el dispositivo gps no ha reportado en plataformas expresado en horas."
 
 #. module: lgps
 #: code:addons/lgps/models/gpsdevice.py:145
@@ -880,7 +880,7 @@ msgstr "Granatía"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_warranty_end_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice_warranty_end_date
 msgid "Warranty End Date"
-msgstr "Warranty End Date"
+msgstr "Fin de Garantía"
 
 #. module: lgps
 #: model:ir.ui.view,arch_db:lgps.report_gpsdevice_view
@@ -908,7 +908,7 @@ msgstr "Fecha de Inicio de Granatía"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_warranty_term
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice_warranty_term
 msgid "Warranty Term"
-msgstr "Periodo de Granatía"
+msgstr "Periodo de Garantía"
 
 #. module: lgps
 #: model:ir.actions.act_window,name:lgps.accessory_list_action
