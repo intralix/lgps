@@ -104,7 +104,6 @@ class Cellchip(models.Model):
 
     #
     status_date = fields.Date(
-        default=fields.Date.today,
         string="Status Date",
     )
 

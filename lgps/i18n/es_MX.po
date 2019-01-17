@@ -654,7 +654,7 @@ msgstr "Cuenta de Líneas"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__name
 msgid "Line Number"
-msgstr "Npumero de Línea"
+msgstr "Número de Línea"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__term
@@ -1128,17 +1128,17 @@ msgstr "iButton"
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_accessory
 msgid "lgps.accessory"
-msgstr ""
+msgstr "Accesorio"
 
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_cellchip
 msgid "lgps.cellchip"
-msgstr ""
+msgstr "Línea"
 
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_gpsdevice
 msgid "lgps.gpsdevice"
-msgstr ""
+msgstr "Desipositivo Gps"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.report_gpsdevice_view
