@@ -18,7 +18,7 @@ class Cellchip(models.Model):
             ("reactivated", _("Reactivated")),
             ("replaced", _("Replaced"))
         ],
-        default="Activa",
+        default="active",
         string="Status",
     )
     #Plan de la línea
@@ -105,7 +105,7 @@ class Cellchip(models.Model):
     #
     status_date = fields.Date(
         default=fields.Date.today,
-        string="Warranty Payment Date",
+        string="Status Date",
     )
 
     # Fecha de finalización del Plan Forzoso

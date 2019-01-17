@@ -184,10 +184,8 @@ class GpsDevice(models.Model):
         index=True,
     )
 
-    invoice_id = fields.Many2one(
-        comodel_name="account.invoice",
-        required=True,
-        string="Invoice",
+    invoice_id = fields.Char(
+        string="Provider Invoice",
         index=True,
     )
 
@@ -229,6 +227,11 @@ class GpsDevice(models.Model):
 
     active = fields.Boolean(
         default=True
+    )
+
+    purchase_date = fields.Date(
+        default=fields.Date.today,
+        string="Purchase Date",
     )
 
     accesories_count = fields.Integer("Accesories", compute='_compute_accesories_count')
