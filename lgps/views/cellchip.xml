@@ -10,16 +10,21 @@
                         <group string="Cellchip Info">
                             <separator/>
                             <field name="name"/>
-                            <field name="plan"/>
                             <field name="status"/>
+                            <field name="plan"/>
                             <field name="linenumber_id"/>
+                            <field name="purchase_date"/>
                             <field name="voice"/>
+                            <field name="term"/>
                         </group>
                         <group string="Provider Info">
                             <separator/>
                             <field name="cellchip_owner_id"/>
                             <field name="provider"/>
-                            <field name="warranty_payment_date"/>
+                            <field name="major_account"/>
+                            <field name="line_account"/>
+                            <field name="status_date"/>
+                            <field name="end_forced_plan_date"/>
                         </group>
                     </group>
                 </sheet>
@@ -41,6 +46,8 @@
                 <field name="linenumber_id"/>
                 <field name="status"/>
                 <field name="cellchip_owner_id"/>
+                <field name="status_date"/>
+                <field name="purchase_date"/>
             </search>
         </field>
     </record>
@@ -49,7 +56,7 @@
         <field name="name">gpsdevice.tree</field>
         <field name="model">lgps.cellchip</field>
         <field name="arch" type="xml">
-            <tree string="Cellchips Tree">
+            <tree string="Cellchips Tree" decoration-danger="days_suspended&gt;31">
                 <field name="name"/>
                 <field name="plan"/>
                 <field name="linenumber_id"/>
@@ -57,7 +64,8 @@
                 <field name="provider"/>
                 <field name="cellchip_owner_id"/>
                 <field name="voice"/>
-                <field name="warranty_payment_date"/>
+                <field name="purchase_date"/>
+                <field name="days_suspended" invisible="1"/>
             </tree>
         </field>
     </record>

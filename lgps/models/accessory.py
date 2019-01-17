@@ -14,7 +14,6 @@ class Accessory(models.Model):
 
     serialnumber_id = fields.Many2one(
         comodel_name="stock.production.lot",
-        required=True,
         string="Serial Number",
         index=True,
     )
@@ -73,43 +72,15 @@ class Accessory(models.Model):
         index=True
     )
 
-    invoice_id = fields.Many2one(
-        comodel_name="account.invoice",
-        required=True,
-        string="Invoice",
+    provider_invoice = fields.Char(
+        string="Provider Invoice",
         index=True,
     )
 
-    warranty_start_date = fields.Date(
+    purchase_date = fields.Date(
         default=fields.Date.today,
-        string="Warranty Start Date",
+        string="Purchase Date",
     )
-
-    warranty_end_date = fields.Date(
-        compute="_compute_end_warranty",
-        string="Warranty End Date",
-    )
-
-    warranty_term = fields.Selection(
-        selection=[
-            ("12", _("12 months")),
-            ("18", _("18 months")),
-            ("24", _("24 months")),
-            ("36", _("36 months"))
-        ],
-        default="12",
-        string="Warranty Term",
-    )
-
-    @api.one
-    @api.depends('warranty_term', 'warranty_start_date')
-    def _compute_end_warranty(self):
-        if not (self.warranty_term and self.warranty_start_date):
-            self.warranty_end_date = None
-        else:
-            months = int(self.warranty_term[:2])
-            start = fields.Date.from_string(self.warranty_start_date)
-            self.warranty_end_date = start + timedelta(months * 365 / 12)
 
     @api.multi
     def copy(self, default=None):
