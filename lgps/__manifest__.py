@@ -20,5 +20,6 @@
         'views/cellchip.xml',
         'views/partner.xml',
         'views/accessory.xml',
+        'views/wizard.xml',
     ],
 }

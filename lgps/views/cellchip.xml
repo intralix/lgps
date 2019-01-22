@@ -26,6 +26,7 @@
                             <field name="status_date"/>
                             <field name="end_forced_plan_date"/>
                             <field name="days_suspended"/>
+                            <field name="gpsdevice_id"/>
                         </group>
                     </group>
                 </sheet>
@@ -49,6 +50,7 @@
                 <field name="cellchip_owner_id"/>
                 <field name="status_date"/>
                 <field name="purchase_date"/>
+                <field name="gpsdevice_id"/>
             </search>
         </field>
     </record>
@@ -67,6 +69,7 @@
                 <field name="voice"/>
                 <field name="purchase_date"/>
                 <field name="days_suspended" invisible="1"/>
+                <field name="gpsdevice_id"/>
             </tree>
         </field>
     </record>

@@ -27,7 +27,6 @@ class GpsDevice(models.Model):
     )
 
     installation_date = fields.Date(
-        default=fields.Date.today,
         string="Installation Date",
     )
 

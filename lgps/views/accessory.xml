@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <record id="seq_tracking" model="ir.sequence">
+        <field name="name">Accessory Sequence</field>
+        <field name="code">lgps.accessory</field>
+        <field name="prefix">ACC</field>
+        <field name="padding">10</field>
+    </record>
+
     <record model="ir.ui.view" id="accessory_form_view">
         <field name="name">accessory.form</field>
         <field name="model">lgps.accessory</field>

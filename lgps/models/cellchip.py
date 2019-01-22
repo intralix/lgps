@@ -4,11 +4,19 @@ from odoo import api, models, fields, _
 class Cellchip(models.Model):
     _inherit = ['mail.thread']
     _name = 'lgps.cellchip'
+
     # Línea Celular
     name = fields.Char(
         required=True,
         string="Line Number",
     )
+
+    gpsdevice_id = fields.Many2one(
+        comodel_name='lgps.gpsdevice',
+        string="Installed On",
+        help="GPS Device where the cellchip is on.",
+    )
+
     # Estatus de la Línea
     status = fields.Selection(
         selection=[
@@ -109,7 +117,6 @@ class Cellchip(models.Model):
 
     # Fecha de finalización del Plan Forzoso
     end_forced_plan_date = fields.Date(
-        default=fields.Date.today,
         string="End Forced Plan Date",
     )
 
@@ -126,6 +133,11 @@ class Cellchip(models.Model):
         store=True,
         help="Time elapsed since the line was set to suspended expressed in days",
     )
+
+    @api.onchange('status')
+    def onchange_status_date(self):
+        if self.status == 'suspended':
+            self.status_date = fields.Date.today()
 
     @api.one
     @api.depends('status_date', 'days_suspended')

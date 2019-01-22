@@ -5,6 +5,13 @@
     </record>
 
     <!-- Library User Group -->
+    <record id="lgps_group_guest" model="res.groups">
+        <field name="name">Lgps / Guest</field>
+        <field name="category_id" ref="module_lgps_category"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <!-- Library User Group -->
     <record id="lgps_group_user" model="res.groups">
         <field name="name">Lgps / User</field>
         <field name="category_id" ref="module_lgps_category"/>
