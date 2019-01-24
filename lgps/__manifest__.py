@@ -10,6 +10,7 @@
         'stock',
         'contacts',
         'account',
+        'sale_subscription',
     ],
     'data': [
         'security/security.xml',
@@ -21,5 +22,6 @@
         'views/partner.xml',
         'views/accessory.xml',
         'views/wizard.xml',
+        'views/suscription.xml',
     ],
 }

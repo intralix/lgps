@@ -200,6 +200,11 @@ class GpsDevice(models.Model):
         index=True,
     )
 
+    suscription_id = fields.Many2one(
+        comodel_name="sale.subscription",
+        string="Suscription",
+    )
+
     serialnumber_id = fields.Many2one(
         comodel_name="stock.production.lot",
         required=True,
