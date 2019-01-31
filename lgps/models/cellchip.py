@@ -2,7 +2,7 @@
 from odoo import api, models, fields, _
 
 class Cellchip(models.Model):
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread','mail.activity.mixin']
     _name = 'lgps.cellchip'
 
     # Línea Celular
