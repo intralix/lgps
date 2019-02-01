@@ -23,5 +23,6 @@
         'views/accessory.xml',
         'views/wizard.xml',
         'views/suscription.xml',
+        'views/tracking.xml',
     ],
 }
