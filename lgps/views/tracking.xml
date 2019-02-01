@@ -2,7 +2,7 @@
 <odoo>
     <record id="seq_tracking" model="ir.sequence">
         <field name="name">Tracking Sequence</field>
-        <field name="code">monitoring.tracking</field>
+        <field name="code">lgps.tracking</field>
         <field name="prefix">MON</field>
         <field name="padding">10</field>
     </record>
