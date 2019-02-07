@@ -4,21 +4,28 @@
         <field name="name">Lgps</field>
     </record>
 
-    <!-- Library User Group -->
+    <!-- Lgps Guest Group -->
     <record id="lgps_group_guest" model="res.groups">
         <field name="name">Lgps / Guest</field>
         <field name="category_id" ref="module_lgps_category"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
 
-    <!-- Library User Group -->
+    <!-- Lgps User Group -->
     <record id="lgps_group_user" model="res.groups">
         <field name="name">Lgps / User</field>
         <field name="category_id" ref="module_lgps_category"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
 
-    <!-- Library Manager Group -->
+    <!-- Lgps Matainer Group -->
+    <record id="lgps_group_maintainer" model="res.groups">
+        <field name="name">Lgps / Maintainer</field>
+        <field name="category_id" ref="module_lgps_category"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <!-- Lgps Manager Group -->
     <record id="lgps_group_manager" model="res.groups">
         <field name="name">Lgps / Manager</field>
         <field name="category_id" ref="module_lgps_category"/>

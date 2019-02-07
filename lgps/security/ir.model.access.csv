@@ -7,6 +7,10 @@ cellchip_read_all,Cellchips all,model_lgps_cellchip,lgps_group_user,1,1,1,0
 gpsdevice_read_all,Gps Devices all,model_lgps_gpsdevice,lgps_group_user,1,1,1,0
 accessory_read_all,Accessories all,model_lgps_accessory,lgps_group_user,1,1,1,0
 tracking_read_all,Tracking all,model_lgps_tracking,lgps_group_user,1,1,1,0
+cellchip_maintainer,Cellchips Maintainer,model_lgps_cellchip,lgps_group_maintainer,1,1,0,0
+gpsdevice_maintainer,Gps Devices Maintainer,model_lgps_gpsdevice,lgps_group_maintainer,1,1,0,0
+accessory_maintainer,Accessories Maintainer,model_lgps_accessory,lgps_group_maintainer,1,1,0,0
+tracking_maintainer,Tracking Maintainer,model_lgps_tracking,lgps_group_maintainer,1,1,0,0
 cellchip_guest,Cellchips guest,model_lgps_cellchip,lgps_group_guest,1,0,0,0
 gpsdevice_guest,Gps Devices guest,model_lgps_gpsdevice,lgps_group_guest,1,0,0,0
 accessory_guest,Accessories guest,model_lgps_accessory,lgps_group_guest,1,0,0,0
