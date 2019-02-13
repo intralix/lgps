@@ -51,6 +51,11 @@ class GpsDevice(models.Model):
         string="Warranty Term",
     )
 
+    tracking = fields.Boolean(
+        default=False,
+        string="Tracking",
+    )
+
     fuel = fields.Boolean(
         default=False,
         string="Fuel",

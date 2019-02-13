@@ -63,6 +63,7 @@
                             <separator string="Active Services"/>
                             <group>
                                 <group>
+                                    <field name="tracking"/>
                                     <field name="fuel"/>
                                     <field name="scanner"/>
                                     <field name="temperature"/>

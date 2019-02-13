@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-17 16:27+0000\n"
-"PO-Revision-Date: 2019-01-17 16:27+0000\n"
+"POT-Creation-Date: 2019-02-13 04:34+0000\n"
+"PO-Revision-Date: 2019-02-13 04:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,8 +41,12 @@ msgid "12"
 msgstr "12"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:46
 #: selection:lgps.gpsdevice,warranty_term:0
+msgid "12 meses"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/gpsdevice.py:45
 #, python-format
 msgid "12 months"
 msgstr "12 meses"
@@ -53,8 +57,12 @@ msgid "18"
 msgstr "18"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:47
 #: selection:lgps.gpsdevice,warranty_term:0
+msgid "18 meses"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/gpsdevice.py:46
 #, python-format
 msgid "18 months"
 msgstr "18 meses"
@@ -80,8 +88,12 @@ msgid "24"
 msgstr "24"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:48
 #: selection:lgps.gpsdevice,warranty_term:0
+msgid "24 meses"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/gpsdevice.py:47
 #, python-format
 msgid "24 months"
 msgstr "24 meses"
@@ -92,8 +104,12 @@ msgid "2MB"
 msgstr "2MB"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:49
 #: selection:lgps.gpsdevice,warranty_term:0
+msgid "36 meses"
+msgstr "36 meses"
+
+#. module: lgps
+#: code:addons/lgps/models/gpsdevice.py:48
 #, python-format
 msgid "36 months"
 msgstr "36 meses"
@@ -130,6 +146,7 @@ msgstr "ATT"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__accesories_count
+#: model:ir.model.fields,field_description:lgps.field_lgps_wizard__accessory_ids
 msgid "Accesories"
 msgstr "Accesorios"
 
@@ -159,13 +176,13 @@ msgstr "Formulario del Accesorio"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_needaction
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_needaction
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_needaction
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_needaction
 msgid "Action Needed"
 msgstr "Acción Necesaria"
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:15
+#: code:addons/lgps/models/cellchip.py:23
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__active
-#: selection:lgps.cellchip,status:0
 #, python-format
 msgid "Active"
 msgstr "Activo"
@@ -176,15 +193,64 @@ msgid "Active Services"
 msgstr "Servicios Activos"
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_accessory__activity_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__activity_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__activity_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__start_date
+msgid "Activity Started at"
+msgstr "Actividad iniciada en"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_accessory__activity_state
+#: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__activity_state
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__activity_state
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__activity_state
+msgid "Activity State"
+msgstr "Estado de la actividad"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__end_date
+msgid "Activity finished at"
+msgstr "Actividad finalizada en"
+
+#. module: lgps
+#: code:addons/lgps/models/tracking.py:33
+#: selection:lgps.cellchip,status:0
+#: selection:lgps.tracking,state:0
+#, python-format
+msgid "Activo"
+msgstr "Activo"
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.wizard_form_view
+msgid "Add Accesories"
+msgstr "Agregar Accesorios"
+
+#. module: lgps
+#: model:ir.actions.act_window,name:lgps.launch_accesories_wizard
+msgid "Add Accessories"
+msgstr "Agregar Accesorios"
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__anti_jammer_blocker
 msgid "Anti Jammer Blocker"
 msgstr "Bloqueador Anti Jammer"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:220
+#: code:addons/lgps/models/gpsdevice.py:229
 #: selection:lgps.gpsdevice,state:0
 #, python-format
 msgid "Asignar"
+msgstr "Asignar"
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.wizard_form_view
+msgid "Assign"
 msgstr "Asignar"
 
 #. module: lgps
@@ -196,18 +262,19 @@ msgstr "Accesorios Asignados"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_attachment_count
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_attachment_count
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_attachment_count
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_attachment_count
 msgid "Attachment Count"
 msgstr "Conteo de archivos adjuntos"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:155
-#: selection:lgps.gpsdevice,status:0
+#: code:addons/lgps/models/gpsdevice.py:159
 #, python-format
 msgid "Backup"
 msgstr "Respaldo"
 
 #. module: lgps
 #: selection:lgps.accessory,status:0
+#: selection:lgps.cellchip,status:0
 msgid "Baja"
 msgstr "Baja"
 
@@ -217,11 +284,20 @@ msgid "Blocker"
 msgstr "Bloqueador"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:152
-#: selection:lgps.gpsdevice,status:0
+#: code:addons/lgps/models/gpsdevice.py:156
 #, python-format
 msgid "Borrowed"
 msgstr "Prestado"
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.wizard_form_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__category
+msgid "Category"
+msgstr "Categoría"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.cellchip_form_view
@@ -265,12 +341,17 @@ msgid "Client"
 msgstr "Cliente"
 
 #. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_gpsdevice_view
-msgid "Cliente:"
-msgstr "Cliente:"
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__client_id
+msgid "Client Account"
+msgstr "Cliente"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:142
+#: model_terms:ir.ui.view,arch_db:lgps.report_gpsdevice_view
+msgid "Cliente:"
+msgstr "Cliente"
+
+#. module: lgps
+#: code:addons/lgps/models/gpsdevice.py:146
 #: selection:lgps.accessory,status:0
 #: selection:lgps.gpsdevice,status:0
 #, python-format
@@ -295,18 +376,18 @@ msgstr "Contactos"
 
 #. module: lgps
 #: selection:lgps.accessory,status:0
+#: selection:lgps.gpsdevice,status:0
 msgid "Cortesía"
 msgstr "Cortesía"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:143
-#: selection:lgps.gpsdevice,status:0
+#: code:addons/lgps/models/gpsdevice.py:147
 #, python-format
 msgid "Courtesy"
 msgstr "Cortesía"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:219
+#: code:addons/lgps/models/gpsdevice.py:228
 #: selection:lgps.gpsdevice,state:0
 #, python-format
 msgid "Crear"
@@ -323,6 +404,11 @@ msgid "Create the first Gps Device"
 msgstr "Registrar el primer dispositivo GPS"
 
 #. module: lgps
+#: model_terms:ir.actions.act_window,help:lgps.tracking_list_action
+msgid "Create the first Tracking"
+msgstr "Registrar el primer monitoreo"
+
+#. module: lgps
 #: model_terms:ir.actions.act_window,help:lgps.cellchip_list_action
 msgid "Create the first cellchip"
 msgstr "Registrar la primera Línea"
@@ -331,6 +417,8 @@ msgstr "Registrar la primera Línea"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__create_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__create_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__create_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__create_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_wizard__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
@@ -338,6 +426,8 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__create_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__create_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__create_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__create_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_wizard__create_date
 msgid "Created on"
 msgstr "Creado el"
 
@@ -349,15 +439,15 @@ msgstr "Cybermapa"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__datetime_gps
 msgid "DateTime GPS"
-msgstr "DateTime GPS"
+msgstr "Fecha GPS"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__datetime_server
 msgid "DateTime Server"
-msgstr "DateTime Server"
+msgstr "Fecha Servidor"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:144
+#: code:addons/lgps/models/gpsdevice.py:148
 #: selection:lgps.accessory,status:0
 #: selection:lgps.gpsdevice,status:0
 #, python-format
@@ -366,8 +456,21 @@ msgstr "Demo"
 
 #. module: lgps
 #: selection:lgps.accessory,status:0
+#: selection:lgps.gpsdevice,status:0
 msgid "Desinstalado"
 msgstr "Desinstalado"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__destination
+msgid "Destination"
+msgstr "Destino"
+
+#. module: lgps
+#: code:addons/lgps/models/tracking.py:34
+#: selection:lgps.tracking,state:0
+#, python-format
+msgid "Detenido"
+msgstr "Detenido"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.accessory_form_view
@@ -378,7 +481,7 @@ msgstr "Información del Equipo"
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.partner_instructor_form_view
 msgid "Devices"
-msgstr ""
+msgstr "Dispositivos"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.report_gpsdevice_view
@@ -389,6 +492,8 @@ msgstr "Dispositivos"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__display_name
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__display_name
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__display_name
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__display_name
+#: model:ir.model.fields,field_description:lgps.field_lgps_wizard__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -398,8 +503,12 @@ msgid "Dispositivo GPS"
 msgstr "Dispositivo GPS"
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:16
-#: selection:lgps.cellchip,status:0
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__driver
+msgid "Driver"
+msgstr "Conductor"
+
+#. module: lgps
+#: code:addons/lgps/models/cellchip.py:24
 #: selection:lgps.gpsdevice,status:0
 #, python-format
 msgid "Drop"
@@ -416,21 +525,41 @@ msgid "Estatus Elpased Days"
 msgstr "Días Transcurridos"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:146
-#: selection:lgps.gpsdevice,status:0
+#: code:addons/lgps/models/gpsdevice.py:150
 #, python-format
 msgid "External"
 msgstr "Externo"
 
 #. module: lgps
 #: selection:lgps.accessory,status:0
+#: selection:lgps.gpsdevice,status:0
 msgid "Externo"
 msgstr "Externo"
+
+#. module: lgps
+#: code:addons/lgps/models/tracking.py:36
+#: selection:lgps.tracking,state:0
+#, python-format
+msgid "Facturado"
+msgstr "Facturado"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__final_date
+msgid "Final Date"
+msgstr "Fecha Final"
+
+#. module: lgps
+#: code:addons/lgps/models/tracking.py:35
+#: selection:lgps.tracking,state:0
+#, python-format
+msgid "Finalizado"
+msgstr "Finalizado"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_follower_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_follower_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_follower_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_follower_ids
 msgid "Followers"
 msgstr "Seguidores"
 
@@ -438,6 +567,7 @@ msgstr "Seguidores"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_channel_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_channel_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_channel_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_channel_ids
 msgid "Followers (Channels)"
 msgstr "Seguidores (Canales)"
 
@@ -445,6 +575,7 @@ msgstr "Seguidores (Canales)"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_partner_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_partner_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_partner_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidores (Empresas)"
 
@@ -452,6 +583,23 @@ msgstr "Seguidores (Empresas)"
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel
 msgid "Fuel"
 msgstr "Combustible"
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.wizard_form_view
+msgid "GPS Device"
+msgstr "Dispositivo GPS"
+
+#. module: lgps
+#: model:ir.model.fields,help:lgps.field_lgps_cellchip__gpsdevice_id
+msgid "GPS Device where the cellchip is on."
+msgstr "Dispositivo GPS donde esta instalado el Chip"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__gpsdevice_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_wizard__gpsdevice_ids
+#: model:ir.model.fields,field_description:lgps.field_sale_subscription__gpsdevice_id
+msgid "Gps Device"
+msgstr "Dispositivo GPS"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
@@ -487,12 +635,12 @@ msgstr "Gurtam"
 
 #. module: lgps
 #: selection:lgps.accessory,status:0
+#: selection:lgps.gpsdevice,status:0
 msgid "Hibernado"
 msgstr "Hibernado"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:147
-#: selection:lgps.gpsdevice,status:0
+#: code:addons/lgps/models/gpsdevice.py:151
 #, python-format
 msgid "Hibernate"
 msgstr "Hibernado"
@@ -501,6 +649,8 @@ msgstr "Hibernado"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__id
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__id
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__id
+#: model:ir.model.fields,field_description:lgps.field_lgps_wizard__id
 msgid "ID"
 msgstr "ID"
 
@@ -518,6 +668,7 @@ msgstr "IMEI"
 #: model:ir.model.fields,help:lgps.field_lgps_accessory__message_unread
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__message_unread
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__message_unread
+#: model:ir.model.fields,help:lgps.field_lgps_tracking__message_unread
 msgid "If checked new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
 
@@ -525,6 +676,7 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
 #: model:ir.model.fields,help:lgps.field_lgps_accessory__message_needaction
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__message_needaction
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__message_needaction
+#: model:ir.model.fields,help:lgps.field_lgps_tracking__message_needaction
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
@@ -532,13 +684,20 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 #: model:ir.model.fields,help:lgps.field_lgps_accessory__message_has_error
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__message_has_error
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__message_has_error
+#: model:ir.model.fields,help:lgps.field_lgps_tracking__message_has_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:223
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__initial_date
+msgid "Initial Date"
+msgstr "Fecha Inicial"
+
+#. module: lgps
+#: code:addons/lgps/models/gpsdevice.py:232
 #: selection:lgps.accessory,status:0
 #: selection:lgps.gpsdevice,state:0
+#: selection:lgps.gpsdevice,status:0
 #, python-format
 msgid "Instalado"
 msgstr "Instalado"
@@ -551,14 +710,14 @@ msgid "Installation Date"
 msgstr "Fecha de Instalación"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:148
-#: selection:lgps.gpsdevice,status:0
+#: code:addons/lgps/models/gpsdevice.py:152
 #, python-format
 msgid "Installed"
 msgstr "Instalado"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__gpsdevice_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__gpsdevice_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__client_id
 msgid "Installed On"
 msgstr "Instalado En"
@@ -569,18 +728,23 @@ msgid "Internal Id"
 msgstr "Id Interno"
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.tracking_form_view
+msgid "Internal Info"
+msgstr "Informació interna"
+
+#. module: lgps
 #: model:ir.ui.menu,name:lgps.main_lgps_menu
 msgid "Intralix"
 msgstr "Intralix"
 
 #. module: lgps
 #: selection:lgps.accessory,status:0
+#: selection:lgps.gpsdevice,status:0
 msgid "Inventario"
 msgstr "Inventario"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:149
-#: selection:lgps.gpsdevice,status:0
+#: code:addons/lgps/models/gpsdevice.py:153
 #, python-format
 msgid "Inventory"
 msgstr "Inventario"
@@ -589,6 +753,7 @@ msgstr "Inventario"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_is_follower
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_is_follower
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_is_follower
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_is_follower
 msgid "Is Follower"
 msgstr "Es un seguidor"
 
@@ -601,6 +766,8 @@ msgstr "Iusacell"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory____last_update
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip____last_update
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice____last_update
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking____last_update
+#: model:ir.model.fields,field_description:lgps.field_lgps_wizard____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
@@ -620,6 +787,8 @@ msgstr "Último Reporte"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__write_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__write_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__write_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__write_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
@@ -627,6 +796,8 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__write_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__write_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__write_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__write_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_wizard__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
@@ -635,6 +806,16 @@ msgstr "Última actualización el"
 #: model:ir.ui.menu,name:lgps.lgps_menu
 msgid "Lgps"
 msgstr "Lgps"
+
+#. module: lgps
+#: model:res.groups,name:lgps.lgps_group_guest
+msgid "Lgps / Guest"
+msgstr "Lgps / Invitado"
+
+#. module: lgps
+#: model:res.groups,name:lgps.lgps_group_maintainer
+msgid "Lgps / Maintainer"
+msgstr "Lgps / Colaborador"
 
 #. module: lgps
 #: model:res.groups,name:lgps.lgps_group_manager
@@ -662,6 +843,11 @@ msgid "Line Terms"
 msgstr "Plazo de la Línea"
 
 #. module: lgps
+#: selection:lgps.gpsdevice,status:0
+msgid "Listo para instalar"
+msgstr "Listo para instalar"
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__load_drivers
 msgid "Load Drivers"
 msgstr "Controlador de Carga"
@@ -670,6 +856,7 @@ msgstr "Controlador de Carga"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_main_attachment_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_main_attachment_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_main_attachment_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_main_attachment_id
 msgid "Main Attachment"
 msgstr "Adjuntos principales"
 
@@ -692,6 +879,7 @@ msgstr "Cuenta Padre"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_has_error
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_has_error
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_has_error
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_has_error
 msgid "Message Delivery error"
 msgstr "Error de Envío de Mensaje"
 
@@ -699,6 +887,7 @@ msgstr "Error de Envío de Mensaje"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_ids
 msgid "Messages"
 msgstr "Mensajes"
 
@@ -708,9 +897,19 @@ msgid "Microphone"
 msgstr "Micrófono"
 
 #. module: lgps
+#: model:ir.ui.menu,name:lgps.lgps_monitoreo_menu
+msgid "Monitoreo"
+msgstr "Monitoreo"
+
+#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.accessory_form_view
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 msgid "More Info"
+msgstr "Más Información"
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.tracking_form_view
+msgid "More Information"
 msgstr "Más Información"
 
 #. module: lgps
@@ -719,11 +918,34 @@ msgid "Movistar"
 msgstr "Movistar"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:150
-#: selection:lgps.gpsdevice,status:0
+#: code:addons/lgps/models/gpsdevice.py:154
 #, python-format
 msgid "New"
 msgstr "Nuevo"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_accessory__activity_date_deadline
+#: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__activity_date_deadline
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__activity_date_deadline
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Siguiente plazo de actividad"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_accessory__activity_summary
+#: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__activity_summary
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__activity_summary
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la siguiente actividad"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_accessory__activity_type_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__activity_type_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__activity_type_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__activity_type_id
+msgid "Next Activity Type"
+msgstr "Siguiente tipo de actividad"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__nick
@@ -736,12 +958,23 @@ msgid "No hay registros"
 msgstr "No hay registros"
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__notifications
+msgid "Notifications"
+msgstr "Notificaciones"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__notify
+msgid "Notify Client"
+msgstr "Notificar al Cliente"
+
+#. module: lgps
 #: selection:lgps.gpsdevice,platform:0
 msgid "Novit"
 msgstr "Novit"
 
 #. module: lgps
 #: selection:lgps.accessory,status:0
+#: selection:lgps.gpsdevice,status:0
 msgid "Nuevo"
 msgstr "Nuevo"
 
@@ -749,6 +982,7 @@ msgstr "Nuevo"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_needaction_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_needaction_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_needaction_counter
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_needaction_counter
 msgid "Number of Actions"
 msgstr "Número de acciones"
 
@@ -756,6 +990,7 @@ msgstr "Número de acciones"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_has_error_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_has_error_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_has_error_counter
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_has_error_counter
 msgid "Number of error"
 msgstr "Número de error"
 
@@ -763,6 +998,7 @@ msgstr "Número de error"
 #: model:ir.model.fields,help:lgps.field_lgps_accessory__message_needaction_counter
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__message_needaction_counter
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__message_needaction_counter
+#: model:ir.model.fields,help:lgps.field_lgps_tracking__message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr "Número de mensajes que requieren una acción"
 
@@ -770,6 +1006,7 @@ msgstr "Número de mensajes que requieren una acción"
 #: model:ir.model.fields,help:lgps.field_lgps_accessory__message_has_error_counter
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__message_has_error_counter
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__message_has_error_counter
+#: model:ir.model.fields,help:lgps.field_lgps_tracking__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Número de mensajes con error de envío"
 
@@ -777,8 +1014,14 @@ msgstr "Número de mensajes con error de envío"
 #: model:ir.model.fields,help:lgps.field_lgps_accessory__message_unread_counter
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__message_unread_counter
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__message_unread_counter
+#: model:ir.model.fields,help:lgps.field_lgps_tracking__message_unread_counter
 msgid "Number of unread messages"
 msgstr "Número de mensajes no leidos"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__observations
+msgid "Observations"
+msgstr "Observaciones"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__opening_sensor
@@ -786,9 +1029,49 @@ msgid "Opening Sensor"
 msgstr "Sensor de Apertura"
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__origin
+msgid "Origin"
+msgstr "Origen"
+
+#. module: lgps
+#: selection:lgps.accessory,activity_state:0
+#: selection:lgps.cellchip,activity_state:0
+#: selection:lgps.gpsdevice,activity_state:0
+#: selection:lgps.tracking,activity_state:0
+msgid "Overdue"
+msgstr "Atrasado"
+
+#. module: lgps
+#: code:addons/lgps/models/tracking.py:44
+#: selection:lgps.tracking,category:0
+#, python-format
+msgid "Per Event"
+msgstr "Por Evento"
+
+#. module: lgps
+#: code:addons/lgps/models/tracking.py:45
+#: selection:lgps.tracking,category:0
+#, python-format
+msgid "Permanente"
+msgstr "Permanente"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__phone
+msgid "Phones"
+msgstr "Teléfonos"
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__plan
 msgid "Plan"
 msgstr "Plan"
+
+#. module: lgps
+#: selection:lgps.accessory,activity_state:0
+#: selection:lgps.cellchip,activity_state:0
+#: selection:lgps.gpsdevice,activity_state:0
+#: selection:lgps.tracking,activity_state:0
+msgid "Planned"
+msgstr "Planeado"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__platform
@@ -807,6 +1090,7 @@ msgstr "Position Logic"
 
 #. module: lgps
 #: selection:lgps.accessory,status:0
+#: selection:lgps.gpsdevice,status:0
 msgid "Prestado"
 msgstr "Prestado"
 
@@ -817,8 +1101,8 @@ msgid "Product Type"
 msgstr "Tipo de producto"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:221
-#: code:addons/lgps/models/gpsdevice.py:222
+#: code:addons/lgps/models/gpsdevice.py:230
+#: code:addons/lgps/models/gpsdevice.py:231
 #: selection:lgps.gpsdevice,state:0
 #, python-format
 msgid "Programar"
@@ -836,6 +1120,7 @@ msgstr "Proveedor"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.cellchip_form_view
+#: model_terms:ir.ui.view,arch_db:lgps.tracking_form_view
 msgid "Provider Info"
 msgstr "Información de Proveedor"
 
@@ -858,42 +1143,75 @@ msgid "Purchase Date"
 msgstr "Fecha de Compra"
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:18
 #: selection:lgps.cellchip,status:0
+msgid "Reactivado"
+msgstr "Reactivado"
+
+#. module: lgps
+#: code:addons/lgps/models/cellchip.py:26
 #, python-format
 msgid "Reactivated"
 msgstr "Reactivado"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:151
-#: selection:lgps.gpsdevice,status:0
+#: code:addons/lgps/models/gpsdevice.py:155
 #, python-format
 msgid "Ready to Install"
 msgstr "Listo para instalar"
 
 #. module: lgps
+#: selection:lgps.cellchip,status:0
+msgid "Reemplazado"
+msgstr "Reemplazado"
+
+#. module: lgps
 #: selection:lgps.accessory,status:0
+#: selection:lgps.gpsdevice,status:0
 msgid "Reemplazo"
 msgstr "Reemplazo"
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:19
-#: selection:lgps.cellchip,status:0
+#: code:addons/lgps/models/tracking.py:32
+#: selection:lgps.tracking,state:0
+#, python-format
+msgid "Registrado"
+msgstr "Registrado"
+
+#. module: lgps
+#: code:addons/lgps/models/cellchip.py:27
 #, python-format
 msgid "Replaced"
 msgstr "Reemplazado"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:154
-#: selection:lgps.gpsdevice,status:0
+#: code:addons/lgps/models/gpsdevice.py:158
 #, python-format
 msgid "Replacement"
 msgstr "Reemplazo"
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__applicant
+msgid "Requested By"
+msgstr "Solicitado Por"
+
+#. module: lgps
 #: selection:lgps.accessory,status:0
+#: selection:lgps.gpsdevice,status:0
 msgid "Respaldo"
 msgstr "Respaldo"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_accessory__activity_user_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__activity_user_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__activity_user_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario responsable"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__route
+msgid "Route"
+msgstr "Ruta"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__linenumber_id
@@ -909,7 +1227,7 @@ msgstr "Scanner"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__serialnumber_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__serialnumber_id
 msgid "Serial Number"
-msgstr "Número de Serie"
+msgstr "Nº de serie"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
@@ -937,8 +1255,7 @@ msgid "Solar Panel"
 msgstr "Panel Solar"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:156
-#: selection:lgps.gpsdevice,status:0
+#: code:addons/lgps/models/gpsdevice.py:160
 #, python-format
 msgid "Sold"
 msgstr "Vendido"
@@ -955,6 +1272,7 @@ msgstr "Bocina"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__state
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__state
 msgid "State"
 msgstr "Estado"
 
@@ -972,10 +1290,38 @@ msgid "Status Date"
 msgstr "Fecha de Estatus"
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:17
-#: selection:lgps.cellchip,status:0
+#: model:ir.model.fields,help:lgps.field_lgps_accessory__activity_state
+#: model:ir.model.fields,help:lgps.field_lgps_cellchip__activity_state
+#: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__activity_state
+#: model:ir.model.fields,help:lgps.field_lgps_tracking__activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "Estado basado en actividades\n"
+"Vencida: la fecha tope ya ha pasado\n"
+"Hoy: La fecha tope es hoy\n"
+"Planificada: futuras actividades."
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_sale_subscription
+msgid "Subscription"
+msgstr "Suscripción"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__suscription_id
+msgid "Suscription"
+msgstr "Suscripción"
+
+#. module: lgps
+#: code:addons/lgps/models/cellchip.py:25
 #, python-format
 msgid "Suspended"
+msgstr "Suspendido"
+
+#. module: lgps
+#: selection:lgps.cellchip,status:0
+msgid "Suspendido"
 msgstr "Suspendido"
 
 #. module: lgps
@@ -999,7 +1345,7 @@ msgid "Term"
 msgstr "Plazo"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:153
+#: code:addons/lgps/models/gpsdevice.py:157
 #: selection:lgps.gpsdevice,status:0
 #, python-format
 msgid "Tests"
@@ -1008,39 +1354,95 @@ msgstr "Pruebas"
 #. module: lgps
 #: sql_constraint:lgps.accessory:0
 msgid "The accessory id must be unique"
-msgstr ""
+msgstr "El identificador del accesorio debe ser único."
 
 #. module: lgps
 #: sql_constraint:lgps.cellchip:0
 msgid "The cellchip id must be unique"
-msgstr ""
+msgstr "El identificador del chip debe ser único."
 
 #. module: lgps
 #: sql_constraint:lgps.gpsdevice:0
 msgid "The gps device id must be unique"
-msgstr ""
+msgstr "El identificador del dispositivo GPS debe ser único."
 
 #. module: lgps
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__days_suspended
 msgid "Time elapsed since the line was set to suspended expressed in days"
-msgstr ""
+msgstr "Tiempo transcurrido desde que la línea fue marcada como suspendida expresado en días"
 
 #. module: lgps
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__last_report
 msgid "Time without reporting in platforms expressed in hours"
-msgstr ""
+msgstr "Tiempo sin reportar en plataformas expresado en horas"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:145
-#: selection:lgps.gpsdevice,status:0
+#: selection:lgps.accessory,activity_state:0
+#: selection:lgps.cellchip,activity_state:0
+#: selection:lgps.gpsdevice,activity_state:0
+#: selection:lgps.tracking,activity_state:0
+msgid "Today"
+msgstr "Hoy"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__tracking
+msgid "Tracking"
+msgstr "Seguimiento"
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.tracking_form_view
+msgid "Tracking Form"
+msgstr "Formulario de Monitoreo"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__name
+msgid "Tracking Id"
+msgstr "Id Monitoreo"
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.tracking_form_view
+msgid "Tracking Info"
+msgstr "Información del Monitoreo"
+
+#. module: lgps
+#: model:ir.actions.act_window,name:lgps.tracking_list_action
+#: model:ir.ui.menu,name:lgps.trackings_menu
+msgid "Trackings"
+msgstr "Monitoreos"
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.tracking_tree_view
+msgid "Trackings Tree"
+msgstr "Listado de Monitoreos"
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.tracking_form_view
+msgid "Travel Details"
+msgstr "Detalles del Viaje"
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.tracking_form_view
+msgid "Travel Information"
+msgstr "Información del Viaje"
+
+#. module: lgps
+#: code:addons/lgps/models/gpsdevice.py:149
 #, python-format
 msgid "Uninstalled"
 msgstr "Desinstalado"
 
 #. module: lgps
+#: code:addons/lgps/models/tracking.py:46
+#: selection:lgps.tracking,category:0
+#, python-format
+msgid "Uninterrupted"
+msgstr "Permanente"
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_unread
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_unread
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_unread
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_unread
 msgid "Unread Messages"
 msgstr "Mensajes por leer"
 
@@ -1048,6 +1450,7 @@ msgstr "Mensajes por leer"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_unread_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_unread_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_unread_counter
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr "Contador de mensajes sin leer"
 
@@ -1058,6 +1461,7 @@ msgstr "Utrax"
 
 #. module: lgps
 #: selection:lgps.accessory,status:0
+#: selection:lgps.gpsdevice,status:0
 msgid "Vendido"
 msgstr "Vendido"
 
@@ -1100,6 +1504,7 @@ msgstr "Plazo de Garantía"
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__website_message_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__website_message_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__website_message_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__website_message_ids
 msgid "Website Messages"
 msgstr "Mensajes del sitio web"
 
@@ -1107,6 +1512,7 @@ msgstr "Mensajes del sitio web"
 #: model:ir.model.fields,help:lgps.field_lgps_accessory__website_message_ids
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__website_message_ids
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__website_message_ids
+#: model:ir.model.fields,help:lgps.field_lgps_tracking__website_message_ids
 msgid "Website communication history"
 msgstr "Historial de comunicaciones del sitio web"
 
@@ -1139,6 +1545,21 @@ msgstr "Línea"
 #: model:ir.model,name:lgps.model_lgps_gpsdevice
 msgid "lgps.gpsdevice"
 msgstr "Desipositivo Gps"
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_lgps_tracking
+msgid "lgps.tracking"
+msgstr "Monitoreo"
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_lgps_wizard
+msgid "lgps.wizard"
+msgstr "Asingación de Accesorios"
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.wizard_form_view
+msgid "or"
+msgstr "o"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.report_gpsdevice_view

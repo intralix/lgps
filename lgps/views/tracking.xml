@@ -109,5 +109,5 @@
     </record>
 
     <menuitem id="lgps_monitoreo_menu" name="Monitoreo" parent="main_lgps_menu" sequence="2"/>
-    <menuitem id="trackings_menu" name="Trackings" parent="lgps_monitoreo_menu" action="tracking_list_action" sequence="1"/>
+    <menuitem id="trackings_menu" name="Monitoreos" parent="lgps_monitoreo_menu" action="tracking_list_action" sequence="1"/>
 </odoo>
