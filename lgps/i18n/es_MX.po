@@ -1387,7 +1387,7 @@ msgstr "Hoy"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__tracking
 msgid "Tracking"
-msgstr "Seguimiento"
+msgstr "Rastreo"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.tracking_form_view
