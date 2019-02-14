@@ -24,5 +24,6 @@
         'views/wizard.xml',
         'views/suscription.xml',
         'views/tracking.xml',
+        'views/odt.xml',
     ],
 }

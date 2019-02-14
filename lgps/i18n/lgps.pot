@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-13 05:06+0000\n"
-"PO-Revision-Date: 2019-02-13 05:06+0000\n"
+"POT-Creation-Date: 2019-02-14 03:02+0000\n"
+"PO-Revision-Date: 2019-02-14 03:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -256,6 +256,16 @@ msgstr ""
 #. module: lgps
 #: model:ir.actions.act_window,name:lgps.action_other_checkouts_button
 msgid "Assigned Accessories"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_repair_order__assistant_a_id
+msgid "Assistant A"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_repair_order__assistant_b_id
+msgid "Assistant B"
 msgstr ""
 
 #. module: lgps
@@ -597,6 +607,7 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__gpsdevice_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_wizard__gpsdevice_ids
+#: model:ir.model.fields,field_description:lgps.field_repair_order__gpsdevice_id
 #: model:ir.model.fields,field_description:lgps.field_sale_subscription__gpsdevice_id
 msgid "Gps Device"
 msgstr ""
@@ -720,6 +731,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__gpsdevice_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__client_id
 msgid "Installed On"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_repair_order__installer_id
+msgid "Installer"
 msgstr ""
 
 #. module: lgps
@@ -902,6 +918,11 @@ msgid "Monitoreo"
 msgstr ""
 
 #. module: lgps
+#: model:ir.ui.menu,name:lgps.trackings_menu
+msgid "Monitoreos"
+msgstr ""
+
+#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.accessory_form_view
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 msgid "More Info"
@@ -1043,7 +1064,6 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/tracking.py:44
-#: selection:lgps.tracking,category:0
 #, python-format
 msgid "Per Event"
 msgstr ""
@@ -1092,6 +1112,11 @@ msgstr ""
 #: selection:lgps.accessory,status:0
 #: selection:lgps.gpsdevice,status:0
 msgid "Prestado"
+msgstr ""
+
+#. module: lgps
+#: selection:lgps.tracking,category:0
+msgid "Pro Evento"
 msgstr ""
 
 #. module: lgps
@@ -1175,6 +1200,11 @@ msgstr ""
 #: selection:lgps.tracking,state:0
 #, python-format
 msgid "Registrado"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_repair_order
+msgid "Repair Order"
 msgstr ""
 
 #. module: lgps
@@ -1403,7 +1433,6 @@ msgstr ""
 
 #. module: lgps
 #: model:ir.actions.act_window,name:lgps.tracking_list_action
-#: model:ir.ui.menu,name:lgps.trackings_menu
 msgid "Trackings"
 msgstr ""
 
@@ -1430,7 +1459,6 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/tracking.py:46
-#: selection:lgps.tracking,category:0
 #, python-format
 msgid "Uninterrupted"
 msgstr ""

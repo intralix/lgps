@@ -7,3 +7,4 @@ from . import partner
 from . import wizard
 from . import suscriptions
 from . import tracking
+from . import odt

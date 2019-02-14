@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record model="ir.ui.view" id="custom_repairs_form_view">
+    <field name="name">repair.order.lgps.odt</field>
+    <field name="model">repair.order</field>
+    <field name="inherit_id" ref="repair.view_repair_order_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='partner_id']" position="after">
+            <field name="gpsdevice_id"/>
+            <field name="installer_id"/>
+        </xpath>
+
+        <xpath expr="//field[@name='invoice_method']" position="after">
+            <field name="assistant_a_id"/>
+            <field name="assistant_b_id"/>
+        </xpath>
+    </field>
+  </record>
+</odoo>

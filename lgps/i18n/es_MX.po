@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-13 04:34+0000\n"
-"PO-Revision-Date: 2019-02-13 04:34+0000\n"
+"POT-Creation-Date: 2019-02-14 03:00+0000\n"
+"PO-Revision-Date: 2019-02-14 03:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgstr "12"
 #. module: lgps
 #: selection:lgps.gpsdevice,warranty_term:0
 msgid "12 meses"
-msgstr ""
+msgstr "12 meses"
 
 #. module: lgps
 #: code:addons/lgps/models/gpsdevice.py:45
@@ -59,7 +59,7 @@ msgstr "18"
 #. module: lgps
 #: selection:lgps.gpsdevice,warranty_term:0
 msgid "18 meses"
-msgstr ""
+msgstr "18 meses"
 
 #. module: lgps
 #: code:addons/lgps/models/gpsdevice.py:46
@@ -90,7 +90,7 @@ msgstr "24"
 #. module: lgps
 #: selection:lgps.gpsdevice,warranty_term:0
 msgid "24 meses"
-msgstr ""
+msgstr "4 meses"
 
 #. module: lgps
 #: code:addons/lgps/models/gpsdevice.py:47
@@ -257,6 +257,16 @@ msgstr "Asignar"
 #: model:ir.actions.act_window,name:lgps.action_other_checkouts_button
 msgid "Assigned Accessories"
 msgstr "Accesorios Asignados"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_repair_order__assistant_a_id
+msgid "Assistant A"
+msgstr "Auxiliar A"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_repair_order__assistant_b_id
+msgid "Assistant B"
+msgstr "Auxiliar B"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_attachment_count
@@ -597,6 +607,7 @@ msgstr "Dispositivo GPS donde esta instalado el Chip"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__gpsdevice_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_wizard__gpsdevice_ids
+#: model:ir.model.fields,field_description:lgps.field_repair_order__gpsdevice_id
 #: model:ir.model.fields,field_description:lgps.field_sale_subscription__gpsdevice_id
 msgid "Gps Device"
 msgstr "Dispositivo GPS"
@@ -652,7 +663,7 @@ msgstr "Hibernado"
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__id
 #: model:ir.model.fields,field_description:lgps.field_lgps_wizard__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__idf
@@ -723,6 +734,11 @@ msgid "Installed On"
 msgstr "Instalado En"
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_repair_order__installer_id
+msgid "Installer"
+msgstr "Instalador"
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__name
 msgid "Internal Id"
 msgstr "Id Interno"
@@ -730,7 +746,7 @@ msgstr "Id Interno"
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.tracking_form_view
 msgid "Internal Info"
-msgstr "Informació interna"
+msgstr "Información interna"
 
 #. module: lgps
 #: model:ir.ui.menu,name:lgps.main_lgps_menu
@@ -902,6 +918,11 @@ msgid "Monitoreo"
 msgstr "Monitoreo"
 
 #. module: lgps
+#: model:ir.ui.menu,name:lgps.trackings_menu
+msgid "Monitoreos"
+msgstr "Monitoreos"
+
+#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.accessory_form_view
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 msgid "More Info"
@@ -1043,7 +1064,6 @@ msgstr "Atrasado"
 
 #. module: lgps
 #: code:addons/lgps/models/tracking.py:44
-#: selection:lgps.tracking,category:0
 #, python-format
 msgid "Per Event"
 msgstr "Por Evento"
@@ -1076,7 +1096,7 @@ msgstr "Planeado"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__platform
 msgid "Platform"
-msgstr "Platforma"
+msgstr "Plataforma"
 
 #. module: lgps
 #: selection:lgps.accessory,status:0
@@ -1093,6 +1113,11 @@ msgstr "Position Logic"
 #: selection:lgps.gpsdevice,status:0
 msgid "Prestado"
 msgstr "Prestado"
+
+#. module: lgps
+#: selection:lgps.tracking,category:0
+msgid "Por Evento"
+msgstr "Por Evento"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__product_id
@@ -1176,6 +1201,11 @@ msgstr "Reemplazo"
 #, python-format
 msgid "Registrado"
 msgstr "Registrado"
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_repair_order
+msgid "Repair Order"
+msgstr "Orden de reparación"
 
 #. module: lgps
 #: code:addons/lgps/models/cellchip.py:27
@@ -1387,7 +1417,7 @@ msgstr "Hoy"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__tracking
 msgid "Tracking"
-msgstr "Rastreo"
+msgstr "Seguimiento"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.tracking_form_view
@@ -1406,7 +1436,6 @@ msgstr "Información del Monitoreo"
 
 #. module: lgps
 #: model:ir.actions.act_window,name:lgps.tracking_list_action
-#: model:ir.ui.menu,name:lgps.trackings_menu
 msgid "Trackings"
 msgstr "Monitoreos"
 
@@ -1433,7 +1462,6 @@ msgstr "Desinstalado"
 
 #. module: lgps
 #: code:addons/lgps/models/tracking.py:46
-#: selection:lgps.tracking,category:0
 #, python-format
 msgid "Uninterrupted"
 msgstr "Permanente"
@@ -1544,7 +1572,7 @@ msgstr "Línea"
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_gpsdevice
 msgid "lgps.gpsdevice"
-msgstr "Desipositivo Gps"
+msgstr "Dispositivo Gps"
 
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_tracking
