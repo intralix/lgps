@@ -60,25 +60,28 @@
                         </page>
 
                         <page string="Services">
-                            <separator string="Active Services"/>
                             <group>
-                                <group>
+                                <group string="Funciones">
                                     <field name="tracking"/>
                                     <field name="fuel"/>
                                     <field name="scanner"/>
                                     <field name="temperature"/>
-                                    <field name="opening_sensor"/>
-                                    <field name="ibutton"/>
-                                    <field name="microphone"/>
                                 </group>
-                                <group>
-                                    <field name="speaker"/>
-                                    <field name="anti_jammer_blocker"/>
-                                    <field name="smart_blocker"/>
-                                    <field name="blocker"/>
-                                    <field name="load_drivers"/>
-                                    <field name="solar_panel"/>
-                                    <field name="sheet"/>
+                                <group string="Complementos">
+                                    <group>
+                                        <field name="speaker"/>
+                                        <field name="anti_jammer_blocker"/>
+                                        <field name="smart_blocker"/>
+                                        <field name="blocker"/>
+                                        <field name="padlock"/>
+                                    </group>
+                                    <group>
+                                        <field name="solar_panel"/>
+                                        <field name="sheet"/>
+                                        <field name="opening_sensor"/>
+                                        <field name="ibutton"/>
+                                        <field name="microphone"/>
+                                    </group>
                                 </group>
                             </group>
                         </page>

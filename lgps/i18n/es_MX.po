@@ -864,9 +864,9 @@ msgid "Listo para instalar"
 msgstr "Listo para instalar"
 
 #. module: lgps
-#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__load_drivers
-msgid "Load Drivers"
-msgstr "Controlador de Carga"
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__padlock
+msgid "Padlock"
+msgstr "Candado"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_main_attachment_id
@@ -1277,7 +1277,7 @@ msgstr "Sinpacsys"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__smart_blocker
 msgid "Smart Blocker"
-msgstr "Bloqueador Inteligente"
+msgstr "Tarjeta Inteligente"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__solar_panel

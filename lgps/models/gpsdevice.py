@@ -86,9 +86,9 @@ class GpsDevice(models.Model):
         string="Scanner",
     )
 
-    load_drivers = fields.Boolean(
+    padlock = fields.Boolean(
         default=False,
-        string="Load Drivers",
+        string="Padlock",
     )
 
     solar_panel = fields.Boolean(
