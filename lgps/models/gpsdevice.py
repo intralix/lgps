@@ -133,10 +133,6 @@ class GpsDevice(models.Model):
         string="Last Position",
     )
 
-    provider_serial_number = fields.Char(
-        string="Provider Serial Number",
-    )
-
     last_report = fields.Integer(
         string="Last Report",
         compute="_compute_last_report",
@@ -245,12 +241,6 @@ class GpsDevice(models.Model):
     purchase_date = fields.Date(
         default=fields.Date.today,
         string="Purchase Date",
-    )
-
-    repairs_ids = fields.One2many(
-        comodel_name="repair.order",
-        inverse_name="gpsdevice_id",
-        string="Odts",
     )
 
     accesories_count = fields.Integer("Accesories", compute='_compute_accesories_count')

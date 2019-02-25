@@ -25,6 +25,5 @@
         'views/suscription.xml',
         'views/tracking.xml',
         'views/odt.xml',
-        'views/lead.xml',
     ],
 }

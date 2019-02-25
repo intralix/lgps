@@ -8,4 +8,3 @@ from . import wizard
 from . import suscriptions
 from . import tracking
 from . import odt
-from . import leads

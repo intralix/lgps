@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-25 21:09+0000\n"
-"PO-Revision-Date: 2019-02-25 21:09+0000\n"
+"POT-Creation-Date: 2019-02-14 03:02+0000\n"
+"PO-Revision-Date: 2019-02-14 03:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -188,6 +188,11 @@ msgid "Active"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
+msgid "Active Services"
+msgstr ""
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__activity_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__activity_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__activity_ids
@@ -237,7 +242,7 @@ msgid "Anti Jammer Blocker"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:233
+#: code:addons/lgps/models/gpsdevice.py:229
 #: selection:lgps.gpsdevice,state:0
 #, python-format
 msgid "Asignar"
@@ -272,7 +277,7 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:163
+#: code:addons/lgps/models/gpsdevice.py:159
 #, python-format
 msgid "Backup"
 msgstr ""
@@ -289,7 +294,7 @@ msgid "Blocker"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:160
+#: code:addons/lgps/models/gpsdevice.py:156
 #, python-format
 msgid "Borrowed"
 msgstr ""
@@ -351,26 +356,16 @@ msgid "Client Account"
 msgstr ""
 
 #. module: lgps
-#: model:ir.model.fields,field_description:lgps.field_res_partner__client_type
-msgid "Client Type"
-msgstr ""
-
-#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.report_gpsdevice_view
 msgid "Cliente:"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:150
+#: code:addons/lgps/models/gpsdevice.py:146
 #: selection:lgps.accessory,status:0
 #: selection:lgps.gpsdevice,status:0
 #, python-format
 msgid "Comodato"
-msgstr ""
-
-#. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
-msgid "Complementos"
 msgstr ""
 
 #. module: lgps
@@ -396,13 +391,13 @@ msgid "Cortesía"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:151
+#: code:addons/lgps/models/gpsdevice.py:147
 #, python-format
 msgid "Courtesy"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:232
+#: code:addons/lgps/models/gpsdevice.py:228
 #: selection:lgps.gpsdevice,state:0
 #, python-format
 msgid "Crear"
@@ -462,7 +457,7 @@ msgid "DateTime Server"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:152
+#: code:addons/lgps/models/gpsdevice.py:148
 #: selection:lgps.accessory,status:0
 #: selection:lgps.gpsdevice,status:0
 #, python-format
@@ -540,14 +535,7 @@ msgid "Estatus Elpased Days"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/partner.py:21
-#: selection:res.partner,client_type:0
-#, python-format
-msgid "Existent"
-msgstr ""
-
-#. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:154
+#: code:addons/lgps/models/gpsdevice.py:150
 #, python-format
 msgid "External"
 msgstr ""
@@ -578,11 +566,6 @@ msgid "Finalizado"
 msgstr ""
 
 #. module: lgps
-#: model:ir.model.fields,field_description:lgps.field_res_partner__first_installation_day
-msgid "First Installation Day"
-msgstr ""
-
-#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_follower_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_follower_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_follower_ids
@@ -609,11 +592,6 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel
 msgid "Fuel"
-msgstr ""
-
-#. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
-msgid "Funciones"
 msgstr ""
 
 #. module: lgps
@@ -662,11 +640,6 @@ msgid "GpsDevices Tree"
 msgstr ""
 
 #. module: lgps
-#: model:ir.model.fields,field_description:lgps.field_sale_subscription__grouper_type
-msgid "Grouper Type"
-msgstr ""
-
-#. module: lgps
 #: selection:lgps.gpsdevice,platform:0
 msgid "Gurtam"
 msgstr ""
@@ -678,7 +651,7 @@ msgid "Hibernado"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:155
+#: code:addons/lgps/models/gpsdevice.py:151
 #, python-format
 msgid "Hibernate"
 msgstr ""
@@ -732,7 +705,7 @@ msgid "Initial Date"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:236
+#: code:addons/lgps/models/gpsdevice.py:232
 #: selection:lgps.accessory,status:0
 #: selection:lgps.gpsdevice,state:0
 #: selection:lgps.gpsdevice,status:0
@@ -748,7 +721,7 @@ msgid "Installation Date"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:156
+#: code:addons/lgps/models/gpsdevice.py:152
 #, python-format
 msgid "Installed"
 msgstr ""
@@ -787,7 +760,7 @@ msgid "Inventario"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:157
+#: code:addons/lgps/models/gpsdevice.py:153
 #, python-format
 msgid "Inventory"
 msgstr ""
@@ -845,11 +818,6 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: lgps
-#: model:ir.model,name:lgps.model_crm_lead
-msgid "Lead/Opportunity"
-msgstr ""
-
-#. module: lgps
 #: model:ir.module.category,name:lgps.module_lgps_category
 #: model:ir.ui.menu,name:lgps.lgps_menu
 msgid "Lgps"
@@ -893,6 +861,11 @@ msgstr ""
 #. module: lgps
 #: selection:lgps.gpsdevice,status:0
 msgid "Listo para instalar"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__load_drivers
+msgid "Load Drivers"
 msgstr ""
 
 #. module: lgps
@@ -966,8 +939,7 @@ msgid "Movistar"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:158
-#: code:addons/lgps/models/partner.py:20
+#: code:addons/lgps/models/gpsdevice.py:154
 #, python-format
 msgid "New"
 msgstr ""
@@ -1024,7 +996,6 @@ msgstr ""
 #. module: lgps
 #: selection:lgps.accessory,status:0
 #: selection:lgps.gpsdevice,status:0
-#: selection:res.partner,client_type:0
 msgid "Nuevo"
 msgstr ""
 
@@ -1069,18 +1040,8 @@ msgid "Number of unread messages"
 msgstr ""
 
 #. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
-msgid "ODT's"
-msgstr ""
-
-#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__observations
 msgid "Observations"
-msgstr ""
-
-#. module: lgps
-#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__repairs_ids
-msgid "Odts"
 msgstr ""
 
 #. module: lgps
@@ -1099,11 +1060,6 @@ msgstr ""
 #: selection:lgps.gpsdevice,activity_state:0
 #: selection:lgps.tracking,activity_state:0
 msgid "Overdue"
-msgstr ""
-
-#. module: lgps
-#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__padlock
-msgid "Padlock"
 msgstr ""
 
 #. module: lgps
@@ -1170,8 +1126,8 @@ msgid "Product Type"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:234
-#: code:addons/lgps/models/gpsdevice.py:235
+#: code:addons/lgps/models/gpsdevice.py:230
+#: code:addons/lgps/models/gpsdevice.py:231
 #: selection:lgps.gpsdevice,state:0
 #, python-format
 msgid "Programar"
@@ -1200,11 +1156,6 @@ msgid "Provider Invoice"
 msgstr ""
 
 #. module: lgps
-#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__provider_serial_number
-msgid "Provider Serial Number"
-msgstr ""
-
-#. module: lgps
 #: selection:lgps.accessory,status:0
 msgid "Pruebas"
 msgstr ""
@@ -1228,7 +1179,7 @@ msgid "Reactivated"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:159
+#: code:addons/lgps/models/gpsdevice.py:155
 #, python-format
 msgid "Ready to Install"
 msgstr ""
@@ -1263,7 +1214,7 @@ msgid "Replaced"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:162
+#: code:addons/lgps/models/gpsdevice.py:158
 #, python-format
 msgid "Replacement"
 msgstr ""
@@ -1334,7 +1285,7 @@ msgid "Solar Panel"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:164
+#: code:addons/lgps/models/gpsdevice.py:160
 #, python-format
 msgid "Sold"
 msgstr ""
@@ -1421,7 +1372,7 @@ msgid "Term"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:161
+#: code:addons/lgps/models/gpsdevice.py:157
 #: selection:lgps.gpsdevice,status:0
 #, python-format
 msgid "Tests"
@@ -1501,7 +1452,7 @@ msgid "Travel Information"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:153
+#: code:addons/lgps/models/gpsdevice.py:149
 #, python-format
 msgid "Uninstalled"
 msgstr ""
@@ -1588,11 +1539,6 @@ msgstr ""
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__website_message_ids
 #: model:ir.model.fields,help:lgps.field_lgps_tracking__website_message_ids
 msgid "Website communication history"
-msgstr ""
-
-#. module: lgps
-#: model:ir.model.fields,field_description:lgps.field_crm_lead__weighted_amount
-msgid "Weighted amount"
 msgstr ""
 
 #. module: lgps

@@ -7,15 +7,3 @@ class Suscription(models.Model):
         comodel_name="lgps.gpsdevice",
         string="Gps Device",
     )
-
-    grouper_type = fields.Selection(
-        selection=[
-            (1, "A"),
-            (2, "B"),
-            (3, "C"),
-            (4, "D"),
-            (5, "E"),
-        ],
-        string="Grouper Type",
-        default=1,
-    )
