@@ -5,8 +5,9 @@ import math
 import logging
 _logger = logging.getLogger(__name__)
 
+
 class GpsDevice(models.Model):
-    _inherit = ['mail.thread','mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _name = 'lgps.gpsdevice'
 
     name = fields.Char(

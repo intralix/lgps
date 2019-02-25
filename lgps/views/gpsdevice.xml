@@ -1,179 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <act_window id="action_other_checkouts_button"
-                name="Assigned Accessories"
-                res_model="lgps.accessory"
-                view_mode="tree,form"
-                domain="[('gpsdevice_id', '=', active_id)]"/>
+  <act_window id="action_other_checkouts_button" name="Assigned Accessories" res_model="lgps.accessory" view_mode="tree,form" domain="[('gpsdevice_id', '=', active_id)]"/>
 
-    <record model="ir.ui.view" id="gpsdevice_form_view">
-        <field name="name">gpsdevice.form</field>
-        <field name="model">lgps.gpsdevice</field>
-        <field name="arch" type="xml">
-            <form string="Gps Device Form">
-                <sheet>
-                    <div name="button_box" class="oe_button_box">
-                        <button class="oe_stat_button o_res_partner_tip_opp"
-                                type="action"
-                                attrs="{'invisible': [('accesories_count', '&lt;', 1)]}"
-                                name="%(action_other_checkouts_button)d"
-                                icon="fa-table"
-                                context="{}">
-                            <field string="Accesorios" name="accesories_count" widget="statinfo"/>
-                        </button>
-                    </div>
-                    <group>
-                        <group string="Device Info">
-                            <separator/>
-                            <field name="name"/>
-                            <field name="client_id"/>
-                            <field name="nick"/>
-                            <field name="serialnumber_id"/>
-                            <field name="imei"/>
-                            <field name="idf"/>
-                            <field name="installation_date"/>
-                        </group>
-                        <group string="More Info">
-                            <separator/>
-                            <field name="status"/>
-                            <field name="platform"/>
-                            <field name="product_id"/>
-                            <field name="invoice_id"/>
-                            <field name="cellchip_id"/>
-                            <field name="purchase_date"/>
-                        </group>
-                    </group>
+  <record model="ir.ui.view" id="gpsdevice_form_view">
+    <field name="name">gpsdevice.form</field>
+    <field name="model">lgps.gpsdevice</field>
+    <field name="arch" type="xml">
+      <form string="Gps Device Form">
+        <sheet>
+          <div name="button_box" class="oe_button_box">
+            <button class="oe_stat_button o_res_partner_tip_opp" type="action" attrs="{'invisible': [('accesories_count', '&lt;', 1)]}" name="%(action_other_checkouts_button)d" icon="fa-table" context="{}">
+              <field string="Accesorios" name="accesories_count" widget="statinfo"/>
+            </button>
+          </div>
+          <group>
+            <group string="Device Info">
+              <separator/>
+              <field name="name"/>
+              <field name="client_id"/>
+              <field name="nick"/>
+              <field name="serialnumber_id"/>
+              <field name="imei"/>
+              <field name="idf"/>
+              <field name="provider_serial_number"/>
+            </group>
+            <group string="More Info">
+              <separator/>
+              <field name="status"/>
+              <field name="platform"/>
+              <field name="product_id"/>
+              <field name="invoice_id"/>
+              <field name="cellchip_id"/>
+              <field name="purchase_date"/>
+              <field name="installation_date"/>
+            </group>
+          </group>
 
-                    <notebook>
-                        <page string="Warranty">
-                            <group>
-                                <group string="Warranty Information">
-                                    <separator/>
-                                    <field name="warranty_start_date"/>
-                                    <field name="warranty_end_date"/>
-                                </group>
-                                <group string="Term">
-                                    <separator/>
-                                    <field name="warranty_term"/>
-                                </group>
-                            </group>
-                        </page>
+          <notebook>
+            <page string="Warranty">
+              <group>
+                <group string="Warranty Information">
+                  <separator/>
+                  <field name="warranty_start_date"/>
+                  <field name="warranty_end_date"/>
+                </group>
+                <group string="Term">
+                  <separator/>
+                  <field name="warranty_term"/>
+                </group>
+              </group>
+            </page>
 
-                        <page string="Services">
-                            <group>
-                                <group string="Funciones">
-                                    <field name="tracking"/>
-                                    <field name="fuel"/>
-                                    <field name="scanner"/>
-                                    <field name="temperature"/>
-                                </group>
-                                <group string="Complementos">
-                                    <group>
-                                        <field name="speaker"/>
-                                        <field name="anti_jammer_blocker"/>
-                                        <field name="smart_blocker"/>
-                                        <field name="blocker"/>
-                                        <field name="padlock"/>
-                                    </group>
-                                    <group>
-                                        <field name="solar_panel"/>
-                                        <field name="sheet"/>
-                                        <field name="opening_sensor"/>
-                                        <field name="ibutton"/>
-                                        <field name="microphone"/>
-                                    </group>
-                                </group>
-                            </group>
-                        </page>
-                        <page string="Accessories">
-                            <field name="accessory_ids">
-                                <field name="name"/>
-                                <field name="client_id"/>
-                                <field name="serialnumber_id"/>
-                                <field name="installation_date"/>
-                                <field name="status"/>
-                                <field name="product_id"/>
-                                <field name="invoice_id"/>
-                            </field>
-                        </page>
-                        <page string="Last Position">
-                            <group>
-                                <group string="Last Report">
-                                    <separator/>
-                                    <field name="datetime_gps"/>
-                                    <field name="datetime_server"/>
-                                </group>
-                                <group string="Mapa">
-                                    <separator/>
-                                    <field name="last_position"/>
-                                    <field name="last_report"/>
-                                </group>
-                            </group>
-                        </page>
-                    </notebook>
-                </sheet>
-
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
-                    <field name="activity_ids" widget="mail_activity"/>
-                    <field name="message_ids" widget="mail_thread"/>
-                </div>
-            </form>
-        </field>
-    </record>
-
-    <record model="ir.ui.view" id="gpsdevice_search_view">
-        <field name="name">gpsdevice.search</field>
-        <field name="model">lgps.gpsdevice</field>
-        <field name="arch" type="xml">
-            <search>
+            <page string="Services">
+              <group>
+                <group string="Funciones">
+                  <field name="tracking"/>
+                  <field name="fuel"/>
+                  <field name="scanner"/>
+                  <field name="temperature"/>
+                </group>
+                <group string="Complementos">
+                  <group>
+                    <field name="speaker"/>
+                    <field name="anti_jammer_blocker"/>
+                    <field name="smart_blocker"/>
+                    <field name="blocker"/>
+                    <field name="padlock"/>
+                  </group>
+                  <group>
+                    <field name="solar_panel"/>
+                    <field name="sheet"/>
+                    <field name="opening_sensor"/>
+                    <field name="ibutton"/>
+                    <field name="microphone"/>
+                  </group>
+                </group>
+              </group>
+            </page>
+            <page string="Accessories">
+              <field name="accessory_ids">
                 <field name="name"/>
-                <field name="nick"/>
                 <field name="client_id"/>
-                <field name="status"/>
-                <field name="cellchip_id"/>
                 <field name="serialnumber_id"/>
-                <field name="imei"/>
                 <field name="installation_date"/>
-                <field name="platform"/>
-                <field name="product_id"/>
-                <field name="warranty_end_date"/>
-            </search>
-        </field>
-    </record>
-
-    <record model="ir.ui.view" id="gpsdevice_tree_view">
-        <field name="name">gpsdevice.tree</field>
-        <field name="model">lgps.gpsdevice</field>
-        <field name="arch" type="xml">
-            <tree string="GpsDevices Tree" decoration-info="last_report&gt;24" decoration-warning="last_report&gt;72" decoration-danger="last_report&gt;120">
-                <field name="name"/>
-                <field name="nick"/>
-                <field name="client_id"/>
                 <field name="status"/>
-                <field name="cellchip_id"/>
-                <field name="serialnumber_id"/>
-                <field name="imei"/>
-                <field name="installation_date"/>
-                <field name="platform"/>
                 <field name="product_id"/>
-                <field name="warranty_end_date"/>
-                <field name="last_report" invisible="1"/>
-            </tree>
-        </field>
-    </record>
+                <field name="invoice_id"/>
+              </field>
+            </page>
+            <page string="ODT's">
+              <field name="repairs_ids"/>
+            </page>
+            <page string="Last Position">
+              <group>
+                <group string="Last Report">
+                  <separator/>
+                  <field name="datetime_gps"/>
+                  <field name="datetime_server"/>
+                </group>
+                <group string="Mapa">
+                  <separator/>
+                  <field name="last_position"/>
+                  <field name="last_report"/>
+                </group>
+              </group>
+            </page>
+          </notebook>
+        </sheet>
 
-    <record model="ir.actions.act_window" id="gpsdevice_list_action">
-        <field name="name">GpsDevices</field>
-        <field name="res_model">lgps.gpsdevice</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p class="oe_view_nocontent_create">Create the first Gps Device</p>
-        </field>
-    </record>
+        <div class="oe_chatter">
+          <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+          <field name="activity_ids" widget="mail_activity"/>
+          <field name="message_ids" widget="mail_thread"/>
+        </div>
+      </form>
+    </field>
+  </record>
 
-    <menuitem id="main_lgps_menu" name="Intralix" web_icon="GpsDevices,static/description/icon.png"/>
-    <menuitem id="lgps_menu" name="Lgps" parent="main_lgps_menu"/>
-    <menuitem id="gps_devices_menu" name="Gps Devices" parent="lgps_menu" action="gpsdevice_list_action"/>
+  <record model="ir.ui.view" id="gpsdevice_search_view">
+    <field name="name">gpsdevice.search</field>
+    <field name="model">lgps.gpsdevice</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="name"/>
+        <field name="nick"/>
+        <field name="client_id"/>
+        <field name="status"/>
+        <field name="cellchip_id"/>
+        <field name="serialnumber_id"/>
+        <field name="imei"/>
+        <field name="installation_date"/>
+        <field name="platform"/>
+        <field name="product_id"/>
+        <field name="warranty_end_date"/>
+      </search>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="gpsdevice_tree_view">
+    <field name="name">gpsdevice.tree</field>
+    <field name="model">lgps.gpsdevice</field>
+    <field name="arch" type="xml">
+      <tree string="GpsDevices Tree" decoration-info="last_report&gt;24" decoration-warning="last_report&gt;72" decoration-danger="last_report&gt;120">
+        <field name="name"/>
+        <field name="nick"/>
+        <field name="client_id"/>
+        <field name="status"/>
+        <field name="cellchip_id"/>
+        <field name="serialnumber_id"/>
+        <field name="imei"/>
+        <field name="installation_date"/>
+        <field name="platform"/>
+        <field name="product_id"/>
+        <field name="warranty_end_date"/>
+        <field name="last_report" invisible="1"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="gpsdevice_list_action">
+    <field name="name">GpsDevices</field>
+    <field name="res_model">lgps.gpsdevice</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">Create the first Gps Device</p>
+    </field>
+  </record>
+
+  <menuitem id="main_lgps_menu" name="Intralix" web_icon="GpsDevices,static/description/icon.png"/>
+  <menuitem id="lgps_menu" name="Lgps" parent="main_lgps_menu"/>
+  <menuitem id="gps_devices_menu" name="Gps Devices" parent="lgps_menu" action="gpsdevice_list_action"/>
 </odoo>

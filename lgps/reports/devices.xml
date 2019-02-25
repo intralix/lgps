@@ -1,50 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <report id="report_gpsdevice"
-            model="lgps.gpsdevice"
-            string="Gps Devices Report"
-            name="lgps.report_gpsdevice_view"
-            file="lgps.report_gpsdevice"
-            report_type="qweb-pdf"/>
+  <report id="report_gpsdevice" model="lgps.gpsdevice" string="Gps Devices Report" name="lgps.report_gpsdevice_view" file="lgps.report_gpsdevice" report_type="qweb-pdf"/>
 
-    <template id="report_gpsdevice_view">
-        <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="doc">
-                <t t-call="web.external_layout">
-                    <div class="page">
-                        <h2 t-field="doc.name"/>
-                        <p>Cliente: <span t-field="doc.client_id.name"></span></p>
-                        <p>Warranty From
-                            <span t-field="doc.warranty_start_date"/>
-                            to
-                            <span t-field="doc.warranty_end_date"/></p>
-                        <h3>Devices:</h3>
-                        <t t-if="doc.accessory_ids">
-                            <table class="table table-striped table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>Accessory</th>
-                                        <th>Status</th>
-                                        <th>Installation Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <t t-foreach="doc.accessory_ids" t-as="accessory">
-                                        <tr style="font-weight:bold;">
-                                            <td><span t-field="accessory.name"/></td>
-                                            <td><span t-field="accessory.status"/></td>
-                                            <td><span t-field="accessory.installation_date"/></td>
-                                        </tr>
-                                    </t>
-                                </tbody>
-                            </table>
-                        </t>
-                        <t t-if="not doc.accessory_ids">
-                            No hay registros
-                        </t>
-                    </div>
-                </t>
+  <template id="report_gpsdevice_view">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="doc">
+        <t t-call="web.external_layout">
+          <div class="page">
+            <h2 t-field="doc.name"/>
+            <p>Cliente:
+              <span t-field="doc.client_id.name"></span>
+            </p>
+            <p>Warranty From
+              <span t-field="doc.warranty_start_date"/>
+              to
+              <span t-field="doc.warranty_end_date"/></p>
+            <h3>Devices:</h3>
+            <t t-if="doc.accessory_ids">
+              <table class="table table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Accessory</th>
+                    <th>Status</th>
+                    <th>Installation Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="doc.accessory_ids" t-as="accessory">
+                    <tr style="font-weight:bold;">
+                      <td><span t-field="accessory.name"/></td>
+                      <td><span t-field="accessory.status"/></td>
+                      <td><span t-field="accessory.installation_date"/></td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
             </t>
+            <t t-if="not doc.accessory_ids">
+              No hay registros
+            </t>
+          </div>
         </t>
-    </template>
+      </t>
+    </t>
+  </template>
 </odoo>

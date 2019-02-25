@@ -1,5 +1,6 @@
 from odoo import api, models, fields
 
+
 class Partner(models.Model):
     _inherit = 'res.partner'
 
@@ -9,4 +10,17 @@ class Partner(models.Model):
         inverse_name="client_id",
         string="Gps Devices",
         readonly=True,
+    )
+
+    first_installation_day = fields.Date(
+        string="First Installation Day"
+    )
+
+    client_type = fields.Selection(
+        [
+            ('new', _('New')),
+            ('existent', _('Existent')),
+        ],
+        default='new',
+        string="Client Type"
     )
