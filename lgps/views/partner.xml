@@ -20,6 +20,11 @@
           </group>
         </page>
       </notebook>
+        <xpath expr="//field[@name='category_id']" position="after">
+            <field name="client_type"/>
+            <field name="first_installation_day"/>
+        </xpath>
+
     </field>
   </record>
 
