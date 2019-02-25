@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from odoo import api, models, fields, _
 
+
 class Tracking(models.Model):
-    _inherit = ['mail.thread','mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _name = 'lgps.tracking'
 
     name = fields.Char(
@@ -30,7 +31,7 @@ class Tracking(models.Model):
     state = fields.Selection(
         [
             ('registered', _('Registrado')),
-            ('active',_('Activo')),
+            ('active', _('Activo')),
             ('paused', _('Detenido')),
             ('finished', _('Finalizado')),
             ('billed', _('Facturado')),

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import api, models, fields
-#Sesion = GPS /
+# Sesion = GPS /
+
+
 class Wizard(models.TransientModel):
     _name = "lgps.wizard"
 
