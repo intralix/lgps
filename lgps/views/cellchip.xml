@@ -1,91 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record model="ir.ui.view" id="cellchip_form_view">
-        <field name="name">cellchip.form</field>
-        <field name="model">lgps.cellchip</field>
-        <field name="arch" type="xml">
-            <form string="Cellchip Form">
-                <sheet>
-                    <group>
-                        <group string="Cellchip Info">
-                            <separator/>
-                            <field name="name"/>
-                            <field name="status"/>
-                            <field name="plan"/>
-                            <field name="linenumber_id"/>
-                            <field name="purchase_date"/>
-                            <field name="voice"/>
-                            <field name="term"/>
-                        </group>
-                        <group string="Provider Info">
-                            <separator/>
-                            <field name="cellchip_owner_id"/>
-                            <field name="provider"/>
-                            <field name="major_account"/>
-                            <field name="line_account"/>
-                            <field name="status_date"/>
-                            <field name="end_forced_plan_date"/>
-                            <field name="days_suspended"/>
-                            <field name="gpsdevice_id"/>
-                        </group>
-                    </group>
-                </sheet>
+  <record model="ir.ui.view" id="cellchip_form_view">
+    <field name="name">cellchip.form</field>
+    <field name="model">lgps.cellchip</field>
+    <field name="arch" type="xml">
+      <form string="Cellchip Form">
+        <sheet>
+          <group>
+            <group string="Cellchip Info">
+              <separator/>
+              <field name="name"/>
+              <field name="status"/>
+              <field name="plan"/>
+              <field name="linenumber_id"/>
+              <field name="purchase_date"/>
+              <field name="voice"/>
+              <field name="term"/>
+            </group>
+            <group string="Provider Info">
+              <separator/>
+              <field name="cellchip_owner_id"/>
+              <field name="provider"/>
+              <field name="major_account"/>
+              <field name="line_account"/>
+              <field name="status_date"/>
+              <field name="end_forced_plan_date"/>
+              <field name="days_suspended"/>
+              <field name="gpsdevice_id"/>
+            </group>
+          </group>
+        </sheet>
 
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
-                    <field name="activity_ids" widget="mail_activity"/>
-                    <field name="message_ids" widget="mail_thread"/>
-                </div>
-            </form>
-        </field>
-    </record>
+        <div class="oe_chatter">
+          <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+          <field name="activity_ids" widget="mail_activity"/>
+          <field name="message_ids" widget="mail_thread"/>
+        </div>
+      </form>
+    </field>
+  </record>
 
-    <record model="ir.ui.view" id="cellchip_search_view">
-        <field name="name">cellchip.search</field>
-        <field name="model">lgps.cellchip</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="name"/>
-                <field name="linenumber_id"/>
-                <field name="status"/>
-                <field name="cellchip_owner_id"/>
-                <field name="status_date"/>
-                <field name="purchase_date"/>
-                <field name="gpsdevice_id"/>
-            </search>
-        </field>
-    </record>
+  <record model="ir.ui.view" id="cellchip_search_view">
+    <field name="name">cellchip.search</field>
+    <field name="model">lgps.cellchip</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="name"/>
+        <field name="linenumber_id"/>
+        <field name="status"/>
+        <field name="cellchip_owner_id"/>
+        <field name="status_date"/>
+        <field name="purchase_date"/>
+        <field name="gpsdevice_id"/>
+      </search>
+    </field>
+  </record>
 
-        <record model="ir.ui.view" id="cellchip_tree_view">
-        <field name="name">gpsdevice.tree</field>
-        <field name="model">lgps.cellchip</field>
-        <field name="arch" type="xml">
-            <tree string="Cellchips Tree" decoration-danger="days_suspended&gt;31">
-                <field name="name"/>
-                <field name="plan"/>
-                <field name="linenumber_id"/>
-                <field name="status"/>
-                <field name="provider"/>
-                <field name="cellchip_owner_id"/>
-                <field name="voice"/>
-                <field name="purchase_date"/>
-                <field name="days_suspended" invisible="1"/>
-                <field name="gpsdevice_id"/>
-            </tree>
-        </field>
-    </record>
+  <record model="ir.ui.view" id="cellchip_tree_view">
+    <field name="name">gpsdevice.tree</field>
+    <field name="model">lgps.cellchip</field>
+    <field name="arch" type="xml">
+      <tree string="Cellchips Tree" decoration-danger="days_suspended&gt;31">
+        <field name="name"/>
+        <field name="plan"/>
+        <field name="linenumber_id"/>
+        <field name="status"/>
+        <field name="provider"/>
+        <field name="cellchip_owner_id"/>
+        <field name="voice"/>
+        <field name="purchase_date"/>
+        <field name="days_suspended" invisible="1"/>
+        <field name="gpsdevice_id"/>
+      </tree>
+    </field>
+  </record>
 
-    <record model="ir.actions.act_window" id="cellchip_list_action">
-        <field name="name">Cellchips</field>
-        <field name="res_model">lgps.cellchip</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p class="oe_view_nocontent_create">Create the first cellchip
-            </p>
-        </field>
-    </record>
+  <record model="ir.actions.act_window" id="cellchip_list_action">
+    <field name="name">Cellchips</field>
+    <field name="res_model">lgps.cellchip</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">Create the first cellchip
+      </p>
+    </field>
+  </record>
 
-
-    <menuitem id="cellchips_menu" name="Cellchips" parent="lgps_menu" action="cellchip_list_action"/>
+  <menuitem id="cellchips_menu" name="Cellchips" parent="lgps_menu" action="cellchip_list_action"/>
 </odoo>

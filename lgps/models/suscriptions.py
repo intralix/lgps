@@ -1,5 +1,6 @@
 from odoo import api, models, fields
 
+
 class Suscription(models.Model):
     _inherit = 'sale.subscription'
 

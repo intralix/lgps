@@ -9,21 +9,21 @@
         <page string="Devices">
           <group>
             <field name="gpsdevice_ids">
-                <tree string="GpsDevices Tree">
-                    <field name="name"/>
-                    <field name="nick"/>
-                    <field name="status"/>
-                    <field name="installation_date"/>
-                    <field name="platform"/>
-                </tree>
+              <tree string="GpsDevices Tree">
+                <field name="name"/>
+                <field name="nick"/>
+                <field name="status"/>
+                <field name="installation_date"/>
+                <field name="platform"/>
+              </tree>
             </field>
           </group>
         </page>
       </notebook>
-        <xpath expr="//field[@name='category_id']" position="after">
-            <field name="client_type"/>
-            <field name="first_installation_day"/>
-        </xpath>
+      <xpath expr="//field[@name='category_id']" position="after">
+        <field name="client_type"/>
+        <field name="first_installation_day"/>
+      </xpath>
 
     </field>
   </record>
