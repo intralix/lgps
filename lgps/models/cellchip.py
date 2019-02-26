@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from odoo import api, models, fields, _
 
+
 class Cellchip(models.Model):
-    _inherit = ['mail.thread','mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _name = 'lgps.cellchip'
 
     # Línea Celular
@@ -29,7 +30,7 @@ class Cellchip(models.Model):
         default="active",
         string="Status",
     )
-    #Plan de la línea
+    # Plan de la línea
     plan = fields.Selection(
         selection=[
             ("20KB", "20KB"),
@@ -120,7 +121,7 @@ class Cellchip(models.Model):
         string="End Forced Plan Date",
     )
 
-    #Si la linea esta ocupada o no
+    # Si la linea esta ocupada o no
     taken = fields.Boolean(
         default=False,
         string="Taken",
@@ -140,7 +141,7 @@ class Cellchip(models.Model):
             self.status_date = fields.Date.today()
 
     @api.one
-    @api.depends('status_date', 'days_suspended')
+    @api.depends('status_date')
     def _compute_days_suspended(self):
         if not self.status_date:
             self.days_suspended = None

@@ -10,6 +10,8 @@
         'stock',
         'contacts',
         'account',
+        'repair',
+        'crm',
         'sale_subscription',
     ],
     'data': [
@@ -25,5 +27,6 @@
         'views/suscription.xml',
         'views/tracking.xml',
         'views/odt.xml',
+        'views/lead.xml',
     ],
 }

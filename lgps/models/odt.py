@@ -1,5 +1,6 @@
 from odoo import api, models, fields
 
+
 class Odt(models.Model):
     _inherit = 'repair.order'
 

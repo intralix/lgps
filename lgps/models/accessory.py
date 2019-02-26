@@ -3,6 +3,7 @@
 from datetime import timedelta
 from odoo import api, models, fields, _
 
+
 class Accessory(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _name = 'lgps.accessory'
