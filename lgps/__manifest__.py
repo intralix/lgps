@@ -4,7 +4,7 @@
     'author': 'Intralix',
     'website': 'https://www.intralix.com',
     'category': 'Uncategorized',
-    'version': '0.0.3',
+    'version': '0.0.4',
     'depends': [
         'base',
         'stock',
