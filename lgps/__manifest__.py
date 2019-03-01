@@ -18,6 +18,7 @@
         'security/security.xml',
         'security/ir.model.access.csv',
         'reports/devices.xml',
+        'reports/suscriptions_detail.xml',
         'views/lgps_main_menu.xml',
         'views/gpsdevice.xml',
         'views/cellchip.xml',

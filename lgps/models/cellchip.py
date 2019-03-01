@@ -22,10 +22,9 @@ class Cellchip(models.Model):
     status = fields.Selection(
         selection=[
             ("active", _("Active")),
-            ("drop", _("Drop")),
+            ("cancelled", _("Cancelled")),
+            ("replaced", _("Replaced")),
             ("suspended", _("Suspended")),
-            ("reactivated", _("Reactivated")),
-            ("replaced", _("Replaced"))
         ],
         default="active",
         string="Status",

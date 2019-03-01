@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <act_window id="action_other_checkouts_button" name="Assigned Accessories" res_model="lgps.accessory" view_mode="tree,form" domain="[('gpsdevice_id', '=', active_id)]"/>
+  <act_window id="action_counter_odts_button" name="Odt's" res_model="repair.order" view_mode="tree,form" domain="[('gpsdevice_id', '=', active_id)]"/>
 
   <record model="ir.ui.view" id="gpsdevice_form_view">
     <field name="name">gpsdevice.form</field>
@@ -9,10 +10,14 @@
       <form string="Gps Device Form">
         <sheet>
           <div name="button_box" class="oe_button_box">
-            <button class="oe_stat_button o_res_partner_tip_opp" type="action" attrs="{'invisible': [('accesories_count', '&lt;', 1)]}" name="%(action_other_checkouts_button)d" icon="fa-table" context="{}">
+            <button class="oe_stat_button o_res_partner_tip_opp" type="action" attrs="{'invisible': [('accesories_count', '&lt;', 1)]}" name="%(action_other_checkouts_button)d" icon="fa-cubes" context="{}">
               <field string="Accesorios" name="accesories_count" widget="statinfo"/>
             </button>
+            <button class="oe_stat_button" type="action" attrs="{'invisible': [('repairs_count', '&lt;', 1)]}" name="%(action_counter_odts_button)d" icon="fa-file-text" context="{}">
+              <field string="Odts" name="repairs_count" widget="statinfo"/>
+            </button>
           </div>
+
           <group>
             <group string="Device Info">
               <separator/>
@@ -22,7 +27,6 @@
               <field name="serialnumber_id"/>
               <field name="imei"/>
               <field name="idf"/>
-              <field name="provider_serial_number"/>
             </group>
             <group string="More Info">
               <separator/>
@@ -58,6 +62,7 @@
                   <field name="fuel"/>
                   <field name="scanner"/>
                   <field name="temperature"/>
+                  <field name="logistic"/>
                 </group>
                 <group string="Complementos">
                   <group>
@@ -66,6 +71,7 @@
                     <field name="smart_blocker"/>
                     <field name="blocker"/>
                     <field name="padlock"/>
+                    <field name="disengagement_sensor"/>
                   </group>
                   <group>
                     <field name="solar_panel"/>

@@ -4,7 +4,12 @@ from odoo import api, models, fields, _
 class Lead(models.Model):
     _inherit = 'crm.lead'
 
-    weighted_amount = fields.Float(string="Weighted amount", digits=(12, 2), compute='_compute_weighted_amount')
+    weighted_amount = fields.Float(
+        string="Weighted amount",
+        digits=(12, 2),
+        compute='_compute_weighted_amount',
+        store=True,
+    )
 
     @api.one
     @api.depends('planned_revenue', 'probability')

@@ -7,7 +7,7 @@
     <field name="arch" type="xml">
       <xpath expr="//field[@name='date_start']" position="after">
         <field name="gpsdevice_id"/>
-        <field name="grouper_type"/>
+        <field name="billing_cycle"/>
       </xpath>
     </field>
   </record>

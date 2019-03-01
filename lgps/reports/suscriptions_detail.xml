@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <report id="report_suscriptions_detail"
+            model="sale.subscription"
+            string="Suscription Details"
+            name="lgps.report_suscriptions_detail_view"
+            file="lgps.report_suscriptions_detail"
+            report_type="qweb-pdf"
+    />
+
+    <template id="report_suscriptions_detail_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <br></br>
+                        <div class="row">
+                            <div class="col-12">
+                                <!--<h2 t-field="doc.name"/>-->
+                                <h2 t-field="doc.gpsdevice_id.nick"/>
+                            </div>
+                        </div>
+                        <br></br>
+                        <div class="row">
+                            <div class="col-3">
+                                <strong>Económico</strong>
+                                <p>
+                                    <span t-field="doc.gpsdevice_id.nick"></span>
+                                </p>
+                            </div>
+                            <div class="col-3">
+                                <strong>Equipo</strong>
+                                <p>
+                                    <span t-field="doc.gpsdevice_id.name"></span>
+                                </p>
+                            </div>
+                        </div>
+                        <hr></hr>
+                        <t t-if="doc.gpsdevice_id">
+                            <h3>Servicios Registrados</h3>
+                            <t t-if="doc.recurring_invoice_line_ids">
+                                <table class="table table-striped table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Servicio</th>
+                                            <th>Descripcion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="doc.recurring_invoice_line_ids" t-as="line">
+                                            <tr>
+                                                <td><span t-field="line.product_id.name"/></td>
+                                                <td><span t-field="line.name"/></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                            <br></br>
+                            <h3>Accesorios Instalados</h3>
+                            <t t-if="doc.gpsdevice_id.accessory_ids">
+                                <table class="table table-striped table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td>Tipo</td>
+                                            <th>No. Serie</th>
+                                            <th>Estatus</th>
+                                            <th>Fecha Instalación</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="doc.gpsdevice_id.accessory_ids" t-as="accessory">
+                                            <tr>
+                                                <td><span t-field="accessory.product_id.name"/></td>
+                                                <td><span t-field="accessory.serialnumber_id.name"/></td>
+                                                <td><span t-field="accessory.status"/></td>
+                                                <td><span t-field="accessory.installation_date"/></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                        </t>
+                        <t t-if="not doc.gpsdevice_id.accessory_ids">
+                            No hay accesorios para este equipo
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

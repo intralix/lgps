@@ -122,6 +122,16 @@ class GpsDevice(models.Model):
         string="Opening Sensor",
     )
 
+    logistic = fields.Boolean(
+        default=False,
+        string="Logistic",
+    )
+
+    disengagement_sensor = fields.Boolean(
+        default=False,
+        string="Disengagement Sensor",
+    )
+
     datetime_gps = fields.Datetime(
         string="DateTime GPS",
     )
@@ -134,10 +144,6 @@ class GpsDevice(models.Model):
         string="Last Position",
     )
 
-    provider_serial_number = fields.Char(
-        string="Provider Serial Number",
-    )
-
     last_report = fields.Integer(
         string="Last Report",
         compute="_compute_last_report",
@@ -147,7 +153,6 @@ class GpsDevice(models.Model):
 
     status = fields.Selection(
         selection=[
-            ("drop", "Drop"),
             ("comodato", _("Comodato")),
             ("courtesy", _("Courtesy")),
             ("demo", _("Demo")),
@@ -157,12 +162,13 @@ class GpsDevice(models.Model):
             ("installed", _("Installed")),
             ("inventory", _("Inventory")),
             ("new", _("New")),
-            ("ready", _("Ready to Install")),
+            ("for installing", _("For Installing")),
             ("borrowed", _("Borrowed")),
             ("tests", _("Tests")),
             ("replacement", _("Replacement")),
             ("backup", _("Backup")),
-            ("Sold", _("Sold"))
+            ("rma", _("RMA")),
+            ("sold", _("Sold")),
         ],
         default="inventory",
         string="Status",
@@ -170,6 +176,7 @@ class GpsDevice(models.Model):
 
     platform = fields.Selection(
         selection=[
+            ("Drop", _("Drop")),
             ("Cybermapa", "Cybermapa"),
             ("Gurtam", "Gurtam"),
             ("Novit", "Novit"),
@@ -230,13 +237,13 @@ class GpsDevice(models.Model):
 
     state = fields.Selection(
         [
-            ('crear', _('Crear')),
-            ('asignar', _('Asignar')),
-            ('programar', _('Programar')),
-            ('pruebas', _('Programar')),
-            ('instalado', _('Instalado')),
+            ('create', _('Crear')),
+            ('assign', _('Asignar')),
+            ('program', _('Programar')),
+            ('tests', _('Programar')),
+            ('installed', _('Instalado')),
         ],
-        default='crear'
+        default='create'
     )
 
     active = fields.Boolean(
@@ -254,12 +261,28 @@ class GpsDevice(models.Model):
         string="Odts",
     )
 
-    accesories_count = fields.Integer("Accesories", compute='_compute_accesories_count')
+    accesories_count = fields.Integer(
+        "Accesories",
+        compute='_compute_accesories_count',
+        store=True,
+    )
+
+    repairs_count = fields.Integer(
+        "Odts",
+        compute='_compute_repairs_count',
+        store=True,
+    )
 
     @api.multi
     def _compute_accesories_count(self):
         for rec in self:
             rec.accesories_count = self.env['lgps.accessory'].search_count(
+                [('gpsdevice_id', '=', rec.id)])
+
+    @api.multi
+    def _compute_repairs_count(self):
+        for rec in self:
+            rec.repairs_count = self.env['repair.order'].search_count(
                 [('gpsdevice_id', '=', rec.id)])
 
     @api.one

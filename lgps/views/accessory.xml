@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <record id="seq_tracking" model="ir.sequence">
+  <record id="seq_accesory" model="ir.sequence">
     <field name="name">Accessory Sequence</field>
     <field name="code">lgps.accessory</field>
     <field name="prefix">ACC</field>
     <field name="padding">10</field>
+    <field name="company_id" eval="False"/>
   </record>
 
   <record model="ir.ui.view" id="accessory_form_view">

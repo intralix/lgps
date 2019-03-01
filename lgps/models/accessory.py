@@ -46,24 +46,24 @@ class Accessory(models.Model):
 
     status = fields.Selection(
         selection=[
-            ("Baja", "Baja"),
-            ("Comodato", "Comodato"),
-            ("Cortesía", "Cortesía"),
-            ("Demo", "Demo"),
-            ("Desinstalado", "Desinstalado"),
-            ("Externo", "Externo"),
-            ("Hibernado", "Hibernado"),
-            ("Instalado", "Instalado"),
-            ("Inventario", "Inventario"),
-            ("Nuevo", "Nuevo"),
-            ("Por Instalar", "Por Instalar"),
-            ("Prestado", "Prestado"),
-            ("Pruebas", "Pruebas"),
-            ("Reemplazo", "Reemplazo"),
-            ("Respaldo", "Respaldo"),
-            ("Vendido", "Vendido")
+            ("drop", "Drop"),
+            ("comodato", _("Comodato")),
+            ("courtesy", _("Courtesy")),
+            ("demo", _("Demo")),
+            ("uninstalled", _("Uninstalled")),
+            ("external", _("External")),
+            ("hibernate", _("Hibernate")),
+            ("installed", _("Installed")),
+            ("inventory", _("Inventory")),
+            ("new", _("New")),
+            ("ready", _("Ready to Install")),
+            ("borrowed", _("Borrowed")),
+            ("tests", _("Tests")),
+            ("replacement", _("Replacement")),
+            ("backup", _("Backup")),
+            ("Sold", _("Sold"))
         ],
-        default="Inventario",
+        default="inventory",
         string="Status",
     )
 
@@ -86,7 +86,7 @@ class Accessory(models.Model):
 
     @api.model
     def create(self, vals):
-        seq = self.env['ir.sequence'].next_by_code('lgps.accessory') or '/'
+        seq = self.env['ir.sequence'].next_by_code('lgps.accessory') or _('New')
         vals['name'] = seq
         return super(Accessory, self).create(vals)
 
