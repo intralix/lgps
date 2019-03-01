@@ -5,6 +5,7 @@ from odoo import api, models, fields
 
 class Wizard(models.TransientModel):
     _name = "lgps.wizard"
+    _description = "Add Accesories to Devices"
 
     def _default_gpsdevices(self):
         return self.env['lgps.gpsdevice'].browse(self._context.get('active_ids'))

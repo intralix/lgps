@@ -259,7 +259,7 @@ class GpsDevice(models.Model):
     repairs_ids = fields.One2many(
         comodel_name="repair.order",
         inverse_name="gpsdevice_id",
-        string="Odts",
+        string="ODT",
     )
 
     accesories_count = fields.Integer(
@@ -269,7 +269,7 @@ class GpsDevice(models.Model):
     )
 
     repairs_count = fields.Integer(
-        "Odts",
+        string="ODTs",
         compute='_compute_repairs_count',
         store=True,
     )
