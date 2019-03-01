@@ -20,7 +20,7 @@ class Partner(models.Model):
     client_type = fields.Selection(
         [
             ('new', _('New')),
-            ('existent', _('Existent')),
+            ('aftermarket', _('Aftermarket')),
         ],
         default='new',
         string="Client Type"
