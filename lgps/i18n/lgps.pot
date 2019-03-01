@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-01 15:20+0000\n"
-"PO-Revision-Date: 2019-03-01 15:20+0000\n"
+"POT-Creation-Date: 2019-03-01 15:26+0000\n"
+"PO-Revision-Date: 2019-03-01 15:26+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -391,10 +391,14 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/partner.py:23
-#: selection:res.partner,client_type:0
 #, python-format
+msgid "After Sales"
+msgstr ""
+
+#. module: lgps
+#: selection:res.partner,client_type:0
 msgid "Aftermarket"
-msgstr "Posventa"
+msgstr ""
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__anti_jammer_blocker
