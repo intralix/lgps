@@ -32,7 +32,7 @@ class GpsDevice(models.Model):
     )
 
     warranty_start_date = fields.Date(
-        default=fields.Date.today,
+        #default=fields.Date.today,
         string="Warranty Start Date",
     )
 
@@ -153,6 +153,7 @@ class GpsDevice(models.Model):
 
     status = fields.Selection(
         selection=[
+            ("drop", _("Drop")),
             ("comodato", _("Comodato")),
             ("courtesy", _("Courtesy")),
             ("demo", _("Demo")),
