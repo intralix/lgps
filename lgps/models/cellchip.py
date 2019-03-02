@@ -79,7 +79,7 @@ class Cellchip(models.Model):
             ("Iusacell", "Iusacell"),
             ("Movistar", "Movistar"),
             ("Prossea", "Prossea"),
-            ("Sinpacsys", "Sinpacsys"),
+            ("Simpacsys", "Simpacsys"),
             ("Telcel", "Telcel")
         ],
         string="Provider",
