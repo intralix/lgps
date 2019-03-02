@@ -262,6 +262,7 @@ class GpsDevice(models.Model):
         string="ODT",
     )
 
+
     accesories_count = fields.Integer(
         "Accesories",
         compute='_compute_accesories_count',

@@ -22,7 +22,6 @@ class Accessory(models.Model):
 
     client_id = fields.Many2one(
         comodel_name="res.partner",
-        required=True,
         string="Client",
         domain=[
             ('customer', '=', True),

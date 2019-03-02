@@ -56,33 +56,6 @@
                                     </tbody>
                                 </table>
                             </t>
-                            <br></br>
-                            <h3>Accesorios Instalados</h3>
-                            <t t-if="doc.gpsdevice_id.accessory_ids">
-                                <table class="table table-striped table-condensed table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <td>Tipo</td>
-                                            <th>No. Serie</th>
-                                            <th>Estatus</th>
-                                            <th>Fecha Instalación</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <t t-foreach="doc.gpsdevice_id.accessory_ids" t-as="accessory">
-                                            <tr>
-                                                <td><span t-field="accessory.product_id.name"/></td>
-                                                <td><span t-field="accessory.serialnumber_id.name"/></td>
-                                                <td><span t-field="accessory.status"/></td>
-                                                <td><span t-field="accessory.installation_date"/></td>
-                                            </tr>
-                                        </t>
-                                    </tbody>
-                                </table>
-                            </t>
-                        </t>
-                        <t t-if="not doc.gpsdevice_id.accessory_ids">
-                            No hay accesorios para este equipo
                         </t>
                     </div>
                 </t>
