@@ -60,7 +60,8 @@ class Accessory(models.Model):
             ("tests", _("Tests")),
             ("replacement", _("Replacement")),
             ("backup", _("Backup")),
-            ("Sold", _("Sold"))
+            ("rma", _("RMA")),
+            ("sold", _("Sold")),
         ],
         default="inventory",
         string="Status",
