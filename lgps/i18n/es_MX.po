@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-01 15:25+0000\n"
-"PO-Revision-Date: 2019-03-01 15:25+0000\n"
+"POT-Creation-Date: 2019-03-03 21:11+0000\n"
+"PO-Revision-Date: 2019-03-03 21:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -309,11 +309,6 @@ msgid "Accesorios"
 msgstr ""
 
 #. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
-msgid "Accesorios Instalados"
-msgstr ""
-
-#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__accessory_ids
 #: model:ir.ui.menu,name:lgps.accessory_menu
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
@@ -385,6 +380,11 @@ msgid "Add Accesories"
 msgstr "Agregar Accesorios"
 
 #. module: lgps
+#: model:ir.model,name:lgps.model_lgps_wizard
+msgid "Add Accesories to Devices"
+msgstr "Añadir accesorios al dispositivo"
+
+#. module: lgps
 #: model:ir.actions.act_window,name:lgps.launch_accesories_wizard
 msgid "Add Accessories"
 msgstr "Agregar Accesorios"
@@ -394,11 +394,6 @@ msgstr "Agregar Accesorios"
 #, python-format
 msgid "After Sales"
 msgstr "Postventa"
-
-#. module: lgps
-#: selection:res.partner,client_type:0
-msgid "Aftermarket"
-msgstr ""
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__anti_jammer_blocker
@@ -736,11 +731,6 @@ msgid "End Forced Plan Date"
 msgstr "Fin de Plazo Forzoso"
 
 #. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
-msgid "Estatus"
-msgstr ""
-
-#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__days_suspended
 msgid "Estatus Elpased Days"
 msgstr "Días Transcurridos"
@@ -763,11 +753,6 @@ msgstr ""
 #: selection:lgps.tracking,state:0
 #, python-format
 msgid "Facturado"
-msgstr ""
-
-#. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
-msgid "Fecha Instalación"
 msgstr ""
 
 #. module: lgps
@@ -1181,7 +1166,7 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:58
-#: code:addons/lgps/models/accessory.py:89
+#: code:addons/lgps/models/accessory.py:90
 #: code:addons/lgps/models/gpsdevice.py:165
 #: code:addons/lgps/models/partner.py:22
 #, python-format
@@ -1218,18 +1203,8 @@ msgid "Nick"
 msgstr ""
 
 #. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
-msgid "No hay accesorios para este equipo"
-msgstr ""
-
-#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.report_gpsdevice_view
 msgid "No hay registros"
-msgstr ""
-
-#. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
-msgid "No. Serie"
 msgstr ""
 
 #. module: lgps
@@ -1295,8 +1270,18 @@ msgid "Number of unread messages"
 msgstr "Número de mensajes no leidos"
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__repairs_ids
+msgid "ODT"
+msgstr ""
+
+#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 msgid "ODT's"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__repairs_count
+msgid "ODTs"
 msgstr ""
 
 #. module: lgps
@@ -1310,8 +1295,6 @@ msgid "Odt's"
 msgstr ""
 
 #. module: lgps
-#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__repairs_count
-#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__repairs_ids
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 msgid "Odts"
 msgstr ""
@@ -1391,6 +1374,11 @@ msgid "Position Logic"
 msgstr ""
 
 #. module: lgps
+#: selection:res.partner,client_type:0
+msgid "Postventa"
+msgstr ""
+
+#. module: lgps
 #: selection:lgps.accessory,status:0
 #: selection:lgps.gpsdevice,status:0
 msgid "Prestado"
@@ -1446,7 +1434,9 @@ msgid "Purchase Date"
 msgstr "Fecha de Compra"
 
 #. module: lgps
+#: code:addons/lgps/models/accessory.py:64
 #: code:addons/lgps/models/gpsdevice.py:171
+#: selection:lgps.accessory,status:0
 #: selection:lgps.gpsdevice,status:0
 #, python-format
 msgid "RMA"
@@ -1556,7 +1546,7 @@ msgstr "Chapa"
 
 #. module: lgps
 #: selection:lgps.cellchip,provider:0
-msgid "Sinpacsys"
+msgid "Simpacsys"
 msgstr ""
 
 #. module: lgps
@@ -1570,7 +1560,7 @@ msgid "Solar Panel"
 msgstr "Panel Solar"
 
 #. module: lgps
-#: code:addons/lgps/models/accessory.py:64
+#: code:addons/lgps/models/accessory.py:65
 #: code:addons/lgps/models/gpsdevice.py:172
 #, python-format
 msgid "Sold"
@@ -1696,11 +1686,6 @@ msgstr "Tiempo transcurrido desde que la línea fue marcada como suspendida expr
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__last_report
 msgid "Time without reporting in platforms expressed in hours"
 msgstr "Tiempo sin reportar en plataformas expresado en horas"
-
-#. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
-msgid "Tipo"
-msgstr ""
 
 #. module: lgps
 #: selection:lgps.accessory,activity_state:0
@@ -1880,11 +1865,6 @@ msgstr "Desipositivo Gps"
 #: model:ir.model,name:lgps.model_lgps_tracking
 msgid "lgps.tracking"
 msgstr "Monitoreo"
-
-#. module: lgps
-#: model:ir.model,name:lgps.model_lgps_wizard
-msgid "lgps.wizard"
-msgstr "Asingación de Accesorios"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.wizard_form_view

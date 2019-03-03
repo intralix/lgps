@@ -28,6 +28,7 @@ class Accessory(models.Model):
             ('active', '=', True),
             ('is_company', '=', True)
         ],
+        required=False,
         index=True,
     )
 
