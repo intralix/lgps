@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <act_window id="action_other_checkouts_button" name="Assigned Accessories" res_model="lgps.accessory" view_mode="tree,form" domain="[('gpsdevice_id', '=', active_id)]"/>
-  <act_window id="action_counter_odts_button" name="Odt's" res_model="repair.order" view_mode="tree,form" domain="[('gpsdevice_id', '=', active_id)]"/>
+  <act_window id="action_other_checkouts_button"
+          name="Assigned Accessories"
+          res_model="lgps.accessory"
+          view_mode="tree,form"
+          domain="[('gpsdevice_id', '=', active_id)]"
+  />
+
+<act_window id="action_counter_odts_button" name="Odt's" res_model="repair.order" view_mode="tree,form" domain="[('gpsdevice_id', '=', active_id)]"/>
+
+  <act_window
+          id="action_counter_tickets_button"
+          name="Tickets"
+          res_model="helpdesk.ticket"
+          view_mode="tree,form"
+          domain="[('gpsdevice_id', '=', active_id)]"
+  />
 
   <record model="ir.ui.view" id="gpsdevice_form_view">
     <field name="name">gpsdevice.form</field>
@@ -10,11 +24,33 @@
       <form string="Gps Device Form">
         <sheet>
           <div name="button_box" class="oe_button_box">
-            <button class="oe_stat_button o_res_partner_tip_opp" type="action" attrs="{'invisible': [('accesories_count', '&lt;', 1)]}" name="%(action_other_checkouts_button)d" icon="fa-cubes" context="{}">
-              <field string="Accesorios" name="accesories_count" widget="statinfo"/>
+            <button
+                    class="oe_stat_button"
+                    icon="fa-cubes"
+                    type="action"
+                    attrs="{'invisible': [('accesories_count', '&lt;', 1)]}"
+                    name="%(action_other_checkouts_button)d"
+                    context="{'default_gpsdevice_id': active_id}"
+                    >
+              <field string="Accesorios" name="accesories_count" widget="statinfo" />
             </button>
-            <button class="oe_stat_button" type="action" attrs="{'invisible': [('repairs_count', '&lt;', 1)]}" name="%(action_counter_odts_button)d" icon="fa-file-text" context="{}">
-              <field string="Odts" name="repairs_count" widget="statinfo"/>
+
+            <button class="oe_stat_button"
+                    type="action"
+                    attrs="{'invisible': [('repairs_count', '&lt;', 1)]}"
+                    name="%(action_counter_odts_button)d"
+                    icon="fa-file-text"
+                    context="{'default_gpsdevice_id': active_id}">
+                <field string="Odts" name="repairs_count" widget="statinfo"/>
+            </button>
+
+            <button class="oe_stat_button"
+                    type="action"
+                    attrs="{'invisible': [('tickets_count', '&lt;', 1)]}"
+                    name="%(action_counter_tickets_button)d"
+                    icon="fa-support"
+                    context="{'default_gpsdevice_id': active_id}">
+              <field string="Tickets" name="tickets_count" widget="statinfo"/>
             </button>
           </div>
 
@@ -95,9 +131,12 @@
               </field>
             </page>
             <page string="ODT's">
-              <field name="repairs_ids"/>
+              <field name="repairs_ids" attrs="{'readonly':True}"/>
             </page>
-            <page string="Last Position">
+            <page string="Tickets">
+              <field name="helpdesk_tickets_ids" attrs="{'readonly':True}"/>
+            </page>
+            <page string="Posicionamiento">
               <group>
                 <group string="Last Report">
                   <separator/>

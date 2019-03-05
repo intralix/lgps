@@ -13,6 +13,7 @@
         'repair',
         'crm',
         'sale_subscription',
+        'helpdesk',
     ],
     'data': [
         'security/security.xml',
@@ -29,5 +30,6 @@
         'views/tracking.xml',
         'views/odt.xml',
         'views/lead.xml',
+        'views/tickets.xml',
     ],
 }

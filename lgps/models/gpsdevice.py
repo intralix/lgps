@@ -262,17 +262,25 @@ class GpsDevice(models.Model):
         string="ODT",
     )
 
+    helpdesk_tickets_ids = fields.One2many(
+        comodel_name="helpdesk.ticket",
+        inverse_name="gpsdevice_id",
+        string="Tickets",
+    )
 
     accesories_count = fields.Integer(
         "Accesories",
         compute='_compute_accesories_count',
-        store=True,
     )
 
     repairs_count = fields.Integer(
-        string="ODTs",
+        "ODTs",
         compute='_compute_repairs_count',
-        store=True,
+    )
+
+    tickets_count = fields.Integer(
+        string="Tickets",
+        compute='_compute_tickets_count',
     )
 
     @api.multi
@@ -285,6 +293,12 @@ class GpsDevice(models.Model):
     def _compute_repairs_count(self):
         for rec in self:
             rec.repairs_count = self.env['repair.order'].search_count(
+                [('gpsdevice_id', '=', rec.id)])
+
+    @api.multi
+    def _compute_tickets_count(self):
+        for rec in self:
+            rec.tickets_count = self.env['helpdesk.ticket'].search_count(
                 [('gpsdevice_id', '=', rec.id)])
 
     @api.one

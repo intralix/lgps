@@ -7,6 +7,8 @@ class Odt(models.Model):
     gpsdevice_id = fields.Many2one(
         comodel_name="lgps.gpsdevice",
         string="Gps Device",
+        ondelete="set null",
+        index=True,
     )
 
     installer_id = fields.Many2one(
