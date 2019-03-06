@@ -236,6 +236,12 @@ class GpsDevice(models.Model):
         string="Accessories",
     )
 
+    tracking_ids = fields.One2many(
+        comodel_name="lgps.tracking",
+        inverse_name="gpsdevice_id",
+        string="Trackings",
+    )
+
     state = fields.Selection(
         [
             ('create', _('Crear')),
@@ -283,6 +289,11 @@ class GpsDevice(models.Model):
         compute='_compute_tickets_count',
     )
 
+    trackings_count = fields.Integer(
+        string="Trackings",
+        compute='_compute_trackings_count',
+    )
+
     @api.multi
     def _compute_accesories_count(self):
         for rec in self:
@@ -299,6 +310,12 @@ class GpsDevice(models.Model):
     def _compute_tickets_count(self):
         for rec in self:
             rec.tickets_count = self.env['helpdesk.ticket'].search_count(
+                [('gpsdevice_id', '=', rec.id)])
+
+    @api.multi
+    def _compute_trackings_count(self):
+        for rec in self:
+            rec.trackings_count = self.env['lgps.tracking'].search_count(
                 [('gpsdevice_id', '=', rec.id)])
 
     @api.one
