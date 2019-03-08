@@ -47,9 +47,9 @@
     <field name="model">lgps.accessory</field>
     <field name="arch" type="xml">
       <search>
+        <field name="serialnumber_id"/>
         <field name="name"/>
         <field name="client_id"/>
-        <field name="serialnumber_id"/>
         <field name="installation_date"/>
         <field name="status"/>
         <field name="product_id"/>

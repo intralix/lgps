@@ -6,6 +6,7 @@
             name="lgps.report_suscriptions_detail_view"
             file="lgps.report_suscriptions_detail"
             report_type="qweb-pdf"
+            paperformat="base.paperformat_batch_deposit"
     />
 
     <template id="report_suscriptions_detail_view">
@@ -14,9 +15,10 @@
                 <t t-call="web.external_layout">
                     <div class="page">
                         <br></br>
+                        <br></br>
+                        <hr></hr>
                         <div class="row">
                             <div class="col-12">
-                                <!--<h2 t-field="doc.name"/>-->
                                 <h2 t-field="doc.gpsdevice_id.nick"/>
                             </div>
                         </div>
@@ -38,32 +40,30 @@
                             </div>
                             <hr></hr>
 
-                            <h3>Servicios Registrados</h3>
-                            <t t-if="doc.recurring_invoice_line_ids">
-                                <table class="table table-striped table-condensed table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Servicio</th>
-                                            <th>Descripcion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <t t-foreach="doc.recurring_invoice_line_ids" t-as="line">
+                                <h3>Servicios Registrados</h3>
+                                <t t-if="doc.recurring_invoice_line_ids">
+                                    <table class="table table-striped table-condensed table-bordered">
+                                        <thead>
                                             <tr>
-                                                <td><span t-field="line.product_id.name"/></td>
-                                                <td><span t-field="line.name"/></td>
+                                                <th>Servicio</th>
                                             </tr>
-                                        </t>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="doc.recurring_invoice_line_ids" t-as="line">
+                                                <tr>
+                                                    <td><span t-field="line.product_id.name"/></td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </t>
                             </t>
-                        </t>
-                         <t t-if="not doc.gpsdevice_id">
-                             No hay registros
-                         </t>
-                    </div>
+                            <t t-if="not doc.gpsdevice_id">
+                                 No hay registros
+                             </t>
+                        </div>
+                    </t>
                 </t>
             </t>
-        </t>
     </template>
 </odoo>

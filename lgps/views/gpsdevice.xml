@@ -28,12 +28,10 @@
                     attrs=""
                     name="%(action_counter_odts_button)d"
                     icon="fa-file-text"
-                    context="{
-                    'default_gpsdevice_id': active_id,
+                    context="{'default_gpsdevice_id': active_id,
                     'default_partner_id': client_id,
                     'default_product_id': product_id,
-                    'default_lot_id': serialnumber_id
-                    }">
+                    'default_lot_id': serialnumber_id}">
                 <field string="Odts" name="repairs_count" widget="statinfo"/>
             </button>
 
