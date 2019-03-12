@@ -1,69 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
+	<record id="paperformat_lgps" model="report.paperformat">
+    	<field name="name">Lgps Custom</field>
+    	<field name="default" eval="True"/>
+    	<field name="format">custom</field>
+    	<field name="orientation">Portrait</field>
+    	<field name="margin_top">35</field>
+    	<field name="margin_bottom">25</field>
+    	<field name="margin_left">7</field>
+    	<field name="margin_right">7</field>
+    	<field name="header_line" eval="False"/>
+    	<field name="header_spacing">35</field>
+    	<field name="dpi">90</field>
+	</record>
+
     <report id="report_suscriptions_detail"
             model="sale.subscription"
             string="Suscription Details"
             name="lgps.report_suscriptions_detail_view"
             file="lgps.report_suscriptions_detail"
             report_type="qweb-pdf"
-            paperformat="base.paperformat_batch_deposit"
+			paperformat="paperformat_lgps"
     />
 
-    <template id="report_suscriptions_detail_view">
+    <template id="report_suscriptions_detail_view" name="Custom Suscription Details">
         <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="doc">
+			<t t-call="web.external_layout">
+				<div class="page">
+					<h2 align="right">Detalle de Servicios</h2>
+					<br></br>
+					<t t-foreach="docs" t-as="doc">
+                    	<t t-if="doc.gpsdevice_id">
+							<br></br>
+            				<div class="row">
+	            				<div class="col-12">
+									<h2> <span t-field="doc.gpsdevice_id.nick"/> // <span t-field="doc.gpsdevice_id.name"/> </h2>
+								</div>
+		                    </div>
+							<br></br>
+	                		<div class="row">
+								<div class="col-12">
+			                        <h4>Servicios Registrados</h4><br></br>
+								</div>
+							</div>
 
-                    <div class="page">
-                        <br></br>
-                        <br></br>
-                        <hr></hr>
-                        <div class="row">
-                            <div class="col-12">
-                                <h2 t-field="doc.gpsdevice_id.nick"/>
-                            </div>
-                        </div>
-                        <br></br>
-                        <t t-if="doc.gpsdevice_id">
-                            <div class="row">
-                                <div class="col-3">
-                                    <strong>Económico</strong>
-                                    <p>
-                                        <span t-field="doc.gpsdevice_id.nick"></span>
-                                    </p>
-                                </div>
-                                <div class="col-3">
-                                    <strong>Equipo</strong>
-                                    <p>
-                                        <span t-field="doc.gpsdevice_id.name"></span>
-                                    </p>
-                                </div>
-                            </div>
-                            <hr></hr>
+							<div class="row">
+								<t t-if="doc.recurring_invoice_line_ids">
+									<div class="col-12">
+		                        		<table class="table table-striped table-condensed table-bordered">
+		                        			<thead>
+		                        				<tr>
+		                        					<th>Servicio</th>
+		                        					<th>Descripción</th>
+		                        				</tr>
+		                        			</thead>
+	                        				<tbody>
+	                        					<t t-foreach="doc.recurring_invoice_line_ids" t-as="line">
+	                        						<tr>
+	                        							<td><span t-field="line.product_id.name"/></td>
+	                        							<td><span t-field="line.name"/></td>
+	                        						</tr>
+	                        					</t>
+	                        				</tbody>
+	                        			</table>
+									</div>
+								</t>
+	                    	</div>
 
-                                <h3>Servicios Registrados</h3>
-                                <t t-if="doc.recurring_invoice_line_ids">
-                                    <table class="table table-striped table-condensed table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>Servicio</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <t t-foreach="doc.recurring_invoice_line_ids" t-as="line">
-                                                <tr>
-                                                    <td><span t-field="line.product_id.name"/></td>
-                                                </tr>
-                                            </t>
-                                        </tbody>
-                                    </table>
-                                </t>
-                            </t>
-                            <t t-if="not doc.gpsdevice_id">
-                                 No hay registros
-                             </t>
-                        </div>
-                    </t>
-                
-            </t>
+	                    </t>
+            		</t>
+            	</div>
+			</t>
+		</t>
     </template>
 </odoo>

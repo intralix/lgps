@@ -31,5 +31,6 @@
         'views/odt.xml',
         'views/lead.xml',
         'views/tickets.xml',
+
     ],
 }
