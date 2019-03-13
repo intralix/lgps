@@ -5,7 +5,7 @@
     <field name="name">lgps.drop_device_wizard.form</field>
     <field name="model">lgps.drop_device_wizard</field>
     <field name="arch" type="xml">
-      <form string="Split Record">
+      <form string="Drop Process">
         <group>
           <p class="text-primary"> Este procedimiento realizará la siguientes acciones:</p><br/>
           <p>1) Cambiará la plataforma del equipo a <strong>Baja</strong><br/>
@@ -34,14 +34,14 @@
       </form>
     </field>
   </record>
-  <record id="action_view_drop_device_wizard" model="ir.actions.act_window">
-    <field name="name">Device Drop Wizard</field>
-    <field name="res_model">lgps.drop_device_wizard</field>
-    <field name="src_model">lgps.gpsdevice</field>
-    <field name="view_type">form</field>
-    <field name="view_mode">form</field>
-    <field name="view_id" ref="view_drop_device_wizard"/>
-    <field name="target">new</field>
-    <field name="key2">client_action_multi</field>
-  </record>
+
+  <act_window
+          id="action_view_drop_device_wizard"
+          name="Device Drop Wizard"
+          src_model="lgps.gpsdevice"
+          res_model="lgps.drop_device_wizard"
+          view_mode="form"
+          target="new"
+          key2="client_action_multi"
+  />
 </odoo>
