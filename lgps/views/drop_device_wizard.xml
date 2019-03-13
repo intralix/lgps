@@ -12,15 +12,20 @@
               2) Ingresar el comentario como una nota interna en cada equipo<br/>
               3) Cambiar la suscripción del equipo a borrador<br/>
               4) Se notificará para que se proceda con la baja de las líneas asociadas.<br/><br/>
-
-              Ingresa el motivo por el cual que estás dando de baja el(los) equipo(s).<br/>
           </p>
         </group>
         <group>
-          <group>
-            <field name="gpsdevice_ids" invisible="1"/>
+            <field name="gpsdevice_ids">
+                <tree string="GPS Devices to Process">
+                  <field name="name"/>
+                  <field name="nick"/>
+                  <field name="installation_date"/>
+                  <field name="platform"/>
+                  <field name="cellchip_id"/>
+                  <field name="serialnumber_id"/>
+                </tree>
+            </field>
             <field name="comment"/>
-          </group>
         </group>
         <footer>
           <button name="execute_drop" type="object" string="Execute Process" class="oe_highlight"/> or

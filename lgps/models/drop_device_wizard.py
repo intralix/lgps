@@ -32,8 +32,7 @@ class DropDeviceWizard(models.TransientModel):
 
         active_model = self._context.get('active_model')
         active_records = self.env[active_model].browse(self._context.get('active_ids'))
-        _logger.warning('Comment %s', self.comment)
-        _logger.warning('Create a %s with vals %s', active_model, active_records)
+
         active_records.write({'platform': "Drop"})
         body = "Proceso de Baja: <br><br>" + self.comment
         cellchips_ids = []
@@ -44,24 +43,18 @@ class DropDeviceWizard(models.TransientModel):
             r.message_post(body=body)
             if(r.cellchip_id):
                 cellchips_ids.append(r.cellchip_id.id)
-                _logger.warning('Registered Cellchips [%s]', r.cellchip_id.name)
                 notify_gps_list += '<br>' + r.name + ' // ' + r.nick
                 notify_cellchisp_list += '<br>' + r.cellchip_id.name
 
 
-        suscriptions = self.env['sale.subscription'].search([['gpsdevice_id', 'in', active_records.ids]])
-        _logger.warning('Suscription [%s]', suscriptions.ids)
-        # s.write({'stage_id' : 'Closed'})
-        _logger.warning('cellchips [%s]', cellchips_ids)
-        cellchips = self.env['lgps.cellchip'].search([['id', 'in', cellchips_ids]])
-        _logger.warning('USER [%s]', self.env.uid)
+        #suscriptions = self.env['sale.subscription'].search([['gpsdevice_id', 'in', active_records.ids]])
+        #cellchips = self.env['lgps.cellchip'].search([['id', 'in', cellchips_ids]])
 
-        channel_msn = '<br>Los equipos mencionados a continuaciòn de sieron de baja:<br>'
-        channel_msn += notify_gps_list
+        channel_msn = '<br>Los equipos mencionados a continuación se procesaron como baja:<br>'
+        channel_msn += '<strong>' + notify_gps_list + '</strong>'
         channel_msn += '<br><br>Se requiere dar de baja la siguientes líneas:<br>'
-        channel_msn += notify_cellchisp_list
+        channel_msn += '<strong>' + notify_cellchisp_list + '</strong>'
 
-        _logger.warning('BODY [%s]', body)
         poster = self.sudo().env.ref('mail.channel_all_employees')
         poster.message_post(body=channel_msn, subtype='mail.mt_comment', partner_ids=[self.env.uid])
 
@@ -85,30 +78,3 @@ class DropDeviceWizard(models.TransientModel):
         mail.message_post(type="notification", subtype="mail.mt_comment", **mail_details)
 
         return {}
-
-        #hold_ids = []
-        #if active_model == 'lgps.gpsdevice':
-            #for r in active_records:
-                #hold_ids.append(r.id)
-                #_logger.warning('Device [%s] with nick [%s]', r.name, r.nick)
-                #r.write({'platform': "Drop"})
-                #body = "Proceso de Baja: <br><br>"+self.comment
-                #r.message_post(body=body)
-                #user_id = self.user_target.id
-                #_logger.warning('User ID [%s]', self._uid)
-                #mail_details = {'subject': "Baja de Equipos",
-                 #               'body': body,
-                  #              'partner_ids': [self._uid]
-                                 # 'author_id': self._uid,
-                   #             }
-                #mail = self.env['mail.thread']
-                #mail.message_post(type="notification", subtype="mail.mt_comment", **mail_details)
-
-        #suscriptions = self.env['sale.subscription'].search([['gpsdevice_id', 'in', hold_ids]])
-        #_logger.warning('Suscription [%s]', suscriptions.ids)
-        #for s in suscriptions:
-            #_logger.warning('Suscription [%s]', s.display_name)
-            #s.write({'stage_id' : 'Closed'})
-
-
-
