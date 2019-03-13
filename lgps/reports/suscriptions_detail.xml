@@ -2,9 +2,12 @@
 <odoo>
 
     <record id="paperformat_lgps" model="report.paperformat">
+
         <field name="name">Lgps Custom</field>
         <field name="default" eval="True"/>
         <field name="format">custom</field>
+        <field name="page_height">279</field>
+        <field name="page_width">216</field>
         <field name="orientation">Portrait</field>
         <field name="margin_top">35</field>
         <field name="margin_bottom">25</field>
@@ -48,12 +51,10 @@
                                         <table class="table table-striped table-condensed table-bordered">
                                                 <tr>
                                                     <td>Servicio</td>
-                                                    <td>Descripción</td>
                                                 </tr>
                                                 <t t-foreach="doc.recurring_invoice_line_ids" t-as="line">
                                                     <tr>
                                                         <td><span t-field="line.product_id.name"/></td>
-                                                        <td><span t-field="line.name"/></td>
                                                     </tr>
                                                 </t>
                                         </table>

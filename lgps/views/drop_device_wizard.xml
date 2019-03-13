@@ -7,12 +7,13 @@
     <field name="arch" type="xml">
       <form string="Split Record">
         <group>
-          <p class="text-muted">** Only Draft Record can be merged.
-            <br/>** Select option 'Create New record' if you want to cancel all records and create new merged record.<br/>
-            ** Select option 'Merge in Existing Record' if you want to merge all other records in that record.<br/>
-            ** Records of Same Customer/Partner can be merged only.<br/>
-            ** Lines with Same product, unit price and discount will be merged.<br/>
-            ** Avoid merging system generated records.<br/>
+          <p class="text-primary"> Este procedimiento realizará la siguientes acciones:</p><br/>
+          <p>1) Cambiará la plataforma del equipo a <strong>Baja</strong><br/>
+              2) Ingresar el comentario como una nota interna en cada equipo<br/>
+              3) Cambiar la suscripción del equipo a borrador<br/>
+              4) Se notificará para que se proceda con la baja de las líneas asociadas.<br/><br/>
+
+              Ingresa el motivo por el cual que estás dando de baja el(los) equipo(s).<br/>
           </p>
         </group>
         <group>
@@ -22,8 +23,7 @@
           </group>
         </group>
         <footer>
-          <button name="execute_drop" type="object" string="Execute Process" class="oe_highlight"/>
-          or
+          <button name="execute_drop" type="object" string="Execute Process" class="oe_highlight"/> or
           <button special="cancel" string="Cancel" type="object"/>
         </footer>
       </form>
