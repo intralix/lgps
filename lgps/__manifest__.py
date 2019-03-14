@@ -30,7 +30,6 @@
         'views/tracking.xml',
         'views/odt.xml',
         'views/lead.xml',
-        'views/tickets.xml',
-        'views/drop_device_wizard.xml'
+        'views/tickets.xml'
     ],
 }

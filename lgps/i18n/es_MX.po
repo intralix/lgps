@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-06 04:02+0000\n"
-"PO-Revision-Date: 2019-03-06 04:02+0000\n"
+"POT-Creation-Date: 2019-03-14 19:06+0000\n"
+"PO-Revision-Date: 2019-03-14 19:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -283,16 +283,6 @@ msgid "5MB"
 msgstr ""
 
 #. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
-msgid "<strong>Económico</strong>"
-msgstr ""
-
-#. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
-msgid "<strong>Equipo</strong>"
-msgstr ""
-
-#. module: lgps
 #: selection:lgps.cellchip,provider:0
 msgid "ATT"
 msgstr ""
@@ -382,7 +372,7 @@ msgstr "Agregar Accesorios"
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_wizard
 msgid "Add Accesories to Devices"
-msgstr ""
+msgstr "Agregar Accesorios"
 
 #. module: lgps
 #: model:ir.actions.act_window,name:lgps.launch_accesories_wizard
@@ -420,12 +410,12 @@ msgstr "Accesorios Asignados"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_repair_order__assistant_a_id
 msgid "Assistant A"
-msgstr "Auxiliar A"
+msgstr "Técnico A"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_repair_order__assistant_b_id
 msgid "Assistant B"
-msgstr "Auxiliar B"
+msgstr "Técnico B"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_attachment_count
@@ -557,6 +547,11 @@ msgid "Complementos"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model,name:lgps.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de Configuración"
+
+#. module: lgps
 #: model:ir.ui.menu,name:lgps.configuration_menu
 msgid "Configuration"
 msgstr "Configuración"
@@ -655,11 +650,6 @@ msgid "Demo"
 msgstr ""
 
 #. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
-msgid "Descripcion"
-msgstr ""
-
-#. module: lgps
 #: selection:lgps.accessory,status:0
 #: selection:lgps.gpsdevice,status:0
 msgid "Desinstalado"
@@ -724,6 +714,11 @@ msgstr "Conductor"
 #, python-format
 msgid "Drop"
 msgstr "Baja"
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_lgps_drop_device_wizard
+msgid "Drop Device Wizard"
+msgstr ""
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__end_forced_plan_date
@@ -1209,7 +1204,6 @@ msgstr ""
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.report_gpsdevice_view
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
 msgid "No hay registros"
 msgstr ""
 
@@ -1542,11 +1536,6 @@ msgstr "Servicios"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
-msgid "Servicio"
-msgstr ""
-
-#. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
 msgid "Servicios Registrados"
 msgstr ""
 
@@ -1717,7 +1706,7 @@ msgstr "Hoy"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__tracking
 msgid "Tracking"
-msgstr "Seguimiento"
+msgstr "Rastreo"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.tracking_form_view
@@ -1883,6 +1872,11 @@ msgstr "Línea"
 #: model:ir.model,name:lgps.model_lgps_gpsdevice
 msgid "lgps.gpsdevice"
 msgstr "Desipositivo Gps"
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_lgps_res_config_settings
+msgid "lgps.res.config.settings"
+msgstr ""
 
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_tracking

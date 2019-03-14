@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-06 04:02+0000\n"
-"PO-Revision-Date: 2019-03-06 04:02+0000\n"
+"POT-Creation-Date: 2019-03-14 19:06+0000\n"
+"PO-Revision-Date: 2019-03-14 19:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -283,16 +283,6 @@ msgid "5MB"
 msgstr ""
 
 #. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
-msgid "<strong>Económico</strong>"
-msgstr ""
-
-#. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
-msgid "<strong>Equipo</strong>"
-msgstr ""
-
-#. module: lgps
 #: selection:lgps.cellchip,provider:0
 msgid "ATT"
 msgstr ""
@@ -557,6 +547,11 @@ msgid "Complementos"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model,name:lgps.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: lgps
 #: model:ir.ui.menu,name:lgps.configuration_menu
 msgid "Configuration"
 msgstr ""
@@ -655,11 +650,6 @@ msgid "Demo"
 msgstr ""
 
 #. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
-msgid "Descripcion"
-msgstr ""
-
-#. module: lgps
 #: selection:lgps.accessory,status:0
 #: selection:lgps.gpsdevice,status:0
 msgid "Desinstalado"
@@ -723,6 +713,11 @@ msgstr ""
 #: selection:lgps.accessory,status:0
 #, python-format
 msgid "Drop"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_lgps_drop_device_wizard
+msgid "Drop Device Wizard"
 msgstr ""
 
 #. module: lgps
@@ -1209,7 +1204,6 @@ msgstr ""
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.report_gpsdevice_view
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
 msgid "No hay registros"
 msgstr ""
 
@@ -1538,11 +1532,6 @@ msgstr ""
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 msgid "Services"
-msgstr ""
-
-#. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_view
-msgid "Servicio"
 msgstr ""
 
 #. module: lgps
@@ -1879,6 +1868,11 @@ msgstr ""
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_gpsdevice
 msgid "lgps.gpsdevice"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_lgps_res_config_settings
+msgid "lgps.res.config.settings"
 msgstr ""
 
 #. module: lgps
