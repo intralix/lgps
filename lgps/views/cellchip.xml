@@ -26,9 +26,29 @@
               <field name="status_date"/>
               <field name="end_forced_plan_date"/>
               <field name="days_suspended"/>
-              <field name="gpsdevice_id"/>
             </group>
           </group>
+
+          <notebook>
+            <page string="GPS Device">
+              <group>
+                <field name="gpsdevice_id">
+                  <tree>
+                    <field name="name" string="Device"/>
+                    <field name="nick"/>
+                    <field name="serialnumber_id"/>
+                    <field name="imei"/>
+                    <field name="idf"/>
+                    <field name="status"/>
+                    <field name="platform"/>
+                    <field name="installation_date"  string="Installed"/>
+                    <field name="product_id"  string="Product"/>
+                    <field name="client_id"/>
+                  </tree>
+                </field>
+              </group>
+            </page>
+          </notebook>
         </sheet>
 
         <div class="oe_chatter">

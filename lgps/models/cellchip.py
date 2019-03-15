@@ -12,10 +12,12 @@ class Cellchip(models.Model):
         string="Line Number",
     )
 
-    gpsdevice_id = fields.Many2one(
+    gpsdevice_id = fields.One2many(
         comodel_name='lgps.gpsdevice',
+        inverse_name='cellchip_id',
         string="Installed On",
         help="GPS Device where the cellchip is on.",
+        readonly=True
     )
 
     # Estatus de la Línea

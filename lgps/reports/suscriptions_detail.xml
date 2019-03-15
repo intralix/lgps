@@ -35,7 +35,7 @@
                             <br></br>
                             <div class="row">
                                 <div class="col-12">
-                                    <h2> <span t-field="doc.gpsdevice_id.nick"/> // <span t-field="doc.gpsdevice_id.name"/> </h2>
+                                    <h2> <span t-field="doc.gpsdevice_id.nick"/> | Equipo: <span t-field="doc.gpsdevice_id.name"/></h2>
                                 </div>
                             </div>
                             <br></br>

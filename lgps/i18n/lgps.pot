@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-14 19:06+0000\n"
-"PO-Revision-Date: 2019-03-14 19:06+0000\n"
+"POT-Creation-Date: 2019-03-15 02:12+0000\n"
+"PO-Revision-Date: 2019-03-15 02:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -324,7 +324,7 @@ msgid "Action Needed"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:24
+#: code:addons/lgps/models/cellchip.py:26
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__active
 #, python-format
 msgid "Active"
@@ -391,7 +391,7 @@ msgid "Anti Jammer Blocker"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:248
+#: code:addons/lgps/models/gpsdevice.py:252
 #: selection:lgps.gpsdevice,state:0
 #, python-format
 msgid "Asignar"
@@ -466,7 +466,7 @@ msgid "Cancelado"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:25
+#: code:addons/lgps/models/cellchip.py:27
 #, python-format
 msgid "Cancelled"
 msgstr ""
@@ -581,7 +581,7 @@ msgid "Courtesy"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:247
+#: code:addons/lgps/models/gpsdevice.py:251
 #: selection:lgps.gpsdevice,state:0
 #, python-format
 msgid "Crear"
@@ -665,6 +665,11 @@ msgstr ""
 #: selection:lgps.tracking,state:0
 #, python-format
 msgid "Detenido"
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.cellchip_form_view
+msgid "Device"
 msgstr ""
 
 #. module: lgps
@@ -808,6 +813,7 @@ msgid "Funciones"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.cellchip_form_view
 #: model_terms:ir.ui.view,arch_db:lgps.wizard_form_view
 msgid "GPS Device"
 msgstr ""
@@ -925,7 +931,7 @@ msgid "Initial Date"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:251
+#: code:addons/lgps/models/gpsdevice.py:255
 #: selection:lgps.accessory,status:0
 #: selection:lgps.gpsdevice,state:0
 #: selection:lgps.gpsdevice,status:0
@@ -943,6 +949,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:55
 #: code:addons/lgps/models/gpsdevice.py:163
+#: model_terms:ir.ui.view,arch_db:lgps.cellchip_form_view
 #, python-format
 msgid "Installed"
 msgstr ""
@@ -1390,14 +1397,19 @@ msgid "Prestado"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.cellchip_form_view
+msgid "Product"
+msgstr ""
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__product_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__product_id
 msgid "Product Type"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:249
-#: code:addons/lgps/models/gpsdevice.py:250
+#: code:addons/lgps/models/gpsdevice.py:253
+#: code:addons/lgps/models/gpsdevice.py:254
 #: selection:lgps.gpsdevice,state:0
 #, python-format
 msgid "Programar"
@@ -1477,7 +1489,7 @@ msgid "Repair Order"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:26
+#: code:addons/lgps/models/cellchip.py:28
 #, python-format
 msgid "Replaced"
 msgstr ""
@@ -1622,7 +1634,14 @@ msgid "Suscription Details"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:27
+#: model:ir.actions.act_window,name:lgps.action_counter_suscriptions_button
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__suscriptions_count
+#: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
+msgid "Suscriptions"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/cellchip.py:29
 #, python-format
 msgid "Suspended"
 msgstr ""

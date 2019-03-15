@@ -192,6 +192,8 @@ class GpsDevice(models.Model):
     cellchip_id = fields.Many2one(
         comodel_name="lgps.cellchip",
         string="Cellchip Number",
+        ondelete='set null',
+        required=False,
     )
 
     product_id = fields.Many2one(
@@ -218,9 +220,11 @@ class GpsDevice(models.Model):
         index=True,
     )
 
-    suscription_id = fields.Many2one(
-        comodel_name="sale.subscription",
+    suscription_id = fields.One2many(
+        comodel_name='sale.subscription',
+        inverse_name='gpsdevice_id',
         string="Suscription",
+        readonly=True
     )
 
     serialnumber_id = fields.Many2one(
@@ -294,6 +298,12 @@ class GpsDevice(models.Model):
         compute='_compute_trackings_count',
     )
 
+    suscriptions_count = fields.Integer(
+        string='Suscriptions',
+        compute='_compute_suscriptions_count',
+    )
+
+
     @api.multi
     def _compute_accesories_count(self):
         for rec in self:
@@ -316,6 +326,12 @@ class GpsDevice(models.Model):
     def _compute_trackings_count(self):
         for rec in self:
             rec.trackings_count = self.env['lgps.tracking'].search_count(
+                [('gpsdevice_id', '=', rec.id)])
+
+    @api.multi
+    def _compute_suscriptions_count(self):
+        for rec in self:
+            rec.suscriptions_count = self.env['sale.subscription'].search_count(
                 [('gpsdevice_id', '=', rec.id)])
 
     @api.one
