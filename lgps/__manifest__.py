@@ -14,6 +14,7 @@
         'crm',
         'sale_subscription',
         'helpdesk',
+        'mail'
     ],
     'data': [
         'security/security.xml',
@@ -30,6 +31,8 @@
         'views/tracking.xml',
         'views/odt.xml',
         'views/lead.xml',
-        'views/tickets.xml'
+        'views/tickets.xml',
+        'views/drop_device_wizard.xml',
+        'views/res_config_settings_views.xml'
     ],
 }

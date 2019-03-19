@@ -10,4 +10,6 @@ from . import tracking
 from . import odt
 from . import leads
 from . import helptickets
+from . import drop_device_wizard
+from . import res_config_settings
 

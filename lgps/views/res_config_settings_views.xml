@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.lgps</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="5"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="LGPS" string="Intx" data-key="lgps" groups="lgps.lgps_group_manager">
+                    <h2>Bajas de Equipos</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el canal de comunicación que será utilizado por default para enviar notificaciones de las bajas de equipos">
+                            <div class="o_setting_right_pane">
+                                <label for="channel_id"/>
+                                <div class="text-muted">
+                                    Pick a Default Channel
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <label for="channel_id" class="o_light_label"/>
+                                        <field name="channel_id" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="lgps_config_settings_action" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="res_config_settings_view_form"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'lgps'}</field>
+    </record>
+
+    <menuitem id="lgps_settings_menu" name="Settings" parent="configuration_menu" action="lgps_config_settings_action"/>
+</odoo>
