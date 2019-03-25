@@ -25,3 +25,8 @@ class Odt(models.Model):
         comodel_name="hr.employee",
         string="Assistant B",
     )
+
+    service_date = fields.Date(
+        default=fields.Date.today,
+        string="Service Date",
+    )

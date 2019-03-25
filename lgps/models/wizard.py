@@ -26,4 +26,5 @@ class Wizard(models.TransientModel):
     def assign(self):
         for gpsdevice in self.gpsdevice_ids:
             gpsdevice.accessory_ids |= self.accessory_ids
+
         return {}

@@ -2,8 +2,6 @@
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError
 
-
-
 class DropDeviceWizard(models.TransientModel):
     _name = "lgps.drop_device_wizard"
     _description = "Drop Device Wizard"
@@ -37,23 +35,69 @@ class DropDeviceWizard(models.TransientModel):
         if not self.comment:
             raise UserError(_('You forgot to comment the reason for this process to run.'))
 
+        # Obtenemos los Ids seleccionados
         active_model = self._context.get('active_model')
         active_records = self.env[active_model].browse(self._context.get('active_ids'))
-        active_records.write({'platform': "Drop"})
-        body = "Proceso de Baja: <br><br>" + self.comment
+        # Buffer Vars
         cellchips_ids = []
         notify_cellchisp_list = ""
         notify_gps_list = ""
-
+        # Procesamos los quipos seleccionados:
         for r in active_records:
-            r.message_post(body=body)
+            body = "[Proceso de Baja]<br/><br/>" + self.comment + '<br/>'
+            gps_functions_summary = "<hr/>Se desactivaron las funciones de:<br/><br/>"
+            acumulador = ""
+            aditional_functions = False
+
+            platform = r.platform if r.platform else 'Sin Plataforma'
+            chip = r.cellchip_id.name if r.cellchip_id else 'Sin chip'
+            client = r.client_id.name if r.client_id else 'Sin Cliente'
+            equipo = r.name
+            nick = r.nick if r.nick else 'NA'
+
+            acumulador += '<br/><b>Plataforma:</b> ' + platform
+            acumulador += '<br/><b>Cliente:</b> ' + client
+            acumulador += '<br/><b>Equipo:</b> ' + equipo
+            acumulador += '<br/><b>Nick:</b> ' + nick
+            acumulador += '<br/><b>Línea:</b> ' + chip
+
             if(r.cellchip_id):
                 cellchips_ids.append(r.cellchip_id.id)
                 notify_cellchisp_list += '<br/>' + r.cellchip_id.name
-                if(r.nick):
-                    notify_gps_list += '<br/>' + r.name + ' // ' + r.nick
-                else:
-                    notify_gps_list += '<br/>' + r.name + ' //  NA'
+
+            notify_gps_list += '<br/>' + client + ' || ' + equipo + ' || ' + nick + ' || ' + platform
+
+            # Comprobando funciones adicionales
+            if r.tracking:
+                aditional_functions = True
+                gps_functions_summary += "Rastreo<br/>"
+            if r.fuel:
+                aditional_functions = True
+                gps_functions_summary += "Combustible<br/>"
+            if r.scanner:
+                aditional_functions = True
+                gps_functions_summary += "Escánner<br/>"
+            if r.temperature:
+                aditional_functions = True
+                gps_functions_summary += "Temperatura<br/>"
+            if r.logistic:
+                aditional_functions = True
+                gps_functions_summary += "Logística<br/>"
+
+            body += '<br/>' + acumulador
+            if aditional_functions:
+                body += gps_functions_summary
+            r.message_post(body=body)
+
+        # Ejecutamos la Baja en el sistema
+        active_records.write({
+            'tracking': False,
+            'fuel': False,
+            'scanner': False,
+            'temperature': False,
+            'logistic': False,
+            'platform': "Drop",
+        })
 
         self.cellchips_list = notify_cellchisp_list
         self.devices_list = notify_gps_list
@@ -62,12 +106,12 @@ class DropDeviceWizard(models.TransientModel):
         suscription_close_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_closed')
         suscriptions = self.env['sale.subscription'].search([['gpsdevice_id', 'in', active_records.ids]])
         for s in suscriptions:
-            s.message_post(body=body)
-            s.write({'stage_id': suscription_close_stage.id})
+            s.message_post(body="El equipo se ha dado de baja en el sistema.")
+        suscriptions.write({'stage_id': suscription_close_stage.id})
 
         #cellchips = self.env['lgps.cellchip'].search([['id', 'in', cellchips_ids]])
 
-        channel_msn = '<br/>Los equipos mencionados a continuación se procesaron como baja por motivo de:<br/>'
+        channel_msn = '<br/>Los equipos mencionados a continuación se procesaron para dar de baja por motivo de:<br/>'
         channel_msn += self.comment + '<br/>'
         channel_msn += self.devices_list
         channel_msn += '<br/><br/>Se requiere dar de baja la siguientes líneas:<br/>'
@@ -76,7 +120,7 @@ class DropDeviceWizard(models.TransientModel):
         Config = self.env['ir.config_parameter']
         channel_id = Config.get_param('lgps.drop_device_wizard.default_channel')
         if not channel_id:
-           raise UserError(_('There is not configuration for sending email.\n Configure this in order to send the notification.'))
+           raise UserError(_('There is not configuration for default channel.\n Configure this in order to send the notification.'))
         else:
             poster_bajas = self.sudo().env['mail.channel'].search([('id', '=', channel_id)])
             poster_bajas.message_post(body=channel_msn, subtype='mail.mt_comment', partner_ids=[(4, self.env.uid)])

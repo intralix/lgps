@@ -13,6 +13,7 @@
       <xpath expr="//field[@name='invoice_method']" position="after">
         <field name="assistant_a_id"/>
         <field name="assistant_b_id"/>
+        <field name="service_date"/>
       </xpath>
     </field>
   </record>
