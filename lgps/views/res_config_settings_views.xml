@@ -8,13 +8,13 @@
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('settings')]" position="inside">
                 <div class="app_settings_block" data-string="LGPS" string="Intx" data-key="lgps" groups="lgps.lgps_group_manager">
-                    <h2>Bajas de Equipos</h2>
+                    <h2>Procesos para Equipos</h2>
                     <div class="row mt16 o_settings_container">
                         <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el canal de comunicación que será utilizado por default para enviar notificaciones de las bajas de equipos">
                             <div class="o_setting_right_pane">
                                 <label for="channel_id"/>
                                 <div class="text-muted">
-                                    Pick a Default Channel
+                                    Pick a Drop Default Channel
                                 </div>
                                 <div class="content-group">
                                     <div class="mt16">

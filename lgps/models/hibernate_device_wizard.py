@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError
+import logging
+_logger = logging.getLogger(__name__)
 
-class DropDeviceWizard(models.TransientModel):
-    _name = "lgps.drop_device_wizard"
-    _description = "Drop Device Wizard"
+class HibernateDeviceWizard(models.TransientModel):
+    _name = "lgps.hibernate_device_wizard"
+    _description = "Hibernate Device Wizard"
 
     def _default_gpsdevices(self):
         return self.env['lgps.gpsdevice'].browse(self._context.get('active_ids'))
@@ -16,13 +18,8 @@ class DropDeviceWizard(models.TransientModel):
         default=_default_gpsdevices,
     )
 
-    requeste_by = fields.Char(
-        string=_("Requested by"),
-        required=True,
-    )
-
     comment = fields.Text(
-        string=_("Drop Reason"),
+        string=_("Hibernate Reason"),
         required=True,
     )
 
@@ -30,27 +27,28 @@ class DropDeviceWizard(models.TransientModel):
         string="Devices List"
     )
 
-    cellchips_list = fields.Text(
-        string="Cellchips List"
+    requeste_by = fields.Char(
+        string=_("Requested by"),
+        required=True,
     )
 
     @api.multi
-    def execute_drop(self):
+    def execute_hibernation(self):
         if len(self._context.get('active_ids')) < 1:
             raise UserError(_('Select at least one record.'))
         if not self.comment:
             raise UserError(_('You forgot to comment the reason for this process to run.'))
+        if not self.requeste_by:
+            raise UserError(_('Who authorizes this request?'))
 
         # Obtenemos los Ids seleccionados
         active_model = self._context.get('active_model')
         active_records = self.env[active_model].browse(self._context.get('active_ids'))
         # Buffer Vars
-        cellchips_ids = []
-        notify_cellchisp_list = ""
         notify_gps_list = ""
         # Procesamos los quipos seleccionados:
         for r in active_records:
-            body = "[Proceso de Baja]<br/><br/>" + self.comment + '<br/>'
+            body = "[Proceso de Hibernación]<br/><br/>" + self.comment + '<br/><b>Solicitado por</b>: ' + self.requeste_by + '<br/>'
             gps_functions_summary = "<hr/>Se desactivaron las funciones de:<br/><br/>"
             acumulador = ""
             aditional_functions = False
@@ -67,16 +65,9 @@ class DropDeviceWizard(models.TransientModel):
             acumulador += '<br/><b>Nick:</b> ' + nick
             acumulador += '<br/><b>Línea:</b> ' + chip
 
-            if(r.cellchip_id):
-                cellchips_ids.append(r.cellchip_id.id)
-                notify_cellchisp_list += '<br/>' + r.cellchip_id.name
-
             notify_gps_list += '<br/>' + client + ' || ' + equipo + ' || ' + nick + ' || ' + platform
 
             # Comprobando funciones adicionales
-            if r.tracking:
-                aditional_functions = True
-                gps_functions_summary += "Rastreo<br/>"
             if r.fuel:
                 aditional_functions = True
                 gps_functions_summary += "Combustible<br/>"
@@ -95,36 +86,68 @@ class DropDeviceWizard(models.TransientModel):
                 body += gps_functions_summary
             r.message_post(body=body)
 
+            # revisamos el tema de las suscripciones:
+            if r.suscription_id:
+
+                ReccurringInvoiveLine = self.env['sale.subscription.line']
+
+                #ReccurringInvoiveLine.create({
+                #                    'product_id': r.suscription_id.recurring_invoice_line_ids.product_id and r.suscription_id.recurring_invoice_line_ids.product_id.id or False,
+                #                    'quantity': r.suscription_id.recurring_invoice_line_ids.quantity,
+                #                    'uom_id': r.suscription_id.recurring_invoice_line_ids.uom_id.id,
+                #                    'price_unit': r.suscription_id.recurring_invoice_line_ids.price_unit,
+                #                    'name': r.suscription_id.recurring_invoice_line_ids.name,
+                    #'discount': r.suscription_id.recurring_invoice_line_ids.discount,
+                    #'account_id': r.suscription_id.recurring_invoice_line_ids.account_id.id,
+                    #'invoice_line_tax_ids': [(6, 0, r.suscription_id.recurring_invoice_line_ids.invoice_line_tax_ids.ids)]
+                #})
+
+                default = dict(None or {})
+                subscription_draft_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_draft').ensure_one()
+                _logger.warning('subscription_draft_stage [%s]', subscription_draft_stage.id)
+
+                default['name'] = 'Hibernado ' + r.suscription_id.display_name
+                default['stage_id'] = subscription_draft_stage.id
+                default['code']
+                #default['company_id']
+                #default['currency_id']
+                #default['gpsdevice_id']
+                #default['partner_id']
+                #default['pricelist_id']
+                #default['pricelist_id']
+
+                #default['recurring_invoice_line_ids'] = [(6, 0, ReccurringInvoiveLine.id)]
+                #r.suscription_id.recurring_invoice_line_ids
+
+                suscription_copy = r.suscription_id.copy(default)
+                _logger.warning('Display Name [%s]', suscription_copy.display_name)
+                _logger.warning('stage_id [%s]', subscription_draft_stage.id)
+
+
         # Ejecutamos la Baja en el sistema
         active_records.write({
-            'tracking': False,
             'fuel': False,
             'scanner': False,
             'temperature': False,
             'logistic': False,
-            'platform': "Drop",
+            'status': "hibernate",
         })
 
-        self.cellchips_list = notify_cellchisp_list
         self.devices_list = notify_gps_list
 
         # Alterando las suscripciones
         suscription_close_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_closed')
         suscriptions = self.env['sale.subscription'].search([['gpsdevice_id', 'in', active_records.ids]])
         for s in suscriptions:
-            s.message_post(body="El equipo se ha dado de baja en el sistema.")
+            s.message_post(body="El equipo se ha dado de procesado como Hibernado en el sistema.")
         suscriptions.write({'stage_id': suscription_close_stage.id})
 
-        #cellchips = self.env['lgps.cellchip'].search([['id', 'in', cellchips_ids]])
-
-        channel_msn = '<br/>Los equipos mencionados a continuación se procesaron para dar de baja por motivo de:<br/>'
-        channel_msn += self.comment + '<br/>'
+        channel_msn = '<br/>Los equipos mencionados a continuación se procesaron para ser hibernados por motivo de:<br/>'
+        channel_msn += self.comment + '<br/> soliciato por: ' + self.requeste_by + '<br/>'
         channel_msn += self.devices_list
-        channel_msn += '<br/><br/>Se requiere dar de baja la siguientes líneas:<br/>'
-        channel_msn += self.cellchips_list
 
-        Config = self.sudo().env['ir.config_parameter']
-        channel_id = Config.get_param('lgps.drop_device_wizard.default_channel')
+        Config = self.env['ir.config_parameter']
+        channel_id = Config.get_param('lgps.hibernate_device_wizard.default_channel')
         if not channel_id:
            raise UserError(_('There is not configuration for default channel.\n Configure this in order to send the notification.'))
         else:
