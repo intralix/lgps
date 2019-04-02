@@ -24,6 +24,39 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el canal de comunicación que será utilizado por default para enviar notificaciones de los equipos que son hibernados.">
+                            <div class="o_setting_right_pane">
+                                <label for="hibernate_channel_id"/>
+                                <div class="text-muted">
+                                    Pick a Hibernate Default Channel
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <label for="hibernate_channel_id" class="o_light_label"/>
+                                        <field name="hibernate_channel_id" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el servicio que será utilizado para crear una suscripcion de hiubernación cuando el equipo entre en este estatus.">
+                            <div class="o_setting_right_pane">
+                                <label for="suscription_hibernate_product_id"/>
+                                <div class="text-muted">
+                                    Default Service for Suscriptions on Hibernation
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <label for="suscription_hibernate_product_id" class="o_light_label"/>
+                                        <field name="suscription_hibernate_product_id" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </xpath>

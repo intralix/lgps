@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <report id="report_suscriptions_detail_condensed"
+            model="sale.subscription"
+            string="Suscription Details Condensed"
+            name="lgps.report_suscriptions_detail_condensed_view"
+            file="lgps.report_suscriptions_detail_condensed"
+            report_type="qweb-pdf"
+    />
+
+    <template id="report_suscriptions_detail_condensed_view" name="Custom Suscription Details Condensed">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="container" style="font-size:1em;">
+                        <div class="row bg-primary">
+                            <div class="col-3">Económico</div>
+                            <div class="col-3">Equipo</div>
+                            <div class="col-6">Servicios Registrados</div>
+                        </div>
+                        <t t-foreach="docs" t-as="doc">
+                            <div class="row">
+                                <div class="col-3">
+                                    <span t-field="doc.gpsdevice_id.nick" />
+                                </div>
+                                <div class="col-3">
+                                    <span t-field="doc.gpsdevice_id.name" />
+                                </div>
+                                <div class="col-6">
+                                    <t t-if="doc.recurring_invoice_line_ids">
+                                        <t t-foreach="doc.recurring_invoice_line_ids" t-as="line">
+                                            <span t-field="line.product_id.name"/><br></br>
+                                        </t>
+                                    </t>
+                                </div>
+                            </div>
+                            <hr></hr>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

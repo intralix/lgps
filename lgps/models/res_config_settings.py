@@ -8,6 +8,17 @@ class ResConfigSettings(models.TransientModel):
                                   config_parameter='lgps.drop_device_wizard.default_channel',
                                   )
 
+    hibernate_channel_id = fields.Many2one('mail.channel', string=_("Default Hibernate Channel"),
+                                  config_parameter='lgps.hibernate_device_wizard.default_channel',
+                                  )
+
+    suscription_hibernate_product_id = fields.Many2one('product.product', string=_("Default Hibernate Service"),
+                                                       domain=[
+                                                           ("recurring_invoice", "=", True)
+                                                       ],
+                                           config_parameter='lgps.hibernate_device_wizard.default_service',
+                                           )
+
     def set_values(self):
         super(ResConfigSettings, self).set_values()
 
