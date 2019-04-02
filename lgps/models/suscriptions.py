@@ -48,5 +48,7 @@ class Suscription(models.Model):
 
     gpsdevice_nick = fields.Char(
         string='Nick',
-        related='gpsdevice_id.nick'
+        related='gpsdevice_id.nick',
+        readonly=True,
+        store=True
     )
