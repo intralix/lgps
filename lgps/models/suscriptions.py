@@ -45,3 +45,8 @@ class Suscription(models.Model):
         ],
         string="Billing Cycle",
     )
+
+    gpsdevice_nick = fields.Char(
+        string='Nick',
+        related='gpsdevice_id.nick'
+    )

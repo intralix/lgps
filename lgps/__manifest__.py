@@ -29,6 +29,7 @@
         'views/accessory.xml',
         'views/wizard.xml',
         'views/suscription.xml',
+        'views/suscription_tree_view.xml',
         'views/tracking.xml',
         'views/odt.xml',
         'views/lead.xml',
