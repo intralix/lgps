@@ -4,7 +4,7 @@ from . import gpsdevice
 from . import accessory
 from . import cellchip
 from . import partner
-from . import wizard
+from . import assign_accesories_wizard
 from . import suscriptions
 from . import tracking
 from . import odt

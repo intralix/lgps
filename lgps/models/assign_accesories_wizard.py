@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import api, models, fields
-# Sesion = GPS /
 
-
-class Wizard(models.TransientModel):
+class AssignAccesoriesWizard(models.TransientModel):
     _name = "lgps.wizard"
     _description = "Add Accesories to Devices"
 
@@ -27,4 +25,10 @@ class Wizard(models.TransientModel):
         for gpsdevice in self.gpsdevice_ids:
             gpsdevice.accessory_ids |= self.accessory_ids
 
+        today = fields.Date.today()
+        for accesory in self.accessory_ids:
+            accesory.write({'installation_date': today, 'status': 'installed'})
+            accesory.message_post(body="Accesorio asignado el día: " + today.strftime('%d-%m-%Y'))
+
         return {}
+

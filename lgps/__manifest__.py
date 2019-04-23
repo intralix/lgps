@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'lgps',
+    'description': 'Intralix module for internal processes',
     'author': 'Intralix',
+    'application': True,
     'website': 'https://www.intralix.com',
     'category': 'Uncategorized',
-    'version': '0.0.6',
+    'version': '0.0.7',
     'depends': [
         'base',
         'stock',
@@ -27,7 +29,7 @@
         'views/cellchip.xml',
         'views/partner.xml',
         'views/accessory.xml',
-        'views/wizard.xml',
+        'views/assign_accesories_wizard.xml',
         'views/suscription.xml',
         'views/suscription_tree_view.xml',
         'views/tracking.xml',

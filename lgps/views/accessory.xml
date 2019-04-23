@@ -13,6 +13,15 @@
     <field name="model">lgps.accessory</field>
     <field name="arch" type="xml">
       <form string="Accessory Form">
+        <header>
+          <button
+                  name="btn_remove_from_gpsdevice"
+                  type="object"
+                  string="Desinstalar del Equipo GPS"
+                  class="oe_right"
+                  confirm="¿Estás seguro que deseas realizar esta acción?"
+          />
+        </header>
         <sheet>
           <group>
             <group string="Device Info">

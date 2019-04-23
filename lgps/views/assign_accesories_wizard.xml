@@ -6,18 +6,6 @@
     <field name="arch" type="xml">
       <form string="Add Accesories">
         <group>
-          <field name="gpsdevice_ids">
-            <tree string="GPS Device">
-              <field name="name"/>
-              <field name="client_id"/>
-              <field name="nick"/>
-              <field name="serialnumber_id"/>
-              <field name="status"/>
-              <field name="platform"/>
-              <field name="product_id"/>
-              <field name="cellchip_id"/>
-            </tree>
-          </field>
           <field name="accessory_ids"/>
         </group>
         <footer>

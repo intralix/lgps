@@ -2,6 +2,7 @@
 
 from datetime import timedelta
 from odoo import api, models, fields, _
+from odoo.exceptions import Warning
 
 
 class Accessory(models.Model):
@@ -109,3 +110,23 @@ class Accessory(models.Model):
          'UNIQUE(name)',
          "The accessory id must be unique"),
     ]
+
+    @api.multi
+    def btn_remove_from_gpsdevice(self):
+        for accesory in self:
+            if not accesory.gpsdevice_id:
+                raise Warning('El accesorio %s no esta asignado a un dispositivo gps' % accesory.name)
+            else:
+                today = fields.Date.today()
+                gpsdevice = accesory.gpsdevice_id
+
+                gpsdevice.message_post(
+                    body="Accesorio <b>" + accesory.name + "</b> desinstalado el día <b>" + today.strftime(
+                        '%d-%m-%Y') + "</b> <br>No Serie: <b>" + accesory.serialnumber_id.name + "</b>")
+
+                accesory.message_post(
+                    body="Accesorio desinstalado del equipo <b>" + gpsdevice.name + "</b> el día <b>" + today.strftime(
+                        '%d-%m-%Y') +'</b>')
+
+                accesory.write({'gpsdevice_id': None, 'status': 'uninstalled'})
+        return True
