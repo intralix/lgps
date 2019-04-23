@@ -19,8 +19,7 @@
                   type="object"
                   string="Desinstalar del Equipo GPS"
                   class="oe_right"
-                  confirm="¿Estás seguro que deseas realizar esta acción?"
-          />
+                  confirm="¿Estás seguro que deseas realizar esta acción?"/>
         </header>
         <sheet>
           <group>
