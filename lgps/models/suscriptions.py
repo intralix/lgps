@@ -1,4 +1,4 @@
-from odoo import api, models, fields
+from odoo import api, models, fields, _
 
 
 class Suscription(models.Model):
@@ -6,7 +6,7 @@ class Suscription(models.Model):
 
     gpsdevice_id = fields.Many2one(
         comodel_name="lgps.gpsdevice",
-        string="Gps Device",
+        string=_("Gps Device"),
     )
 
     billing_cycle = fields.Selection(
@@ -47,7 +47,7 @@ class Suscription(models.Model):
     )
 
     gpsdevice_nick = fields.Char(
-        string='Nick',
+        string=_('Nick'),
         related='gpsdevice_id.nick',
         readonly=True,
         store=True

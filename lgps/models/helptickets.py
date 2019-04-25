@@ -1,4 +1,4 @@
-from odoo import api, models, fields
+from odoo import api, models, fields, _
 
 
 class Ticket(models.Model):
@@ -6,7 +6,7 @@ class Ticket(models.Model):
 
     gpsdevice_id = fields.Many2one(
         comodel_name="lgps.gpsdevice",
-        string="Gps Device",
+        string=_("Gps Device"),
         ondelete="set null",
         index=True,
     )

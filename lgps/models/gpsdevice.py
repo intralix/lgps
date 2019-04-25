@@ -12,33 +12,33 @@ class GpsDevice(models.Model):
 
     name = fields.Char(
         required=True,
-        string="Dispositivo GPS",
+        string=_("Dispositivo GPS"),
     )
 
     nick = fields.Char(
-        string="Nick",
+        string=_("Nick"),
     )
 
     imei = fields.Char(
-        string="IMEI",
+        string=_("IMEI"),
     )
 
     idf = fields.Char(
-        string="IDF",
+        string=_("IDF"),
     )
 
     installation_date = fields.Date(
-        string="Installation Date",
+        string=_("Installation Date"),
     )
 
     warranty_start_date = fields.Date(
         #default=fields.Date.today,
-        string="Warranty Start Date",
+        string=_("Warranty Start Date"),
     )
 
     warranty_end_date = fields.Date(
         compute="_compute_end_warranty",
-        string="Warranty End Date",
+        string=_("Warranty End Date"),
     )
 
     warranty_term = fields.Selection(
@@ -49,37 +49,37 @@ class GpsDevice(models.Model):
             ("36", _("36 months"))
         ],
         default="12",
-        string="Warranty Term",
+        string=_("Warranty Term"),
     )
 
     tracking = fields.Boolean(
         default=False,
-        string="Tracking",
+        string=_("Tracking"),
     )
 
     fuel = fields.Boolean(
         default=False,
-        string="Fuel",
+        string=_("Fuel"),
     )
 
     speaker = fields.Boolean(
         default=False,
-        string="Speaker",
+        string=_("Speaker"),
     )
 
     anti_jammer_blocker = fields.Boolean(
         default=False,
-        string="Anti Jammer Blocker",
+        string=_("Anti Jammer Blocker"),
     )
 
     smart_blocker = fields.Boolean(
         default=False,
-        string="Smart Blocker",
+        string=_("Smart Blocker"),
     )
 
     blocker = fields.Boolean(
         default=False,
-        string="Blocker",
+        string=_("Blocker"),
     )
 
     scanner = fields.Boolean(
@@ -89,63 +89,63 @@ class GpsDevice(models.Model):
 
     padlock = fields.Boolean(
         default=False,
-        string="Padlock",
+        string=_("Padlock"),
     )
 
     solar_panel = fields.Boolean(
         default=False,
-        string="Solar Panel",
+        string=_("Solar Panel"),
     )
 
     temperature = fields.Boolean(
         default=False,
-        string="Temperature",
+        string=_("Temperature"),
     )
 
     ibutton = fields.Boolean(
         default=False,
-        string="iButton",
+        string=_("iButton"),
     )
 
     microphone = fields.Boolean(
         default=False,
-        string="Microphone",
+        string=_("Microphone"),
     )
 
     sheet = fields.Boolean(
         default=False,
-        string="Sheet",
+        string=_("Sheet"),
     )
 
     opening_sensor = fields.Boolean(
         default=False,
-        string="Opening Sensor",
+        string=_("Opening Sensor"),
     )
 
     logistic = fields.Boolean(
         default=False,
-        string="Logistic",
+        string=_("Logistic"),
     )
 
     disengagement_sensor = fields.Boolean(
         default=False,
-        string="Disengagement Sensor",
+        string=_("Disengagement Sensor"),
     )
 
     datetime_gps = fields.Datetime(
-        string="DateTime GPS",
+        string=_("DateTime GPS"),
     )
 
     datetime_server = fields.Datetime(
-        string="DateTime Server",
+        string=_("DateTime Server"),
     )
 
     last_position = fields.Char(
-        string="Last Position",
+        string=_("Last Position"),
     )
 
     last_report = fields.Integer(
-        string="Last Report",
+        string=_("Last Report"),
         compute="_compute_last_report",
         store=True,
         help="Time without reporting in platforms expressed in hours",
@@ -172,7 +172,7 @@ class GpsDevice(models.Model):
             ("sold", _("Sold")),
         ],
         default="inventory",
-        string="Status",
+        string=_("Status"),
     )
 
     platform = fields.Selection(
@@ -186,12 +186,12 @@ class GpsDevice(models.Model):
             ("Sosgps", "Sosgps"),
             ("Utrax", "Utrax")
         ],
-        string="Platform",
+        string=_("Platform"),
     )
 
     cellchip_id = fields.Many2one(
         comodel_name="lgps.cellchip",
-        string="Cellchip Number",
+        string=_("Cellchip Number"),
         ondelete='set null',
         required=False,
     )
@@ -199,19 +199,19 @@ class GpsDevice(models.Model):
     product_id = fields.Many2one(
         comodel_name="product.product",
         required=True,
-        string="Product Type",
+        string=_("Product Type"),
         index=True,
     )
 
     invoice_id = fields.Char(
-        string="Provider Invoice",
+        string=_("Provider Invoice"),
         index=True,
     )
 
     client_id = fields.Many2one(
         comodel_name="res.partner",
         required=True,
-        string="Installed On",
+        string=_("Installed On"),
         domain=[
             ('customer', '=', True),
             ('active', '=', True),
@@ -223,27 +223,27 @@ class GpsDevice(models.Model):
     suscription_id = fields.One2many(
         comodel_name='sale.subscription',
         inverse_name='gpsdevice_id',
-        string="Suscription",
+        string=_("Suscription"),
         readonly=True
     )
 
     serialnumber_id = fields.Many2one(
         comodel_name="stock.production.lot",
         required=True,
-        string="Serial Number",
+        string=_("Serial Number"),
         index=True,
     )
 
     accessory_ids = fields.One2many(
         comodel_name="lgps.accessory",
         inverse_name="gpsdevice_id",
-        string="Accessories",
+        string=_("Accessories"),
     )
 
     tracking_ids = fields.One2many(
         comodel_name="lgps.tracking",
         inverse_name="gpsdevice_id",
-        string="Trackings",
+        string=_("Trackings"),
     )
 
     state = fields.Selection(
@@ -263,43 +263,43 @@ class GpsDevice(models.Model):
 
     purchase_date = fields.Date(
         default=fields.Date.today,
-        string="Purchase Date",
+        string=_("Purchase Date"),
     )
 
     repairs_ids = fields.One2many(
         comodel_name="repair.order",
         inverse_name="gpsdevice_id",
-        string="ODT",
+        string=_("ODT"),
     )
 
     helpdesk_tickets_ids = fields.One2many(
         comodel_name="helpdesk.ticket",
         inverse_name="gpsdevice_id",
-        string="Tickets",
+        string=_("Tickets"),
     )
 
     accesories_count = fields.Integer(
-        "Accesories",
+        string=_("Accesories"),
         compute='_compute_accesories_count',
     )
 
     repairs_count = fields.Integer(
-        "ODTs",
+        string=_("ODTs"),
         compute='_compute_repairs_count',
     )
 
     tickets_count = fields.Integer(
-        string="Tickets",
+        string=_("Tickets"),
         compute='_compute_tickets_count',
     )
 
     trackings_count = fields.Integer(
-        string="Trackings",
+        string=_("Trackings"),
         compute='_compute_trackings_count',
     )
 
     suscriptions_count = fields.Integer(
-        string='Suscriptions',
+        string=_('Subscriptions'),
         compute='_compute_suscriptions_count',
     )
 

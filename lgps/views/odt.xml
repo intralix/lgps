@@ -7,6 +7,7 @@
     <field name="arch" type="xml">
       <xpath expr="//field[@name='partner_id']" position="after">
         <field name="gpsdevice_id"/>
+        <field name="odt_type"/>
         <field name="installer_id"/>
       </xpath>
 
@@ -14,6 +15,8 @@
         <field name="assistant_a_id"/>
         <field name="assistant_b_id"/>
         <field name="service_date"/>
+        <field name="closed_date"/>
+        <field name="days_count" attrs="{'readonly':True}"/>
       </xpath>
     </field>
   </record>

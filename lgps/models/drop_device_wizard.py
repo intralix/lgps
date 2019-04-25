@@ -27,11 +27,11 @@ class DropDeviceWizard(models.TransientModel):
     )
 
     devices_list = fields.Text(
-        string="Devices List"
+        string=_("Devices List")
     )
 
     cellchips_list = fields.Text(
-        string="Cellchips List"
+        string=_("Cellchips List")
     )
 
     @api.multi

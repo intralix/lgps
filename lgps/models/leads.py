@@ -5,7 +5,7 @@ class Lead(models.Model):
     _inherit = 'crm.lead'
 
     weighted_amount = fields.Float(
-        string="Weighted amount",
+        string=_("Weighted amount"),
         digits=(12, 2),
         compute='_compute_weighted_amount',
         store=True,

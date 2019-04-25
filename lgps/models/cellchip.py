@@ -9,13 +9,13 @@ class Cellchip(models.Model):
     # Línea Celular
     name = fields.Char(
         required=True,
-        string="Line Number",
+        string=_("Line Number"),
     )
 
     gpsdevice_id = fields.One2many(
         comodel_name='lgps.gpsdevice',
         inverse_name='cellchip_id',
-        string="Installed On",
+        string=_("Installed On"),
         help="GPS Device where the cellchip is on.",
         readonly=True
     )
@@ -29,7 +29,7 @@ class Cellchip(models.Model):
             ("suspended", _("Suspended")),
         ],
         default="active",
-        string="Status",
+        string=_("Status"),
     )
     # Plan de la línea
     plan = fields.Selection(
@@ -41,6 +41,7 @@ class Cellchip(models.Model):
             ("3MB", "3MB"),
             ("5MB", "5MB"),
             ("10MB", "10MB"),
+            ("15MB", "15MB"),
             ("100MB", "100MB"),
             ("500MB", "500MB"),
             ("1GB", "1GB"),
@@ -54,7 +55,7 @@ class Cellchip(models.Model):
     linenumber_id = fields.Many2one(
         comodel_name="stock.production.lot",
         required=True,
-        string="SIMCARD",
+        string=_("SIMCARD"),
         index=True,
     )
     # Si la línea Voz
@@ -70,7 +71,7 @@ class Cellchip(models.Model):
             ('active', '=', True),
             ('is_company', '=', True)
         ],
-        string="Cellchip Owner",
+        string=_("Cellchip Owner"),
         index=True,
     )
     # Proveedor de la línea
@@ -79,6 +80,7 @@ class Cellchip(models.Model):
             ("ATT", "ATT"),
             ("Cierto", "Cierto"),
             ("Iusacell", "Iusacell"),
+            ("MazTiempo", "MazTiempo"),
             ("Movistar", "Movistar"),
             ("Prossea", "Prossea"),
             ("Simpacsys", "Simpacsys"),
@@ -93,44 +95,44 @@ class Cellchip(models.Model):
             ("18", "18"),
             ("24", "24")
         ],
-        string="Line Terms",
+        string=_("Line Terms"),
     )
 
     # Fecha de Compra
     purchase_date = fields.Date(
         default=fields.Date.today,
-        string="Purchase Date",
+        string=_("Purchase Date"),
     )
 
     # Cuenta de Lineas
     major_account = fields.Char(
-        string="Mayor Accounte",
+        string=_("Mayor Accounte"),
     )
 
     # Cuenta de Lineas
     line_account = fields.Char(
-        string="Line Account",
+        string=_("Line Account"),
     )
 
     #
     status_date = fields.Date(
-        string="Status Date",
+        string=_("Status Date"),
     )
 
     # Fecha de finalización del Plan Forzoso
     end_forced_plan_date = fields.Date(
-        string="End Forced Plan Date",
+        string=_("End Forced Plan Date"),
     )
 
     # Si la linea esta ocupada o no
     taken = fields.Boolean(
         default=False,
-        string="Taken",
+        string=_("Taken"),
     )
 
     # Días desde que la línea se marco como suspendida
     days_suspended = fields.Integer(
-        string="Estatus Elpased Days",
+        string=_("Status Elpased Days"),
         compute="_compute_days_suspended",
         store=True,
         help="Time elapsed since the line was set to suspended expressed in days",

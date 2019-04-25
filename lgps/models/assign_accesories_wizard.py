@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import api, models, fields
+from odoo import api, models, fields, _
 
 class AssignAccesoriesWizard(models.TransientModel):
     _name = "lgps.wizard"
@@ -10,14 +10,14 @@ class AssignAccesoriesWizard(models.TransientModel):
 
     gpsdevice_ids = fields.Many2many(
         comodel_name='lgps.gpsdevice',
-        string="Gps Device",
+        string=_("Gps Device"),
         required=True,
         default=_default_gpsdevices,
     )
 
     accessory_ids = fields.Many2many(
         comodel_name='lgps.accessory',
-        string="Accesories"
+        string=_("Accesories")
     )
 
     @api.multi
