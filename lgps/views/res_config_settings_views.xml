@@ -42,16 +42,32 @@
                     </div>
 
                     <div class="row mt16 o_settings_container">
-                        <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el servicio que será utilizado para crear una suscripcion de hiubernación cuando el equipo entre en este estatus.">
+
+                        <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el template que será utilizado para crear una suscripcion de hibernación cuando el equipo entre en este estatus.">
                             <div class="o_setting_right_pane">
-                                <label for="suscription_hibernate_product_id"/>
+                                <label for="suscription_hibernate_template_id"/>
                                 <div class="text-muted">
-                                    Default Service for Suscriptions on Hibernation
+                                    Default Template for Suscriptions on Hibernation
                                 </div>
                                 <div class="content-group">
                                     <div class="mt16">
-                                        <label for="suscription_hibernate_product_id" class="o_light_label"/>
-                                        <field name="suscription_hibernate_product_id" class="oe_inline"/>
+                                        <label for="suscription_hibernate_template_id" class="o_light_label"/>
+                                        <field name="suscription_hibernate_template_id" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en esta etapa.">
+                            <div class="o_setting_right_pane">
+                                <label for="suscription_hibernate_stage_id"/>
+                                <div class="text-muted">
+                                    Default Suscriptions Stage on Hibernation
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <label for="suscription_hibernate_stage_id" class="o_light_label"/>
+                                        <field name="suscription_hibernate_stage_id" class="oe_inline"/>
                                     </div>
                                 </div>
                             </div>

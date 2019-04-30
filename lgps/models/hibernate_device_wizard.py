@@ -42,12 +42,32 @@ class HibernateDeviceWizard(models.TransientModel):
         if not self.requeste_by:
             raise UserError(_('Who authorizes this request?'))
 
+        # LGPS Global Configuration
+        LgpsConfig = self.sudo().env['ir.config_parameter']
+
+        suscription_hibernate_stage_id = LgpsConfig.get_param(
+            'lgps.hibernate_device_wizard.default_subscription_stage')
+        if not suscription_hibernate_stage_id:
+            raise UserError(_(
+                'There is not configuration for default channel.\n Configure this in order to send the notification.'))
+
+        suscription_hibernate_template_id = LgpsConfig.get_param(
+            'lgps.hibernate_device_wizard.default_subscription_template')
+        if not suscription_hibernate_template_id:
+            raise UserError(_(
+                'There is not configuration for default channel.\n Configure this in order to send the notification.'))
+
+        channel_id = LgpsConfig.get_param('lgps.hibernate_device_wizard.default_channel')
+        if not channel_id:
+            raise UserError(_(
+                'There is not configuration for default channel.\n Configure this in order to send the notification.'))
+
         # Obtenemos los Ids seleccionados
         active_model = self._context.get('active_model')
         active_records = self.env[active_model].browse(self._context.get('active_ids'))
         # Subscriptions Config vars
-        subscription_close_stage = self.sudo().env.ref(
-            'sale_subscription.sale_subscription_stage_closed').ensure_one()
+        #subscription_close_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_upsell').ensure_one()
+        #subscription_hibernation_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_upsell').ensure_one()
 
         # Buffer Vars
         notify_gps_list = ""
@@ -105,7 +125,8 @@ class HibernateDeviceWizard(models.TransientModel):
             # revisamos el tema de las suscripciones:
             default = dict(None or {})
             new_subscription = self.env['sale.subscription']
-            template_id = self.env['sale.subscription.template'].search([], limit=1).id
+            #template_id = self.env['sale.subscription.template'].search([], limit=1).id
+            template_id = suscription_hibernate_template_id
             pricelist_id = self.env['product.pricelist'].search([
                 ('currency_id', '=', self.env.user.company_id.currency_id.id)], limit=1).id
             subscription_draft_stage = self.sudo().env.ref(
@@ -117,8 +138,6 @@ class HibernateDeviceWizard(models.TransientModel):
                                         "<br>Deberá crearla manualmente."
                                         "<br>Es probable que ninguna plantilla de subscripción esta activa.")
             else:
-                days = 365 * 5
-                limit_date = fields.Date.today() + timedelta(days=days)
                 n = new_subscription.create({
                     'name': 'New Subscription',
                     'code': 'Hibernación ' + r.name,
@@ -126,14 +145,12 @@ class HibernateDeviceWizard(models.TransientModel):
                     'template_id': template_id,
                     'pricelist_id': pricelist_id,
                     'partner_id': r.client_id.id,
-                    'date': limit_date,
                     'gpsdevice_id': r.id,
                 })
                 skip_subscription_ids.append(n.id)
 
         self.devices_list = notify_gps_list
-        _logger.error('Active Records id %s', active_records.ids)
-        _logger.error('Evitar estods id %s', skip_subscription_ids)
+
         # Alterando las suscripciones encontradas
         suscriptions = self.env['sale.subscription'].search([
             ['gpsdevice_id', 'in', active_records.ids],
@@ -141,21 +158,15 @@ class HibernateDeviceWizard(models.TransientModel):
         ])
 
         for s in suscriptions:
-            s.message_post(body="El equipo se ha dado de procesado como Hibernado en el sistema.")
+            s.message_post(body="El equipo se ha procesado como Hibernado en el sistema.")
 
-        suscriptions.write({'stage_id': subscription_close_stage.id})
+        suscriptions.write({'stage_id': suscription_hibernate_stage_id })
 
         channel_msn = '<br/>Los equipos mencionados a continuación se procesaron para ser hibernados por motivo de:<br/>'
         channel_msn += self.comment + '<br/> soliciato por: ' + self.requeste_by + '<br/>'
         channel_msn += self.devices_list
 
-        Config = self.env['ir.config_parameter']
-        channel_id = Config.get_param('lgps.hibernate_device_wizard.default_channel')
-        if not channel_id:
-           raise UserError(_('There is not configuration for default channel.\n Configure this in order to send the notification.'))
-        else:
-            poster_bajas = self.sudo().env['mail.channel'].search([('id', '=', channel_id)])
-            poster_bajas.message_post(body=channel_msn, subtype='mail.mt_comment', partner_ids=[(4, self.env.uid)])
+        poster_bajas = self.sudo().env['mail.channel'].search([('id', '=', channel_id)])
+        poster_bajas.message_post(body=channel_msn, subtype='mail.mt_comment', partner_ids=[(4, self.env.uid)])
 
         return {}
-
