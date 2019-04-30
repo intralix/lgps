@@ -44,10 +44,12 @@ class DropDeviceWizard(models.TransientModel):
         # Obtenemos los Ids seleccionados
         active_model = self._context.get('active_model')
         active_records = self.env[active_model].browse(self._context.get('active_ids'))
+
         # Buffer Vars
         cellchips_ids = []
         notify_cellchisp_list = ""
         notify_gps_list = ""
+
         # Procesamos los quipos seleccionados:
         for r in active_records:
             body = "[Proceso de Baja]<br/><br/>" + self.comment + '<br/>'

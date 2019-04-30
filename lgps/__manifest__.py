@@ -39,5 +39,9 @@
         'views/tickets.xml',
         'views/drop_device_wizard.xml',
         'views/res_config_settings_views.xml',
+        'views/sales_order_custom_list_view.xml',
+        'views/sales_order_custom_form_view.xml',
+        'views/sales_order_custom_crm_list_view.xml',
+        'views/hibernate_device_wizard.xml'
     ],
 }

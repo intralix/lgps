@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Split Record -->
+  <record id="view_hibernate_device_wizard" model="ir.ui.view">
+    <field name="name">lgps.hibernate_device_wizard.form</field>
+    <field name="model">lgps.hibernate_device_wizard</field>
+    <field name="arch" type="xml">
+       <form string="Hibernate Process">
+           <sheet>
+        <group>
+          <p class="text-primary"> Este procedimiento realizará la siguientes acciones:</p><br/>
+          <p>1) Dejará el equipo en estatus de <strong>Hibernado</strong><br/>
+              2) Ingresar el comentario como una nota interna en cada equipo<br/>
+              3) Cambiar la suscripción del equipo a borrador<br/>
+              4) Se notificará para realizar ajustes en la suscripción.<br/><br/>
+          </p>
+        </group>
+        <group>
+          <group>
+             <field name="gpsdevice_ids">
+                <tree string="GPS Devices to Process">
+                  <field name="name"/>
+                  <field name="nick"/>
+                  <field name="installation_date"/>
+                  <field name="serialnumber_id"/>
+                </tree>
+            </field>
+              <field name="requeste_by"/>
+              <field name="comment"/>
+          </group>
+        </group>
+        <footer>
+          <button name="execute_hibernation" type="object" string="Execute Process" class="oe_highlight"/>
+          or
+          <button special="cancel" string="Cancel" type="object"/>
+        </footer>
+           </sheet>
+      </form>
+    </field>
+  </record>
+    <act_window id="action_view_hibernate_device_wizard"
+                name="Hibernate Drop Wizard"
+                src_model="lgps.gpsdevice"
+                res_model="lgps.hibernate_device_wizard"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi"
+    />
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record model="ir.ui.view" id="custom_sales_order_crm_list_view">
+    <field name="name">sale.order.lgps</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_tree"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='confirmation_date']" position="before">
+        <field name="title"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>
+
+

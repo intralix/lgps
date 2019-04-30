@@ -177,14 +177,15 @@ class GpsDevice(models.Model):
 
     platform = fields.Selection(
         selection=[
-            ("Drop", _("Drop")),
             ("Cybermapa", "Cybermapa"),
+            ("Drop", _("Drop")),
             ("Gurtam", "Gurtam"),
-            ("Novit", "Novit"),
+            ("Gurtam_Utrax", "Gurtam/Utrax"),
             ("Mapaloc", "Mapaloc"),
+            ("Novit", "Novit"),
             ("Position Logic", "Position Logic"),
             ("Sosgps", "Sosgps"),
-            ("Utrax", "Utrax")
+            ("Utrax", "Utrax"),
         ],
         string=_("Platform"),
     )

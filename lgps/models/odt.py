@@ -49,14 +49,14 @@ class Odt(models.Model):
 
     @api.onchange('closed_date')
     def onchange_closed_date(self):
-        if not self.closed_date:
+        if not (self.closed_date and self._origin.create_date):
             self.days_count = 0
-            return {
-                'warning': {
-                    'title': _('Close Date not set'),
-                    'message': _('Cannot calculate Open days without close date.'),
-                }
-            }
+            #return {
+            #    'warning': {
+            #        'title': _('Close Date not set'),
+            #        'message': _('Cannot calculate Open days without close date.'),
+            #    }
+            #}
         else:
             start_dt = fields.Date.from_string(fields.Date.to_date(self._origin.create_date))
             end_today_dt = fields.Date.from_string(self.closed_date)
