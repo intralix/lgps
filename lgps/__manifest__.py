@@ -32,7 +32,7 @@
         'views/assign_accesories_wizard.xml',
         'views/suscription.xml',
         'views/suscription_tree_view.xml',
-        'views/suscription_custom_list_view.xml',
+        'views/odt_custom_list_view.xml',
         'views/tracking.xml',
         'views/odt.xml',
         'views/lead.xml',

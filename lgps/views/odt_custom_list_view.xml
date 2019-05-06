@@ -9,6 +9,7 @@
         <field name="odt_type"/>
         <field name="closed_date"/>
         <field name="days_count"/>
+        <field name="is_guarantee"/>
       </xpath>
     </field>
   </record>

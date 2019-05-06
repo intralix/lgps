@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-30 22:08+0000\n"
-"PO-Revision-Date: 2019-04-30 22:08+0000\n"
+"POT-Creation-Date: 2019-05-06 17:26+0000\n"
+"PO-Revision-Date: 2019-05-06 17:26+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -540,7 +540,7 @@ msgstr ""
 #: code:addons/lgps/models/cellchip.py:27
 #, python-format
 msgid "Cancelled"
-msgstr "Cancelado"
+msgstr ""
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__padlock
@@ -804,14 +804,12 @@ msgstr "Default: Servicio de Ivernación"
 
 #. module: lgps
 #: code:addons/lgps/models/res_config_settings.py:30
-#: model:ir.model.fields,field_description:lgps.field_res_config_settings__suscription_hibernate_stage_id
 #, python-format
 msgid "Default Hibernate Stage"
 msgstr "Default: Etapa de Hibernación"
 
 #. module: lgps
 #: code:addons/lgps/models/res_config_settings.py:36
-#: model:ir.model.fields,field_description:lgps.field_res_config_settings__suscription_hibernate_template_id
 #, python-format
 msgid "Default Hibernate Template"
 msgstr "Default: Plantilla de Suscripción para Hibernación"
@@ -834,6 +832,16 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_res_config_settings__hibernate_channel_id
 msgid "Default: Canal de Hibernados"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_res_config_settings__suscription_hibernate_stage_id
+msgid "Default: Etapa de Hibernación"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_res_config_settings__suscription_hibernate_template_id
+msgid "Default: Plantilla de Suscripción para Hibernación"
 msgstr ""
 
 #. module: lgps
@@ -1223,7 +1231,7 @@ msgstr ""
 #. module: lgps
 #: model:ir.model,name:lgps.model_helpdesk_ticket
 msgid "Helpdesk Ticket"
-msgstr "Ticket del Servicio de Asistencia"
+msgstr "Tiquete del Servicio de Asistencia"
 
 #. module: lgps
 #: selection:lgps.accessory,status:0
@@ -1398,7 +1406,6 @@ msgstr "Informació interna"
 
 #. module: lgps
 #: code:addons/lgps/models/sales_order.py:11
-#: model:ir.model.fields,field_description:lgps.field_sale_order__title
 #, python-format
 msgid "Internal Title"
 msgstr "Título Interno"
@@ -1433,6 +1440,13 @@ msgstr "Inventario"
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_is_follower
 msgid "Is Follower"
 msgstr "Es un seguidor"
+
+#. module: lgps
+#: code:addons/lgps/models/odt.py:52
+#: model:ir.model.fields,field_description:lgps.field_repair_order__is_guarantee
+#, python-format
+msgid "It is a guarantee"
+msgstr "¿Es garantía?"
 
 #. module: lgps
 #: selection:lgps.cellchip,provider:0
@@ -2253,7 +2267,7 @@ msgstr "Panel Solar"
 #: code:addons/lgps/models/gpsdevice.py:172
 #, python-format
 msgid "Sold"
-msgstr "Vendido"
+msgstr ""
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__applicant
@@ -2328,7 +2342,7 @@ msgstr "Suscripción"
 #: code:addons/lgps/models/gpsdevice.py:303
 #, python-format
 msgid "Subscriptions"
-msgstr "Suscripciones"
+msgstr ""
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__suscriptions_count
@@ -2534,6 +2548,11 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__warranty_end_date
 msgid "Término de Garantía"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_sale_order__title
+msgid "Título Interno"
 msgstr ""
 
 #. module: lgps

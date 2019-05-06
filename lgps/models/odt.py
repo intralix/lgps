@@ -47,6 +47,11 @@ class Odt(models.Model):
         default=-1
     )
 
+    is_guarantee = fields.Boolean(
+        default=False,
+        string=_("It is a guarantee"),
+    )
+
     @api.onchange('closed_date')
     def onchange_closed_date(self):
         if not (self.closed_date and self._origin.create_date):
