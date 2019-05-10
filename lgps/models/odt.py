@@ -53,6 +53,7 @@ class Odt(models.Model):
         string=_("It is a guarantee"),
     )
 
+    @api.one
     @api.depends('closed_date')
     def _compute_days_count(self):
         if self.closed_date and self.create_date:

@@ -20,6 +20,7 @@ class Ticket(models.Model):
         string=_("Open Days"),
     )
 
+    @api.one
     @api.depends('closed_date')
     def _compute_days_count(self):
         if self.closed_date and self.create_date:
