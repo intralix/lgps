@@ -43,8 +43,9 @@ class Odt(models.Model):
     )
 
     days_count = fields.Integer(
+        compute='_compute_days_count',
+        store=True,
         string=_("Open Days"),
-        default=-1
     )
 
     is_guarantee = fields.Boolean(
@@ -52,18 +53,10 @@ class Odt(models.Model):
         string=_("It is a guarantee"),
     )
 
-    @api.onchange('closed_date')
-    def onchange_closed_date(self):
-        if not (self.closed_date and self._origin.create_date):
-            self.days_count = 0
-            #return {
-            #    'warning': {
-            #        'title': _('Close Date not set'),
-            #        'message': _('Cannot calculate Open days without close date.'),
-            #    }
-            #}
-        else:
-            start_dt = fields.Date.from_string(fields.Date.to_date(self._origin.create_date))
+    @api.depends('closed_date')
+    def _compute_days_count(self):
+        if self.closed_date and self.create_date:
+            start_dt = fields.Date.from_string(self.create_date)
             end_today_dt = fields.Date.from_string(self.closed_date)
             difference = end_today_dt - start_dt
             time_difference_in_days = difference.days

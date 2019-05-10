@@ -42,6 +42,8 @@
         'views/sales_order_custom_list_view.xml',
         'views/sales_order_custom_form_view.xml',
         'views/sales_order_custom_crm_list_view.xml',
-        'views/hibernate_device_wizard.xml'
+        'views/hibernate_device_wizard.xml',
+        'views/helpdesk_custom_tree_view.xml',
+        'views/helpdesk_custom_form_view.xml'
     ],
 }

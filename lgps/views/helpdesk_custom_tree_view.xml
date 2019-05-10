@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record model="ir.ui.view" id="custom_helpdesk_list_view">
+    <field name="name">helpdesk.ticket.lgps</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='display_name']" position="before">
+        <field name="id"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>
+

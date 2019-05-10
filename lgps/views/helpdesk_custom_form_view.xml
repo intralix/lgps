@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record model="ir.ui.view" id="custom_helpdesk_form_view">
+    <field name="name">helpdesk.ticket.form.lgps</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='priority']" position="after">
+          <field name="closed_date"/>
+          <field name="days_count" readonly="1"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>
+
