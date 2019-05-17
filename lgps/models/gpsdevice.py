@@ -39,6 +39,7 @@ class GpsDevice(models.Model):
     warranty_end_date = fields.Date(
         compute="_compute_end_warranty",
         string=_("Warranty End Date"),
+        store=True,
     )
 
     warranty_term = fields.Selection(

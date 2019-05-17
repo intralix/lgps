@@ -183,6 +183,14 @@
     <field name="model">lgps.gpsdevice</field>
     <field name="arch" type="xml">
       <search>
+        <filter string="Activos" name="gpsdevices_active"  domain="[('platform', '!=', 'Drop')]"/>
+        <filter string="Baja" name="gpsdevices_inactive"  domain="[('platform', '=', 'Drop')]"/>
+        <separator/>
+        <filter string="Comodatos" name="gpsdevices_comodato"  domain="[('status', '=', 'comodato')]"/>
+        <filter string="Demos" name="gpsdevices_demo"  domain="[('status', '=', 'demo')]"/>
+        <separator/>
+        <filter string="RMA" name="gpsdevices_comodato"  domain="[('status', '=', 'rma')]"/>
+        <filter string="Vendidos" name="gpsdevices_comodato"  domain="[('status', '=', 'sold')]"/>
         <field name="name"/>
         <field name="nick"/>
         <field name="client_id"/>
@@ -194,6 +202,14 @@
         <field name="platform"/>
         <field name="product_id"/>
         <field name="warranty_end_date"/>
+        <group expand="1" string="Group By">
+          <filter string="Cliente" name="cliente" context="{'group_by':'client_id'}"/>
+          <filter string="Plataforma" name="plataforma" context="{'group_by':'platform'}"/>
+          <filter string="Producto" name="producto" context="{'group_by':'product_id'}"/>
+          <separator orientation="vertical" />
+          <filter string="Fin de Garantía" name="end_warranty" context="{'group_by':'warranty_end_date'}"/>
+          <filter string="Estatus" name="status" context="{'group_by':'status'}"/>
+        </group>
       </search>
     </field>
   </record>
@@ -228,6 +244,7 @@
     <field name="res_model">lgps.gpsdevice</field>
     <field name="view_type">form</field>
     <field name="view_mode">tree,form</field>
+    <field name="context" eval="{'search_default_gpsdevices_active': 1}"/>
     <field name="help" type="html">
       <p class="oe_view_nocontent_create">Create the first Gps Device</p>
     </field>
