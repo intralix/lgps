@@ -59,6 +59,7 @@ class DropDeviceWizard(models.TransientModel):
 
             platform = r.platform if r.platform else 'Sin Plataforma'
             chip = r.cellchip_id.name if r.cellchip_id else 'Sin chip'
+            pchip = r.cellchip_id.provider if r.cellchip_id else 'Sin chip'
             client = r.client_id.name if r.client_id else 'Sin Cliente'
             equipo = r.name
             nick = r.nick if r.nick else 'NA'
@@ -68,10 +69,11 @@ class DropDeviceWizard(models.TransientModel):
             acumulador += '<br/><b>Equipo:</b> ' + equipo
             acumulador += '<br/><b>Nick:</b> ' + nick
             acumulador += '<br/><b>Línea:</b> ' + chip
+            acumulador += '<br/><b>Prov. Linea:</b> ' + pchip
 
             if(r.cellchip_id):
                 cellchips_ids.append(r.cellchip_id.id)
-                notify_cellchisp_list += '<br/>' + r.cellchip_id.name
+                notify_cellchisp_list += '<br/>' + r.cellchip_id.name + ' - ' + r.cellchip_id.provider
 
             notify_gps_list += '<br/>' + client + ' || ' + equipo + ' || ' + nick + ' || ' + platform
 

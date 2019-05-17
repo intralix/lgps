@@ -202,7 +202,11 @@
     <field name="name">gpsdevice.tree</field>
     <field name="model">lgps.gpsdevice</field>
     <field name="arch" type="xml">
-      <tree string="GpsDevices Tree" decoration-info="last_report&gt;24" decoration-warning="last_report&gt;72" decoration-danger="last_report&gt;120">
+      <tree string="GpsDevices Tree"
+            decoration-muted="platform=='Drop'"
+            decoration-info="platform != 'Drop' and (last_report&gt;24)"
+            decoration-warning="platform != 'Drop' and (last_report&gt;72)"
+            decoration-danger="platform != 'Drop' and (last_report&gt;120)">
         <field name="name"/>
         <field name="nick"/>
         <field name="client_id"/>
