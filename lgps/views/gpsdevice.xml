@@ -166,6 +166,18 @@
                 </group>
               </group>
             </page>
+            <page string="Notificaciones">
+              <group>
+                <group>
+                  <field name="notify_offline"/>
+                  <field name="last_notification_level" attrs="{'readonly':True}"/>
+                </group>
+                <group>
+                  <field name="last_notification_date" attrs="{'readonly':True}"/>
+                  <field name="last_offline_notification_hours"/>
+                </group>
+              </group>
+            </page>
           </notebook>
         </sheet>
 
@@ -244,7 +256,7 @@
     <field name="res_model">lgps.gpsdevice</field>
     <field name="view_type">form</field>
     <field name="view_mode">tree,form</field>
-    <field name="context" eval="{'search_default_gpsdevices_active': 1}"/>
+    <field name="context" eval="{'search_default_gpsdevices_active': 0}"/>
     <field name="help" type="html">
       <p class="oe_view_nocontent_create">Create the first Gps Device</p>
     </field>

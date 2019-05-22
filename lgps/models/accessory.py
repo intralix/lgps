@@ -37,6 +37,7 @@ class Accessory(models.Model):
         ondelete="set null",
         string=_("Installed On"),
         index=True,
+        track_visibility='onchange',
     )
 
     installation_date = fields.Date(
@@ -66,6 +67,7 @@ class Accessory(models.Model):
         ],
         default="inventory",
         string=_("Status"),
+        track_visibility='onchange',
     )
 
     product_id = fields.Many2one(
