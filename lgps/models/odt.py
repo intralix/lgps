@@ -2,7 +2,11 @@ from odoo import api, models, fields, _
 
 class Odt(models.Model):
     _inherit = 'repair.order'
-    create_date = fields.Datetime('Creation Date', readonly=True),
+
+    create_date = fields.Datetime(
+        'Creation Date',
+        readonly=True
+    )
 
     gpsdevice_id = fields.Many2one(
         comodel_name="lgps.gpsdevice",
