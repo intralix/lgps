@@ -32,7 +32,6 @@ class GpsDevice(models.Model):
     )
 
     warranty_start_date = fields.Date(
-        #default=fields.Date.today,
         string=_("Warranty Start Date"),
     )
 
@@ -285,7 +284,7 @@ class GpsDevice(models.Model):
     )
 
     accesories_count = fields.Integer(
-        string=_("Accesories"),
+        string=_("Accesories Count"),
         compute='_compute_accesories_count',
     )
 
@@ -295,12 +294,12 @@ class GpsDevice(models.Model):
     )
 
     tickets_count = fields.Integer(
-        string=_("Tickets"),
+        string=_("Tickets Count"),
         compute='_compute_tickets_count',
     )
 
     trackings_count = fields.Integer(
-        string=_("Trackings"),
+        string=_("Trackings Count"),
         compute='_compute_trackings_count',
     )
 
@@ -333,7 +332,7 @@ class GpsDevice(models.Model):
 
     last_offline_notification_hours = fields.Integer(
         string=_("Last Notification hours"),
-        compute="_compute_last_notificaction_hours",
+        compute="_compute_last_notification_hours",
         store=True,
         help="Time since last notification was send.",
     )
@@ -397,9 +396,9 @@ class GpsDevice(models.Model):
 
     @api.one
     @api.depends('last_notification_date')
-    def _compute_last_notificaction_hours(self):
+    def _compute_last_notification_hours(self):
         if not self.last_notification_date:
-            self.last_offline_notification_hours = None
+            self.last_offline_notification_hours = 0
         else:
             start_dt = fields.Datetime.from_string(self.last_notification_date)
             today_dt = fields.Datetime.from_string(fields.Datetime.now())

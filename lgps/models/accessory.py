@@ -115,20 +115,20 @@ class Accessory(models.Model):
 
     @api.multi
     def btn_remove_from_gpsdevice(self):
-        for accesory in self:
-            if not accesory.gpsdevice_id:
-                raise Warning('El accesorio %s no esta asignado a un dispositivo gps' % accesory.name)
+        for accessory in self:
+            if not accessory.gpsdevice_id:
+                raise Warning('El accesorio %s no esta asignado a un dispositivo gps' % accessory.name)
             else:
                 today = fields.Date.today()
-                gpsdevice = accesory.gpsdevice_id
+                gpsdevice = accessory.gpsdevice_id
 
                 gpsdevice.message_post(
-                    body="Accesorio <b>" + accesory.name + "</b> desinstalado el día <b>" + today.strftime(
-                        '%d-%m-%Y') + "</b> <br>No Serie: <b>" + accesory.serialnumber_id.name + "</b>")
+                    body="Accesorio <b>" + accessory.name + "</b> desinstalado el día <b>" + today.strftime(
+                        '%d-%m-%Y') + "</b> <br>No Serie: <b>" + accessory.serialnumber_id.name + "</b>")
 
-                accesory.message_post(
+                accessory.message_post(
                     body="Accesorio desinstalado del equipo <b>" + gpsdevice.name + "</b> el día <b>" + today.strftime(
                         '%d-%m-%Y') +'</b>')
 
-                accesory.write({'gpsdevice_id': None, 'status': 'uninstalled'})
+                accessory.write({'gpsdevice_id': None, 'status': 'uninstalled'})
         return True
