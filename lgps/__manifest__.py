@@ -16,7 +16,8 @@
         'crm',
         'sale_subscription',
         'helpdesk',
-        'mail'
+        'mail',
+        'project'
     ],
     'data': [
         'security/security.xml',
