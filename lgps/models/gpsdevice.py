@@ -283,6 +283,12 @@ class GpsDevice(models.Model):
         string=_("Tickets"),
     )
 
+    tasks_ids = fields.One2many(
+        comodel_name="project.task",
+        inverse_name="gpsdevice_id",
+        string=_("Tasks"),
+    )
+
     accesories_count = fields.Integer(
         string=_("Accesories Count"),
         compute='_compute_accesories_count',
@@ -306,6 +312,11 @@ class GpsDevice(models.Model):
     suscriptions_count = fields.Integer(
         string=_('Subscriptions'),
         compute='_compute_suscriptions_count',
+    )
+
+    tasks_count = fields.Integer(
+        string=_('Tasks Count'),
+        compute='_compute_tasks_count',
     )
 
     notify_offline = fields.Boolean(
@@ -365,6 +376,12 @@ class GpsDevice(models.Model):
     def _compute_suscriptions_count(self):
         for rec in self:
             rec.suscriptions_count = self.env['sale.subscription'].search_count(
+                [('gpsdevice_id', '=', rec.id)])
+
+    @api.multi
+    def _compute_tasks_count(self):
+        for rec in self:
+            rec.tasks_count = self.env['project.task'].search_count(
                 [('gpsdevice_id', '=', rec.id)])
 
     @api.one
