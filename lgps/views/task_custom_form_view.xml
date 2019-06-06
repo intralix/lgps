@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record model="ir.ui.view" id="custom_helpdesk_form_view">
+    <field name="name">custom.task.form.lgps</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_form2"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='tag_ids']" position="after">
+          <field name="gpsdevice_id"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>
+
+
+

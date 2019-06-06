@@ -28,7 +28,12 @@ class AssignAccesoriesWizard(models.TransientModel):
         today = fields.Date.today()
         for accesory in self.accessory_ids:
             accesory.write({'installation_date': today, 'status': 'installed'})
-            accesory.message_post(body="Accesorio asignado el día: " + today.strftime('%d-%m-%Y'))
+            if accesory.gpsdevice_id.name:
+                equipo = accesory.gpsdevice_id.name
+            else:
+                equipo = "No identificado"
+
+            accesory.message_post(body="Accesorio asignado el día: " + today.strftime('%d-%m-%Y') + " al equipo [<strong>" + equipo + "</strong>]")
 
         return {}
 
