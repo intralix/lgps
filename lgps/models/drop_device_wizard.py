@@ -49,6 +49,7 @@ class DropDeviceWizard(models.TransientModel):
         cellchips_ids = []
         notify_cellchisp_list = ""
         notify_gps_list = ""
+        requested_by = self.requeste_by
 
         # Procesamos los quipos seleccionados:
         for r in active_records:
@@ -66,6 +67,7 @@ class DropDeviceWizard(models.TransientModel):
 
             acumulador += '<br/><b>Plataforma:</b> ' + platform
             acumulador += '<br/><b>Cliente:</b> ' + client
+            acumulador += '<br/><b>Solicitado Por</b>' + requested_by
             acumulador += '<br/><b>Equipo:</b> ' + equipo
             acumulador += '<br/><b>Nick:</b> ' + nick
             acumulador += '<br/><b>Línea:</b> ' + chip
