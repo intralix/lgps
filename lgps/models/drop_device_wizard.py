@@ -67,7 +67,7 @@ class DropDeviceWizard(models.TransientModel):
 
             acumulador += '<br/><b>Plataforma:</b> ' + platform
             acumulador += '<br/><b>Cliente:</b> ' + client
-            acumulador += '<br/><b>Solicitado Por</b>' + requested_by
+            acumulador += '<br/><b>Solicitado Por:</b> ' + requested_by
             acumulador += '<br/><b>Equipo:</b> ' + equipo
             acumulador += '<br/><b>Nick:</b> ' + nick
             acumulador += '<br/><b>Línea:</b> ' + chip
