@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-23 16:04+0000\n"
-"PO-Revision-Date: 2019-05-23 16:04+0000\n"
+"POT-Creation-Date: 2019-06-18 18:02+0000\n"
+"PO-Revision-Date: 2019-06-18 18:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -61,6 +61,14 @@ msgid "09"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.view_common_operations_device_wizard
+msgid "1) Cambiará la plataforma del equipo a <strong>Baja</strong><br/>\n"
+"                   2) Ingresar el comentario como una nota interna en cada equipo<br/>\n"
+"                   3) Cambiar la suscripción del equipo a borrador<br/>\n"
+"                   4) Se notificará para que se proceda con la baja de las líneas asociadas.<br/><br/>"
+msgstr ""
+
+#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.view_drop_device_wizard
 msgid "1) Cambiará la plataforma del equipo a <strong>Baja</strong><br/>\n"
 "              2) Ingresar el comentario como una nota interna en cada equipo<br/>\n"
@@ -68,6 +76,14 @@ msgid "1) Cambiará la plataforma del equipo a <strong>Baja</strong><br/>\n"
 "              4) Se notificará para que se proceda con la baja de las líneas asociadas.<br/><br/>\n"
 "\n"
 "              Ingresa el motivo por el cual que estás dando de baja el(los) equipo(s).<br/>"
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.view_common_operations_device_wizard
+msgid "1) Dejará el equipo en estatus de <strong>Hibernado</strong><br/>\n"
+"                   2) Ingresar el comentario como una nota interna en cada equipo<br/>\n"
+"                   3) Cambiar la suscripción del equipo a borrador<br/>\n"
+"                   4) Se notificará para realizar ajustes en la suscripción.<br/><br/>"
 msgstr ""
 
 #. module: lgps
@@ -317,8 +333,7 @@ msgid "Accesories"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:287
-#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__accesories_count
+#: code:addons/lgps/models/gpsdevice.py:293
 #, python-format
 msgid "Accesories Count"
 msgstr ""
@@ -498,6 +513,13 @@ msgid "Baja"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:17
+#: selection:lgps.common_operations_device_wizard,operation_mode:0
+#, python-format
+msgid "Baja de Equipos"
+msgstr ""
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_sale_subscription__billing_cycle
 msgid "Billing Cycle"
 msgstr ""
@@ -536,6 +558,7 @@ msgid "Borrowed"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.view_common_operations_device_wizard
 #: model_terms:ir.ui.view,arch_db:lgps.view_drop_device_wizard
 #: model_terms:ir.ui.view,arch_db:lgps.view_hibernate_device_wizard
 #: model_terms:ir.ui.view,arch_db:lgps.wizard_form_view
@@ -598,6 +621,7 @@ msgid "Cellchips"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:58
 #: code:addons/lgps/models/drop_device_wizard.py:34
 #, python-format
 msgid "Cellchips List"
@@ -656,6 +680,11 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel
 msgid "Combustible"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_lgps_common_operations_device_wizard
+msgid "Common Operations To Devices Wizard"
 msgstr ""
 
 #. module: lgps
@@ -746,6 +775,7 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__create_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__create_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__create_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_drop_device_wizard__create_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__create_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_hibernate_device_wizard__create_uid
@@ -757,6 +787,7 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__create_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__create_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__create_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_drop_device_wizard__create_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__create_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_hibernate_device_wizard__create_date
@@ -921,6 +952,11 @@ msgid "Device"
 msgstr ""
 
 #. module: lgps
+#: model:ir.actions.act_window,name:lgps.action_view_common_operations_device_wizard
+msgid "Device Common Operations"
+msgstr ""
+
+#. module: lgps
 #: model:ir.actions.act_window,name:lgps.action_view_drop_device_wizard
 msgid "Device Drop Wizard"
 msgstr ""
@@ -937,6 +973,7 @@ msgid "Devices"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:54
 #: code:addons/lgps/models/drop_device_wizard.py:30
 #: model:ir.model.fields,field_description:lgps.field_lgps_hibernate_device_wizard__devices_list
 #, python-format
@@ -957,6 +994,7 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__display_name
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__display_name
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__display_name
 #: model:ir.model.fields,field_description:lgps.field_lgps_drop_device_wizard__display_name
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__display_name
 #: model:ir.model.fields,field_description:lgps.field_lgps_hibernate_device_wizard__display_name
@@ -971,6 +1009,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__name
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__gpsdevice_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_wizard__gpsdevice_ids
+#: model:ir.model.fields,field_description:lgps.field_project_task__gpsdevice_id
 #: model:ir.model.fields,field_description:lgps.field_repair_order__gpsdevice_id
 #: model:ir.model.fields,field_description:lgps.field_sale_subscription__gpsdevice_id
 #, python-format
@@ -997,6 +1036,7 @@ msgid "Drop Device Wizard"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.view_common_operations_device_wizard
 #: model_terms:ir.ui.view,arch_db:lgps.view_drop_device_wizard
 msgid "Drop Process"
 msgstr ""
@@ -1035,25 +1075,27 @@ msgid "Equipo"
 msgstr ""
 
 #. module: lgps
-#: model:ir.model.fields,field_description:lgps.field_lgps_accessory__status
-#: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__status
-#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__status
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__state
 msgid "Estado"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_accessory__status
+#: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__status
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__status
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_search_view
 msgid "Estatus"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.view_common_operations_device_wizard
 #: model_terms:ir.ui.view,arch_db:lgps.view_drop_device_wizard
 #: model_terms:ir.ui.view,arch_db:lgps.view_hibernate_device_wizard
 msgid "Este procedimiento realizará la siguientes acciones:"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.view_common_operations_device_wizard
 #: model_terms:ir.ui.view,arch_db:lgps.view_drop_device_wizard
 #: model_terms:ir.ui.view,arch_db:lgps.view_hibernate_device_wizard
 msgid "Execute Process"
@@ -1219,6 +1261,7 @@ msgid "GPS Device where the cellchip is on."
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.view_common_operations_device_wizard
 #: model_terms:ir.ui.view,arch_db:lgps.view_drop_device_wizard
 #: model_terms:ir.ui.view,arch_db:lgps.view_hibernate_device_wizard
 msgid "GPS Devices to Process"
@@ -1226,10 +1269,12 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/assign_accesories_wizard.py:13
+#: code:addons/lgps/models/custom_task.py:13
 #: code:addons/lgps/models/helptickets.py:8
 #: code:addons/lgps/models/odt.py:13
 #: code:addons/lgps/models/suscriptions.py:9
 #: code:addons/lgps/models/tracking.py:23
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__gpsdevice_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_drop_device_wizard__gpsdevice_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_hibernate_device_wizard__gpsdevice_ids
 #, python-format
@@ -1284,6 +1329,13 @@ msgid "Helpdesk Ticket"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:18
+#: selection:lgps.common_operations_device_wizard,operation_mode:0
+#, python-format
+msgid "Hibernación de Equipos"
+msgstr ""
+
+#. module: lgps
 #: selection:lgps.accessory,status:0
 #: selection:lgps.gpsdevice,status:0
 msgid "Hibernado"
@@ -1325,6 +1377,7 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__id
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__id
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__id
 #: model:ir.model.fields,field_description:lgps.field_lgps_drop_device_wizard__id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__id
 #: model:ir.model.fields,field_description:lgps.field_lgps_hibernate_device_wizard__id
@@ -1510,6 +1563,7 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory____last_update
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip____last_update
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard____last_update
 #: model:ir.model.fields,field_description:lgps.field_lgps_drop_device_wizard____last_update
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice____last_update
 #: model:ir.model.fields,field_description:lgps.field_lgps_hibernate_device_wizard____last_update
@@ -1519,7 +1573,7 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:318
+#: code:addons/lgps/models/gpsdevice.py:329
 #, python-format
 msgid "Last Notification Date"
 msgstr ""
@@ -1530,7 +1584,7 @@ msgid "Last Notification Level"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:334
+#: code:addons/lgps/models/gpsdevice.py:345
 #, python-format
 msgid "Last Notification hours"
 msgstr ""
@@ -1551,6 +1605,7 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__write_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__write_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__write_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_drop_device_wizard__write_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__write_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_hibernate_device_wizard__write_uid
@@ -1562,6 +1617,7 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__write_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__write_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__write_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_drop_device_wizard__write_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__write_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_hibernate_device_wizard__write_date
@@ -1620,11 +1676,13 @@ msgid "Line Terms"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__devices_list
 #: model:ir.model.fields,field_description:lgps.field_lgps_drop_device_wizard__devices_list
 msgid "Lista de Dispositivos"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__cellchips_list
 #: model:ir.model.fields,field_description:lgps.field_lgps_drop_device_wizard__cellchips_list
 msgid "Listado de Líneas"
 msgstr ""
@@ -1734,7 +1792,7 @@ msgid "Movistar"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:323
+#: code:addons/lgps/models/gpsdevice.py:334
 #: selection:lgps.gpsdevice,last_notification_level:0
 #, python-format
 msgid "NA"
@@ -1795,6 +1853,26 @@ msgid "No hay registros"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__accesories_count
+msgid "No. Accesorios"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__trackings_count
+msgid "No. Monitoreos"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__repairs_count
+msgid "No. ODTs"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__tickets_count
+msgid "No. Tickets"
+msgstr ""
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__notifications
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 msgid "Notificaciones"
@@ -1823,7 +1901,7 @@ msgid "Notify Client"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:313
+#: code:addons/lgps/models/gpsdevice.py:324
 #, python-format
 msgid "Notify offline"
 msgstr ""
@@ -1905,8 +1983,7 @@ msgid "ODT's"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:292
-#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__repairs_count
+#: code:addons/lgps/models/gpsdevice.py:298
 #, python-format
 msgid "ODTs"
 msgstr ""
@@ -1948,6 +2025,18 @@ msgstr ""
 #: code:addons/lgps/models/gpsdevice.py:122
 #, python-format
 msgid "Opening Sensor"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__operation_mode
+msgid "Operation Mode"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:49
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__comment
+#, python-format
+msgid "Operation Reason"
 msgstr ""
 
 #. module: lgps
@@ -2134,6 +2223,12 @@ msgid "Provider Invoice"
 msgstr ""
 
 #. module: lgps
+#: selection:lgps.accessory,status:0
+#: selection:lgps.gpsdevice,status:0
+msgid "Pruebas"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/accessory.py:87
 #: code:addons/lgps/models/cellchip.py:104
 #: code:addons/lgps/models/gpsdevice.py:271
@@ -2179,6 +2274,13 @@ msgid "Reemplazo"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:19
+#: selection:lgps.common_operations_device_wizard,operation_mode:0
+#, python-format
+msgid "Reemplazo de Equipo"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/tracking.py:33
 #: selection:lgps.tracking,state:0
 #, python-format
@@ -2210,6 +2312,7 @@ msgid "Requested By"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:44
 #: code:addons/lgps/models/drop_device_wizard.py:20
 #: code:addons/lgps/models/hibernate_device_wizard.py:32
 #, python-format
@@ -2279,6 +2382,8 @@ msgid "Selecciona el template que será utilizado para crear una suscripcion de 
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:65
+#: code:addons/lgps/models/common_operations_wizard.py:187
 #: code:addons/lgps/models/drop_device_wizard.py:40
 #: code:addons/lgps/models/hibernate_device_wizard.py:39
 #, python-format
@@ -2372,6 +2477,7 @@ msgid "Solicitado Por"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__requested_by
 #: model:ir.model.fields,field_description:lgps.field_lgps_drop_device_wizard__requeste_by
 #: model:ir.model.fields,field_description:lgps.field_lgps_hibernate_device_wizard__requeste_by
 msgid "Solicitado por"
@@ -2433,9 +2539,14 @@ msgid "Subscription"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:307
+#: code:addons/lgps/models/gpsdevice.py:313
 #, python-format
 msgid "Subscriptions"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__destination_gpsdevice_ids
+msgid "Substitute equipment"
 msgstr ""
 
 #. module: lgps
@@ -2482,9 +2593,41 @@ msgid "Suspendido"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:20
+#: selection:lgps.common_operations_device_wizard,operation_mode:0
+#, python-format
+msgid "Sustitución de equipo por revisión"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/cellchip.py:130
 #, python-format
 msgid "Taken"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__tasks_ids
+msgid "Tareas"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_project_task
+msgid "Task"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/gpsdevice.py:289
+#: model:ir.actions.act_window,name:lgps.action_counter_tasks_button
+#: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
+#, python-format
+msgid "Tasks"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/gpsdevice.py:318
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__tasks_count
+#, python-format
+msgid "Tasks Count"
 msgstr ""
 
 #. module: lgps
@@ -2516,8 +2659,6 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:62
 #: code:addons/lgps/models/gpsdevice.py:168
-#: selection:lgps.accessory,status:0
-#: selection:lgps.gpsdevice,status:0
 #, python-format
 msgid "Tests"
 msgstr ""
@@ -2533,12 +2674,22 @@ msgid "The cellchip id must be unique"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:427
+#, python-format
+msgid "The device does not have Warranty Start Date. Complete this first in order to process the Replacement Operation."
+msgstr ""
+
+#. module: lgps
 #: sql_constraint:lgps.gpsdevice:0
 msgid "The gps device id must be unique"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/drop_device_wizard.py:133
+#: code:addons/lgps/models/common_operations_wizard.py:178
+#: code:addons/lgps/models/common_operations_wizard.py:199
+#: code:addons/lgps/models/common_operations_wizard.py:205
+#: code:addons/lgps/models/common_operations_wizard.py:210
+#: code:addons/lgps/models/drop_device_wizard.py:135
 #: code:addons/lgps/models/hibernate_device_wizard.py:51
 #: code:addons/lgps/models/hibernate_device_wizard.py:57
 #: code:addons/lgps/models/hibernate_device_wizard.py:62
@@ -2557,8 +2708,7 @@ msgid "Tickets"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:297
-#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__tickets_count
+#: code:addons/lgps/models/gpsdevice.py:303
 #, python-format
 msgid "Tickets Count"
 msgstr ""
@@ -2624,8 +2774,7 @@ msgid "Trackings"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:302
-#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__trackings_count
+#: code:addons/lgps/models/gpsdevice.py:308
 #, python-format
 msgid "Trackings Count"
 msgstr ""
@@ -2771,12 +2920,23 @@ msgid "Weighted amount"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:69
+#: code:addons/lgps/models/common_operations_wizard.py:191
 #: code:addons/lgps/models/hibernate_device_wizard.py:43
 #, python-format
 msgid "Who authorizes this request?"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:40
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__related_odt
+#, python-format
+msgid "Work order related"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:67
+#: code:addons/lgps/models/common_operations_wizard.py:189
 #: code:addons/lgps/models/drop_device_wizard.py:42
 #: code:addons/lgps/models/hibernate_device_wizard.py:41
 #, python-format
@@ -2821,6 +2981,7 @@ msgid "lgps.tracking"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.view_common_operations_device_wizard
 #: model_terms:ir.ui.view,arch_db:lgps.view_drop_device_wizard
 #: model_terms:ir.ui.view,arch_db:lgps.view_hibernate_device_wizard
 #: model_terms:ir.ui.view,arch_db:lgps.wizard_form_view

@@ -15,4 +15,5 @@ from . import res_config_settings
 from . import sales_order
 from . import hibernate_device_wizard
 from . import custom_task
+from . import common_operations_wizard
 
