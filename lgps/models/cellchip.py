@@ -79,6 +79,7 @@ class Cellchip(models.Model):
         selection=[
             ("ATT", "ATT"),
             ("Cierto", "Cierto"),
+            ("CiertoT", "CiertoT"),
             ("Iusacell", "Iusacell"),
             ("MazTiempo", "MazTiempo"),
             ("Movistar", "Movistar"),

@@ -32,7 +32,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
     destination_gpsdevice_ids = fields.Many2one(
         comodel_name='lgps.gpsdevice',
         string="Substitute equipment",
-        domain="[('status', 'in', ['installed', 'new', 'for installing']),('platform', '!=', 'Drop')]"
+        domain="[('status', 'in', ['installed', 'demo', 'comodato']),('platform', '!=', 'Drop')]"
     )
 
     related_odt = fields.Many2one(
@@ -70,7 +70,8 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
         # Determinamos el tipo de Operació a Realizar
         if self.operation_mode == 'drop':
-            self.execute_drop()
+            #self.execute_drop()
+            self.create_suscription()
         # Hibernation
         if self.operation_mode == 'hibernation':
             self.execute_hibernation()
@@ -370,19 +371,42 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             })
 
             if device.suscription_id:
-                if device.suscription_id.stage_id == suscription_in_progress_stage.id:
-                    device.suscription_id.message_post(body=operation_log_comment)
-                    suscription_copy = device.suscription_id.copy(default={
-                        'name': 'Sustitución' + self.destination_gpsdevice_ids.name,
-                        'stage_id': suscription_in_progress_stage.id,
-                        'gpsdevice_id': self.destination_gpsdevice_ids.id
-                    })
-                    _logger.warning('suscription_copy: %s', suscription_copy)
-            else:
-                operation_log_comment_device += '<p style="color:red">El equipo sustituido no tenía Suscripción en Progreso.</p>'
+                # Recorremos las suscripciones asociadas al equipos GPS.
+                for s in device.suscription_id:
+                    # Si alguna subscripción esta en progreso vamos a copiarla:
+                    if s.stage_id.id == suscription_in_progress_stage.id:
+                        s.message_post(body=operation_log_comment)
+                        suscription_copy = s.copy(default={
+                            'name': 'Sustitución' + self.destination_gpsdevice_ids.name,
+                            'stage_id': suscription_in_progress_stage.id,
+                            'gpsdevice_id': self.destination_gpsdevice_ids.id,
+                            'recurring_invoice_line_ids': s.recurring_invoice_line_ids
+                        })
 
+                        InvLine = self.env['account.invoice.line']
 
-            device.suscription_id.write({'stage_id': suscription_close_stage.id})
+                        invoice_lines = s.recurring_invoice_line_ids
+                        _logger.warning('invoice_lines: %s', invoice_lines)
+                        for line in invoice_lines:
+                            #line_copy = line.copy(default={'subscription_id': suscription_copy.id})
+                            InvLine.create({
+                                'product_id': line.product_id and line.product_id.id or False,
+                                'quantity': line.quantity,
+                                'uom_id': line.uom_id.id,
+                                'price_unit': line.price_unit,
+                                'subscription_id': suscription_copy.id,
+                                'name': line.name,
+                                'discount': line.discount,
+                            })
+
+                            _logger.warning('Line: %s', line)
+                            _logger.warning('line_copy: %s', InvLine)
+
+                        _logger.warning('suscription_copy: %s', suscription_copy)
+                        #lsuscription_copy.recurring_invoice_line_ids = s.recurring_invoice_line_ids
+                        s.write({'stage_id': suscription_close_stage.id})
+                    else:
+                        operation_log_comment_device += '<p style="color:red">El equipo sustituido no tenía Suscripción en Progreso.</p>'
 
             operation_log_comment = operation_log_comment.replace('EQUIPO', self.destination_gpsdevice_ids.name)
             operation_log_comment = operation_log_comment.replace('RELATED_ODT', nodt.name)
@@ -485,5 +509,20 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             #_logger.error('Suscription: %s', device.suscription_id)
             self.destination_gpsdevice_ids.write({'warranty_start_date': device.warranty_start_date})
             self.destination_gpsdevice_ids.message_post(body=operation_log_comment_device)
+
+        return {}
+
+    def create_suscription(self):
+
+        active_model = self._context.get('active_model')
+        active_records = self.env[active_model].browse(self._context.get('active_ids'))
+        for device in active_records:
+            if device.suscription_id.recurring_invoice_line_ids:
+                invoice_lines = device.suscription_id.recurring_invoice_line_ids
+                _logger.warning('invoice_lines: %s', invoice_lines)
+                for line in invoice_lines:
+                    line_copy = line.copy(default={})
+                    _logger.warning('Line: %s', line)
+                    _logger.warning('line_copy: %s', line_copy)
 
         return {}
