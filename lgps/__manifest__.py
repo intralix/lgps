@@ -45,7 +45,6 @@
         'views/helpdesk_custom_tree_view.xml',
         'views/helpdesk_custom_form_view.xml',
         'views/task_custom_form_view.xml',
-        'views/drop_device_wizard.xml',
-        'views/hibernate_device_wizard.xml'
+        'views/wizard_common_operations.xml'
     ],
 }

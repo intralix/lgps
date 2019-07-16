@@ -71,7 +71,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         # Determinamos el tipo de Operació a Realizar
         if self.operation_mode == 'drop':
             #self.execute_drop()
-            self.create_suscription()
+            self.testing_suscription()
         # Hibernation
         if self.operation_mode == 'hibernation':
             self.execute_hibernation()
@@ -376,31 +376,14 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                     # Si alguna subscripción esta en progreso vamos a copiarla:
                     if s.stage_id.id == suscription_in_progress_stage.id:
                         s.message_post(body=operation_log_comment)
+                        _logger.warning('OSsus Recurring invoice line ids: %s', s.recurring_invoice_line_ids)
+
                         suscription_copy = s.copy(default={
-                            'name': 'Sustitución' + self.destination_gpsdevice_ids.name,
+                            'name': 'Sustitución ' + self.destination_gpsdevice_ids.name,
                             'stage_id': suscription_in_progress_stage.id,
                             'gpsdevice_id': self.destination_gpsdevice_ids.id,
-                            'recurring_invoice_line_ids': s.recurring_invoice_line_ids
+                            #'recurring_invoice_line_ids': s.recurring_invoice_line_ids
                         })
-
-                        InvLine = self.env['account.invoice.line']
-
-                        invoice_lines = s.recurring_invoice_line_ids
-                        _logger.warning('invoice_lines: %s', invoice_lines)
-                        for line in invoice_lines:
-                            #line_copy = line.copy(default={'subscription_id': suscription_copy.id})
-                            InvLine.create({
-                                'product_id': line.product_id and line.product_id.id or False,
-                                'quantity': line.quantity,
-                                'uom_id': line.uom_id.id,
-                                'price_unit': line.price_unit,
-                                'subscription_id': suscription_copy.id,
-                                'name': line.name,
-                                'discount': line.discount,
-                            })
-
-                            _logger.warning('Line: %s', line)
-                            _logger.warning('line_copy: %s', InvLine)
 
                         _logger.warning('suscription_copy: %s', suscription_copy)
                         #lsuscription_copy.recurring_invoice_line_ids = s.recurring_invoice_line_ids
@@ -481,7 +464,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 if device.suscription_id.stage_id == suscription_in_progress_stage.id:
                     device.suscription_id.message_post(body=operation_log_comment)
                     suscription_copy = device.suscription_id.copy(default={
-                        'name': 'Sustitución' + self.destination_gpsdevice_ids.name,
+                        'name': 'Sustitución ' + self.destination_gpsdevice_ids.name,
                         'stage_id': suscription_in_progress_stage.id,
                         'gpsdevice_id': self.destination_gpsdevice_ids.id
                     })
@@ -512,17 +495,62 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
         return {}
 
-    def create_suscription(self):
+    def create_suscription(self, suscription_model):
 
+        return {}
+
+    def testing_suscription(self):
+
+        InvLine = self.env['sale.subscription.line']
         active_model = self._context.get('active_model')
         active_records = self.env[active_model].browse(self._context.get('active_ids'))
         for device in active_records:
-            if device.suscription_id.recurring_invoice_line_ids:
-                invoice_lines = device.suscription_id.recurring_invoice_line_ids
-                _logger.warning('invoice_lines: %s', invoice_lines)
-                for line in invoice_lines:
-                    line_copy = line.copy(default={})
-                    _logger.warning('Line: %s', line)
-                    _logger.warning('line_copy: %s', line_copy)
+            if device.suscription_id:
+                for suscription in device.suscription_id:
+                    suscription_copy = suscription.copy(default={
+                        'name': 'Sustitución' + device.name,
+                        #'stage_id': device.suscription_id.recurring_invoice_line_ids.id,
+                        'gpsdevice_id': device.id
+                    })
+
+                    _logger.warning('SUSCRIPTION Recurring invoice line ids: %s', suscription)
+                    invoice_lines = suscription.recurring_invoice_line_ids
+                    _logger.warning('invoice_lines: %s', invoice_lines)
+                    for line in invoice_lines:
+                        #line_copy = line.copy(default={})
+                        #_logger.warning('Line: %s', line)
+                        #_logger.warning('line_copy: %s', line_copy)
+                        _logger.warning('Line: %s', line)
+                        _logger.warning('Line ​display_name: %s', line.display_name)
+                        _logger.warning('Line id: %s', line.id)
+                        _logger.warning('Line product_id: %s', line.product_id)
+                        _logger.warning('Line quantity: %s', line.quantity)
+                        _logger.warning('Line uom_id: %s', line.uom_id)
+                        _logger.warning('Line price_unit: %s', line.price_unit)
+                        _logger.warning('Line name: %s', line.name)
+                        _logger.warning('Line discount: %s', line.discount)
+                        _logger.warning('Line ​price_subtotal: %s', line.price_subtotal)
+                        _logger.warning('Line ​price_unit: %s', line.price_unit)
+                        #InvLine.create({
+                        #   'product_id': line.product_id and line.product_id.id or False,
+                        #   'quantity': line.quantity,
+                        #   'uom_id': line.uom_id.id,
+                        #   'price_unit': line.price_unit,
+                        #   'name': line.name,
+                        #   'display_name': line.name,
+                        #   'discount': line.discount,
+                        #   'price_subtotal': line.price_subtotal,
+                        #})
+                        #suscription_copy.recurring_invoice_line_ids = [(0, 0, {
+                        #    'product_id': line.product_id and line.product_id.id or False,
+                        #  'quantity': line.quantity,
+                        #  'uom_id': line.uom_id.id,
+                        #  'price_unit': line.price_unit,
+                        #  'name': line.name,
+                        #  'display_name': line.name,
+                        #  'discount': line.discount,
+                        #  'price_subtotal': line.price_subtotal,
+                        #})]
+                        #_logger.warning('line_copy: %s', InvLine)
 
         return {}
