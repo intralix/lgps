@@ -224,6 +224,7 @@
         <field name="platform"/>
         <field name="product_id"/>
         <field name="warranty_end_date"/>
+        <field name="message_ids" string="Chatter Messages" filter_domain="[('message_ids.body', 'ilike', self)]"/>
         <group expand="1" string="Group By">
           <filter string="Cliente" name="cliente" context="{'group_by':'client_id'}"/>
           <filter string="Plataforma" name="plataforma" context="{'group_by':'platform'}"/>

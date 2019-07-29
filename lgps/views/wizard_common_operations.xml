@@ -42,7 +42,7 @@
         </group>
            <group>
                <group>
-                   <field name="requested_by" />
+                   <field name="requested_by" attrs="{'required':[('operation_mode', 'not in', ['substitution','replacement'])]}"/>
                     <field name="comment" />
                </group>
                <group>
