@@ -319,10 +319,6 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         # Check mandatory fields
         self._check_mandatory_fields(['comment', 'related_odt'])
 
-        # LGPS Global Configuration
-        LgpsConfig = self.sudo().env['ir.config_parameter']
-        equipo_en_susticion = self.destination_gpsdevice_ids.name
-
         # Obtenemos los Ids seleccionados
         active_model = self._context.get('active_model')
         active_records = self.env[active_model].browse(self._context.get('active_ids'))
@@ -333,13 +329,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         repair_internal_notes = 'El equipo SUSTITUIDO se sustituyó con el equipo: EQUIPO con la ODT: RELATED_ODT'
         operation_log_comment = 'Se realiza sustitución con el equipo: <strong>EQUIPO</strong>, mientras que este está en revisión con ODT <strong>RELATED_ODT</strong>. <br/>Se entrega equipo a Soporte para revisión.'
         operation_log_comment_device = 'Se coloca como sustituto al equipo <strong>EQUIPO</strong>  mientras está en revisión con la ODT <strong>RELATED_ODT</strong><br/><br/>Comentario: '+self.comment
-        #_logger.warning('self.gpsdevice_ids.name %s', self.gpsdevice_ids.name)
-        suscription_copy = None
 
-        # Cerrar suscripión OK
-        # Estatus desinstalado OK
-        # Comentario OK
-        # Generar ODT
         for device in active_records:
 
             # Preparando Datos para la ODT
@@ -384,7 +374,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 for s in device.suscription_id:
                     # Si alguna subscripción esta en progreso vamos a copiarla:
                     if s.stage_id.id == subscription_in_progress_stage.id:
-                        s.message_post(body=operation_log_comment)
+                        s.message_post(body='Se cierra suscripción por motivo de: <br/><br/>' + operation_log_comment)
                         _logger.warning('Subscription Recurring invoice line ids: %s', s.recurring_invoice_line_ids)
 
                         subscription_copy = self.copy_subscription(s, {
@@ -403,7 +393,6 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             device.write({'status': "uninstalled"})
             device.message_post(body=operation_log_comment)
 
-            #_logger.error('Suscription: %s', device.suscription_id)
             operation_log_comment_device = operation_log_comment_device.replace('EQUIPO', device.name)
             operation_log_comment_device = operation_log_comment_device.replace('RELATED_ODT', nodt.name)
             self.destination_gpsdevice_ids.write({'status': "borrowed"})
@@ -414,28 +403,17 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
     def execute_replacement(self):
 
         self._check_mandatory_fields(['comment', 'related_odt'])
-        # LGPS Global Configuration
-        LgpsConfig = self.sudo().env['ir.config_parameter']
-        equipo_en_susticion = self.destination_gpsdevice_ids.name
 
         # Obtenemos los Ids seleccionados
         active_model = self._context.get('active_model')
         active_records = self.env[active_model].browse(self._context.get('active_ids'))
-        suscription_close_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_closed')
-        suscription_in_progress_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_in_progress')
-        #_logger.error('Suscription Closed Stage: %s', suscription_close_stage)
+        subscription_close_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_closed')
+        subscription_in_progress_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_in_progress')
 
-        repair_internal_notes = 'Se reemplaza equipo por EQUIPO con la ODT: RELATED_ODT'
+        repair_internal_notes = 'El equipo REEMPLAZADO se reemplazó con el equipo: EQUIPO con la ODT: RELATED_ODT'
         operation_log_comment = 'Se reemplaza con el equipo <strong>EQUIPO</strong> con número de ODT <strong>RELATED_ODT</strong>. <br/>El equipo pasa a propiedad de la empresa.<br/>Se entrega equipo a Soporte para revisión.<br/><br/>Comentario: '+self.comment
-        operation_log_comment_device = 'Se coloca equipo como reemplazo por el equipo <strong>EQUIPO</strong>  con la ODT <strong>RELATED_ODT</strong><br/><br/>Comentario: '+self.comment
-        operation_log_comment_subscriptions = 'Se cierra por que el equipo fué reemplazado con el equipo <strong>EQUIPO</strong>  con la ODT <strong>RELATED_ODT</strong><br/><br/>'
-        #_logger.warning('self.gpsdevice_ids.name %s', self.gpsdevice_ids.name)
-        suscription_copy = None
+        operation_log_comment_device = 'Se coloca equipo como reemplazo para el equipo <strong>EQUIPO</strong>  con la ODT <strong>RELATED_ODT</strong><br/><br/>Comentario: '+self.comment
 
-        # Cerrar suscripión OK
-        # Estatus desinstalado OK
-        # Comentario OK
-        # Generar ODT
         for device in active_records:
             if not device.warranty_start_date:
                 raise UserError(_('The device does not have Warranty Start Date. Complete this first in order to process the Replacement Operation.'))
@@ -446,6 +424,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             client_id = self.env.user.company_id
             device_id = device.id
 
+            repair_internal_notes = repair_internal_notes.replace("REEMPLAZADO", device.name)
             repair_internal_notes = repair_internal_notes.replace("EQUIPO", self.destination_gpsdevice_ids.name)
             repair_internal_notes = repair_internal_notes.replace("RELATED_ODT", self.related_odt.name)
 
@@ -468,28 +447,36 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             }
             nodt = self.create_odt(dictionary)
 
-
-            if device.suscription_id:
-                if device.suscription_id.stage_id == suscription_in_progress_stage.id:
-                    device.suscription_id.message_post(body=operation_log_comment)
-                    suscription_copy = device.suscription_id.copy(default={
-                        'name': 'Sustitución ' + self.destination_gpsdevice_ids.name,
-                        'stage_id': suscription_in_progress_stage.id,
-                        'gpsdevice_id': self.destination_gpsdevice_ids.id
-                    })
-                    _logger.warning('suscription_copy: %s', suscription_copy)
-            else:
-                operation_log_comment_device += '<p style="color:red">El equipo reemplazado no tenía Suscripción en progreso.</p>'
-
-            device.suscription_id.write({'stage_id': suscription_close_stage.id})
+            # Cerramos las Suscripciones del equipo que sustituye
+            subscription_to_close = self.destination_gpsdevice_ids.suscription_id
+            if subscription_to_close:
+                self._close_subscriptions(subscription_to_close, repair_internal_notes)
 
             operation_log_comment = operation_log_comment.replace('EQUIPO', self.destination_gpsdevice_ids.name)
             operation_log_comment = operation_log_comment.replace('RELATED_ODT', self.related_odt.name)
 
+            # Check subscriptions
+            if device.suscription_id:
+                # Recorremos las suscripciones asociadas al equipos GPS.
+                for s in device.suscription_id:
+                    # Si alguna subscripción esta en progreso vamos a copiarla:
+                    if s.stage_id.id == subscription_in_progress_stage.id:
+                        s.message_post(body='Se cierra suscripción por motivo de: <br/><br/>' + operation_log_comment)
+                        _logger.warning('Subscription Recurring invoice line ids: %s', s.recurring_invoice_line_ids)
+
+                        subscription_copy = self.copy_subscription(s, {
+                            'name': 'Sustitución ' + self.destination_gpsdevice_ids.name,
+                            'stage_id': subscription_in_progress_stage.id,
+                            'gpsdevice_id': self.destination_gpsdevice_ids.id,
+                        })
+
+                        _logger.warning('subscription_copy: %s', subscription_copy)
+                        s.write({'stage_id': subscription_close_stage.id})
+                    else:
+                        operation_log_comment_device += '<p style="color:red">El equipo reemplazado ' + device.name + ' no tenía Suscripción en Progreso.</p>'
+
             operation_log_comment_device = operation_log_comment_device.replace('EQUIPO', device.name)
             operation_log_comment_device = operation_log_comment_device.replace('RELATED_ODT', self.related_odt.name)
-            _logger.warning('self.destination_gpsdevice_ids.warranty_start_date: %s', self.destination_gpsdevice_ids.warranty_start_date)
-            _logger.warning('device.warranty_start_date: %s', device.warranty_start_date)
             operation_log_comment_device += '<br/>Fecha de garantía de <strong>' \
                                             + self.destination_gpsdevice_ids.warranty_start_date.strftime('%Y-%m-%d') \
                                             + '</strong> a <strong>' + device.warranty_start_date.strftime('%Y-%m-%d') + '</strong>'
@@ -576,7 +563,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             if not getattr(self, rule):
                 raise UserError(self._get_error_message_for_field(rule))
 
-    def _get_error_message_for_field(self, field):
+    def _get_error_message_for_field(self, field=''):
         if field == 'comment':
             return _('You forgot to comment the reason for this process to run.')
         if field == 'requested_by':
@@ -589,5 +576,5 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         for subscription in subscriptions:
             subscription.write({'stage_id': subscription_close_stage.id})
             if comment != '':
-                subscription.message_post(body='Se cierra suscripcion por motivo de: <br>' + comment)
+                subscription.message_post(body='Se cierra suscripción por motivo de: <br>' + comment)
         return True
