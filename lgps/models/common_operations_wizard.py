@@ -16,7 +16,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         [
             ('drop', _('Baja de Equipos')),
             ('hibernation', _('Hibernación de Equipos')),
-            ('replacement', _('Reemplazo de Equipo')),
+            ('replacement', _('Reemplazo de equipo por garantía')),
             ('substitution', _('Sustitución de equipo por revisión')),
         ],
         default='drop'
@@ -32,7 +32,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
     destination_gpsdevice_ids = fields.Many2one(
         comodel_name='lgps.gpsdevice',
         string="Substitute equipment",
-        domain="[('status', 'in', ['installed', 'demo', 'comodato']),('platform', '!=', 'Drop')]"
+        domain="[('status', 'in', ['installed', 'demo', 'comodato', 'inventory']),('platform', '!=', 'Drop')]"
     )
 
     related_odt = fields.Many2one(
@@ -170,14 +170,12 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
         Config = self.sudo().env['ir.config_parameter']
         channel_id = Config.get_param('lgps.drop_device_wizard.default_channel')
-        if not channel_id:
-           raise UserError(_('There is not configuration for default channel.\n Configure this in order to send the notification.'))
-        else:
-            poster_bajas = self.sudo().env['mail.channel'].search([('id', '=', channel_id)])
-            poster_bajas.message_post(body=channel_msn, subtype='mail.mt_comment', partner_ids=[(4, self.env.uid)])
 
-        _logger.warning('active_recordst: %s', active_records)
-        _logger.warning('active_records: %s', active_records[0])
+        # Log to Channel
+        self.log_to_channel(channel_id, channel_msn)
+        #_logger.warning('active_recordst: %s', active_records)
+        #_logger.warning('active_records: %s', active_records[0])
+        #Create Object Log
         self.create_device_log(active_records[0])
         return {}
 
@@ -313,13 +311,19 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         channel_msn += self.comment + '<br/> soliciato por: ' + self.requested_by + '<br/>'
         channel_msn += self.devices_list
 
-        poster_bajas = self.sudo().env['mail.channel'].search([('id', '=', channel_id)])
-        poster_bajas.message_post(body=channel_msn, subtype='mail.mt_comment', partner_ids=[(4, self.env.uid)])
+        # Send Message
+        self.log_to_channel(channel_id, channel_msn)
 
         self.create_device_log(active_records[0])
         return {}
 
     def execute_substitution(self):
+        lgps_config = self.sudo().env['ir.config_parameter']
+        channel_id = lgps_config.get_param('lgps.substitution_device_wizard.default_channel')
+        if not channel_id:
+            raise UserError(_(
+                'There is not configuration for default channel.\n Configure this in order to send the notification.'))
+
         # Check mandatory fields
         self._check_mandatory_fields(['comment', 'related_odt'])
 
@@ -331,10 +335,12 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
         # Messages to Log on Models
         repair_internal_notes = 'El equipo SUSTITUIDO se sustituyó con el equipo: EQUIPO con la ODT: RELATED_ODT'
-        operation_log_comment = 'Se realiza sustitución con el equipo: <strong>EQUIPO</strong>, mientras que este está en revisión con ODT <strong>RELATED_ODT</strong>. <br/>Se entrega equipo a Soporte para revisión.'
-        operation_log_comment_device = 'Se coloca como sustituto al equipo <strong>EQUIPO</strong>  mientras está en revisión con la ODT <strong>RELATED_ODT</strong><br/><br/>Comentario: '+self.comment
+        operation_log_comment = 'El equipo <strong>SUSTITUIDO</strong> se retira mientras que esta en revisión con ODT <strong>RMA_ODT</strong>. Se instala el equipo: <strong>EQUIPO</strong> en su lugar con la ODT <strong>RELATED_ODT</strong>. <br/>Se entrega equipo a Soporte para revisión.'
+        operation_log_comment_device = 'Se coloca como sustituto al equipo <strong>EQUIPO</strong>  mientras está en revisión con la ODT <strong>RMA_ODT</strong><br/><br/>Comentario: '+self.comment
 
         for device in active_records:
+            if not device.warranty_start_date:
+                raise UserError(_('The device does not have Warranty Start Date. Complete this first in order to process the Substitution Operation.'))
 
             # Preparando Datos para la ODT
             product_id = device.product_id
@@ -361,11 +367,17 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                'product_uom': product_id.uom_id.id,
                'location_id': odt_object._default_stock_location(),
                'pricelist_id': self.env['product.pricelist'].search([], limit=1).id,
-               'internal_notes': repair_internal_notes,
+               'quotation_notes': repair_internal_notes,
+               'installer_id': self.related_odt.installer_id.id,
+               'assistant_a_id': self.related_odt.assistant_a_id.id,
+               'assistant_b_id': self.related_odt.assistant_b_id.id
             })
             # Comments to log on the operation log comment
+            repair_internal_notes = repair_internal_notes.replace("RMA_ODT", nodt.name)
+            operation_log_comment = operation_log_comment.replace("RMA_ODT", nodt.name)
+            operation_log_comment = operation_log_comment.replace("SUSTITUIDO", device.name)
             operation_log_comment = operation_log_comment.replace('EQUIPO', self.destination_gpsdevice_ids.name)
-            operation_log_comment = operation_log_comment.replace('RELATED_ODT', nodt.name)
+            operation_log_comment = operation_log_comment.replace('RELATED_ODT', self.related_odt.name)
 
             # Cerramos las Suscripciones del equipo que sustituye
             subscription_to_close = self.destination_gpsdevice_ids.suscription_id
@@ -398,15 +410,20 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             device.message_post(body=operation_log_comment)
 
             operation_log_comment_device = operation_log_comment_device.replace('EQUIPO', device.name)
-            operation_log_comment_device = operation_log_comment_device.replace('RELATED_ODT', nodt.name)
+            operation_log_comment_device = operation_log_comment_device.replace('RMA_ODT', nodt.name)
             self.destination_gpsdevice_ids.write({'status': "borrowed"})
             self.destination_gpsdevice_ids.message_post(body=operation_log_comment_device)
             self.create_device_log(device)
+            self.log_to_channel(channel_id, operation_log_comment)
 
         return {}
 
     def execute_replacement(self):
-
+        lgps_config = self.sudo().env['ir.config_parameter']
+        channel_id = lgps_config.get_param('lgps.replacement_device_wizard.default_channel')
+        if not channel_id:
+            raise UserError(_(
+                'There is not configuration for default channel.\n Configure this in order to send the notification.'))
         self._check_mandatory_fields(['comment', 'related_odt'])
 
         # Obtenemos los Ids seleccionados
@@ -416,7 +433,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         subscription_in_progress_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_in_progress')
 
         repair_internal_notes = 'El equipo REEMPLAZADO se reemplazó con el equipo: EQUIPO con la ODT: RELATED_ODT'
-        operation_log_comment = 'Se reemplaza con el equipo <strong>EQUIPO</strong> con número de ODT <strong>RELATED_ODT</strong>. <br/>El equipo pasa a propiedad de la empresa.<br/>Se entrega equipo a Soporte para revisión.<br/><br/>Comentario: '+self.comment
+        operation_log_comment = 'El equipo <strong>REEMPLAZADO</strong> se reemplaza con el equipo <strong>EQUIPO</strong> con número de ODT <strong>RELATED_ODT</strong>. <br/>El equipo pasa a propiedad de la empresa.<br/>Se entrega equipo a Soporte para revisión.<br/><br/>Comentario: '+self.comment
         operation_log_comment_device = 'Se coloca equipo como reemplazo para el equipo <strong>EQUIPO</strong>  con la ODT <strong>RELATED_ODT</strong><br/><br/>Comentario: '+self.comment
 
         for device in active_records:
@@ -448,7 +465,10 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                'product_uom': product_id.uom_id.id,
                'location_id': odt_object._default_stock_location(),
                'pricelist_id': self.env['product.pricelist'].search([], limit=1).id,
-               'internal_notes': repair_internal_notes,
+               'quotation_notes': repair_internal_notes,
+               'installer_id': self.related_odt.installer_id.id,
+               'assistant_a_id': self.related_odt.assistant_a_id.id,
+               'assistant_b_id': self.related_odt.assistant_b_id.id
             }
             nodt = self.create_odt(dictionary)
 
@@ -457,6 +477,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             if subscription_to_close:
                 self._close_subscriptions(subscription_to_close, repair_internal_notes)
 
+            operation_log_comment = operation_log_comment.replace("REEMPLAZADO", device.name)
             operation_log_comment = operation_log_comment.replace('EQUIPO', self.destination_gpsdevice_ids.name)
             operation_log_comment = operation_log_comment.replace('RELATED_ODT', self.related_odt.name)
 
@@ -490,6 +511,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             device.write({'status': "uninstalled", "client_id": self.env.user.company_id.id})
             device.message_post(body=operation_log_comment)
             self.create_device_log(device)
+            self.log_to_channel(channel_id, operation_log_comment)
 
             #_logger.error('Suscription: %s', device.suscription_id)
             self.destination_gpsdevice_ids.write({'warranty_start_date': device.warranty_start_date})
@@ -603,3 +625,13 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         }
         device_log = log_object.create(dictionary)
         return device_log
+
+    def log_to_channel(self, channel_id, channel_msn):
+
+        if not channel_id:
+           raise UserError(_('There is not configuration for default channel.\n Configure this in order to send the notification.'))
+        else:
+            channel_notifier = self.sudo().env['mail.channel'].search([('id', '=', channel_id)])
+            channel_notifier.message_post(body=channel_msn, subtype='mail.mt_comment', partner_ids=[(4, self.env.uid)])
+
+        return {}

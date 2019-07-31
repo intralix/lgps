@@ -29,7 +29,7 @@
 
            <hr/>
         <group>
-             <field name="gpsdevice_ids" readonly="1">
+             <field name="gpsdevice_ids" readonly="1" string="Equipo sustituido">
                 <tree string="GPS Devices to Process">
                   <field name="name"/>
                   <field name="nick"/>
@@ -42,8 +42,8 @@
         </group>
            <group>
                <group>
-                   <field name="requested_by" attrs="{'required':[('operation_mode', 'not in', ['substitution','replacement'])]}"/>
-                    <field name="comment" />
+                   <field name="requested_by" attrs="{'invisible':[('operation_mode', 'in', ['substitution','replacement'])], 'required':[('operation_mode', 'not in', ['substitution','replacement'])]}"/>
+                   <field name="comment"/>
                </group>
                <group>
                    <field name="destination_gpsdevice_ids" attrs="{'invisible':[('operation_mode', 'in', ['drop','hibernation'])], 'required':[('operation_mode', 'not in', ['drop','hibernation'])]}"/>

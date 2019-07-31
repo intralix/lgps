@@ -12,7 +12,7 @@
     <field name="name">device_history.form</field>
     <field name="model">lgps.device_history</field>
     <field name="arch" type="xml">
-      <form string="Device History Form">
+      <form string="Device History Form" create="false" edit="false">
         <header>
 
         </header>

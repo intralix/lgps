@@ -37,6 +37,18 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='lgps.hibernate_device_wizard.default_subscription_template',
     )
 
+    replacement_channel_id = fields.Many2one(
+        'mail.channel',
+        string=_("Default Replacements Channel"),
+        config_parameter='lgps.replacement_device_wizard.default_channel',
+    )
+
+    substitution_channel_id = fields.Many2one(
+        'mail.channel',
+        string=_("Default Substitutions Channel"),
+        config_parameter='lgps.substitution_device_wizard.default_channel',
+    )
+
     def set_values(self):
         super(ResConfigSettings, self).set_values()
 

@@ -74,6 +74,40 @@
                         </div>
 
                     </div>
+
+                    <div class="row mt16 o_settings_container">
+
+                        <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el canal que será utilizado para notificar reemplazos de equipos.">
+                            <div class="o_setting_right_pane">
+                                <label for="replacement_channel_id"/>
+                                <div class="text-muted">
+                                    Pick a Default Replacements Channel
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <label for="replacement_channel_id" class="o_light_label"/>
+                                        <field name="replacement_channel_id" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el canal que será utilizado para notificar sustituciones de equipos.">
+                            <div class="o_setting_right_pane">
+                                <label for="substitution_channel_id"/>
+                                <div class="text-muted">
+                                   Pick a Default Substitutions Channel
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <label for="substitution_channel_id" class="o_light_label"/>
+                                        <field name="substitution_channel_id" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </xpath>
         </field>

@@ -70,6 +70,7 @@
         <field name="status"/>
         <field name="cellchip_owner_id"/>
         <field name="status_date"/>
+        <field name="provider"/>
         <field name="purchase_date"/>
         <field name="gpsdevice_id"/>
       </search>
