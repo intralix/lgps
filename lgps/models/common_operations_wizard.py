@@ -65,8 +65,8 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
         # Determinamos el tipo de Operació a Realizar
         if self.operation_mode == 'drop':
-            #self.execute_drop()
-            self.testing_suscription()
+            self.execute_drop()
+            #self.testing_suscription()
         # Hibernation
         if self.operation_mode == 'hibernation':
             self.execute_hibernation()
@@ -176,6 +176,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             poster_bajas = self.sudo().env['mail.channel'].search([('id', '=', channel_id)])
             poster_bajas.message_post(body=channel_msn, subtype='mail.mt_comment', partner_ids=[(4, self.env.uid)])
 
+        _logger.warning('active_recordst: %s', active_records)
+        _logger.warning('active_records: %s', active_records[0])
+        self.create_device_log(active_records[0])
         return {}
 
     def execute_hibernation(self):
@@ -313,6 +316,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         poster_bajas = self.sudo().env['mail.channel'].search([('id', '=', channel_id)])
         poster_bajas.message_post(body=channel_msn, subtype='mail.mt_comment', partner_ids=[(4, self.env.uid)])
 
+        self.create_device_log(active_records[0])
         return {}
 
     def execute_substitution(self):
@@ -397,6 +401,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             operation_log_comment_device = operation_log_comment_device.replace('RELATED_ODT', nodt.name)
             self.destination_gpsdevice_ids.write({'status': "borrowed"})
             self.destination_gpsdevice_ids.message_post(body=operation_log_comment_device)
+            self.create_device_log(device)
 
         return {}
 
@@ -484,6 +489,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             # Estatus del Equipo como desinstalado
             device.write({'status': "uninstalled", "client_id": self.env.user.company_id.id})
             device.message_post(body=operation_log_comment)
+            self.create_device_log(device)
 
             #_logger.error('Suscription: %s', device.suscription_id)
             self.destination_gpsdevice_ids.write({'warranty_start_date': device.warranty_start_date})
@@ -578,3 +584,22 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             if comment != '':
                 subscription.message_post(body='Se cierra suscripción por motivo de: <br>' + comment)
         return True
+
+    def create_device_log(self, device):
+        log_object = self.env['lgps.device_history']
+
+        dictionary = {
+            'name': device.name + ' - ' + self.operation_mode,
+            'product_id': device.product_id.id,
+            'serialnumber_id': device.serialnumber_id.id,
+            'client_id': device.client_id.id,
+            'gpsdevice_ids': device.id,
+            'destination_gpsdevice_ids': self.destination_gpsdevice_ids.id,
+            'product_id': device.product_id.id,
+            'operation_mode': self.operation_mode,
+            'related_odt': self.related_odt.id,
+            'requested_by': self.requested_by,
+            'comment': self.comment
+        }
+        device_log = log_object.create(dictionary)
+        return device_log

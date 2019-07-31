@@ -16,3 +16,4 @@ from . import sales_order
 #from . import hibernate_device_wizard
 from . import custom_task
 from . import common_operations_wizard
+from . import device_history
