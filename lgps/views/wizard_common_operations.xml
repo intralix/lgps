@@ -43,7 +43,7 @@
            <group>
                <group>
                    <field name="requested_by" attrs="{'invisible':[('operation_mode', 'in', ['substitution','replacement'])], 'required':[('operation_mode', 'not in', ['substitution','replacement'])]}"/>
-                   <field name="comment"/>
+                   <field name="comment" string="Comentario / Falla Presentada"/>
                </group>
                <group>
                    <field name="destination_gpsdevice_ids" attrs="{'invisible':[('operation_mode', 'in', ['drop','hibernation'])], 'required':[('operation_mode', 'not in', ['drop','hibernation'])]}"/>

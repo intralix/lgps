@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('settings')]" position="inside">
                 <div class="app_settings_block" data-string="LGPS" string="Intx" data-key="lgps" groups="lgps.lgps_group_manager">
-                    <h2>Procesos para Equipos</h2>
+                    <h2>Configuración / Proceso para Equipos en Baja</h2>
                     <div class="row mt16 o_settings_container">
                         <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el canal de comunicación que será utilizado por default para enviar notificaciones de las bajas de equipos">
                             <div class="o_setting_right_pane">
@@ -24,7 +24,10 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
 
+                    <h2>Configuración / Proceso de Hibernación de Equipos</h2>
+                    <div class="row mt16 o_settings_container">
                         <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el canal de comunicación que será utilizado por default para enviar notificaciones de los equipos que son hibernados.">
                             <div class="o_setting_right_pane">
                                 <label for="hibernate_channel_id"/>
@@ -39,20 +42,17 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row mt16 o_settings_container">
 
                         <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el template que será utilizado para crear una suscripcion de hibernación cuando el equipo entre en este estatus.">
                             <div class="o_setting_right_pane">
-                                <label for="suscription_hibernate_template_id"/>
+                                <label for="subscription_hibernate_template_id"/>
                                 <div class="text-muted">
-                                    Default Template for Suscriptions on Hibernation
+                                    Default Template for Subscriptions on Hibernation
                                 </div>
                                 <div class="content-group">
                                     <div class="mt16">
-                                        <label for="suscription_hibernate_template_id" class="o_light_label"/>
-                                        <field name="suscription_hibernate_template_id" class="oe_inline"/>
+                                        <label for="subscription_hibernate_template_id" class="o_light_label"/>
+                                        <field name="subscription_hibernate_template_id" class="oe_inline"/>
                                     </div>
                                 </div>
                             </div>
@@ -60,14 +60,74 @@
 
                         <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en esta etapa.">
                             <div class="o_setting_right_pane">
-                                <label for="suscription_hibernate_stage_id"/>
+                                <label for="subscription_hibernate_stage_id"/>
                                 <div class="text-muted">
-                                    Default Suscriptions Stage on Hibernation
+                                    Default Subscriptions Stage on Hibernation
                                 </div>
                                 <div class="content-group">
                                     <div class="mt16">
-                                        <label for="suscription_hibernate_stage_id" class="o_light_label"/>
-                                        <field name="suscription_hibernate_stage_id" class="oe_inline"/>
+                                        <label for="subscription_hibernate_stage_id" class="o_light_label"/>
+                                        <field name="subscription_hibernate_stage_id" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en este producto.">
+                            <div class="o_setting_right_pane">
+                                <label for="subscription_hibernate_product_id"/>
+                                <div class="text-muted">
+                                    Default Subscriptions Product on Hibernation
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <label for="subscription_hibernate_product_id" class="o_light_label"/>
+                                        <field name="subscription_hibernate_product_id" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas con esta lista de precios.">
+                            <div class="o_setting_right_pane">
+                                <label for="subscription_hibernate_default_price_list_id"/>
+                                <div class="text-muted">
+                                    Default Subscriptions Price List on Hibernation
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <label for="subscription_hibernate_default_price_list_id" class="o_light_label"/>
+                                        <field name="subscription_hibernate_default_price_list_id" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en este equipo de ventas.">
+                            <div class="o_setting_right_pane">
+                                <label for="subscription_hibernate_commercial_id"/>
+                                <div class="text-muted">
+                                    Default Subscriptions Commercial Team on Hibernation
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <label for="subscription_hibernate_commercial_id" class="o_light_label"/>
+                                        <field name="subscription_hibernate_commercial_id" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en este responsble.">
+                            <div class="o_setting_right_pane">
+                                <label for="subscription_hibernate_user_id"/>
+                                <div class="text-muted">
+                                    Default Subscriptions Responsable on Hibernation
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <label for="subscription_hibernate_user_id" class="o_light_label"/>
+                                        <field name="subscription_hibernate_user_id" class="oe_inline"/>
                                     </div>
                                 </div>
                             </div>
@@ -75,6 +135,7 @@
 
                     </div>
 
+                    <h2>Configuración / Proceso de Reemplazo de Equipos</h2>
                     <div class="row mt16 o_settings_container">
 
                         <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el canal que será utilizado para notificar reemplazos de equipos.">
@@ -92,6 +153,11 @@
                             </div>
                         </div>
 
+                    </div>
+
+                    <h2>Configuración / Proceso de Sustitución de Equipos</h2>
+                    <div class="row mt16 o_settings_container">
+
                         <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el canal que será utilizado para notificar sustituciones de equipos.">
                             <div class="o_setting_right_pane">
                                 <label for="substitution_channel_id"/>
@@ -108,6 +174,7 @@
                         </div>
 
                     </div>
+
                 </div>
             </xpath>
         </field>
