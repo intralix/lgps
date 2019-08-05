@@ -6,7 +6,7 @@
     'application': True,
     'website': 'https://www.intralix.com',
     'category': 'Uncategorized',
-    'version': '0.1.1',
+    'version': '0.1.2',
     'depends': [
         'base',
         'stock',
@@ -47,6 +47,5 @@
         'views/task_custom_form_view.xml',
         'views/wizard_common_operations.xml',
         'views/device_history.xml'
-
     ],
 }
