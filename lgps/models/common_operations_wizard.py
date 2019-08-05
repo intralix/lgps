@@ -5,6 +5,7 @@ from odoo.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
+
 class CommonOperationsToDevicesWizard(models.TransientModel):
     _name = "lgps.common_operations_device_wizard"
     _description = "Common Operations To Devices Wizard"
@@ -241,8 +242,6 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         active_model = self._context.get('active_model')
         active_records = self.env[active_model].browse(self._context.get('active_ids'))
         # Subscriptions Config vars
-        #subscription_close_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_upsell').ensure_one()
-        #subscription_hibernation_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_upsell').ensure_one()
 
         # Buffer Vars
         notify_gps_list = ""
@@ -250,7 +249,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
         # Procesamos los quipos seleccionados:
         for r in active_records:
-            body = "[Proceso de Hibernación]<br/><br/>" + self.comment + '<br/><b>Solicitado por</b>: ' + self.requested_by + '<br/>'
+            body = "[Proceso de Hibernación]<br/><br/>" + self.comment \
+                   + '<br/><b>Solicitado por</b>: ' \
+                   + self.requested_by + '<br/>'
             gps_functions_summary = "<hr/>Se desactivaron las funciones de:<br/><br/>"
             acumulador = ""
             aditional_functions = False
@@ -566,207 +567,15 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             self.create_device_log(device)
             self.log_to_channel(channel_id, operation_log_comment)
 
-            #_logger.error('Suscription: %s', device.suscription_id)
             self.destination_gpsdevice_ids.write({'warranty_start_date': device.warranty_start_date})
             self.destination_gpsdevice_ids.message_post(body=operation_log_comment_device)
 
         return {}
 
-    def testing_suscription(self):
-
-        InvLine = self.env['sale.subscription.line']
-        active_model = self._context.get('active_model')
-        active_records = self.env[active_model].browse(self._context.get('active_ids'))
-        for device in active_records:
-            if device.suscription_id:
-                for suscription in device.suscription_id:
-                    suscription_copy = suscription.copy(default={
-                        'name': 'Sustitución' + device.name,
-                        #'stage_id': device.suscription_id.recurring_invoice_line_ids.id,
-                        'gpsdevice_id': device.id
-                    })
-
-                    _logger.warning('SUSCRIPTION Recurring invoice line ids: %s', suscription)
-                    invoice_lines = suscription.recurring_invoice_line_ids
-                    _logger.warning('invoice_lines: %s', invoice_lines)
-                    for line in invoice_lines:
-                        #line_copy = line.copy(default={})
-                        #_logger.warning('Line: %s', line)
-                        #_logger.warning('line_copy: %s', line_copy)
-                        _logger.warning('Line: %s', line)
-                        _logger.warning('Line ​display_name: %s', line.display_name)
-                        _logger.warning('Line id: %s', line.id)
-                        _logger.warning('Line product_id: %s', line.product_id)
-                        _logger.warning('Line quantity: %s', line.quantity)
-                        _logger.warning('Line uom_id: %s', line.uom_id)
-                        _logger.warning('Line price_unit: %s', line.price_unit)
-                        _logger.warning('Line name: %s', line.name)
-                        _logger.warning('Line discount: %s', line.discount)
-                        _logger.warning('Line ​price_subtotal: %s', line.price_subtotal)
-                        _logger.warning('Line ​price_unit: %s', line.price_unit)
-                        #InvLine.create({
-                        #   'product_id': line.product_id and line.product_id.id or False,
-                        #   'quantity': line.quantity,
-                        #   'uom_id': line.uom_id.id,
-                        #   'price_unit': line.price_unit,
-                        #   'name': line.name,
-                        #   'display_name': line.name,
-                        #   'discount': line.discount,
-                        #   'price_subtotal': line.price_subtotal,
-                        #})
-                        #suscription_copy.recurring_invoice_line_ids = [(0, 0, {
-                        #    'product_id': line.product_id and line.product_id.id or False,
-                        #  'quantity': line.quantity,
-                        #  'uom_id': line.uom_id.id,
-                        #  'price_unit': line.price_unit,
-                        #  'name': line.name,
-                        #  'display_name': line.name,
-                        #  'discount': line.discount,
-                        #  'price_subtotal': line.price_subtotal,
-                        #})]
-                        #_logger.warning('line_copy: %s', InvLine)
-
-        return {}
-
-
-    def test_create_subscription_from_nowhere(self):
-        active_model = self._context.get('active_model')
-        active_records = self.env[active_model].browse(self._context.get('active_ids'))
-
-        # LGPS Global Configuration
-        LgpsConfig = self.sudo().env['ir.config_parameter']
-
-        subscription_hibernate_stage_id = LgpsConfig.get_param(
-            'lgps.device_wizard.hibernate_default_subscription_stage')
-        _logger.warning('subscription_hibernate_stage_id: %s', subscription_hibernate_stage_id)
-        if not subscription_hibernate_stage_id:
-            raise UserError(_(
-                'There is not configuration for default channel.\n Configure this in order to send the notification.'))
-
-        subscription_hibernate_template_id = LgpsConfig.get_param(
-            'lgps.device_wizard.hibernate_default_subscription_template')
-        _logger.warning('subscription_hibernate_template_id: %s', subscription_hibernate_template_id)
-        if not subscription_hibernate_template_id:
-            raise UserError(_(
-                'There is not configuration for default channel.\n Configure this in order to send the notification.'))
-
-        channel_id = LgpsConfig.get_param('lgps.hibernate_device_wizard.default_channel')
-        _logger.warning('channel_id: %s', channel_id)
-        if not channel_id:
-            raise UserError(_(
-                'There is not configuration for default channel.\n Configure this in order to send the notification.'))
-
-        hibernate_product_id = LgpsConfig.get_param('lgps.device_wizard.hibernate_default_service')
-        _logger.warning('hibernate_product_id: %s', hibernate_product_id)
-        if not hibernate_product_id:
-            raise UserError(_(
-                'There is not configuration for default service.'
-                '\n Configure this in order to create subscription successfully.'))
-
-        hibernation_commercial_id = LgpsConfig.get_param('lgps.device_wizard.hibernate_commercial_default')
-        _logger.warning('hibernation_commercial_id: %s', hibernation_commercial_id)
-        if not hibernation_commercial_id:
-            raise UserError(_(
-                'There is not configuration for default commercial team.'
-                '\n Configure this in order to create subscription successfully.'))
-
-        hibernate_user_id = LgpsConfig.get_param('lgps.device_wizard.hibernate_user_default')
-        _logger.warning('hibernate_user_id: %s', hibernate_user_id)
-        if not hibernate_user_id:
-            raise UserError(_(
-                'There is not configuration for default user as responsable.'
-                '\n Configure this in order to create subscription successfully.'))
-
-        hibernate_price_list_id = LgpsConfig.get_param('lgps.device_wizard.hibernate_default_price_list_id')
-        _logger.warning('hibernate_price_list_id: %s', hibernate_price_list_id)
-        if not hibernate_price_list_id:
-            raise UserError(_(
-                'There is not configuration for default price list.'
-                '\n Configure this in order to create subscription successfully.'))
-
-        #product = self.env['product.product'].browse([hibernate_product_id])
-        #product = self.sudo().env['product.product'].search([('id', '=', hibernate_product_id)])
-        #_logger.warning('product: %s', product)
-        #_logger.warning('hibernate_product_id.uom_id.id: %s', product.uom_id.id)
-        #_logger.warning('product: %s', product)
-
-        subscription_hibernate_stage_id = self.sudo().env['sale.subscription.stage'].search([('id', '=', subscription_hibernate_stage_id)], limit=1)
-        _logger.warning('subscription_hibernate_stage_id: %s', subscription_hibernate_stage_id)
-        subscription_hibernate_template_id = self.sudo().env['sale.subscription.template'].search([('id', '=', subscription_hibernate_template_id)], limit=1)
-        _logger.warning('subscription_hibernate_template_id: %s', subscription_hibernate_template_id)
-        #channel = self.sudo().env['mail.channel'].search([('id', '=', channel_id)])
-        #_logger.warning('hibernate_price_list_id: %s', hibernate_price_list_id)
-        product = self.sudo().env['product.product'].search([('id', '=', hibernate_product_id)], limit=1)
-        _logger.warning('product: %s', product)
-        hibernation_commercial_id = self.sudo().env['crm.team'].search([('id', '=', hibernation_commercial_id)], limit=1)
-        _logger.warning('hibernation_commercial_id: %s', hibernation_commercial_id)
-        hibernate_user_id = self.sudo().env['res.users'].search([('id', '=', hibernate_user_id)], limit=1)
-        _logger.warning('hibernate_user_id: %s', hibernate_user_id)
-        hibernate_price_list_id = self.sudo().env['product.pricelist'].search([('id', '=', hibernate_price_list_id)], limit=1)
-        _logger.warning('hibernate_price_list_id: %s', hibernate_price_list_id)
-
-        for r in active_records:
-
-            new_subscription = self.env['sale.subscription']
-            n = new_subscription.create({
-                'name': 'New Subscription',
-                'code': 'Hibernación ' + r.name,
-                'stage_id': subscription_hibernate_stage_id.id,
-                'template_id': subscription_hibernate_template_id.id,
-                'pricelist_id': hibernate_price_list_id.id,
-                'partner_id': r.client_id.id,
-                'gpsdevice_id': r.id,
-                'user_id': hibernate_user_id.id,
-                'team_id': hibernation_commercial_id.id,
-                #'recurring_invoice_line_ids': [(6, 0, invoice_line)]
-                'recurring_invoice_line_ids': [(0, _, {
-                    'product_id': product.id,
-                    'quantity': 1,
-                    'uom_id': product.uom_id.id,
-                    'price_unit': self.get_price_from_pricelist(hibernate_price_list_id, product),
-                    'name': product.display_name,
-                    'discount': 0,
-                })]
-            })
-
-            _logger.warning('new_subscription: %s', new_subscription)
-            """
-            subscriptions = self.env['sale.subscription'].browse([136]).ensure_one()
-
-            for subscription in subscriptions:
-                for invoice_line in subscription.recurring_invoice_line_ids:
-                    _logger.warning('subscription: %s', subscription)
-                    sline = subscription.recurring_invoice_line_ids
-                    _logger.warning('subscription.recurring_invoice_line_ids: %s', sline)
-                    #_logger.warning('__last_update: %s', sline.__last_update)
-                    _logger.warning('analytic_account_id: %s', sline.analytic_account_id)
-                    _logger.warning('create_date: %s', sline.create_date)
-                    _logger.warning('create_uid: %s', sline.create_uid)
-                    _logger.warning('discount: %s', sline.discount)
-                    _logger.warning('display_name: %s', sline.display_name)
-                    _logger.warning('id: %s', sline.id)
-                    _logger.warning('name: %s', sline.name)
-                    _logger.warning('price_subtotal: %s', sline.price_subtotal)
-                    _logger.warning('price_unit: %s', sline.price_unit)
-                    _logger.warning('product_id: %s', sline.product_id)
-                    _logger.warning('quantity: %s', sline.quantity)
-                    _logger.warning('uom_id: %s', sline.uom_id)
-                    _logger.warning('write_date: %s', sline.write_date)
-                    _logger.warning('write_uid: %s', sline.write_uid)
-
-                    #attrs = vars(invoice_line)
-                    #for item in attrs.items():
-                     #   _logger.warning('item: %s', item)
-            """
-        return {}
-
     def get_price_from_pricelist(self, price_list, product):
 
         pricelist = self.sudo().env['product.pricelist'].search([('id', '=', price_list)], limit=1)
-        #_logger.warning('price_list: %s', price_list)
-        #_logger.warning('price_list items: %s', price_list.item_ids)
         price = pricelist.get_product_price(product, 1, False)
-        #_logger.warning('product price search: %s', price)
         if price:
             return price
         else:
