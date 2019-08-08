@@ -6,28 +6,12 @@
     <field name="model">lgps.common_operations_device_wizard</field>
     <field name="arch" type="xml">
        <form string="Drop Process">
+           <group><p class="text-primary"> Selecciona el proceso a ejecutar en los equipos seleccionados:</p></group>
            <group>
                <field name="operation_mode"/>
            </group>
-           <group attrs="{'invisible':[('operation_mode', '!=', 'drop')]}">
-               <p class="text-primary"> Este procedimiento realizará la siguientes acciones:</p><br/>
-               <p>1) Cambiará la plataforma del equipo a <strong>Baja</strong><br/>
-                   2) Ingresar el comentario como una nota interna en cada equipo<br/>
-                   3) Cambiar la suscripción del equipo a borrador<br/>
-                   4) Se notificará para que se proceda con la baja de las líneas asociadas.<br/><br/>
-               </p>
-           </group>
-
-           <group attrs="{'invisible':[('operation_mode', '!=', 'hibernation')]}">
-               <p class="text-primary"> Este procedimiento realizará la siguientes acciones:</p><br/>
-               <p>1) Dejará el equipo en estatus de <strong>Hibernado</strong><br/>
-                   2) Ingresar el comentario como una nota interna en cada equipo<br/>
-                   3) Cambiar la suscripción del equipo a borrador<br/>
-                   4) Se notificará para realizar ajustes en la suscripción.<br/><br/>
-               </p>
-           </group>
-
            <hr/>
+           <group><p class="text-primary"> Dispositivo(s) Seleccionado(s):</p></group>
         <group>
              <field name="gpsdevice_ids" readonly="1" string="Equipo sustituido">
                 <tree string="GPS Devices to Process">
@@ -40,17 +24,52 @@
                 </tree>
             </field>
         </group>
+          <group><p class="text-primary"> Ingresa la información requerida para el proceso selecionado:</p></group>
            <group>
                <group>
-                   <field name="requested_by" attrs="{'invisible':[('operation_mode', 'in', ['substitution','replacement'])], 'required':[('operation_mode', 'not in', ['substitution','replacement'])]}"/>
+                   <field name="requested_by"
+                          attrs="{
+                          'invisible':[('operation_mode', 'in', ['substitution','replacement'])],
+                          'required':[('operation_mode', 'not in', ['substitution','replacement'])]
+                          }"/>
+
                    <field name="comment" string="Comentario / Falla Presentada"/>
                </group>
                <group>
-                   <field name="destination_gpsdevice_ids" attrs="{'invisible':[('operation_mode', 'in', ['drop','hibernation'])], 'required':[('operation_mode', 'not in', ['drop','hibernation'])]}"/>
-                   <field name="related_odt" attrs="{'invisible':[('operation_mode', 'in', ['drop','hibernation'])], 'required':[('operation_mode', 'not in', ['drop','hibernation'])]}"/>
+                   <field name="destination_gpsdevice_ids"
+                          attrs="{
+                          'invisible':[('operation_mode', 'in', ['drop','hibernation','wakeup'])],
+                          'required':[('operation_mode', 'not in', ['drop','hibernation','wakeup'])]
+                          }"/>
+
+                   <field name="related_odt"
+                          attrs="{
+                          'invisible':[('operation_mode', 'in', ['drop','hibernation','wakeup'])],
+                          'required':[('operation_mode', 'not in', ['drop','hibernation','wakeup'])]
+                          }"/>
                </group>
 
            </group>
+
+           <notebook  attrs="{'invisible':[('operation_mode', '!=', 'wakeup')]}">
+           <page string="Services">
+               <group>
+                   <p class="text-primary"> Selecciona los servicios que seràn reactivados en los dispositivos</p>
+               </group>
+              <group>
+                  <group>
+                      <field name="tracking"/>
+                      <field name="fuel"/>
+                      <field name="scanner"/>
+                  </group>
+                  <group>
+                      <field name="temperature"/>
+                      <field name="logistic"/>
+                      <field name="device_status"/>
+                  </group>
+              </group>
+            </page>
+           </notebook>
 
         <footer>
           <button name="execute_operation" type="object" string="Execute Process" class="oe_highlight"/>

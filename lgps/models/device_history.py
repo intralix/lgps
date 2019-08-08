@@ -49,10 +49,11 @@ class DeviceHistory(models.Model):
         [
             ('drop', _('Baja de Equipos')),
             ('hibernation', _('Hibernación de Equipos')),
+            ('wakeup', _('Deshibernación de Equipos')),
             ('replacement', _('Reemplazo de Equipo')),
             ('substitution', _('Sustitución de equipo por revisión')),
         ],
-        default='drop'
+        default='drop',
     )
 
     related_odt = fields.Many2one(
