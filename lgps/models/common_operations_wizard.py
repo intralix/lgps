@@ -194,7 +194,14 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         #_logger.warning('subscription_hibernate_stage_id: %s', subscription_hibernate_stage_id)
         if not subscription_hibernate_stage_id:
             raise UserError(_(
-                'There is not configuration for default channel.\n Configure this in order to send the notification.'))
+                'There is not configuration for default stage on new subscription.\nConfigure this in order to send the notification.'))
+
+        subscription_current_hibernate_stage_id = lgps_config.get_param(
+            'lgps.device_wizard.hibernate_current_subscription_stage')
+        #_logger.warning('subscription_hibernate_stage_id: %s', subscription_hibernate_stage_id)
+        if not subscription_current_hibernate_stage_id:
+            raise UserError(_(
+                'There is not configuration for default current subscriptions stage.\nConfigure this in order to send the notification.'))
 
         subscription_hibernate_template_id = lgps_config.get_param(
             'lgps.device_wizard.hibernate_default_subscription_template')
@@ -295,9 +302,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             r.message_post(body=body)
 
             # Cerramos las suscripciones que tenga el equipo abiertas
-            subscription_to_close = r.suscription_id
-            if subscription_to_close:
-                self._close_subscriptions(subscription_to_close, body)
+            #subscription_to_close = r.suscription_id
+            #if subscription_to_close:
+                #self._close_subscriptions(subscription_to_close, body, subscription_current_hibernate_stage_id)
 
             # revisamos el tema de las suscripciones:
             default = dict(None or {})
@@ -341,7 +348,11 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
         # Alterando las suscripciones
         if subscriptions:
-            self._close_subscriptions(subscriptions, "El equipo se ha procesado como Hibernado en el sistema.")
+            self._close_subscriptions(
+                subscriptions,
+                "El equipo se ha procesado como Hibernado en el sistema.",
+                subscription_current_hibernate_stage_id
+            )
 
         #Log Channel
         channel_msn = '<br/>Los equipos mencionados a continuación se procesaron para ser hibernados por motivo de:<br/>'
@@ -621,8 +632,14 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         if field == 'related_odt':
             return _('You forgot to select the Related ODT')
 
-    def _close_subscriptions(self, subscriptions, comment=''):
-        subscription_close_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_closed')
+    def _close_subscriptions(self, subscriptions, comment='', default_stage=None):
+        if not default_stage:
+            subscription_close_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_closed')
+        else:
+            subscription_close_stage = self.sudo().env['sale.subscription.stage'].search([
+                ('id', '=', default_stage)], limit=1)
+
+        _logger.warning('subscription_close_stage: %s', subscription_close_stage)
         for subscription in subscriptions:
             subscription.write({'stage_id': subscription_close_stage.id})
             if comment != '':

@@ -57,8 +57,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en esta etapa.">
+                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado la suscripción que se generará en esta etapa.">
                             <div class="o_setting_right_pane">
                                 <label for="subscription_hibernate_stage_id"/>
                                 <div class="text-muted">
@@ -68,6 +67,21 @@
                                     <div class="mt16">
                                         <label for="subscription_hibernate_stage_id" class="o_light_label"/>
                                         <field name="subscription_hibernate_stage_id" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en esta etapa.">
+                            <div class="o_setting_right_pane">
+                                <label for="subscription_hibernate_stage_id_currents"/>
+                                <div class="text-muted">
+                                    Default Current Subscriptions Stage when Hibernation
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <label for="subscription_hibernate_stage_id_currents" class="o_light_label"/>
+                                        <field name="subscription_hibernate_stage_id_currents" class="oe_inline"/>
                                     </div>
                                 </div>
                             </div>

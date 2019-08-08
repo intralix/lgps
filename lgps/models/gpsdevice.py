@@ -55,11 +55,13 @@ class GpsDevice(models.Model):
     tracking = fields.Boolean(
         default=False,
         string=_("Tracking"),
+        track_visibility='onchange',
     )
 
     fuel = fields.Boolean(
         default=False,
         string=_("Fuel"),
+        track_visibility='onchange',
     )
 
     speaker = fields.Boolean(
@@ -85,6 +87,7 @@ class GpsDevice(models.Model):
     scanner = fields.Boolean(
         default=False,
         string="Scanner",
+        track_visibility='onchange',
     )
 
     padlock = fields.Boolean(
@@ -100,6 +103,7 @@ class GpsDevice(models.Model):
     temperature = fields.Boolean(
         default=False,
         string=_("Temperature"),
+        track_visibility='onchange',
     )
 
     ibutton = fields.Boolean(
@@ -125,6 +129,7 @@ class GpsDevice(models.Model):
     logistic = fields.Boolean(
         default=False,
         string=_("Logistic"),
+        track_visibility='onchange',
     )
 
     disengagement_sensor = fields.Boolean(

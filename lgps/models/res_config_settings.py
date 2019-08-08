@@ -43,6 +43,12 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='lgps.device_wizard.hibernate_default_subscription_stage',
     )
 
+    subscription_hibernate_stage_id_currents = fields.Many2one(
+        'sale.subscription.stage',
+        string=_("Default Hibernate Subscription Stage"),
+        config_parameter='lgps.device_wizard.hibernate_current_subscription_stage',
+    )
+
     subscription_hibernate_default_price_list_id = fields.Many2one(
         'product.pricelist',
         string=_("Default Hibernate Subscription Price List"),
