@@ -67,7 +67,7 @@
     <field name="name">device_history.tree</field>
     <field name="model">lgps.device_history</field>
     <field name="arch" type="xml">
-      <tree string="device_history Tree">
+      <tree string="device_history Tree" create="false" edit="false">
         <field name="name"/>
         <field name="client_id"/>
         <field name="operation_mode"/>

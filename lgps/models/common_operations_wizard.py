@@ -818,7 +818,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                     ('id', '=', default_stage)], limit=1)
             else:
                 subscription_close_stage = default_stage
-        
+
         for subscription in subscriptions:
             subscription.write({'stage_id': subscription_close_stage.id})
             if close:

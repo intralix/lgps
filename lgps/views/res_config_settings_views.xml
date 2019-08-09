@@ -28,7 +28,7 @@
 
                     <h2>Configuración / Proceso de Hibernación de Equipos</h2>
                     <div class="row mt16 o_settings_container">
-                        <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el canal de comunicación que será utilizado por default para enviar notificaciones de los equipos que son hibernados.">
+                        <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el canal de comunicación que será utilizado por default para enviar notificaciones de los equipos que son hibernados / deshibernados.">
                             <div class="o_setting_right_pane">
                                 <label for="hibernate_channel_id"/>
                                 <div class="text-muted">
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado la suscripción que se generará en esta etapa.">
+                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado la suscripción se generará en esta etapa.">
                             <div class="o_setting_right_pane">
                                 <label for="subscription_hibernate_stage_id"/>
                                 <div class="text-muted">
@@ -87,7 +87,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en este producto.">
+                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado la suscripción será creada con este servicio.">
                             <div class="o_setting_right_pane">
                                 <label for="subscription_hibernate_product_id"/>
                                 <div class="text-muted">
@@ -102,7 +102,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas con esta lista de precios.">
+                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado la suscripción será creada con esta lista de precios.">
                             <div class="o_setting_right_pane">
                                 <label for="subscription_hibernate_default_price_list_id"/>
                                 <div class="text-muted">
@@ -117,7 +117,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en este equipo de ventas.">
+                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado la suscripción será creada con este equipo de ventas.">
                             <div class="o_setting_right_pane">
                                 <label for="subscription_hibernate_commercial_id"/>
                                 <div class="text-muted">
@@ -132,7 +132,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en este responsble.">
+                        <div class="col-12 col-lg-6 o_setting_box" title="Cuando un equipo sea hibernado la suscripción será creada con este responsble.">
                             <div class="o_setting_right_pane">
                                 <label for="subscription_hibernate_user_id"/>
                                 <div class="text-muted">
