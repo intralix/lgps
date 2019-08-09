@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-09 20:01+0000\n"
-"PO-Revision-Date: 2019-08-09 20:01+0000\n"
+"POT-Creation-Date: 2019-08-09 20:35+0000\n"
+"PO-Revision-Date: 2019-08-09 20:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -831,32 +831,32 @@ msgstr ""
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.res_config_settings_view_form
-msgid "Cuando un equipo sea hibernado la suscripción que se generará en esta etapa."
+msgid "Cuando un equipo sea hibernado la suscripción se generará en esta etapa."
 msgstr ""
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.res_config_settings_view_form
-msgid "Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas con esta lista de precios."
+msgid "Cuando un equipo sea hibernado la suscripción será creada con esta lista de precios."
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.res_config_settings_view_form
+msgid "Cuando un equipo sea hibernado la suscripción será creada con este equipo de ventas."
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.res_config_settings_view_form
+msgid "Cuando un equipo sea hibernado la suscripción será creada con este responsble."
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.res_config_settings_view_form
+msgid "Cuando un equipo sea hibernado la suscripción será creada con este servicio."
 msgstr ""
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.res_config_settings_view_form
 msgid "Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en esta etapa."
-msgstr ""
-
-#. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.res_config_settings_view_form
-msgid "Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en este equipo de ventas."
-msgstr ""
-
-#. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.res_config_settings_view_form
-msgid "Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en este producto."
-msgstr ""
-
-#. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.res_config_settings_view_form
-msgid "Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en este responsble."
 msgstr ""
 
 #. module: lgps
@@ -919,7 +919,6 @@ msgstr ""
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_res_config_settings__subscription_hibernate_stage_id
-#: model:ir.model.fields,field_description:lgps.field_res_config_settings__subscription_hibernate_stage_id_currents
 msgid "Default Etapa de Suscripción en Hibernacón"
 msgstr ""
 
@@ -942,6 +941,13 @@ msgid "Default Hibernate Service"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/res_config_settings.py:48
+#: model:ir.model.fields,field_description:lgps.field_res_config_settings__subscription_hibernate_stage_id_currents
+#, python-format
+msgid "Default Hibernate Stage Current Subscriptions"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/res_config_settings.py:54
 #, python-format
 msgid "Default Hibernate Subscription Price List"
@@ -949,7 +955,6 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/res_config_settings.py:42
-#: code:addons/lgps/models/res_config_settings.py:48
 #, python-format
 msgid "Default Hibernate Subscription Stage"
 msgstr ""
@@ -2548,7 +2553,7 @@ msgstr ""
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.res_config_settings_view_form
-msgid "Selecciona el canal de comunicación que será utilizado por default para enviar notificaciones de los equipos que son hibernados."
+msgid "Selecciona el canal de comunicación que será utilizado por default para enviar notificaciones de los equipos que son hibernados / deshibernados."
 msgstr ""
 
 #. module: lgps

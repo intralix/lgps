@@ -45,7 +45,7 @@ class ResConfigSettings(models.TransientModel):
 
     subscription_hibernate_stage_id_currents = fields.Many2one(
         'sale.subscription.stage',
-        string=_("Default Hibernate Subscription Stage"),
+        string=_("Default Hibernate Stage Current Subscriptions"),
         config_parameter='lgps.device_wizard.hibernate_current_subscription_stage',
     )
 
