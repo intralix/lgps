@@ -332,11 +332,6 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             })
             r.message_post(body=body)
 
-            # Cerramos las suscripciones que tenga el equipo abiertas
-            #subscription_to_close = r.suscription_id
-            #if subscription_to_close:
-                #self._change_subscriptions_stage(subscription_to_close, body, subscription_current_hibernate_stage_id)
-
             # revisamos el tema de las suscripciones:
             default = dict(None or {})
             new_subscription = self.env['sale.subscription']
@@ -644,6 +639,11 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 'There is not configuration for default current subscriptions stage.\n'
                 'Configure this in order to send the notification.'))
 
+        channel_id = lgps_config.get_param('lgps.hibernate_device_wizard.default_channel')
+        if not channel_id:
+            raise UserError(_(
+                'There is not configuration for default channel.\n Configure this in order to send the notification.'))
+
         subscription_in_progress_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_in_progress')
         subscription_hibernate_stage_id = self.sudo().env['sale.subscription.stage'].search([
             ('id', '=', subscription_hibernate_stage_id)], limit=1)
@@ -734,12 +734,11 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             # Create Object Log
             self.create_device_log(r)
 
-        #channel_msn = '<br/>Los equipos mencionados a continuación se procesaron para ser dehibernados por motivo de:<br/>'
-        #channel_msn += self.comment + '<br/> soliciato por: ' + self.requested_by + '<br/>'
-        #channel_msn += self.devices_list
+        channel_msn = '<br/>Los equipos mencionados a continuación se procesaron para ser dehibernados por motivo de:<br/>'
+        channel_msn += self.comment + '<br/> soliciato por: ' + self.requested_by + '<br/>'
+        channel_msn += notify_gps_list
 
-        #channel_id = lgps_config.get_param('lgps.device_wizard.drop_default_channel')
-        #self.log_to_channel(channel_id, channel_msn)
+        self.log_to_channel(channel_id, channel_msn)
 
         return {}
 
@@ -819,8 +818,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                     ('id', '=', default_stage)], limit=1)
             else:
                 subscription_close_stage = default_stage
-
-        #_logger.warning('STAGE TO PROCESS: %s', subscription_close_stage)
+        
         for subscription in subscriptions:
             subscription.write({'stage_id': subscription_close_stage.id})
             if close:
@@ -830,7 +828,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                     body = 'Se cierra suscripción por motivo de: <br>'
             else:
                 body = comment
-            #_logger.warning('GENERATED BODY: %s', body)
+
             subscription.message_post(body=body)
 
         return True
