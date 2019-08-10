@@ -218,6 +218,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         active_records = self.env[active_model].browse(self._context.get('active_ids'))
 
         # LGPS Global Configuration
+        subscription_close_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_closed')
+
+        # LGPS Global Configuration
         lgps_config = self.sudo().env['ir.config_parameter']
 
         subscription_hibernate_stage_id = lgps_config.get_param(
@@ -370,6 +373,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         subscriptions = self.env['sale.subscription'].search([
             ['gpsdevice_id', 'in', active_records.ids],
             ['id', 'not in', skip_subscription_ids],
+            ['stage_id', '!=', subscription_close_stage],
         ])
 
         # Alterando las suscripciones
