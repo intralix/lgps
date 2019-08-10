@@ -373,7 +373,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         subscriptions = self.env['sale.subscription'].search([
             ['gpsdevice_id', 'in', active_records.ids],
             ['id', 'not in', skip_subscription_ids],
-            ['stage_id', '!=', subscription_close_stage],
+            ['stage_id', '!=', subscription_close_stage.id],
         ])
 
         # Alterando las suscripciones
