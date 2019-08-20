@@ -60,6 +60,7 @@
                   <group>
                       <field name="tracking"/>
                       <field name="fuel"/>
+                      <field name="fleetrun"/>
                       <field name="scanner"/>
                   </group>
                   <group>

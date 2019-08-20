@@ -65,6 +65,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
     scanner = fields.Boolean(default=False, string="Scanner")
     temperature = fields.Boolean(default=False, string=_("Temperature"))
     logistic = fields.Boolean(default=False, string=_("Logistic"))
+    fleetrun = fields.Boolean(default=False, string=_("Fleetrun"))
     device_status = fields.Selection(
         selection=[
             ("drop", _("Drop")),
@@ -167,6 +168,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             if r.logistic:
                 additional_functions = True
                 gps_functions_summary += "Logística<br/>"
+            if r.fleetrun:
+                additional_functions = True
+                gps_functions_summary += "Mantenimiento de Flotilla<br/>"
 
             body += '<br/>' + acumulador
             if additional_functions:
@@ -181,6 +185,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             'scanner': False,
             'temperature': False,
             'logistic': False,
+            'fleetrun': False,
             'platform': "Drop",
         })
 
@@ -320,6 +325,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             if r.logistic:
                 additional_functions = True
                 gps_functions_summary += "Logística<br/>"
+            if r.fleetrun:
+                additional_functions = True
+                gps_functions_summary += "Mantenimiento de Flotilla<br/>"
 
             body += '<br/>' + acumulador
             if additional_functions:
@@ -331,6 +339,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 'temperature': False,
                 'logistic': False,
                 'tracking': True,
+                'fleetrun': False,
                 'status': "hibernate",
             })
             r.message_post(body=body)
@@ -690,6 +699,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             if self.logistic:
                 additional_functions = True
                 gps_functions_summary += "Logística<br/>"
+            if self.fleetrun:
+                additional_functions = True
+                gps_functions_summary += "Mantenimiento de Flotilla<br/>"
 
             body += '<br/>' + acumulador
             if additional_functions:
@@ -702,6 +714,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 'temperature': self.temperature if self.temperature else r.temperature,
                 'logistic': self.logistic if self.logistic else r.logistic,
                 'tracking': self.tracking if self.tracking else r.tracking,
+                'fleetrun': self.fleetrun if self.fleetrun else r.fleetrun,
                 'status': self.device_status,
             })
             # write Comment

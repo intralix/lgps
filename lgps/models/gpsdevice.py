@@ -64,6 +64,12 @@ class GpsDevice(models.Model):
         track_visibility='onchange',
     )
 
+    fleetrun = fields.Boolean(
+        default=False,
+        string=_("Fleetrun"),
+        track_visibility='onchange',
+    )
+
     speaker = fields.Boolean(
         default=False,
         string=_("Speaker"),

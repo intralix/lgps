@@ -116,6 +116,7 @@
                 <group string="Funciones">
                   <field name="tracking"/>
                   <field name="fuel"/>
+                  <field name="fleetrun"/>
                   <field name="scanner"/>
                   <field name="temperature"/>
                   <field name="logistic"/>
