@@ -65,6 +65,17 @@
     <field name="model">lgps.cellchip</field>
     <field name="arch" type="xml">
       <search>
+
+        <filter string="ATT" name="provider_att"  domain="[('provider', '=', 'ATT')]"/>
+        <filter string="Cierto" name="provider_cierto"  domain="[('provider', '=', 'Cierto')]"/>
+        <filter string="CiertoT" name="provider_ciertot"  domain="[('provider', '=', 'CiertoT')]"/>
+        <filter string="Iusacell" name="provider_iusacell"  domain="[('provider', '=', 'Iusacell')]"/>
+        <filter string="MazTiempo" name="provider_maztiempo"  domain="[('provider', '=', 'MazTiempo')]"/>
+        <filter string="Movistar" name="provider_movistar"  domain="[('provider', '=', 'Movistar')]"/>
+        <filter string="Prossea" name="provider_prossea"  domain="[('provider', '=', 'Prossea')]"/>
+        <filter string="Simpacsys" name="provider_simpacsys"  domain="[('provider', '=', 'Simpacsys')]"/>
+        <filter string="Telcel" name="provider_telcel"  domain="[('provider', '=', 'Telcel')]"/>
+
         <field name="name"/>
         <field name="linenumber_id"/>
         <field name="status"/>
@@ -73,6 +84,13 @@
         <field name="provider"/>
         <field name="purchase_date"/>
         <field name="gpsdevice_id"/>
+         <group expand="1" string="Group By">
+          <filter string="Proveedor" name="proveedor" context="{'group_by':'provider'}"/>
+          <filter string="Estatus" name="estatus" context="{'group_by':'status'}"/>
+          <filter string="Plan" name="plan" context="{'group_by':'plan'}"/>
+           <separator orientation="vertical" />
+          <filter string="Fecha Compra" name="purchase_date" context="{'group_by':'purchase_date'}"/>
+        </group>
       </search>
     </field>
   </record>
