@@ -6,6 +6,7 @@
     <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
     <field name="arch" type="xml">
       <xpath expr="//field[@name='display_name']" position="before">
+        <field name="team_id"/>
         <field name="id"/>
       </xpath>
     </field>

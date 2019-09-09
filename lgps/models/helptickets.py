@@ -10,6 +10,13 @@ class Ticket(models.Model):
         index=True,
     )
 
+    accessory_id = fields.Many2one(
+        comodel_name="lgps.accessory",
+        string=_("Accesory"),
+        ondelete="set null",
+        index=True,
+    )
+
     closed_date = fields.Date(
         string=_("Closed Date"),
     )

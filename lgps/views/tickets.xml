@@ -5,8 +5,9 @@
     <field name="model">helpdesk.ticket</field>
     <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
     <field name="arch" type="xml">
-      <xpath expr="//field[@name='partner_email']" position="after">
+      <xpath expr="//field[@name='priority']" position="after">
         <field name="gpsdevice_id"/>
+        <field name="accessory_id"/>
       </xpath>
     </field>
   </record>
