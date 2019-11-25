@@ -93,6 +93,11 @@ class Accessory(models.Model):
         string=_("Tickets"),
     )
 
+    tickets_count = fields.Integer(
+        string=_("Tickets Count"),
+        compute='_compute_tickets_count',
+    )
+
     @api.model
     def create(self, vals):
         seq = self.env['ir.sequence'].next_by_code('lgps.accessory') or _('New')
@@ -138,3 +143,9 @@ class Accessory(models.Model):
 
                 accessory.write({'gpsdevice_id': None, 'status': 'uninstalled'})
         return True
+
+    @api.multi
+    def _compute_tickets_count(self):
+        for rec in self:
+            rec.tickets_count = self.env['helpdesk.ticket'].search_count(
+                [('accessory_id', '=', rec.id)])
