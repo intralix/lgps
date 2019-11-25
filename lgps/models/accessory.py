@@ -87,6 +87,12 @@ class Accessory(models.Model):
         string=_("Purchase Date"),
     )
 
+    helpdesk_tickets_ids = fields.One2many(
+        comodel_name="helpdesk.ticket",
+        inverse_name="accessory_id",
+        string=_("Tickets"),
+    )
+
     @api.model
     def create(self, vals):
         seq = self.env['ir.sequence'].next_by_code('lgps.accessory') or _('New')
