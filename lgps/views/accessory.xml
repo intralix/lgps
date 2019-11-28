@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-  <act_window id="action_counter_tickets_button" name="Tickets" res_model="helpdesk.ticket" view_mode="tree,form" domain="[('accessory_id', '=', active_id)]"/>
+  <act_window id="action_count_tickets_accesories_button" name="Tickets" res_model="helpdesk.ticket" view_mode="tree,form" domain="[('accessory_id', '=', active_id)]"/>
 
   <record id="seq_accesory" model="ir.sequence">
     <field name="name">Accessory Sequence</field>
@@ -29,10 +29,10 @@
           <button class="oe_stat_button"
                     type="action"
                     attrs=""
-                    name="%(action_counter_tickets_button)d"
+                    name="%(action_count_tickets_accesories_button)d"
                     icon="fa-support"
-                    context="{'default_accessory_id': active_id, 'default_partner_id': client_id}">
-              <field string="Tickets" name="tickets_count" widget="statinfo"/>
+                    context="{'default_accessory_id': active_id}">
+              <field string="Tickets" name="assigned_tickets" widget="statinfo"/>
             </button>
           </div>
 

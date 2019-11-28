@@ -93,9 +93,9 @@ class Accessory(models.Model):
         string=_("Tickets"),
     )
 
-    tickets_count = fields.Integer(
+    assigned_tickets = fields.Integer(
         string=_("Tickets Count"),
-        compute='_compute_tickets_count',
+        compute='_compute_assigned_tickets_count',
     )
 
     @api.model
@@ -145,7 +145,7 @@ class Accessory(models.Model):
         return True
 
     @api.multi
-    def _compute_tickets_count(self):
+    def _compute_assigned_tickets_count(self):
         for rec in self:
-            rec.tickets_count = self.env['helpdesk.ticket'].search_count(
+            rec.assigned_tickets = self.env['helpdesk.ticket'].search_count(
                 [('accessory_id', '=', rec.id)])

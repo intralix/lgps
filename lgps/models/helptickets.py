@@ -17,6 +17,7 @@ class Ticket(models.Model):
         index=True,
     )
 
+
     closed_date = fields.Date(
         string=_("Closed Date"),
     )
