@@ -19,6 +19,7 @@ class Accessory(models.Model):
         comodel_name="stock.production.lot",
         string=_("Serial Number"),
         index=True,
+        track_visibility='onchange'
     )
 
     client_id = fields.Many2one(
@@ -30,6 +31,7 @@ class Accessory(models.Model):
             ('is_company', '=', True)
         ],
         index=True,
+        track_visibility='onchange'
     )
 
     gpsdevice_id = fields.Many2one(
@@ -43,11 +45,12 @@ class Accessory(models.Model):
     installation_date = fields.Date(
         default=fields.Date.today,
         string=_("Installation Date"),
+        track_visibility='onchange'
     )
 
     status = fields.Selection(
         selection=[
-            ("drop", "Drop"),
+            ("drop", _("Drop")),
             ("comodato", _("Comodato")),
             ("courtesy", _("Courtesy")),
             ("demo", _("Demo")),
@@ -85,6 +88,20 @@ class Accessory(models.Model):
     purchase_date = fields.Date(
         default=fields.Date.today,
         string=_("Purchase Date"),
+        track_visibility='onchange'
+    )
+    warranty_end_date = fields.Date(
+        compute="_compute_end_warranty",
+        string=_("Warranty End Date"),
+        store=True,
+    )
+
+    warranty_term = fields.Selection(
+        selection=[
+            ("12", _("12 months")),
+        ],
+        default="12",
+        string=_("Warranty Term"),
     )
 
     helpdesk_tickets_ids = fields.One2many(
@@ -149,3 +166,13 @@ class Accessory(models.Model):
         for rec in self:
             rec.assigned_tickets = self.env['helpdesk.ticket'].search_count(
                 [('accessory_id', '=', rec.id)])
+
+    @api.one
+    @api.depends('warranty_term', 'installation_date')
+    def _compute_end_warranty(self):
+        if not (self.warranty_term and self.installation_date):
+            self.warranty_end_date = None
+        else:
+            months = int(self.warranty_term[:2])
+            start = fields.Date.from_string(self.installation_date)
+            self.warranty_end_date = start + timedelta(months * 365 / 12)

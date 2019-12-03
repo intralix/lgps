@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Split Record -->
+  <record id="view_common_operations_accessory_wizard" model="ir.ui.view">
+    <field name="name">lgps.common_operations_accessory_wizard.form</field>
+    <field name="model">lgps.common_operations_accessory_wizard</field>
+    <field name="arch" type="xml">
+       <form string="Drop Process">
+           <group><p class="text-primary"> Selecciona el proceso a ejecutar en los equipos seleccionados:</p></group>
+           <group>
+               <field name="operation_mode"/>
+           </group>
+           <hr/>
+           <group><p class="text-primary"> Accesorio(s) Seleccionado(s):</p></group>
+        <group>
+             <field name="accessories_ids" readonly="1" string="Accesorios sustituido">
+                <tree string="Accessories to Process">
+                  <field name="name"/>
+                  <field name="serialnumber_id"/>
+                  <field name="purchase_date"/>
+                  <field name="installation_date"/>
+                  <field name="product_id"/>
+                  <field name="gpsdevice_id"/>
+                </tree>
+            </field>
+        </group>
+          <group><p class="text-primary"> Ingresa la información requerida para el proceso selecionado:</p></group>
+           <group>
+               <group>
+                   <field name="requested_by"
+                          attrs="{
+                          'invisible':[('operation_mode', 'in', ['substitution','replacement'])],
+                          'required':[('operation_mode', 'not in', ['substitution','replacement'])]
+                          }"/>
+
+                   <field name="comment" string="Comentario / Falla Presentada"/>
+               </group>
+               <group>
+                   <field name="destination_accessories_ids"/>
+                   <field name="related_odt"/>
+               </group>
+
+           </group>
+
+        <footer>
+          <button name="execute_operation" type="object" string="Execute Process" class="oe_highlight"/>
+          or
+          <button special="cancel" string="Cancel" type="object" class="btn-danger"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+    <act_window id="action_view_common_operations_accessory_wizard"
+                name="Accessory Common Operations"
+                src_model="lgps.accessory"
+                res_model="lgps.common_operations_accessory_wizard"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi"
+    />
+</odoo>

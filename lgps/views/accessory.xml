@@ -53,6 +53,18 @@
               <field name="purchase_date"/>
             </group>
           </group>
+          <notebook>
+            <page string="Warranty">
+              <group>
+                <group string="Warranty Information">
+                  <separator/>
+                  <field name="warranty_end_date"/>
+                  <field name="warranty_term"/>
+                </group>
+              </group>
+            </page>
+
+          </notebook>
         </sheet>
 
         <div class="oe_chatter">

@@ -15,3 +15,5 @@ from . import sales_order
 from . import custom_task
 from . import common_operations_wizard
 from . import device_history
+from . import common_accesories_operations_wizard
+from . import accesory_history

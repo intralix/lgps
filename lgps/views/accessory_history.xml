@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <record id="seq_device_history" model="ir.sequence">
-    <field name="name">Device History Sequence</field>
-    <field name="code">lgps.device_history</field>
-    <field name="prefix">GPSLOG</field>
+  <record id="seq_accessory_history" model="ir.sequence">
+    <field name="name">Accessory History Sequence</field>
+    <field name="code">lgps.accessory_history</field>
+    <field name="prefix">ACCLOG</field>
     <field name="padding">10</field>
     <field name="company_id" eval="False"/>
   </record>
 
-  <record model="ir.ui.view" id="device_history_form_view">
-    <field name="name">device_history.form</field>
-    <field name="model">lgps.device_history</field>
+  <record model="ir.ui.view" id="accessory_history_form_view">
+    <field name="name">accessory_history.form</field>
+    <field name="model">lgps.accessory_history</field>
     <field name="arch" type="xml">
-      <form string="Device History Form" create="false" edit="false">
+      <form string="Accessory History Form" create="false" edit="false">
         <header>
 
         </header>
         <sheet>
           <group>
-            <group string="Device Info">
+            <group string="Accessory Info">
               <separator/>
               <field name="name"/>
               <field name="client_id"/>
-              <field name="gpsdevice_ids" string="Aplicado A"/>
-              <field name="destination_gpsdevice_ids" />
+              <field name="accessory_ids" string="Aplicado A"/>
+              <field name="destination_accessory_ids" />
               <field name="serialnumber_id"/>
             </group>
             <group string="More Info">
@@ -53,16 +53,16 @@
     </field>
   </record>
 
-  <record model="ir.ui.view" id="device_history_search_view">
-    <field name="name">device_history.search</field>
-    <field name="model">lgps.device_history</field>
+  <record model="ir.ui.view" id="accessory_history_search_view">
+    <field name="name">accessory_history.search</field>
+    <field name="model">lgps.accessory_history</field>
     <field name="arch" type="xml">
       <search>
         <field name="operation_mode"/>
         <field name="name"/>
         <field name="client_id"/>
-        <field name="gpsdevice_ids"/>
-        <field name="destination_gpsdevice_ids"/>
+        <field name="accessory_ids"/>
+        <field name="destination_accessory_ids"/>
         <field name="product_id"/>
         <field name="related_odt"/>
         <field name="requested_by"/>
@@ -70,28 +70,28 @@
     </field>
   </record>
 
-  <record model="ir.ui.view" id="device_history_tree_view">
-    <field name="name">device_history.tree</field>
-    <field name="model">lgps.device_history</field>
+  <record model="ir.ui.view" id="accessory_history_tree_view">
+    <field name="name">accessory_history.tree</field>
+    <field name="model">lgps.accessory_history</field>
     <field name="arch" type="xml">
-      <tree string="device_history Tree" create="false" edit="false">
+      <tree string="accessory_history Tree" create="false" edit="false">
         <field name="name"/>
         <field name="client_id"/>
         <field name="operation_mode"/>
-        <field name="gpsdevice_ids"/>
+        <field name="accessory_ids"/>
         <field name="serialnumber_id"/>
         <field name="product_id"/>
         <field name="related_odt"/>
-        <field name="destination_gpsdevice_ids"/>
+        <field name="destination_accessory_ids"/>
         <field name="requested_by"/>
         <field name="comment"/>
       </tree>
     </field>
   </record>
 
-  <record model="ir.actions.act_window" id="device_history_list_action">
-    <field name="name">Device History</field>
-    <field name="res_model">lgps.device_history</field>
+  <record model="ir.actions.act_window" id="accessory_history_list_action">
+    <field name="name">Accessory History</field>
+    <field name="res_model">lgps.accessory_history</field>
     <field name="view_type">form</field>
     <field name="view_mode">tree,form</field>
     <field name="help" type="html">
@@ -99,5 +99,5 @@
     </field>
   </record>
 
-  <menuitem id="device_history_menu" name="History" parent="configuration_menu" action="device_history_list_action"/>
+  <menuitem id="accessory_history_menu" name="Acc. History" parent="configuration_menu" action="accessory_history_list_action"/>
 </odoo>

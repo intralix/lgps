@@ -5,9 +5,9 @@ from odoo import api, models, fields, _
 from odoo.exceptions import Warning
 
 
-class DeviceHistory(models.Model):
+class AccessoryHistory(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _name = 'lgps.device_history'
+    _name = 'lgps.accessory_history'
 
     name = fields.Char(
         required=True,
@@ -30,14 +30,14 @@ class DeviceHistory(models.Model):
         ],
     )
 
-    gpsdevice_ids = fields.Many2one(
-        comodel_name='lgps.gpsdevice',
+    accessory_ids = fields.Many2one(
+        comodel_name='lgps.accessory',
         string="Gps Device",
         required=True,
     )
 
-    destination_gpsdevice_ids = fields.Many2one(
-        comodel_name='lgps.gpsdevice',
+    destination_accessory_ids = fields.Many2one(
+        comodel_name='lgps.accessory',
         string="Substitute equipment",
     )
 
@@ -47,13 +47,8 @@ class DeviceHistory(models.Model):
     )
     operation_mode = fields.Selection(
         [
-            ('drop', _('Baja de Equipos')),
-            ('hibernation', _('Hibernación de Equipos')),
-            ('wakeup', _('Deshibernación de Equipos')),
             ('replacement', _('Reemplazo de Equipo')),
             ('substitution', _('Sustitución de equipo por revisión')),
-            ('accsubstitution', _('Sustitución de accesorio por revisión')),
-            ('accreplacement', _('Reemplazo de accesorio')),
         ],
         default='drop',
     )
@@ -74,9 +69,9 @@ class DeviceHistory(models.Model):
 
     @api.model
     def create(self, vals):
-        seq = self.env['ir.sequence'].next_by_code('lgps.device_history') or _('New')
+        seq = self.env['ir.sequence'].next_by_code('lgps.accessory_history') or _('New')
         vals['name'] = seq
-        return super(DeviceHistory, self).create(vals)
+        return super(AccessoryHistory, self).create(vals)
 
     @api.multi
     def copy(self, default=None):
@@ -90,7 +85,7 @@ class DeviceHistory(models.Model):
             new_name = u"Copy of {} ({})".format(self.name, copied_count)
 
         default['name'] = new_name
-        return super(DeviceHistory, self).copy(default)
+        return super(AccessoryHistory, self).copy(default)
 
     _sql_constraints = [
         ('name_unique',

@@ -4,18 +4,22 @@ gpsdevice_manager,Gps Devices Manager,model_lgps_gpsdevice,lgps_group_manager,1,
 accessory_manager,Accessories Manager,model_lgps_accessory,lgps_group_manager,1,1,1,1
 tracking_manager,Tracking manager,model_lgps_tracking,lgps_group_manager,1,1,1,1
 device_log_manager,Logs manager,model_lgps_device_history,lgps_group_manager,1,1,1,1
+accessory_log_manager,Accessory Logs manager,model_lgps_accessory_history,lgps_group_manager,1,1,1,1
 cellchip_read_all,Cellchips all,model_lgps_cellchip,lgps_group_user,1,1,1,0
 gpsdevice_read_all,Gps Devices all,model_lgps_gpsdevice,lgps_group_user,1,1,1,0
 accessory_read_all,Accessories all,model_lgps_accessory,lgps_group_user,1,1,1,0
 tracking_read_all,Tracking all,model_lgps_tracking,lgps_group_user,1,1,1,0
 device_log_read_all,Device Log all,model_lgps_device_history,lgps_group_user,1,1,1,0
+accessory_log_read_all,Accessory Log all,model_lgps_accessory_history,lgps_group_user,1,1,1,0
 cellchip_maintainer,Cellchips Maintainer,model_lgps_cellchip,lgps_group_maintainer,1,1,0,0
 gpsdevice_maintainer,Gps Devices Maintainer,model_lgps_gpsdevice,lgps_group_maintainer,1,1,0,0
 accessory_maintainer,Accessories Maintainer,model_lgps_accessory,lgps_group_maintainer,1,1,0,0
 tracking_maintainer,Tracking Maintainer,model_lgps_tracking,lgps_group_maintainer,1,1,0,0
 device_log_maintainer,Device Log Maintainer,model_lgps_device_history,lgps_group_maintainer,1,0,0,0
+accessory_log_maintainer,Accessory Log Maintainer,model_lgps_accessory_history,lgps_group_maintainer,1,0,0,0
 cellchip_guest,Cellchips guest,model_lgps_cellchip,lgps_group_guest,1,0,0,0
 gpsdevice_guest,Gps Devices guest,model_lgps_gpsdevice,lgps_group_guest,1,0,0,0
 accessory_guest,Accessories guest,model_lgps_accessory,lgps_group_guest,1,0,0,0
 tracking_guest,Tracking guest,model_lgps_tracking,lgps_group_guest,1,0,0,0
 device_log_guest,Device Log guest,model_lgps_device_history,lgps_group_guest,1,0,0,0
+accessory_log_guest,Accessory Log guest,model_lgps_accessory_history,lgps_group_guest,1,0,0,0
