@@ -131,7 +131,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             product_id = accessory.product_id
             serialnumber_id = accessory.serialnumber_id
             client_id = self.env.user.company_id
-            device_id = accessory.id
+            device_id = accessory.gpsdevice_id
             gps_device = accessory.gpsdevice_id if accessory.gpsdevice_id else ''
 
             repair_internal_notes = repair_internal_notes.replace("REEMPLAZADO_SERIE", serialnumber_id.name or 'NA')
@@ -139,7 +139,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             repair_internal_notes = repair_internal_notes.replace("EQUIPO_SERIE",self.destination_accessories_ids.serialnumber_id.name or 'NA')
             repair_internal_notes = repair_internal_notes.replace("EQUIPO", self.destination_accessories_ids.name)
             repair_internal_notes = repair_internal_notes.replace("RELATED_ODT", self.related_odt.name)
-            repair_internal_notes = repair_internal_notes.replace("DEVICE", gps_device.name)
+            repair_internal_notes = repair_internal_notes.replace("DEVICE", gps_device.name or 'NA')
 
             odt_name = self.env['ir.sequence'].sudo().next_by_code('repair.order')
             odt_name = odt_name.replace('ODT', 'RMA')
@@ -151,7 +151,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
                 'product_qty': 1,
                 'lot_id': serialnumber_id.id,
                 'partner_id': client_id.id,
-                'gpsdevice_id': device_id,
+                'gpsdevice_id': False,
                 'invoice_method': "after_repair",
                 'product_uom': product_id.uom_id.id,
                 'location_id': odt_object._default_stock_location(),
