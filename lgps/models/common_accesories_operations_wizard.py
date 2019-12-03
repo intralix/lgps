@@ -136,7 +136,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
 
             repair_internal_notes = repair_internal_notes.replace("REEMPLAZADO_SERIE", serialnumber_id.name or 'NA')
             repair_internal_notes = repair_internal_notes.replace("REEMPLAZADO", accessory.name)
-            repair_internal_notes = repair_internal_notes.replace("EQUIPO_SERIE",self.destination_accessories_ids.serialnumber_id.name or 'NA')
+            repair_internal_notes = repair_internal_notes.replace("EQUIPO_SERIE", self.destination_accessories_ids.serialnumber_id.name or 'NA')
             repair_internal_notes = repair_internal_notes.replace("EQUIPO", self.destination_accessories_ids.name)
             repair_internal_notes = repair_internal_notes.replace("RELATED_ODT", self.related_odt.name)
             repair_internal_notes = repair_internal_notes.replace("DEVICE", gps_device.name or 'NA')
@@ -180,6 +180,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             #operation_log_comment_device += device.warranty_start_date.strftime('%Y-%m-%d') + '</strong>'
 
             self.create_device_log(gps_device, accessory, operation_log_comment)
+            self._complete_relations(gps_device, self.destination_accessories_ids)
 
             self.destination_accessories_ids.write({'installation_date': accessory.installation_date })
 
@@ -281,6 +282,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             # Estatus del Equipo como desinstalado
             self.destination_accessories_ids.write({'installation_date': accessory.installation_date})
             self.create_device_log(gps_device, accessory, operation_log_comment)
+            self._complete_relations(gps_device, self.destination_accessories_ids)
 
             accessory.write({
                 'status': "uninstalled",
@@ -413,3 +415,11 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
         _logger.warning('buffer: %s', buffer)
 
         return buffer
+
+    def _complete_relations(self, device, accessory):
+        accessory.write({
+            'gpsdevice_id': device.id
+        })
+
+        device.accessory_ids = [(4, accessory.id, 0)]
+        return
