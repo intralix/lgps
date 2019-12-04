@@ -7,10 +7,10 @@ import logging, re
 _logger = logging.getLogger(__name__)
 TAG_RE = re.compile(r'<[^>]+>')
 
+
 class CommonOperationsToAccessoriesWizard(models.TransientModel):
     _name = "lgps.common_operations_accessory_wizard"
     _description = "Common Operations To Accessories Wizard"
-
 
     def _default_accesories(self):
         return self.env['lgps.accessory'].browse(self._context.get('active_ids'))
@@ -31,8 +31,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
 
     destination_accessories_ids = fields.Many2one(
         comodel_name='lgps.accessory',
-        string="Substitute equipment",
-        #domain="[('status', 'in', ['new', 'inventory', 'uninstalled', 'ready','backup']), ('gpsdevice_id', '=', False)]"
+        string="Substitute accessory",
     )
 
     related_odt = fields.Many2one(
@@ -47,34 +46,6 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
     comment = fields.Text(
         string=_("Operation Reason"),
         required=True,
-    )
-
-    accessory_list = fields.Text(
-        string=_("Accessory List")
-    )
-    # Available services
-    accesory_status = fields.Selection(
-        selection=[
-            ("drop", _("Drop")),
-            ("comodato", _("Comodato")),
-            ("courtesy", _("Courtesy")),
-            ("demo", _("Demo")),
-            ("uninstalled", _("Uninstalled")),
-            ("external", _("External")),
-            ("hibernate", _("Hibernate")),
-            ("installed", _("Installed")),
-            ("inventory", _("Inventory")),
-            ("new", _("New")),
-            ("ready", _("Ready to Install")),
-            ("borrowed", _("Borrowed")),
-            ("tests", _("Tests")),
-            ("replacement", _("Replacement")),
-            ("backup", _("Backup")),
-            ("rma", _("RMA")),
-            ("sold", _("Sold")),
-        ],
-        default="inventory",
-        string=_("Status"),
     )
 
     @api.multi
@@ -124,16 +95,9 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
         operation_log_comment_accessory += 'Comentario: ' + self.comment
 
         for accessory in active_records:
-            # if not device.warranty_start_date:
-            #    raise UserError(_(
-            #       'The accessory does not have Warranty Start Date.\n'
-            #       'Complete this first in order to process the Replacement Operation.'))
-
             # Preparando Datos para la suscripcion
             product_id = accessory.product_id
             serialnumber_id = accessory.serialnumber_id
-            client_id = self.env.user.company_id
-            device_id = accessory.gpsdevice_id
             gps_device = accessory.gpsdevice_id if accessory.gpsdevice_id else ''
 
             repair_internal_notes = repair_internal_notes.replace("REEMPLAZADO_SERIE", serialnumber_id.name or 'NA')
@@ -176,10 +140,6 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             operation_log_comment_accessory = operation_log_comment_accessory.replace('EQUIPO', accessory.name)
             operation_log_comment_accessory = operation_log_comment_accessory.replace('RELATED_ODT', self.related_odt.name)
             operation_log_comment_accessory = operation_log_comment_accessory.replace("DEVICE", gps_device.name)
-            #operation_log_comment_device += '<br/>Fecha de garantía de <strong>'
-            #operation_log_comment_device += self.destination_accessories_ids.warranty_start_date.strftime('%Y-%m-%d')
-            #operation_log_comment_device += '</strong> a <strong>'
-            #operation_log_comment_device += device.warranty_start_date.strftime('%Y-%m-%d') + '</strong>'
 
             self.create_device_log(gps_device, accessory, operation_log_comment)
             self._complete_relations(gps_device, self.destination_accessories_ids)
@@ -201,8 +161,6 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
 
             self.create_accesory_log(accessory, operation_log_comment)
             self.log_to_channel(channel_id, operation_log_comment)
-
-            #self.destination_accessories_ids.write({'warranty_start_date': accessory.warranty_start_date})
             self.destination_accessories_ids.message_post(body=operation_log_comment_accessory)
 
         return {}
@@ -241,16 +199,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
         active_model = self._context.get('active_model')
         active_records = self.env[active_model].browse(self._context.get('active_ids'))
 
-        #Desasginar el dispositivo del GPS
-        # Cambiar el estatus del accesorio a Desinstalado
-
         for accessory in active_records:
-            # if not accessory.gpsdevice_id.warranty_start_date:
-            #    raise UserError(_(
-            #       'The gps device does not have Warranty Start Date. \n'
-            #       'Complete this first in order to process the Substitution Operation.'
-            #   ))
-
             # Preparando Datos para la ODT
             product_id = accessory.product_id
             serialnumber_id = accessory.serialnumber_id
@@ -329,7 +278,6 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
     def chek_status_before_further_process(self, accessories, status):
         error = False
         buffer = ''
-        # row_list = []
 
         for accessory in accessories:
             if accessory.status != status or accessory.platform == 'Drop':
@@ -337,9 +285,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
                 buffer += accessory.name + '  /  ' + accessory.status + '  /  ' + accessory.serialnumber_id.name + '\n'
 
         if error:
-            # _logger.warning('row_list: %s', row_list)
             raise UserError(
-                # _('Some devices does not has the right status for this operation.\n\n ' + self.cool_format(row_list))
                 _('Some accessories does not has the right status for this operation.\n\n ' + buffer)
             )
 
@@ -376,6 +322,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             return _('Who authorizes this request?')
         if field == 'related_odt':
             return _('You forgot to select the Related ODT')
+        return
 
     def create_device_log(self, device, accessory, comment):
         log_object = self.env['lgps.device_history']
@@ -399,8 +346,8 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
 
     def create_accesory_log(self, accessory, comment):
         log_object = self.env['lgps.accessory_history']
-        operation_executed = 'acc' + self.operation_mode
         comment = TAG_RE.sub('', comment)
+
         dictionary = {
             'name': accessory.name + ' - ' + self.operation_mode,
             'product_id': accessory.product_id.id,
@@ -427,15 +374,6 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             channel_notifier.message_post(body=channel_msn, subtype='mail.mt_comment', partner_ids=[(4, self.env.uid)])
 
         return {}
-
-    def cool_format(self, data):
-        buffer = ''
-        col_width = max(len(word) for row in data for word in row) + 4  # padding
-        for row in data:
-            buffer += "".join(word.ljust(col_width) for word in row) + '\n'
-        _logger.warning('buffer: %s', buffer)
-
-        return buffer
 
     def _complete_relations(self, device, accessory):
         accessory.write({
