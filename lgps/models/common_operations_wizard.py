@@ -513,7 +513,10 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             self.create_device_log(device)
             self.log_to_channel(channel_id, operation_log_comment)
 
-            self.destination_gpsdevice_ids.write({'warranty_start_date': device.warranty_start_date})
+            self.destination_gpsdevice_ids.write({
+                'warranty_start_date': device.warranty_start_date,
+                'status': 'replacement'
+            })
             self.destination_gpsdevice_ids.message_post(body=operation_log_comment_device)
 
         return {}
