@@ -73,6 +73,12 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='lgps.device_wizard.substitution_default_channel',
     )
 
+    repairs_default_price_list_id = fields.Many2one(
+        'product.pricelist',
+        string=_("Default Repairs Subscription Price List"),
+        config_parameter='lgps.device_wizard.repairs_default_price_list_id',
+    )
+
     def set_values(self):
         super(ResConfigSettings, self).set_values()
 

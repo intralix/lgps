@@ -8,6 +8,25 @@
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('settings')]" position="inside">
                 <div class="app_settings_block" data-string="LGPS" string="Intx" data-key="lgps" groups="lgps.lgps_group_manager">
+                    <h2>Configuración General para operaciones de Equipos / Accesorios</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box" title="Selecciona la lista de precios a itilizar al crear ODT de RMA.">
+                            <div class="o_setting_right_pane">
+                                <label for="repairs_default_price_list_id"/>
+                                <div class="text-muted">
+                                   Pick a Default Price List For RMA Odt records
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <label for="repairs_default_price_list_id" class="o_light_label"/>
+                                        <field name="repairs_default_price_list_id" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                     <h2>Configuración / Proceso para Equipos en Baja</h2>
                     <div class="row mt16 o_settings_container">
                         <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el canal de comunicación que será utilizado por default para enviar notificaciones de las bajas de equipos">
