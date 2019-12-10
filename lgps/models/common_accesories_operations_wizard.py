@@ -100,6 +100,10 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             serialnumber_id = accessory.serialnumber_id
             gps_device = accessory.gpsdevice_id
 
+            if not gps_device:
+                raise UserError(_(
+                    'The selected accessory does not have any gps devices associated.\nCannot process any further.'))
+
             repair_internal_notes = repair_internal_notes.replace("REEMPLAZADO_SERIE", serialnumber_id.name or 'NA')
             repair_internal_notes = repair_internal_notes.replace("REEMPLAZADO", accessory.name)
             repair_internal_notes = repair_internal_notes.replace("EQUIPO_SERIE", self.destination_accessories_ids.serialnumber_id.name or 'NA')
@@ -205,6 +209,10 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             serialnumber_id = accessory.serialnumber_id
             client_id = accessory.client_id
             gps_device = accessory.gpsdevice_id
+
+            if not gps_device:
+                raise UserError(_(
+                    'The selected accessory does not have any gps devices associated.\nCannot process any further.'))
 
             repair_internal_notes = repair_internal_notes.replace("SUSTITUIDO_SERIE", serialnumber_id.name)
             repair_internal_notes = repair_internal_notes.replace("SUSTITUIDO", accessory.name)
