@@ -17,8 +17,8 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
 
     operation_mode = fields.Selection(
         [
-            ('replacement', _('Reemplazo de accesorio')),
-            ('substitution', _('Sustitución por revisión')),
+            ('replacement', _('Reemplazo de accesorio por garantía')),
+            #('substitution', _('Sustitución por revisión')),
         ],
     )
 
@@ -31,7 +31,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
 
     destination_accessories_ids = fields.Many2one(
         comodel_name='lgps.accessory',
-        string="Substitute accessory",
+        string=_("Substitute accessory"),
     )
 
     related_odt = fields.Many2one(
@@ -57,8 +57,8 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
         if self.operation_mode == 'replacement':
             self.execute_replacement()
         # Substitution
-        if self.operation_mode == 'substitution':
-            self.execute_substitution()
+        # if self.operation_mode == 'substitution':
+        #    self.execute_substitution()
 
         return {}
 

@@ -6,7 +6,7 @@
     <field name="model">lgps.common_operations_accessory_wizard</field>
     <field name="arch" type="xml">
        <form string="Drop Process">
-           <group><p class="text-primary"> Selecciona el proceso a ejecutar en los equipos seleccionados:</p></group>
+           <group><p class="text-primary"> Selecciona el proceso a ejecutar en los accesorios seleccionados:</p></group>
            <group>
                <field name="operation_mode"/>
            </group>

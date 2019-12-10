@@ -863,7 +863,6 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             'client_id': device.client_id.id,
             'gpsdevice_ids': device.id,
             'destination_gpsdevice_ids': self.destination_gpsdevice_ids.id,
-            'product_id': device.product_id.id,
             'operation_mode': self.operation_mode,
             'related_odt': self.related_odt.id,
             'requested_by': self.requested_by,
