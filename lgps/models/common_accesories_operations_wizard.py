@@ -98,7 +98,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             # Preparando Datos para la suscripcion
             product_id = accessory.product_id
             serialnumber_id = accessory.serialnumber_id
-            gps_device = accessory.gpsdevice_id if accessory.gpsdevice_id else ''
+            gps_device = accessory.gpsdevice_id
 
             repair_internal_notes = repair_internal_notes.replace("REEMPLAZADO_SERIE", serialnumber_id.name or 'NA')
             repair_internal_notes = repair_internal_notes.replace("REEMPLAZADO", accessory.name)
