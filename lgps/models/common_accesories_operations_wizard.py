@@ -94,6 +94,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
         operation_log_comment_accessory += ' por estar dentro de garantía.<br/><br/>'
         operation_log_comment_accessory += 'Comentario: ' + self.comment
 
+
         for accessory in active_records:
             # Preparando Datos para la suscripcion
             product_id = accessory.product_id
@@ -103,6 +104,9 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             if not gps_device:
                 raise UserError(_(
                     'The selected accessory does not have any gps devices associated.\nCannot process any further.'))
+
+            operation_log_comment_accessory += '<br/>Fecha de garantía de: ' + accessory.warranty_start_date.strftime('%Y-%m-%d')
+            operation_log_comment_accessory += ' a ' + accessory.warranty_end_date.strftime('%Y-%m-%d')
 
             repair_internal_notes = repair_internal_notes.replace("REEMPLAZADO_SERIE", serialnumber_id.name or 'NA')
             repair_internal_notes = repair_internal_notes.replace("REEMPLAZADO", accessory.name)
