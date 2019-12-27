@@ -90,6 +90,11 @@ class Accessory(models.Model):
         string=_("Purchase Date"),
         track_visibility='onchange'
     )
+
+    warranty_start_date = fields.Date(
+        string=_("Warranty Start Date"),
+    )
+
     warranty_end_date = fields.Date(
         compute="_compute_end_warranty",
         string=_("Warranty End Date"),
@@ -168,11 +173,11 @@ class Accessory(models.Model):
                 [('accessory_id', '=', rec.id)])
 
     @api.one
-    @api.depends('warranty_term', 'installation_date')
+    @api.depends('warranty_term', 'warranty_start_date')
     def _compute_end_warranty(self):
-        if not (self.warranty_term and self.installation_date):
+        if not (self.warranty_term and self.warranty_start_date):
             self.warranty_end_date = None
         else:
             months = int(self.warranty_term[:2])
-            start = fields.Date.from_string(self.installation_date)
+            start = fields.Date.from_string(self.warranty_start_date)
             self.warranty_end_date = start + timedelta(months * 365 / 12)

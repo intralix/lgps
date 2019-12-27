@@ -120,7 +120,8 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
                 'product_id': product_id.id,
                 'product_qty': 1,
                 'lot_id': serialnumber_id.id,
-                'partner_id': accessory.client_id.id,
+                # 'partner_id': accessory.client_id.id,
+                'partner_id': self.env.user.company_id.id,
                 'gpsdevice_id': False,
                 'invoice_method': "after_repair",
                 'product_uom': product_id.uom_id.id,
@@ -151,7 +152,8 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             self.destination_accessories_ids.write({
                 'status': 'replacement',
                 'client_id': gps_device.client_id.id,
-                'installation_date': accessory.installation_date
+                # 'installation_date': accessory.installation_date
+                'warranty_start_date': accessory.warranty_start_date
             })
 
             # Estatus del Equipo como desinstalado

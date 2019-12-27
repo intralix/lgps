@@ -58,7 +58,11 @@
               <group>
                 <group string="Warranty Information">
                   <separator/>
+                  <field name="warranty_start_date"/>
                   <field name="warranty_end_date"/>
+                </group>
+                <group string="Term">
+                  <separator/>
                   <field name="warranty_term"/>
                 </group>
               </group>
