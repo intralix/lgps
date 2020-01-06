@@ -17,3 +17,9 @@ from . import common_operations_wizard
 from . import device_history
 from . import common_accesories_operations_wizard
 from . import accesory_history
+from . import failure_odt
+from . import failure_stages
+from . import failures
+from . import failure_functionalities_list
+from . import failure_components_list
+from . import failure_root_problem_list

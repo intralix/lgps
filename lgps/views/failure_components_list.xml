@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <record model="ir.ui.view" id="failure_components_list_form_view">
+    <field name="name">failure_components_list.form</field>
+    <field name="model">lgps.failure_components_list</field>
+    <field name="arch" type="xml">
+      <form string="Failures Form">
+        <header>
+
+        </header>
+        <sheet>
+            <group string="List Info">
+              <separator/>
+              <field name="failure_functionalities_list_id"/>
+              <field name="name"/>
+            </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="failure_components_list_search_view">
+    <field name="name">failure_components_list.search</field>
+    <field name="model">lgps.failure_components_list</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="failure_functionalities_list_id"/>
+        <field name="name"/>
+      </search>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="failure_components_list_tree_view">
+    <field name="name">failure_components_list.tree</field>
+    <field name="model">lgps.failure_components_list</field>
+    <field name="arch" type="xml">
+      <tree string="Failure components List Tree">
+        <field name="failure_functionalities_list_id"/>
+        <field name="name"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="failure_components_list_action">
+    <field name="name">failure_components_list</field>
+    <field name="res_model">lgps.failure_components_list</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">Create the first Failures Components List Record</p>
+    </field>
+  </record>
+
+  <menuitem
+          id="failure_components_list_menu"
+          name="Components List"
+          parent="failures_root_conf_menu"
+          action="failure_components_list_action"/>
+</odoo>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-10 01:41+0000\n"
-"PO-Revision-Date: 2019-12-10 01:41+0000\n"
+"POT-Creation-Date: 2020-01-06 18:30+0000\n"
+"PO-Revision-Date: 2020-01-06 18:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -103,7 +103,7 @@ msgid "12 meses"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/accessory.py:101
+#: code:addons/lgps/models/accessory.py:106
 #: code:addons/lgps/models/gpsdevice.py:46
 #, python-format
 msgid "12 months"
@@ -290,6 +290,12 @@ msgid "5MB"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.failures_kanban
+msgid "<br/>\n"
+"                            Reporte:"
+msgstr ""
+
+#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.cellchip_search_view
 #: selection:lgps.cellchip,provider:0
 msgid "ATT"
@@ -354,8 +360,11 @@ msgid "Accessories to Process"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/failures.py:95
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_accessory_wizard__accessories_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__accessory_id
 #: model_terms:ir.ui.view,arch_db:lgps.report_gpsdevice_view
+#, python-format
 msgid "Accessory"
 msgstr ""
 
@@ -389,6 +398,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__message_needaction
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_needaction
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__message_needaction
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__message_needaction
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_needaction
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_needaction
 msgid "Action Needed"
@@ -396,6 +406,7 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/cellchip.py:26
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_stages__active
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__active
 #, python-format
 msgid "Active"
@@ -416,6 +427,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__activity_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__activity_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__activity_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__activity_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__activity_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__activity_ids
 msgid "Activities"
@@ -432,6 +444,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__activity_state
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__activity_state
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__activity_state
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__activity_state
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__activity_state
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__activity_state
 msgid "Activity State"
@@ -524,10 +537,18 @@ msgid "Assistant B"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/failure_stages.py:16
+#: selection:lgps.failure.stages,state:0
+#, python-format
+msgid "Atendida"
+msgstr ""
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_attachment_count
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__message_attachment_count
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_attachment_count
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__message_attachment_count
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__message_attachment_count
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_attachment_count
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_attachment_count
 msgid "Attachment Count"
@@ -562,6 +583,11 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_sale_subscription__billing_cycle
 msgid "Billing Cycle"
+msgstr ""
+
+#. module: lgps
+#: selection:lgps.failures,kanban_state:0
+msgid "Blocked"
 msgstr ""
 
 #. module: lgps
@@ -732,10 +758,16 @@ msgid "Cliente:"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/failures.py:135
 #: code:addons/lgps/models/helptickets.py:22
 #: code:addons/lgps/models/odt.py:39
 #, python-format
 msgid "Closed Date"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__color
+msgid "Color Index"
 msgstr ""
 
 #. module: lgps
@@ -796,6 +828,29 @@ msgid "Complementos"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_components_list__name
+msgid "Componentes"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/failure_components_list.py:9
+#, python-format
+msgid "Components"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/failure_root_problem_list.py:14
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_root_problem_list__failure_components_list_id
+#, python-format
+msgid "Components Category"
+msgstr ""
+
+#. module: lgps
+#: model:ir.ui.menu,name:lgps.failure_components_list_menu
+msgid "Components List"
+msgstr ""
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__driver
 msgid "Conductor"
 msgstr ""
@@ -832,6 +887,7 @@ msgstr ""
 
 #. module: lgps
 #: model:ir.ui.menu,name:lgps.configuration_menu
+#: model:ir.ui.menu,name:lgps.failures_root_conf_menu
 msgid "Configuration"
 msgstr ""
 
@@ -880,6 +936,26 @@ msgid "Create the first Device History"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.actions.act_window,help:lgps.failure_components_list_action
+msgid "Create the first Failures Components List Record"
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.actions.act_window,help:lgps.failure_functionalities_list_list_action
+msgid "Create the first Failures Functionalities List Record"
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.actions.act_window,help:lgps.failures_list_action
+msgid "Create the first Failures Record"
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.actions.act_window,help:lgps.failure_root_problem_list_action
+msgid "Create the first Failures Root Problem List Record"
+msgstr ""
+
+#. module: lgps
 #: model_terms:ir.actions.act_window,help:lgps.gpsdevice_list_action
 msgid "Create the first Gps Device"
 msgstr ""
@@ -901,6 +977,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_accessory_wizard__create_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__create_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__create_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_components_list__create_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_functionalities_list__create_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_root_problem_list__create_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_stages__create_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__create_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__create_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__create_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_wizard__create_uid
@@ -914,6 +995,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_accessory_wizard__create_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__create_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__create_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_components_list__create_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_functionalities_list__create_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_root_problem_list__create_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_stages__create_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__create_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__create_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__create_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_wizard__create_date
@@ -1150,6 +1236,11 @@ msgid "Default: Servicio de Ivernación"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.failures_kanban
+msgid "Delete"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/accessory.py:56
 #: code:addons/lgps/models/common_operations_wizard.py:74
 #: code:addons/lgps/models/gpsdevice.py:170
@@ -1195,6 +1286,13 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__destination
 msgid "Destino"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/failures.py:139
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__manipulation_detected
+#, python-format
+msgid "Detected Manipulation"
 msgstr ""
 
 #. module: lgps
@@ -1260,6 +1358,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_accessory_wizard__display_name
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__display_name
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__display_name
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_components_list__display_name
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_functionalities_list__display_name
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_root_problem_list__display_name
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_stages__display_name
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__display_name
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__display_name
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__display_name
 #: model:ir.model.fields,field_description:lgps.field_lgps_wizard__display_name
@@ -1269,6 +1372,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/gpsdevice.py:15
 #: model:ir.model.fields,field_description:lgps.field_helpdesk_ticket__gpsdevice_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__gpsdevice_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__name
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__gpsdevice_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_wizard__gpsdevice_ids
@@ -1282,6 +1386,13 @@ msgstr ""
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.view_common_operations_device_wizard
 msgid "Dispositivo(s) Seleccionado(s):"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/failures.py:74
+#: selection:lgps.failures,warranty_status:0
+#, python-format
+msgid "Does not apply"
 msgstr ""
 
 #. module: lgps
@@ -1319,6 +1430,11 @@ msgstr ""
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_condensed_view
 msgid "Económico"
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.failures_kanban
+msgid "Edit"
 msgstr ""
 
 #. module: lgps
@@ -1392,6 +1508,77 @@ msgid "Facturado"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/failures.py:52
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__failure_components_list_id
+#, python-format
+msgid "Failure Components List"
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.failure_functionalities_list_tree_view
+msgid "Failure Functionalities List Tree"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/failures.py:44
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__failure_functionalities_list_id
+#, python-format
+msgid "Failure Funtionalities List"
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.failures_form_view
+msgid "Failure Information"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/failures.py:60
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__failure_root_problem_list_id
+#, python-format
+msgid "Failure Root Problem List"
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.failure_root_problem_list_tree_view
+msgid "Failure Root Problem List Tree"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_lgps_failure_stages
+msgid "Failure Stage"
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.failure_components_list_tree_view
+msgid "Failure components List Tree"
+msgstr ""
+
+#. module: lgps
+#: model:ir.ui.menu,name:lgps.failures_menu
+msgid "Failures"
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.failure_components_list_form_view
+#: model_terms:ir.ui.view,arch_db:lgps.failure_functionalities_list_form_view
+#: model_terms:ir.ui.view,arch_db:lgps.failure_root_problem_list_form_view
+#: model_terms:ir.ui.view,arch_db:lgps.failures_form_view
+msgid "Failures Form"
+msgstr ""
+
+#. module: lgps
+#: model:ir.ui.menu,name:lgps.failures_root_menu
+msgid "Failures Reports"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/failure_stages.py:14
+#: selection:lgps.failure.stages,state:0
+#, python-format
+msgid "Falla reportada"
+msgstr ""
+
+#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.cellchip_search_view
 msgid "Fecha Compra"
 msgstr ""
@@ -1436,6 +1623,7 @@ msgstr ""
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_helpdesk_ticket__closed_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__closed_date
 #: model:ir.model.fields,field_description:lgps.field_repair_order__closed_date
 msgid "Fecha de cierre"
 msgstr ""
@@ -1489,10 +1677,16 @@ msgid "Fleetrun"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_stages__fold
+msgid "Fold"
+msgstr ""
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__message_follower_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__message_follower_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_follower_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__message_follower_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__message_follower_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_follower_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_follower_ids
 msgid "Followers"
@@ -1503,6 +1697,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__message_channel_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_channel_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__message_channel_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__message_channel_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_channel_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_channel_ids
 msgid "Followers (Channels)"
@@ -1513,6 +1708,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__message_partner_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_partner_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__message_partner_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__message_partner_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_partner_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_partner_ids
 msgid "Followers (Partners)"
@@ -1538,6 +1734,21 @@ msgid "Funciones"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/failure_functionalities_list.py:9
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_functionalities_list__name
+#, python-format
+msgid "Functionalities"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/failure_components_list.py:14
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_components_list__failure_functionalities_list_id
+#: model:ir.ui.menu,name:lgps.failure_functionalities_list_menu
+#, python-format
+msgid "Functionalities List"
+msgstr ""
+
+#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.cellchip_form_view
 msgid "GPS Device"
 msgstr ""
@@ -1555,6 +1766,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/assign_accesories_wizard.py:13
 #: code:addons/lgps/models/custom_task.py:13
+#: code:addons/lgps/models/failures.py:88
 #: code:addons/lgps/models/helptickets.py:8
 #: code:addons/lgps/models/odt.py:13
 #: code:addons/lgps/models/suscriptions.py:9
@@ -1656,6 +1868,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_accessory_wizard__id
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__id
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__id
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_components_list__id
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_functionalities_list__id
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_root_problem_list__id
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_stages__id
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__id
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__id
 #: model:ir.model.fields,field_description:lgps.field_lgps_wizard__id
@@ -1680,6 +1897,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__name
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__name
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__name
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__name
 msgid "Id Interno"
 msgstr ""
 
@@ -1693,6 +1911,7 @@ msgstr ""
 #: model:ir.model.fields,help:lgps.field_lgps_accessory_history__message_unread
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__message_unread
 #: model:ir.model.fields,help:lgps.field_lgps_device_history__message_unread
+#: model:ir.model.fields,help:lgps.field_lgps_failures__message_unread
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__message_unread
 #: model:ir.model.fields,help:lgps.field_lgps_tracking__message_unread
 msgid "If checked new messages require your attention."
@@ -1703,6 +1922,7 @@ msgstr ""
 #: model:ir.model.fields,help:lgps.field_lgps_accessory_history__message_needaction
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__message_needaction
 #: model:ir.model.fields,help:lgps.field_lgps_device_history__message_needaction
+#: model:ir.model.fields,help:lgps.field_lgps_failures__message_needaction
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__message_needaction
 #: model:ir.model.fields,help:lgps.field_lgps_tracking__message_needaction
 msgid "If checked, new messages require your attention."
@@ -1713,9 +1933,22 @@ msgstr ""
 #: model:ir.model.fields,help:lgps.field_lgps_accessory_history__message_has_error
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__message_has_error
 #: model:ir.model.fields,help:lgps.field_lgps_device_history__message_has_error
+#: model:ir.model.fields,help:lgps.field_lgps_failures__message_has_error
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__message_has_error
 #: model:ir.model.fields,help:lgps.field_lgps_tracking__message_has_error
 msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: lgps
+#: selection:lgps.failures,kanban_state:0
+msgid "In Progress"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/failures.py:72
+#: selection:lgps.failures,warranty_status:0
+#, python-format
+msgid "In warranty"
 msgstr ""
 
 #. module: lgps
@@ -1725,6 +1958,7 @@ msgid "Ingresa la información requerida para el proceso selecionado:"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_accessory__warranty_start_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__warranty_start_date
 msgid "Inicio de Garantía"
 msgstr ""
@@ -1753,6 +1987,7 @@ msgstr ""
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__gpsdevice_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__gpsdevice_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__client_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__client_id
 msgid "Instalado En"
 msgstr ""
@@ -1782,6 +2017,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:40
 #: code:addons/lgps/models/cellchip.py:18
+#: code:addons/lgps/models/failures.py:32
 #: code:addons/lgps/models/gpsdevice.py:230
 #, python-format
 msgid "Installed On"
@@ -1797,6 +2033,7 @@ msgstr ""
 #: code:addons/lgps/models/accesory_history.py:14
 #: code:addons/lgps/models/accessory.py:14
 #: code:addons/lgps/models/device_history.py:14
+#: code:addons/lgps/models/failures.py:12
 #, python-format
 msgid "Internal Id"
 msgstr ""
@@ -1842,6 +2079,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__message_is_follower
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_is_follower
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__message_is_follower
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__message_is_follower
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_is_follower
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_is_follower
 msgid "Is Follower"
@@ -1860,12 +2098,22 @@ msgid "Iusacell"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__kanban_state
+msgid "Kanban State"
+msgstr ""
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory____last_update
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history____last_update
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip____last_update
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_accessory_wizard____last_update
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard____last_update
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history____last_update
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_components_list____last_update
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_functionalities_list____last_update
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_root_problem_list____last_update
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_stages____last_update
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures____last_update
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice____last_update
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking____last_update
 #: model:ir.model.fields,field_description:lgps.field_lgps_wizard____last_update
@@ -1909,6 +2157,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_accessory_wizard__write_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__write_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__write_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_components_list__write_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_functionalities_list__write_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_root_problem_list__write_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_stages__write_uid
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__write_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__write_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__write_uid
 #: model:ir.model.fields,field_description:lgps.field_lgps_wizard__write_uid
@@ -1922,6 +2175,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_accessory_wizard__write_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__write_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__write_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_components_list__write_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_functionalities_list__write_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_root_problem_list__write_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_stages__write_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__write_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__write_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__write_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_wizard__write_date
@@ -1978,6 +2236,13 @@ msgid "Line Terms"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.failure_components_list_form_view
+#: model_terms:ir.ui.view,arch_db:lgps.failure_functionalities_list_form_view
+#: model_terms:ir.ui.view,arch_db:lgps.failure_root_problem_list_form_view
+msgid "List Info"
+msgstr ""
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__devices_list
 msgid "Lista de Dispositivos"
 msgstr ""
@@ -2010,6 +2275,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__message_main_attachment_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_main_attachment_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__message_main_attachment_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__message_main_attachment_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_main_attachment_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_main_attachment_id
 msgid "Main Attachment"
@@ -2042,6 +2308,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__message_has_error
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_has_error
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__message_has_error
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__message_has_error
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_has_error
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_has_error
 msgid "Message Delivery error"
@@ -2052,6 +2319,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__message_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__message_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__message_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_ids
 msgid "Messages"
@@ -2111,11 +2379,17 @@ msgid "NA"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_stages__name
+msgid "Name"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/accesory_history.py:72
 #: code:addons/lgps/models/accessory.py:62
-#: code:addons/lgps/models/accessory.py:120
+#: code:addons/lgps/models/accessory.py:125
 #: code:addons/lgps/models/common_operations_wizard.py:80
 #: code:addons/lgps/models/device_history.py:77
+#: code:addons/lgps/models/failures.py:157
 #: code:addons/lgps/models/gpsdevice.py:176
 #: code:addons/lgps/models/partner.py:22
 #, python-format
@@ -2133,6 +2407,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__activity_date_deadline
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__activity_date_deadline
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__activity_date_deadline
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__activity_date_deadline
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__activity_date_deadline
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__activity_date_deadline
 msgid "Next Activity Deadline"
@@ -2143,6 +2418,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__activity_summary
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__activity_summary
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__activity_summary
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__activity_summary
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__activity_summary
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__activity_summary
 msgid "Next Activity Summary"
@@ -2153,6 +2429,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__activity_type_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__activity_type_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__activity_type_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__activity_type_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__activity_type_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__activity_type_id
 msgid "Next Activity Type"
@@ -2246,6 +2523,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__message_needaction_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_needaction_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__message_needaction_counter
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__message_needaction_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_needaction_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_needaction_counter
 msgid "Number of Actions"
@@ -2256,6 +2534,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__message_has_error_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_has_error_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__message_has_error_counter
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__message_has_error_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_has_error_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_has_error_counter
 msgid "Number of error"
@@ -2266,6 +2545,7 @@ msgstr ""
 #: model:ir.model.fields,help:lgps.field_lgps_accessory_history__message_needaction_counter
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__message_needaction_counter
 #: model:ir.model.fields,help:lgps.field_lgps_device_history__message_needaction_counter
+#: model:ir.model.fields,help:lgps.field_lgps_failures__message_needaction_counter
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__message_needaction_counter
 #: model:ir.model.fields,help:lgps.field_lgps_tracking__message_needaction_counter
 msgid "Number of messages which requires an action"
@@ -2276,6 +2556,7 @@ msgstr ""
 #: model:ir.model.fields,help:lgps.field_lgps_accessory_history__message_has_error_counter
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__message_has_error_counter
 #: model:ir.model.fields,help:lgps.field_lgps_device_history__message_has_error_counter
+#: model:ir.model.fields,help:lgps.field_lgps_failures__message_has_error_counter
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__message_has_error_counter
 #: model:ir.model.fields,help:lgps.field_lgps_tracking__message_has_error_counter
 msgid "Number of messages with delivery error"
@@ -2286,6 +2567,7 @@ msgstr ""
 #: model:ir.model.fields,help:lgps.field_lgps_accessory_history__message_unread_counter
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__message_unread_counter
 #: model:ir.model.fields,help:lgps.field_lgps_device_history__message_unread_counter
+#: model:ir.model.fields,help:lgps.field_lgps_failures__message_unread_counter
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__message_unread_counter
 #: model:ir.model.fields,help:lgps.field_lgps_tracking__message_unread_counter
 msgid "Number of unread messages"
@@ -2295,6 +2577,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__serialnumber_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__serialnumber_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__serialnumber_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__serialnumber_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__serialnumber_id
 msgid "Nº de serie"
 msgstr ""
@@ -2388,6 +2671,11 @@ msgid "Operation Reason"
 msgstr ""
 
 #. module: lgps
+#: model:ir.ui.menu,name:lgps.operations_menu
+msgid "Operations"
+msgstr ""
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__origin
 msgid "Origen"
 msgstr ""
@@ -2403,6 +2691,7 @@ msgstr ""
 #: selection:lgps.accessory_history,activity_state:0
 #: selection:lgps.cellchip,activity_state:0
 #: selection:lgps.device_history,activity_state:0
+#: selection:lgps.failures,activity_state:0
 #: selection:lgps.gpsdevice,activity_state:0
 #: selection:lgps.tracking,activity_state:0
 msgid "Overdue"
@@ -2474,6 +2763,7 @@ msgstr ""
 #: selection:lgps.accessory_history,activity_state:0
 #: selection:lgps.cellchip,activity_state:0
 #: selection:lgps.device_history,activity_state:0
+#: selection:lgps.failures,activity_state:0
 #: selection:lgps.gpsdevice,activity_state:0
 #: selection:lgps.tracking,activity_state:0
 msgid "Planned"
@@ -2514,6 +2804,13 @@ msgid "Por Instalar"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/failure_stages.py:15
+#: selection:lgps.failure.stages,state:0
+#, python-format
+msgid "Por atender"
+msgstr ""
+
+#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 msgid "Posicionamiento"
 msgstr ""
@@ -2544,6 +2841,7 @@ msgstr ""
 #: code:addons/lgps/models/accesory_history.py:46
 #: code:addons/lgps/models/accessory.py:79
 #: code:addons/lgps/models/device_history.py:46
+#: code:addons/lgps/models/failures.py:24
 #: code:addons/lgps/models/gpsdevice.py:218
 #, python-format
 msgid "Product Type"
@@ -2614,6 +2912,11 @@ msgstr ""
 #: selection:lgps.gpsdevice,status:0
 #, python-format
 msgid "RMA"
+msgstr ""
+
+#. module: lgps
+#: selection:lgps.failures,kanban_state:0
+msgid "Ready for next stage"
 msgstr ""
 
 #. module: lgps
@@ -2691,6 +2994,13 @@ msgid "Replacement"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/failures.py:81
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__report_date
+#, python-format
+msgid "Report Date"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/tracking.py:28
 #, python-format
 msgid "Requested By"
@@ -2717,9 +3027,22 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__activity_user_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__activity_user_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__activity_user_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__activity_user_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__activity_user_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__activity_user_id
 msgid "Responsible User"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/failure_root_problem_list.py:9
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_root_problem_list__name
+#, python-format
+msgid "Root Problem"
+msgstr ""
+
+#. module: lgps
+#: model:ir.ui.menu,name:lgps.failure_root_problem_list_menu
+msgid "Root Problem List"
 msgstr ""
 
 #. module: lgps
@@ -2820,9 +3143,15 @@ msgid "Sensor de Desenganche"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_stages__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/accesory_history.py:20
 #: code:addons/lgps/models/accessory.py:20
 #: code:addons/lgps/models/device_history.py:20
+#: code:addons/lgps/models/failures.py:102
 #: code:addons/lgps/models/gpsdevice.py:250
 #, python-format
 msgid "Serial Number"
@@ -2909,7 +3238,7 @@ msgid "Solicitado por"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/common_accesories_operations_wizard.py:289
+#: code:addons/lgps/models/common_accesories_operations_wizard.py:303
 #, python-format
 msgid "Some accessories does not has the right status for this operation.\n"
 "\n"
@@ -2936,7 +3265,14 @@ msgid "Speaker"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__stage_id
+msgid "Stage"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/tracking.py:39
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_stages__state
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__state
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__state
 #, python-format
 msgid "State"
@@ -2969,6 +3305,7 @@ msgstr ""
 #: model:ir.model.fields,help:lgps.field_lgps_accessory_history__activity_state
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__activity_state
 #: model:ir.model.fields,help:lgps.field_lgps_device_history__activity_state
+#: model:ir.model.fields,help:lgps.field_lgps_failures__activity_state
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__activity_state
 #: model:ir.model.fields,help:lgps.field_lgps_tracking__activity_state
 msgid "Status based on activities\n"
@@ -3064,6 +3401,13 @@ msgid "Sustitución de equipo por revisión"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/failures.py:18
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__symptom
+#, python-format
+msgid "Symptom"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/cellchip.py:131
 #, python-format
 msgid "Taken"
@@ -3118,6 +3462,7 @@ msgid "Temperature"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.accessory_form_view
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 msgid "Term"
 msgstr ""
@@ -3160,14 +3505,27 @@ msgid "The device does not have Warranty Start Date. \n"
 msgstr ""
 
 #. module: lgps
+#: sql_constraint:lgps.failures:0
+msgid "The failure id must be unique"
+msgstr ""
+
+#. module: lgps
 #: sql_constraint:lgps.gpsdevice:0
 msgid "The gps device id must be unique"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_accesories_operations_wizard.py:105
+#: code:addons/lgps/models/common_accesories_operations_wizard.py:220
+#, python-format
+msgid "The selected accessory does not have any gps devices associated.\n"
+"Cannot process any further."
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:71
-#: code:addons/lgps/models/common_accesories_operations_wizard.py:177
-#: code:addons/lgps/models/common_accesories_operations_wizard.py:370
+#: code:addons/lgps/models/common_accesories_operations_wizard.py:187
+#: code:addons/lgps/models/common_accesories_operations_wizard.py:384
 #: code:addons/lgps/models/common_operations_wizard.py:249
 #: code:addons/lgps/models/common_operations_wizard.py:255
 #: code:addons/lgps/models/common_operations_wizard.py:411
@@ -3196,7 +3554,7 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:74
-#: code:addons/lgps/models/common_accesories_operations_wizard.py:183
+#: code:addons/lgps/models/common_accesories_operations_wizard.py:193
 #, python-format
 msgid "There is not configuration for default list price in RMA reparis.\n"
 " Configure this option first."
@@ -3231,7 +3589,7 @@ msgid "There is not configuration for default user as responsable.\n"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/accessory.py:110
+#: code:addons/lgps/models/accessory.py:115
 #: code:addons/lgps/models/gpsdevice.py:295
 #: model:ir.actions.act_window,name:lgps.action_count_tickets_accesories_button
 #: model:ir.actions.act_window,name:lgps.action_counter_tickets_button
@@ -3244,7 +3602,7 @@ msgid "Tickets"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/accessory.py:114
+#: code:addons/lgps/models/accessory.py:119
 #: code:addons/lgps/models/gpsdevice.py:315
 #, python-format
 msgid "Tickets Count"
@@ -3269,6 +3627,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__product_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__product_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__product_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__product_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__product_id
 msgid "Tipo de producto"
 msgstr ""
@@ -3278,6 +3637,7 @@ msgstr ""
 #: selection:lgps.accessory_history,activity_state:0
 #: selection:lgps.cellchip,activity_state:0
 #: selection:lgps.device_history,activity_state:0
+#: selection:lgps.failures,activity_state:0
 #: selection:lgps.gpsdevice,activity_state:0
 #: selection:lgps.tracking,activity_state:0
 msgid "Today"
@@ -3353,6 +3713,7 @@ msgstr ""
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__warranty_end_date
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__warranty_end_date
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__warranty_end_date
 msgid "Término de Garantía"
 msgstr ""
@@ -3381,6 +3742,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__message_unread
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_unread
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__message_unread
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__message_unread
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_unread
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_unread
 msgid "Unread Messages"
@@ -3391,6 +3753,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__message_unread_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__message_unread_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__message_unread_counter
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__message_unread_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__message_unread_counter
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__message_unread_counter
 msgid "Unread Messages Counter"
@@ -3420,12 +3783,14 @@ msgstr ""
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.accessory_form_view
+#: model_terms:ir.ui.view,arch_db:lgps.failures_form_view
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 msgid "Warranty"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/accessory.py:95
+#: code:addons/lgps/models/accessory.py:100
+#: code:addons/lgps/models/failures.py:67
 #: code:addons/lgps/models/gpsdevice.py:40
 #, python-format
 msgid "Warranty End Date"
@@ -3438,18 +3803,25 @@ msgstr ""
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.accessory_form_view
+#: model_terms:ir.ui.view,arch_db:lgps.failures_form_view
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 msgid "Warranty Information"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/accessory.py:95
 #: code:addons/lgps/models/gpsdevice.py:35
 #, python-format
 msgid "Warranty Start Date"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/accessory.py:104
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__warranty_status
+msgid "Warranty Status"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/accessory.py:109
 #: code:addons/lgps/models/gpsdevice.py:52
 #, python-format
 msgid "Warranty Term"
@@ -3460,6 +3832,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__website_message_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__website_message_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_device_history__website_message_ids
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__website_message_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__website_message_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__website_message_ids
 msgid "Website Messages"
@@ -3470,6 +3843,7 @@ msgstr ""
 #: model:ir.model.fields,help:lgps.field_lgps_accessory_history__website_message_ids
 #: model:ir.model.fields,help:lgps.field_lgps_cellchip__website_message_ids
 #: model:ir.model.fields,help:lgps.field_lgps_device_history__website_message_ids
+#: model:ir.model.fields,help:lgps.field_lgps_failures__website_message_ids
 #: model:ir.model.fields,help:lgps.field_lgps_gpsdevice__website_message_ids
 #: model:ir.model.fields,help:lgps.field_lgps_tracking__website_message_ids
 msgid "Website communication history"
@@ -3482,10 +3856,17 @@ msgid "Weighted amount"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/common_accesories_operations_wizard.py:322
+#: code:addons/lgps/models/common_accesories_operations_wizard.py:336
 #: code:addons/lgps/models/common_operations_wizard.py:825
 #, python-format
 msgid "Who authorizes this request?"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/failures.py:73
+#: selection:lgps.failures,warranty_status:0
+#, python-format
+msgid "Without warranty"
 msgstr ""
 
 #. module: lgps
@@ -3498,14 +3879,14 @@ msgid "Work order related"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/common_accesories_operations_wizard.py:320
+#: code:addons/lgps/models/common_accesories_operations_wizard.py:334
 #: code:addons/lgps/models/common_operations_wizard.py:823
 #, python-format
 msgid "You forgot to comment the reason for this process to run."
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/common_accesories_operations_wizard.py:324
+#: code:addons/lgps/models/common_accesories_operations_wizard.py:338
 #: code:addons/lgps/models/common_operations_wizard.py:827
 #, python-format
 msgid "You forgot to select the Related ODT"
@@ -3523,12 +3904,33 @@ msgstr ""
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.accessory_tree_view
+#: model_terms:ir.ui.view,arch_db:lgps.failures_tree_view
 msgid "accessorys Tree"
 msgstr ""
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.device_history_tree_view
 msgid "device_history Tree"
+msgstr ""
+
+#. module: lgps
+#: model:ir.actions.act_window,name:lgps.failure_components_list_action
+msgid "failure_components_list"
+msgstr ""
+
+#. module: lgps
+#: model:ir.actions.act_window,name:lgps.failure_functionalities_list_list_action
+msgid "failure_functionalities_list"
+msgstr ""
+
+#. module: lgps
+#: model:ir.actions.act_window,name:lgps.failure_root_problem_list_action
+msgid "failure_root_problem_list"
+msgstr ""
+
+#. module: lgps
+#: model:ir.actions.act_window,name:lgps.failures_list_action
+msgid "failures"
 msgstr ""
 
 #. module: lgps
@@ -3556,6 +3958,26 @@ msgstr ""
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_device_history
 msgid "lgps.device_history"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_lgps_failure_components_list
+msgid "lgps.failure_components_list"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_lgps_failure_functionalities_list
+msgid "lgps.failure_functionalities_list"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_lgps_failure_root_problem_list
+msgid "lgps.failure_root_problem_list"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_lgps_failures
+msgid "lgps.failures"
 msgstr ""
 
 #. module: lgps

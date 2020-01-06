@@ -1,0 +1,17 @@
+<odoo noupdate="1">
+<record id="stage_10" model="lgps.failure.stages">
+<field name="name">Reported Failure</field>
+<field name="sequence">10</field>
+<field name="state">reported_failure</field>
+</record>
+<record id="stage_20" model="lgps.failure.stages">
+<field name="name">For Attending</field>
+<field name="sequence">20</field>
+<field name="state">for_attending</field>
+</record>
+<record id="stage_90" model="lgps.failure.stages">
+<field name="name">Attended</field>
+<field name="sequence">90</field>
+<field name="state">attended</field>
+</record>
+</odoo>
