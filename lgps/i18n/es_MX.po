@@ -1541,7 +1541,7 @@ msgstr "Problema Raíz"
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.failure_root_problem_list_tree_view
 msgid "Failure Root Problem List Tree"
-msgstr "Listado de problemas raíz"
+msgstr "Listado de causa raíz"
 
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_failure_stages
@@ -3043,7 +3043,7 @@ msgstr "Problema Raíz"
 #. module: lgps
 #: model:ir.ui.menu,name:lgps.failure_root_problem_list_menu
 msgid "Root Problem List"
-msgstr "Lista de problemas raíz"
+msgstr "Lista de causa raíz"
 
 #. module: lgps
 #: code:addons/lgps/models/tracking.py:90
@@ -3942,7 +3942,7 @@ msgstr "Funcionalidades"
 #. module: lgps
 #: model:ir.actions.act_window,name:lgps.failure_root_problem_list_action
 msgid "failure_root_problem_list"
-msgstr "Problemas raíz"
+msgstr "Causas raíz"
 
 #. module: lgps
 #: model:ir.actions.act_window,name:lgps.failures_list_action
@@ -3989,7 +3989,7 @@ msgstr "Funcionalidades"
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_failure_root_problem_list
 msgid "lgps.failure_root_problem_list"
-msgstr "Problemas Raíz"
+msgstr "Causas Raíz"
 
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_failures
