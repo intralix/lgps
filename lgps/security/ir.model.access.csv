@@ -5,41 +5,21 @@ accessory_manager,Accessories Manager,model_lgps_accessory,lgps_group_manager,1,
 tracking_manager,Tracking manager,model_lgps_tracking,lgps_group_manager,1,1,1,1
 device_log_manager,Logs manager,model_lgps_device_history,lgps_group_manager,1,1,1,1
 accessory_log_manager,Accessory Logs manager,model_lgps_accessory_history,lgps_group_manager,1,1,1,1
-failure_stages_manager,Failure stages manager,model_lgps_failure_stages,lgps_group_manager,1,1,1,1
-failure_manager,Failure manager,model_lgps_failures,lgps_group_manager,1,1,1,1
-failure_functionalities_list_manager,Failure Functionalities List Manager,model_lgps_failure_functionalities_list,lgps_group_manager,1,1,1,1
-failure_components_list_manager,Failure Components List Manager,model_lgps_failure_components_list,lgps_group_manager,1,1,1,1
-failure_root_problem_list_manager,Failure Root Problem List Manager,model_lgps_failure_root_problem_list,lgps_group_manager,1,1,1,1
 cellchip_read_all,Cellchips all,model_lgps_cellchip,lgps_group_user,1,1,1,0
 gpsdevice_read_all,Gps Devices all,model_lgps_gpsdevice,lgps_group_user,1,1,1,0
 accessory_read_all,Accessories all,model_lgps_accessory,lgps_group_user,1,1,1,0
 tracking_read_all,Tracking all,model_lgps_tracking,lgps_group_user,1,1,1,0
 device_log_read_all,Device Log all,model_lgps_device_history,lgps_group_user,1,1,1,0
 accessory_log_read_all,Accessory Log all,model_lgps_accessory_history,lgps_group_user,1,1,1,0
-failure_stage_read_all,Failure stages all,model_lgps_failure_stages,lgps_group_user,1,1,1,0
-failure_read_all,Failure all,model_lgps_failures,lgps_group_user,1,1,1,0
-failure_functionalities_list_read_all,Failure Functionalities List all,model_lgps_failure_functionalities_list,lgps_group_user,1,1,1,0
-failure_components_list_read_all,Failure Components List all,model_lgps_failure_components_list,lgps_group_user,1,1,1,0
-failure_root_problem_list_read_all,Failure Root Problem List all,model_lgps_failure_root_problem_list,lgps_group_user,1,1,1,0
 cellchip_maintainer,Cellchips Maintainer,model_lgps_cellchip,lgps_group_maintainer,1,1,0,0
 gpsdevice_maintainer,Gps Devices Maintainer,model_lgps_gpsdevice,lgps_group_maintainer,1,1,0,0
 accessory_maintainer,Accessories Maintainer,model_lgps_accessory,lgps_group_maintainer,1,1,0,0
 tracking_maintainer,Tracking Maintainer,model_lgps_tracking,lgps_group_maintainer,1,1,0,0
 device_log_maintainer,Device Log Maintainer,model_lgps_device_history,lgps_group_maintainer,1,0,0,0
 accessory_log_maintainer,Accessory Log Maintainer,model_lgps_accessory_history,lgps_group_maintainer,1,0,0,0
-failure_stage_mantainer,Failure Stage Mantainer,model_lgps_failure_stages,lgps_group_maintainer,1,1,0,0
-failure_maintainer,Failure Mantainer,model_lgps_failures,lgps_group_maintainer,1,1,0,0
-failure_functionalities_list_maintainer,Failure Functionalities List Mantainer,model_lgps_failure_functionalities_list,lgps_group_maintainer,1,1,0,0
-failure_components_list_maintainer,Failure Components List Mantainer,model_lgps_failure_components_list,lgps_group_maintainer,1,1,0,0
-failure_root_problem_list_maintainer,Failure Root Problem List Mantainer,model_lgps_failure_root_problem_list,lgps_group_maintainer,1,1,0,0
 cellchip_guest,Cellchips guest,model_lgps_cellchip,lgps_group_guest,1,0,0,0
 gpsdevice_guest,Gps Devices guest,model_lgps_gpsdevice,lgps_group_guest,1,0,0,0
 accessory_guest,Accessories guest,model_lgps_accessory,lgps_group_guest,1,0,0,0
 tracking_guest,Tracking guest,model_lgps_tracking,lgps_group_guest,1,0,0,0
 device_log_guest,Device Log guest,model_lgps_device_history,lgps_group_guest,1,0,0,0
 accessory_log_guest,Accessory Log guest,model_lgps_accessory_history,lgps_group_guest,1,0,0,0
-failure_stage_guest,Failure Stage Guest,model_lgps_failure_stages,lgps_group_guest,1,0,0,0
-failure_guest,Failure Guest,model_lgps_failures,lgps_group_guest,1,0,0,0
-failure_functionalities_list_guest,Failure Functionalities List Guest,model_lgps_failure_functionalities_list,lgps_group_guest,1,0,0,0
-failure_components_list_guest,Failure Components List Guest,model_lgps_failure_components_list,lgps_group_guest,1,0,0,0
-failure_root_problem_list_guest,Failure Root Problem List Guest,model_lgps_failure_root_problem_list,lgps_group_guest,1,0,0,0

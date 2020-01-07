@@ -49,11 +49,5 @@
         'views/device_history.xml',
         'views/wizard_accessory_operations.xml',
         'views/accessory_history.xml',
-        'views/odt_failure_view.xml',
-        'views/failures_stage.xml',
-        'views/failures.xml',
-        'views/failure_functionalities_list.xml',
-        'views/failure_components_list.xml',
-        'views/failure_root_problem_list.xml',
     ],
 }

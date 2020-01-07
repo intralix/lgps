@@ -18,7 +18,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
     operation_mode = fields.Selection(
         [
             ('replacement', _('Reemplazo de accesorio por garantía')),
-            #('substitution', _('Sustitución por revisión')),
+            ('substitution', _('Sustitución por nuevo')),
         ],
     )
 
@@ -57,8 +57,8 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
         if self.operation_mode == 'replacement':
             self.execute_replacement()
         # Substitution
-        # if self.operation_mode == 'substitution':
-        #    self.execute_substitution()
+        if self.operation_mode == 'substitution':
+            self.execute_substitution()
 
         return {}
 
@@ -72,7 +72,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
                 'There is not configuration for default channel.\n Configure this in order to send the notification.'))
         if not default_list_price:
             raise UserError(_(
-                'There is not configuration for default list price in RMA reparis.\n Configure this option first.'))
+                'There is not configuration for default list price in RMA repairs.\n Configure this option first.'))
 
         self._check_mandatory_fields(['comment', 'related_odt'])
 
@@ -191,27 +191,28 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
 
         if not default_list_price:
             raise UserError(_(
-                'There is not configuration for default list price in RMA reparis.\n Configure this option first.'))
+                'There is not configuration for default list price in RMA repairs.\n Configure this option first.'))
 
         # Messages to Log on Models
-        repair_internal_notes = 'El accesorio SUSTITUIDO / SUSTITUIDO_SERIE se sustituyó con el accesorio: EQUIPO / EQUIPO_SERIE en la ODT: RELATED_ODT en el equipo DEVICE '
-        operation_log_comment = 'El accesorio <strong>SUSTITUIDO / SUSTITUIDO_SERIE</strong> se retira del equipo DEVICE mientras esta en revisión con ODT'
-        operation_log_comment += ' <strong>RMA_ODT</strong>. <br/>Se instala el accesorio: <strong>EQUIPO / EQUIPO_SERIE</strong> en su lugar'
-        operation_log_comment += ' con la ODT <strong>RELATED_ODT</strong>. <br/>'
-        operation_log_comment += 'Se entrega accesorio a Soporte para revisión.<br/>'
+        operation_log_comment = 'Se desinstala el accesorio <strong>SUSTITUIDO / SUSTITUIDO_SERIE</strong> del '
+        operation_log_comment += 'dispositivo DEVICE en la ODT RELATED_ODT '
+        operation_log_comment += 'y se instala como nuevo el <strong>SUSTITUYE / SUSTITUYE_SERIE</strong>  el día FECHA_INSTALACION<br>'
+        operation_log_comment += 'Inicia garantía el FECHA_INSTALACION<br><br>'
         operation_log_comment += 'Comentario: ' + self.comment
 
-        operation_log_comment_device = 'Se coloca en el equipo DEVICE en sustitución al accesorio <strong>EQUIPO / EQUIPO_SERIE</strong>  mientras está en '
-        operation_log_comment_device += 'revisión con la ODT <strong>RMA_ODT</strong><br/><br/> '
-        operation_log_comment_device += 'Comentario: ' + self.comment
+        # Log to New Device
+        operation_log_comment_device = 'Se instala como nuevo el accesorio <strong>SUSTITUYE / SUSTITUYE_SERIE</strong> '
+        operation_log_comment_device += 'en el dispositivo DEVICE en la ODT RELATED_ODT y se desinstala el  <strong>SUSTITUIDO / SUSTITUIDO_SERIE</strong> '
+        operation_log_comment_device += 'el día FECHA_INSTALACION_NUEVO<br><br>'
+        operation_log_comment_device += 'Garantía: INICIO_GARANTIA a FIN_GARANTIA'
 
         # Obtenemos los Ids seleccionados
         active_model = self._context.get('active_model')
         active_records = self.env[active_model].browse(self._context.get('active_ids'))
 
         for accessory in active_records:
+
             # Preparando Datos para la ODT
-            product_id = accessory.product_id
             serialnumber_id = accessory.serialnumber_id
             client_id = accessory.client_id
             gps_device = accessory.gpsdevice_id
@@ -220,61 +221,60 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
                 raise UserError(_(
                     'The selected accessory does not have any gps devices associated.\nCannot process any further.'))
 
-            repair_internal_notes = repair_internal_notes.replace("SUSTITUIDO_SERIE", serialnumber_id.name)
-            repair_internal_notes = repair_internal_notes.replace("SUSTITUIDO", accessory.name)
-            repair_internal_notes = repair_internal_notes.replace("EQUIPO_SERIE", self.destination_accessories_ids.serialnumber_id.name)
-            repair_internal_notes = repair_internal_notes.replace("EQUIPO", self.destination_accessories_ids.name)
-            repair_internal_notes = repair_internal_notes.replace("DEVICE", gps_device.name)
-            repair_internal_notes = repair_internal_notes.replace("RELATED_ODT", self.related_odt.name)
+            # 1) Quitar del dispositivo GPS el accesorio desinstalado
+            # 3) Cambiar el estatus del viejo a "desinstalado"
 
-            odt_name = self.env['ir.sequence'].sudo().next_by_code('repair.order')
-            odt_name = odt_name.replace('ODT', 'RMA')
-
-            odt_object = self.env['repair.order']
-            nodt = self.create_odt({
-                'name': odt_name,
-                'product_id': product_id.id,
-                'product_qty': 1,
-                'lot_id': serialnumber_id.id,
-                'partner_id': client_id.id,
-                'gpsdevice_id': False,
-                'invoice_method': "after_repair",
-                'product_uom': product_id.uom_id.id,
-                'location_id': odt_object._default_stock_location(),
-                'pricelist_id': default_list_price,
-                'quotation_notes': repair_internal_notes,
-                'installer_id': self.related_odt.installer_id.id,
-                'assistant_a_id': self.related_odt.assistant_a_id.id,
-                'assistant_b_id': self.related_odt.assistant_b_id.id
-            })
             # Comments to log on the operation log comment
-            repair_internal_notes = repair_internal_notes.replace("RMA_ODT", nodt.name)
-            operation_log_comment = operation_log_comment.replace("RMA_ODT", nodt.name)
+            instalation_date = ''
+            if self.destination_accessories_ids.installation_date:
+                instalation_date = self.destination_accessories_ids.installation_date.strftime('%Y-%m-%d')
+
             operation_log_comment = operation_log_comment.replace("SUSTITUIDO_SERIE", serialnumber_id.name or 'NA')
             operation_log_comment = operation_log_comment.replace("SUSTITUIDO", accessory.name)
-            operation_log_comment = operation_log_comment.replace("DEVICE", gps_device.name)
-            operation_log_comment = operation_log_comment.replace('EQUIPO_SERIE', self.destination_accessories_ids.serialnumber_id.name or 'NA')
-            operation_log_comment = operation_log_comment.replace('EQUIPO', self.destination_accessories_ids.name)
+            operation_log_comment = operation_log_comment.replace('DEVICE', gps_device.name)
             operation_log_comment = operation_log_comment.replace('RELATED_ODT', self.related_odt.name)
+            operation_log_comment = operation_log_comment.replace('SUSTITUYE_SERIE', self.destination_accessories_ids.serialnumber_id.name or 'NA')
+            operation_log_comment = operation_log_comment.replace('SUSTITUYE', self.destination_accessories_ids.name)
+            operation_log_comment = operation_log_comment.replace("FECHA_INSTALACION", instalation_date)
 
             # Estatus del Equipo como desinstalado
             self.create_device_log(gps_device, accessory, operation_log_comment)
             self._complete_relations(gps_device, self.destination_accessories_ids)
 
             accessory.write({
-                'status': "uninstalled",
-                'gpsdevice_id': False
+                'gpsdevice_id': None,
+                'status': "uninstalled"
             })
+
             accessory.message_post(body=operation_log_comment)
 
-            operation_log_comment_device = operation_log_comment_device.replace('EQUIPO_SERIE', serialnumber_id.name or 'NA')
-            operation_log_comment_device = operation_log_comment_device.replace('EQUIPO', accessory.name)
+            # 2) Colocar el cliente en el nuevo accesorio, en el anterior dejar el mismo
+            # 4) La fecha de instalación del nuevo será la real nueva (la pondrá monitoreo en las pruebas) y fecha de
+            # inicio de garantía será la misma que la fecha de instalación, la fecha fin será 12 meses después.
+            # 5)Agregar el comentario a ambos:
+
+            start_date = ''
+            if self.destination_accessories_ids.warranty_start_date:
+                start_date = self.destination_accessories_ids.warranty_start_date.strftime('%Y-%m-%d')
+
+            end_date = ''
+            if self.destination_accessories_ids.warranty_end_date:
+                end_date = self.destination_accessories_ids.warranty_end_date.strftime('%Y-%m-%d')
+
+            operation_log_comment_device = operation_log_comment_device.replace("SUSTITUIDO_SERIE", serialnumber_id.name or 'NA')
+            operation_log_comment_device = operation_log_comment_device.replace("SUSTITUIDO", accessory.name)
+            operation_log_comment_device = operation_log_comment_device.replace('RELATED_ODT', self.related_odt.name)
+            operation_log_comment_device = operation_log_comment_device.replace('SUSTITUYE_SERIE',self.destination_accessories_ids.serialnumber_id.name or 'NA')
+            operation_log_comment_device = operation_log_comment_device.replace('SUSTITUYE', self.destination_accessories_ids.name)
             operation_log_comment_device = operation_log_comment_device.replace('DEVICE', gps_device.name)
-            operation_log_comment_device = operation_log_comment_device.replace('RMA_ODT', nodt.name)
+            operation_log_comment_device = operation_log_comment_device.replace("FECHA_INSTALACION_NUEVO", instalation_date)
+            operation_log_comment_device = operation_log_comment_device.replace("INICIO_GARANTIA", start_date)
+            operation_log_comment_device = operation_log_comment_device.replace("FIN_GARANTIA", end_date)
 
             self.destination_accessories_ids.write({
-                'status': 'borrowed',
-                'installation_date': accessory.installation_date
+                'status': 'installed',
+                'client_id': gps_device.client_id.id,
+                'warranty_term': '12',
             })
 
             self.destination_accessories_ids.message_post(body=operation_log_comment_device)

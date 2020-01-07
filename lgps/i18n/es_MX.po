@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-06 18:30+0000\n"
-"PO-Revision-Date: 2020-01-06 18:30+0000\n"
+"POT-Creation-Date: 2020-01-07 22:16+0000\n"
+"PO-Revision-Date: 2020-01-07 22:16+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -320,7 +320,13 @@ msgstr "No. Accesorios"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_helpdesk_ticket__accessory_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__accessory_id
 msgid "Accesorio"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_accessory_wizard__destination_accessories_ids
+msgid "Accesorio que sustituye"
 msgstr ""
 
 #. module: lgps
@@ -362,7 +368,6 @@ msgstr "Accesorios a Procesar"
 #. module: lgps
 #: code:addons/lgps/models/failures.py:95
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_accessory_wizard__accessories_ids
-#: model:ir.model.fields,field_description:lgps.field_lgps_failures__accessory_id
 #: model_terms:ir.ui.view,arch_db:lgps.report_gpsdevice_view
 #, python-format
 msgid "Accessory"
@@ -470,17 +475,13 @@ msgid "Activos"
 msgstr ""
 
 #. module: lgps
-#: model_terms:ir.ui.view,arch_db:lgps.wizard_form_view
-msgid "Add Accesories"
-msgstr "Agregar Accesorios"
-
-#. module: lgps
 #: model:ir.model,name:lgps.model_lgps_wizard
 msgid "Add Accesories to Devices"
 msgstr "Agregar Accesorios"
 
 #. module: lgps
 #: model:ir.actions.act_window,name:lgps.launch_accesories_wizard
+#: model_terms:ir.ui.view,arch_db:lgps.wizard_form_view
 msgid "Add Accessories"
 msgstr "Agregar Accesorios"
 
@@ -588,7 +589,7 @@ msgstr "Ciclo de Facturación"
 #. module: lgps
 #: selection:lgps.failures,kanban_state:0
 msgid "Blocked"
-msgstr ""
+msgstr "Bloqueado"
 
 #. module: lgps
 #: code:addons/lgps/models/gpsdevice.py:90
@@ -640,12 +641,12 @@ msgstr ""
 #: code:addons/lgps/models/cellchip.py:27
 #, python-format
 msgid "Cancelled"
-msgstr "Cancelado"
+msgstr ""
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__padlock
 msgid "Candado"
-msgstr ""
+msgstr "Cancelado"
 
 #. module: lgps
 #: code:addons/lgps/models/tracking.py:49
@@ -656,6 +657,11 @@ msgstr "Categoría"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__category
 msgid "Categoría"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_root_problem_list__failure_components_list_id
+msgid "Categoría de Componentes"
 msgstr ""
 
 #. module: lgps
@@ -758,7 +764,7 @@ msgid "Cliente:"
 msgstr "Cliente"
 
 #. module: lgps
-#: code:addons/lgps/models/failures.py:135
+#: code:addons/lgps/models/failures.py:142
 #: code:addons/lgps/models/helptickets.py:22
 #: code:addons/lgps/models/odt.py:39
 #, python-format
@@ -799,7 +805,7 @@ msgstr ""
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_common_operations_accessory_wizard
 msgid "Common Operations To Accessories Wizard"
-msgstr ""
+msgstr "Operaciones con Accesorios"
 
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_common_operations_device_wizard
@@ -836,11 +842,10 @@ msgstr ""
 #: code:addons/lgps/models/failure_components_list.py:9
 #, python-format
 msgid "Components"
-msgstr "Componentes"
+msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/failure_root_problem_list.py:14
-#: model:ir.model.fields,field_description:lgps.field_lgps_failure_root_problem_list__failure_components_list_id
 #, python-format
 msgid "Components Category"
 msgstr "Categoría de Componentes"
@@ -1289,11 +1294,11 @@ msgid "Destino"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/failures.py:139
+#: code:addons/lgps/models/failures.py:146
 #: model:ir.model.fields,field_description:lgps.field_lgps_failures__manipulation_detected
 #, python-format
 msgid "Detected Manipulation"
-msgstr ""
+msgstr "Manipulación detectada"
 
 #. module: lgps
 #: code:addons/lgps/models/tracking.py:35
@@ -1390,7 +1395,6 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/failures.py:74
-#: selection:lgps.failures,warranty_status:0
 #, python-format
 msgid "Does not apply"
 msgstr "No aplica"
@@ -1436,6 +1440,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:lgps.failures_kanban
 msgid "Edit"
 msgstr "Editar"
+
+#. module: lgps
+#: selection:lgps.failures,warranty_status:0
+msgid "En garantía"
+msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/cellchip.py:125
@@ -1509,10 +1518,9 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/failures.py:52
-#: model:ir.model.fields,field_description:lgps.field_lgps_failures__failure_components_list_id
 #, python-format
 msgid "Failure Components List"
-msgstr "Componente"
+msgstr "Lista de componentes"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.failure_functionalities_list_tree_view
@@ -1521,10 +1529,9 @@ msgstr "Listado de Funcionalidades"
 
 #. module: lgps
 #: code:addons/lgps/models/failures.py:44
-#: model:ir.model.fields,field_description:lgps.field_lgps_failures__failure_functionalities_list_id
 #, python-format
 msgid "Failure Funtionalities List"
-msgstr "Funcionalidad"
+msgstr "Lista de Funcionalidades"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.failures_form_view
@@ -1532,16 +1539,20 @@ msgid "Failure Information"
 msgstr "Información de la Falla"
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.failures_repairs_form_view
+msgid "Failure Reports"
+msgstr "Reporte de Fallas"
+
+#. module: lgps
 #: code:addons/lgps/models/failures.py:60
-#: model:ir.model.fields,field_description:lgps.field_lgps_failures__failure_root_problem_list_id
 #, python-format
 msgid "Failure Root Problem List"
-msgstr "Problema Raíz"
+msgstr "Lista de Problemas Raíz"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.failure_root_problem_list_tree_view
 msgid "Failure Root Problem List Tree"
-msgstr "Listado de causa raíz"
+msgstr "Listado de problemas raíz"
 
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_failure_stages
@@ -1576,6 +1587,13 @@ msgstr "Reportes de Fallas"
 #: selection:lgps.failure.stages,state:0
 #, python-format
 msgid "Falla reportada"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/failure_odt.py:8
+#: model:ir.model.fields,field_description:lgps.field_repair_order__failures_id
+#, python-format
+msgid "Fallas"
 msgstr ""
 
 #. module: lgps
@@ -1729,20 +1747,23 @@ msgid "Fuel"
 msgstr "Combustible"
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_functionalities_list__name
+msgid "Funcionalidades"
+msgstr ""
+
+#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 msgid "Funciones"
 msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/failure_functionalities_list.py:9
-#: model:ir.model.fields,field_description:lgps.field_lgps_failure_functionalities_list__name
 #, python-format
 msgid "Functionalities"
 msgstr "Funcionalidades"
 
 #. module: lgps
 #: code:addons/lgps/models/failure_components_list.py:14
-#: model:ir.model.fields,field_description:lgps.field_lgps_failure_components_list__failure_functionalities_list_id
 #: model:ir.ui.menu,name:lgps.failure_functionalities_list_menu
 #, python-format
 msgid "Functionalities List"
@@ -1946,7 +1967,6 @@ msgstr "En Progreso"
 
 #. module: lgps
 #: code:addons/lgps/models/failures.py:72
-#: selection:lgps.failures,warranty_status:0
 #, python-format
 msgid "In warranty"
 msgstr "En garantía"
@@ -2240,11 +2260,27 @@ msgstr "Plazo de la Línea"
 #: model_terms:ir.ui.view,arch_db:lgps.failure_functionalities_list_form_view
 #: model_terms:ir.ui.view,arch_db:lgps.failure_root_problem_list_form_view
 msgid "List Info"
-msgstr ""
+msgstr "Información de la lista"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__devices_list
 msgid "Lista de Dispositivos"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_components_list__failure_functionalities_list_id
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__failure_functionalities_list_id
+msgid "Lista de Funcionalidades"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__failure_root_problem_list_id
+msgid "Lista de Problemas Raíz"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__failure_components_list_id
+msgid "Lista de componentes"
 msgstr ""
 
 #. module: lgps
@@ -2389,7 +2425,7 @@ msgstr "Nombre"
 #: code:addons/lgps/models/accessory.py:125
 #: code:addons/lgps/models/common_operations_wizard.py:80
 #: code:addons/lgps/models/device_history.py:77
-#: code:addons/lgps/models/failures.py:157
+#: code:addons/lgps/models/failures.py:169
 #: code:addons/lgps/models/gpsdevice.py:176
 #: code:addons/lgps/models/partner.py:22
 #, python-format
@@ -2446,6 +2482,11 @@ msgid "Nick"
 msgstr ""
 
 #. module: lgps
+#: selection:lgps.failures,warranty_status:0
+msgid "No aplica"
+msgstr ""
+
+#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.report_gpsdevice_view
 msgid "No hay registros"
 msgstr ""
@@ -2461,6 +2502,7 @@ msgid "No. Monitoreos"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__repairs_count
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__repairs_count
 msgid "No. ODTs"
 msgstr ""
@@ -2589,7 +2631,9 @@ msgid "Número de Línea"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/failures.py:116
 #: code:addons/lgps/models/gpsdevice.py:289
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__repairs_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__repairs_ids
 #, python-format
 msgid "ODT"
@@ -2609,6 +2653,7 @@ msgid "ODT's"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/failures.py:163
 #: code:addons/lgps/models/gpsdevice.py:310
 #, python-format
 msgid "ODTs"
@@ -2636,6 +2681,7 @@ msgid "Odt's"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.failures_form_view
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 msgid "Odts"
 msgstr ""
@@ -2730,7 +2776,7 @@ msgstr "Teléfonos"
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.res_config_settings_view_form
 msgid "Pick a Default Price List For RMA Odt records"
-msgstr ""
+msgstr "Selecciona una lista de precios por default para las ODTs"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.res_config_settings_view_form
@@ -2833,6 +2879,11 @@ msgid "Prestado"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failure_root_problem_list__name
+msgid "Problema Raíz"
+msgstr ""
+
+#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.cellchip_form_view
 msgid "Product"
 msgstr "Producto"
@@ -2917,7 +2968,7 @@ msgstr ""
 #. module: lgps
 #: selection:lgps.failures,kanban_state:0
 msgid "Ready for next stage"
-msgstr ""
+msgstr "Listo para la siguiente etapa"
 
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:63
@@ -3035,15 +3086,14 @@ msgstr "Usuario responsable"
 
 #. module: lgps
 #: code:addons/lgps/models/failure_root_problem_list.py:9
-#: model:ir.model.fields,field_description:lgps.field_lgps_failure_root_problem_list__name
 #, python-format
 msgid "Root Problem"
-msgstr "Problema Raíz"
+msgstr "Causa Raíz"
 
 #. module: lgps
 #: model:ir.ui.menu,name:lgps.failure_root_problem_list_menu
 msgid "Root Problem List"
-msgstr "Lista de causa raíz"
+msgstr "Causas Raíz"
 
 #. module: lgps
 #: code:addons/lgps/models/tracking.py:90
@@ -3205,6 +3255,11 @@ msgid "Simpacsys"
 msgstr ""
 
 #. module: lgps
+#: selection:lgps.failures,warranty_status:0
+msgid "Sin garantía"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/gpsdevice.py:85
 #, python-format
 msgid "Smart Blocker"
@@ -3332,7 +3387,6 @@ msgstr "Suscripciones"
 
 #. module: lgps
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:34
-#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_accessory_wizard__destination_accessories_ids
 #, python-format
 msgid "Substitute accessory"
 msgstr "Accesorio que sustituye"
@@ -3406,11 +3460,22 @@ msgid "Sustitución de equipo por revisión"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_accesories_operations_wizard.py:21
+#: selection:lgps.common_operations_accessory_wizard,operation_mode:0
+#, python-format
+msgid "Sustitución por nuevo"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/failures.py:18
-#: model:ir.model.fields,field_description:lgps.field_lgps_failures__symptom
 #, python-format
 msgid "Symptom"
 msgstr "Síntoma"
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_failures__symptom
+msgid "Síntoma"
+msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/cellchip.py:131
@@ -3523,11 +3588,11 @@ msgstr "El identificador del dispositivo GPS debe ser único."
 
 #. module: lgps
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:105
-#: code:addons/lgps/models/common_accesories_operations_wizard.py:220
+#: code:addons/lgps/models/common_accesories_operations_wizard.py:221
 #, python-format
 msgid "The selected accessory does not have any gps devices associated.\n"
 "Cannot process any further."
-msgstr "El accesorio selecionado no tiene esta relacionado a ningún dispositivo gps.\n"
+msgstr "El accesorio selecionado no esta relacionado a ningún dispositivo gps.\n"
 "No se puede continuar con el proceso"
 
 #. module: lgps
@@ -3567,10 +3632,9 @@ msgstr "La etapa para colocar las suscripciones que tiene el equipo al momento d
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:74
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:193
 #, python-format
-msgid "There is not configuration for default list price in RMA reparis.\n"
+msgid "There is not configuration for default list price in RMA repairs.\n"
 " Configure this option first."
-msgstr "No esta configurada la lista de precios a utilizar por default en las ODTs de RMA\n"
-"Configura esta opción en la sección de configuración."
+msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/common_operations_wizard.py:284
@@ -3834,7 +3898,7 @@ msgstr "Inicio de Garantía"
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_failures__warranty_status
 msgid "Warranty Status"
-msgstr ""
+msgstr "Estatus de garantía"
 
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:109
@@ -3880,7 +3944,6 @@ msgstr "¿Quén autoriza esta solicitud?"
 
 #. module: lgps
 #: code:addons/lgps/models/failures.py:73
-#: selection:lgps.failures,warranty_status:0
 #, python-format
 msgid "Without warranty"
 msgstr "Sin garantía"
