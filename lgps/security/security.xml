@@ -25,6 +25,12 @@
     <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
   </record>
 
+    <record id="lgps_group_odts_authorizer" model="res.groups">
+    <field name="name">Lgps / ODT / Authorizer</field>
+    <field name="category_id" ref="module_lgps_category"/>
+    <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+  </record>
+
   <!-- Lgps Manager Group -->
   <record id="lgps_group_manager" model="res.groups">
     <field name="name">Lgps / Manager</field>

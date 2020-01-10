@@ -49,5 +49,7 @@
         'views/device_history.xml',
         'views/wizard_accessory_operations.xml',
         'views/accessory_history.xml',
+        'views/authorization_request_odt_wizard.xml',
+        'views/authorization_odt_wizard.xml',
     ],
 }

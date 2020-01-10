@@ -1,4 +1,5 @@
 from odoo import api, models, fields, _
+from odoo.exceptions import UserError, ValidationError
 
 class Odt(models.Model):
     _inherit = 'repair.order'
@@ -55,6 +56,12 @@ class Odt(models.Model):
     is_guarantee = fields.Boolean(
         default=False,
         string=_("It is a guarantee"),
+        track_visibility='onchange',
+    )
+
+    authorized_warranty = fields.Boolean(
+        default=False,
+        string=_("Authorized warranty"),
     )
 
     @api.one
@@ -66,3 +73,24 @@ class Odt(models.Model):
             difference = end_today_dt - start_dt
             time_difference_in_days = difference.days
             self.days_count = time_difference_in_days
+
+    def action_validate(self):
+        self._check_rules()
+        odt_action_validate = super(Odt, self).action_validate()
+        return odt_action_validate
+
+    def _check_rules(self):
+        if self.name.startswith('ODT'):
+            # Determinamos si parece una garantía
+            if self.odt_type == 'service' and self.invoice_method == 'none':
+                if not self.is_guarantee:
+                    raise UserError(
+                        _("Repair seems to be a warranty.\n\nYou must check warranty checkbox")
+                    )
+
+                if self.is_guarantee:
+                    if not self.authorized_warranty:
+                        raise UserError(
+                            _("Repair must be authorized before confirmation.\n\nYou must create an authorization request")
+                        )
+        return

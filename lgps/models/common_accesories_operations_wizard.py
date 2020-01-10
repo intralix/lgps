@@ -197,7 +197,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
         operation_log_comment = 'Se desinstala el accesorio <strong>SUSTITUIDO / SUSTITUIDO_SERIE</strong> del '
         operation_log_comment += 'dispositivo DEVICE en la ODT RELATED_ODT '
         operation_log_comment += 'y se instala como nuevo el <strong>SUSTITUYE / SUSTITUYE_SERIE</strong>  el día FECHA_INSTALACION<br>'
-        operation_log_comment += 'Inicia garantía el FECHA_INSTALACION<br><br>'
+        # operation_log_comment += 'Inicia garantía el FECHA_INSTALACION<br><br>'
         operation_log_comment += 'Comentario: ' + self.comment
 
         # Log to New Device
