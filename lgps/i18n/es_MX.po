@@ -2390,7 +2390,7 @@ msgstr "Orden de reparación"
 msgid "Repair must be authorized before confirmation.\n"
 "\n"
 "You must create an authorization request"
-msgstr "L reparación debe ser autorizada antes de ser confirmada.\n"
+msgstr "La reparación debe ser autorizada antes de ser confirmada.\n"
 "\n"
 "Puedes solicitar la autorización utilizando el menú de acción."
 
