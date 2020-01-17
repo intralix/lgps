@@ -197,7 +197,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
         operation_log_comment = 'Se desinstala el accesorio <strong>SUSTITUIDO / SUSTITUIDO_SERIE</strong> del '
         operation_log_comment += 'dispositivo DEVICE en la ODT RELATED_ODT '
         operation_log_comment += 'y se instala como nuevo el <strong>SUSTITUYE / SUSTITUYE_SERIE</strong>  el día FECHA_INSTALACION<br>'
-        # operation_log_comment += 'Inicia garantía el FECHA_INSTALACION<br><br>'
+        operation_log_comment += 'Inicia garantía el FECHA_INSTALACION<br><br>'
         operation_log_comment += 'Comentario: ' + self.comment
 
         # Log to New Device
@@ -235,7 +235,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             operation_log_comment = operation_log_comment.replace('RELATED_ODT', self.related_odt.name)
             operation_log_comment = operation_log_comment.replace('SUSTITUYE_SERIE', self.destination_accessories_ids.serialnumber_id.name or 'NA')
             operation_log_comment = operation_log_comment.replace('SUSTITUYE', self.destination_accessories_ids.name)
-            #operation_log_comment = operation_log_comment.replace("FECHA_INSTALACION", instalation_date)
+            operation_log_comment = operation_log_comment.replace("FECHA_INSTALACION", instalation_date)
 
             # Estatus del Equipo como desinstalado
             self.create_device_log(gps_device, accessory, operation_log_comment)
