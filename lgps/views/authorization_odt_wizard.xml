@@ -22,7 +22,8 @@
           <group><p class="text-primary"> Ingresa la información requerida para la solicitud:</p></group>
            <group>
                <group>
-                   <field name="request_comment" string="Motivo de la solicitud"/>
+                   <field name="status" string="Seguimiento"/>
+                   <field name="request_comment" string="Comentario"/>
                </group>
            </group>
         <footer>

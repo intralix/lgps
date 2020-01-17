@@ -10,6 +10,7 @@
         <field name="odt_type"/>
         <field name="installer_id"/>
         <field name="is_guarantee"/>
+        <field name="authorization_requested" attrs="{'readonly':True, 'invisible':[('authorization_requested', '!=', True)]}"/>
         <field name="authorized_warranty" attrs="{'readonly':True}"/>
       </xpath>
 

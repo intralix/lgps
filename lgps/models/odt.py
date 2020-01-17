@@ -44,6 +44,7 @@ class Odt(models.Model):
         [
             ('service', _('Service')),
             ('new_installation', _('New Installation')),
+            ('comodatos', _('Comodato Service')),
         ],
     )
 
@@ -57,6 +58,11 @@ class Odt(models.Model):
         default=False,
         string=_("It is a guarantee"),
         track_visibility='onchange',
+    )
+
+    authorization_requested = fields.Boolean(
+        default=False,
+        string=_("Authorization requested"),
     )
 
     authorized_warranty = fields.Boolean(
