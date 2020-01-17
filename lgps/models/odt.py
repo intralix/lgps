@@ -70,6 +70,15 @@ class Odt(models.Model):
         string=_("Authorized warranty"),
     )
 
+    odt_branch_office = fields.Selection(
+        [
+            ('s1', _('Guadalajara')),
+            ('s2', _('Querétaro')),
+            ('s3', _('México')),
+        ],
+    )
+
+
     @api.one
     @api.depends('closed_date')
     def _compute_days_count(self):
