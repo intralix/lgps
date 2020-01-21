@@ -6,7 +6,7 @@
     <field name="inherit_id" ref="account_cancel.invoice_form_cancel_inherit"/>
     <field name="arch" type="xml">
     <xpath expr="//button[@name='action_invoice_cancel']" position="attributes">
-      <attribute name="confirm">¿En realidad quieres cancelar esta factura?</attribute>
+      <attribute name="confirm">¿Esta seguro que desea cancelar este documento? Si cancela este documento puede afectar Contablemente</attribute>
     </xpath>
     </field>
   </record>
