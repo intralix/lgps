@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record model="ir.ui.view" id="custom_account_invoice_cancel_form_view">
+    <field name="name">custom_account_invoice_cancel</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account_cancel.invoice_form_cancel_inherit"/>
+    <field name="arch" type="xml">
+    <xpath expr="//button[@name='action_invoice_cancel']" position="attributes">
+      <attribute name="confirm">¿En realidad quieres cancelar esta factura?</attribute>
+    </xpath>
+    </field>
+  </record>
+</odoo>

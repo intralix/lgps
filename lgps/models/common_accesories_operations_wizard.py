@@ -80,17 +80,17 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
         active_model = self._context.get('active_model')
         active_records = self.env[active_model].browse(self._context.get('active_ids'))
 
-        repair_internal_notes = 'El accesorio REEMPLAZADO / REEMPLAZADO_SERIE se reemplazó con el accesorio: EQUIPO / EQUIPO_SERIE en el equipo DEVICE '
+        repair_internal_notes = 'El accesorio REEMPLAZADO / REEMPLAZADO_SERIE se reemplazó con el accesorio: EQUIPO / EQUIPO_SERIE en el equipo DEVICE - NICK'
         repair_internal_notes += 'con la ODT: RELATED_ODT.'
 
         operation_log_comment = 'El accesorio <strong>REEMPLAZADO / REEMPLAZADO_SERIE</strong> se reemplaza con el accesorio '
-        operation_log_comment += '<strong>EQUIPO / EQUIPO_SERIE </strong> en el equipo <strong>DEVICE</strong> '
+        operation_log_comment += '<strong>EQUIPO / EQUIPO_SERIE </strong> en el equipo <strong>DEVICE - NICK</strong> '
         operation_log_comment += 'con número de ODT <strong>RELATED_ODT</strong> debido a que está dentro de garantía. <br/>'
         operation_log_comment += 'El accesorio pasa a propiedad de la empresa.<br/>'
         operation_log_comment += 'Se entrega accesorio a Soporte para revisión.<br/><br/>Comentario: ' + self.comment
 
         operation_log_comment_accessory = 'Se coloca accesorio como reemplazo para el accesorio <strong>EQUIPO / EQUIPO_SERIE</strong> '
-        operation_log_comment_accessory += 'en el equipo <strong>DEVICE</strong> con la ODT <strong>RELATED_ODT</strong>'
+        operation_log_comment_accessory += 'en el equipo <strong>DEVICE - NICK</strong> con la ODT <strong>RELATED_ODT</strong>'
         operation_log_comment_accessory += ' por estar dentro de garantía.<br/><br/>'
         operation_log_comment_accessory += 'Comentario: ' + self.comment
 
@@ -114,6 +114,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             repair_internal_notes = repair_internal_notes.replace("EQUIPO", self.destination_accessories_ids.name)
             repair_internal_notes = repair_internal_notes.replace("RELATED_ODT", self.related_odt.name)
             repair_internal_notes = repair_internal_notes.replace("DEVICE", gps_device.name or 'NA')
+            repair_internal_notes = repair_internal_notes.replace("NICK", gps_device.nick or '~')
 
             odt_name = self.env['ir.sequence'].sudo().next_by_code('repair.order')
             odt_name = odt_name.replace('ODT', 'RMA')
@@ -144,11 +145,13 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             operation_log_comment = operation_log_comment.replace('EQUIPO', self.destination_accessories_ids.name)
             operation_log_comment = operation_log_comment.replace('RELATED_ODT', self.related_odt.name)
             operation_log_comment = operation_log_comment.replace("DEVICE", gps_device.name)
+            operation_log_comment = operation_log_comment.replace("NICK", gps_device.nick or '~')
 
             operation_log_comment_accessory = operation_log_comment_accessory.replace('EQUIPO_SERIE', serialnumber_id.name or 'NA')
             operation_log_comment_accessory = operation_log_comment_accessory.replace('EQUIPO', accessory.name)
             operation_log_comment_accessory = operation_log_comment_accessory.replace('RELATED_ODT', self.related_odt.name)
             operation_log_comment_accessory = operation_log_comment_accessory.replace("DEVICE", gps_device.name)
+            operation_log_comment_accessory = operation_log_comment_accessory.replace("NICK", gps_device.nick or '~')
 
             self.create_device_log(gps_device, accessory, operation_log_comment)
             self._complete_relations(gps_device, self.destination_accessories_ids)
@@ -195,14 +198,14 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
 
         # Messages to Log on Models
         operation_log_comment = 'Se desinstala el accesorio <strong>SUSTITUIDO / SUSTITUIDO_SERIE</strong> del '
-        operation_log_comment += 'dispositivo DEVICE en la ODT RELATED_ODT '
+        operation_log_comment += 'dispositivo DEVICE - NICK en la ODT RELATED_ODT '
         operation_log_comment += 'y se instala como nuevo el <strong>SUSTITUYE / SUSTITUYE_SERIE</strong>  el día FECHA_INSTALACION<br>'
-        operation_log_comment += 'Inicia garantía el FECHA_INSTALACION<br><br>'
+        #operation_log_comment += 'Inicia garantía el FECHA_INSTALACION<br><br>'
         operation_log_comment += 'Comentario: ' + self.comment
 
         # Log to New Device
         operation_log_comment_device = 'Se instala como nuevo el accesorio <strong>SUSTITUYE / SUSTITUYE_SERIE</strong> '
-        operation_log_comment_device += 'en el dispositivo DEVICE en la ODT RELATED_ODT y se desinstala el  <strong>SUSTITUIDO / SUSTITUIDO_SERIE</strong> '
+        operation_log_comment_device += 'en el dispositivo DEVICE - NICK en la ODT RELATED_ODT y se desinstala el  <strong>SUSTITUIDO / SUSTITUIDO_SERIE</strong> '
         operation_log_comment_device += 'el día FECHA_INSTALACION_NUEVO<br><br>'
         operation_log_comment_device += 'Garantía: INICIO_GARANTIA a FIN_GARANTIA'
 
@@ -232,10 +235,12 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             operation_log_comment = operation_log_comment.replace("SUSTITUIDO_SERIE", serialnumber_id.name or 'NA')
             operation_log_comment = operation_log_comment.replace("SUSTITUIDO", accessory.name)
             operation_log_comment = operation_log_comment.replace('DEVICE', gps_device.name)
+            operation_log_comment = operation_log_comment.replace('DEVICE', gps_device.namenick or '~')
             operation_log_comment = operation_log_comment.replace('RELATED_ODT', self.related_odt.name)
             operation_log_comment = operation_log_comment.replace('SUSTITUYE_SERIE', self.destination_accessories_ids.serialnumber_id.name or 'NA')
             operation_log_comment = operation_log_comment.replace('SUSTITUYE', self.destination_accessories_ids.name)
-            operation_log_comment = operation_log_comment.replace("FECHA_INSTALACION", instalation_date)
+
+            #operation_log_comment = operation_log_comment.replace("FECHA_INSTALACION", instalation_date)
 
             # Estatus del Equipo como desinstalado
             self.create_device_log(gps_device, accessory, operation_log_comment)
@@ -267,6 +272,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             operation_log_comment_device = operation_log_comment_device.replace('SUSTITUYE_SERIE',self.destination_accessories_ids.serialnumber_id.name or 'NA')
             operation_log_comment_device = operation_log_comment_device.replace('SUSTITUYE', self.destination_accessories_ids.name)
             operation_log_comment_device = operation_log_comment_device.replace('DEVICE', gps_device.name)
+            operation_log_comment_device = operation_log_comment_device.replace('DEVICE', gps_device.namenick or '~')
             operation_log_comment_device = operation_log_comment_device.replace("FECHA_INSTALACION_NUEVO", instalation_date)
             operation_log_comment_device = operation_log_comment_device.replace("INICIO_GARANTIA", start_date)
             operation_log_comment_device = operation_log_comment_device.replace("FIN_GARANTIA", end_date)

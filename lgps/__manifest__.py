@@ -51,5 +51,6 @@
         'views/accessory_history.xml',
         'views/authorization_request_odt_wizard.xml',
         'views/authorization_odt_wizard.xml',
+        'views/custom_account_invoice_cancel.xml'
     ],
 }

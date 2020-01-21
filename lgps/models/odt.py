@@ -76,8 +76,9 @@ class Odt(models.Model):
             ('s2', _('Querétaro')),
             ('s3', _('México')),
         ],
+        default="s1",
+        required=True,
     )
-
 
     @api.one
     @api.depends('closed_date')
