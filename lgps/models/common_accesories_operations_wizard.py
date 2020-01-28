@@ -239,8 +239,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
             operation_log_comment = operation_log_comment.replace('RELATED_ODT', self.related_odt.name)
             operation_log_comment = operation_log_comment.replace('SUSTITUYE_SERIE', self.destination_accessories_ids.serialnumber_id.name or 'NA')
             operation_log_comment = operation_log_comment.replace('SUSTITUYE', self.destination_accessories_ids.name)
-
-            #operation_log_comment = operation_log_comment.replace("FECHA_INSTALACION", instalation_date)
+            operation_log_comment = operation_log_comment.replace("FECHA_INSTALACION", instalation_date)
 
             # Estatus del Equipo como desinstalado
             self.create_device_log(gps_device, accessory, operation_log_comment)

@@ -72,7 +72,7 @@ class Odt(models.Model):
             ('authorized', _('Authorized')),
             ('rejected', _('Rejected')),
         ],
-        default="na"
+        default="na",
     )
 
     odt_branch_office = fields.Selection(
