@@ -65,9 +65,14 @@ class Odt(models.Model):
         string=_("Authorization requested"),
     )
 
-    authorized_warranty = fields.Boolean(
-        default=False,
-        string=_("Authorized warranty"),
+    authorized_warranty = fields.Selection(
+        [
+            ('na', _('No requested')),
+            ('waiting', _('Waiting for resolution')),
+            ('authorized', _('Authorized')),
+            ('rejected', _('Rejected')),
+        ],
+        default="na"
     )
 
     odt_branch_office = fields.Selection(
@@ -96,6 +101,7 @@ class Odt(models.Model):
         return odt_action_validate
 
     def _check_rules(self):
+
         if self.name.startswith('ODT'):
             # Determinamos si parece una garantía
             if self.odt_type == 'service' and self.invoice_method == 'none':
@@ -105,8 +111,16 @@ class Odt(models.Model):
                     )
 
                 if self.is_guarantee:
-                    if not self.authorized_warranty:
+                    if self.authorized_warranty == 'na':
                         raise UserError(
                             _("Repair must be authorized before confirmation.\n\nYou must create an authorization request")
+                        )
+                    if self.authorized_warranty == 'waiting':
+                        raise UserError(
+                            _("Repair has not been authorized.\n\nYou must wait for resolution to the previous request")
+                        )
+                    if self.authorized_warranty == 'rejected':
+                        raise UserError(
+                            _("Repair was not authorized.\n\nYou must change the invoicing method for invoice this service")
                         )
         return

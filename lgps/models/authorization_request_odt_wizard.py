@@ -62,7 +62,8 @@ class AuthorizationRequestODTWizard(models.TransientModel):
             operation_log_comment = operation_log_comment.replace("LAST_WARRANTY_DATE", self.last_warranty_date.strftime('%Y-%m-%d'))
             odt.write({
                     'is_guarantee': True,
-                    'authorization_requested': True
+                    'authorization_requested': True,
+                    'authorized_warranty': 'waiting'
             })
             odt.message_post(body=operation_log_comment)
 
