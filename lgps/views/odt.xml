@@ -19,7 +19,7 @@
         <field name="assistant_b_id"/>
         <field name="odt_branch_office"/>
         <field name="service_date"/>
-        <field name="closed_date"/>
+        <field name="closed_date" attrs="{'readonly':True}"/>
         <field name="days_count" attrs="{'readonly':True}"/>
       </xpath>
     </field>

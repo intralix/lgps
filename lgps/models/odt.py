@@ -97,6 +97,7 @@ class Odt(models.Model):
 
     def action_validate(self):
         self._check_rules()
+        self.closed_date = fields.Date.today()
         odt_action_validate = super(Odt, self).action_validate()
         return odt_action_validate
 
