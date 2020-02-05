@@ -33,6 +33,7 @@
               <field name="requested_by"/>
               <field name="comment"/>
               <field name="operation_mode"/>
+              <field name="reason"/>
             </group>
           </group>
           <notebook>
@@ -78,6 +79,7 @@
         <field name="name"/>
         <field name="client_id"/>
         <field name="operation_mode"/>
+        <field name="reason"/>
         <field name="gpsdevice_ids"/>
         <field name="serialnumber_id"/>
         <field name="product_id"/>

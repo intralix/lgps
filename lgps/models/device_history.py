@@ -58,6 +58,17 @@ class DeviceHistory(models.Model):
         default='drop',
     )
 
+    reason = fields.Selection(
+        [
+            ('bad_service', _('Mal Servicio')),
+            ('vehicle_sold', _('Venta de Unidad')),
+            ('wrecked_vehicle', _('Unidad siniestrada')),
+            ('client_warehouse', _('Equipo en almacén cliente')),
+            ('own_warehouse', _('Equipo en almacén Intralix')),
+            ('non_repairable', _('Equipo no reparable')),
+        ],
+    )
+
     related_odt = fields.Many2one(
         comodel_name='repair.order',
         string=_("Work order related"),

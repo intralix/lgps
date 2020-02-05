@@ -24,6 +24,17 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         default='drop'
     )
 
+    reason = fields.Selection(
+        [
+            ('bad_service', _('Mal Servicio')),
+            ('vehicle_sold', _('Venta de Unidad')),
+            ('wrecked_vehicle', _('Unidad siniestrada')),
+            ('client_warehouse', _('Equipo en almacén cliente')),
+            ('own_warehouse', _('Equipo en almacén Intralix')),
+            ('non_repairable', _('Equipo no reparable')),
+        ],
+    )
+
     gpsdevice_ids = fields.Many2many(
         comodel_name='lgps.gpsdevice',
         string="Gps Device",
@@ -866,7 +877,8 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             'operation_mode': self.operation_mode,
             'related_odt': self.related_odt.id,
             'requested_by': self.requested_by,
-            'comment': self.comment
+            'comment': self.comment,
+            'reason': self.reason
         }
         device_log = log_object.create(dictionary)
         return device_log

@@ -45,6 +45,9 @@ class Odt(models.Model):
             ('service', _('Service')),
             ('new_installation', _('New Installation')),
             ('comodatos', _('Comodato Service')),
+            ('other', _('Other')),
+            ('reinstallation', _('Reinstallation')),
+            ('uninstallation', _('Uninstallation'))
         ],
     )
 

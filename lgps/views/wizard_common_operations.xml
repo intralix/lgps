@@ -33,6 +33,7 @@
                           'required':[('operation_mode', 'not in', ['substitution','replacement'])]
                           }"/>
 
+                   <field name="reason"/>
                    <field name="comment" string="Comentario / Falla Presentada"/>
                </group>
                <group>
