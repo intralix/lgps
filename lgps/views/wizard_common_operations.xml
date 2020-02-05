@@ -33,7 +33,8 @@
                           'required':[('operation_mode', 'not in', ['substitution','replacement'])]
                           }"/>
 
-                   <field name="reason"/>
+                   <field name="reason" attrs="{
+                   'invisible':[('operation_mode', 'not in', ['drop'])]}"/>
                    <field name="comment" string="Comentario / Falla Presentada"/>
                </group>
                <group>
