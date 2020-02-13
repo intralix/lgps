@@ -66,6 +66,7 @@ class DeviceHistory(models.Model):
             ('client_warehouse', _('Equipo en almacén cliente')),
             ('own_warehouse', _('Equipo en almacén Intralix')),
             ('non_repairable', _('Equipo no reparable')),
+            ('financial_situation', _('Cancelación de cuenta por falta de pago')),
         ],
     )
 

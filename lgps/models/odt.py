@@ -127,4 +127,6 @@ class Odt(models.Model):
                         raise UserError(
                             _("Repair was not authorized.\n\nYou must change the invoicing method for invoice this service")
                         )
+                    #Check for Failures
+                    #values = self.env['lgps.failures'].search([('id', 'in', self.failures_ids)])
         return
