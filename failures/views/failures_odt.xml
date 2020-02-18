@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="custom_failures_odt_form_view">
+        <field name="name">failures_odt</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Failures">
+                    <field name="failures_ids" context="{
+                    'default_client_id': partner_id,
+                    'default_report_date': service_date,
+                    'default_repairs_id': active_id
+                    }">
+                        <tree string="Failures Tree">
+                            <field name="name"/>
+                            <field name="product_id"/>
+                            <field name="failure_root_problem_list_id"/>
+                            <field name="failure_components_list_id"/>
+                            <field name="failure_functionalities_list_id"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+  </record>
+</odoo>

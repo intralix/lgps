@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="seq_functionalities" model="ir.sequence">
+    <field name="name">Functionalities Sequence</field>
+    <field name="code">lgps.failure_functionalities_list</field>
+    <field name="prefix">FNC</field>
+    <field name="padding">5</field>
+    <field name="company_id" eval="False"/>
+  </record>
+
+  <record model="ir.ui.view" id="failure_functionalities_list_form_view">
+    <field name="name">failure_functionalities_list.form</field>
+    <field name="model">lgps.failure_functionalities_list</field>
+    <field name="arch" type="xml">
+      <form string="Failures Form">
+        <header>
+
+        </header>
+        <sheet>
+            <group string="List Info">
+              <separator/>
+              <field name="code"/>
+              <field name="name"/>
+            </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="failure_functionalities_list_search_view">
+    <field name="name">failure_functionalities_list.search</field>
+    <field name="model">lgps.failure_functionalities_list</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="code"/>
+        <field name="name"/>
+      </search>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="failure_functionalities_list_tree_view">
+    <field name="name">failure_functionalities_list.tree</field>
+    <field name="model">lgps.failure_functionalities_list</field>
+    <field name="arch" type="xml">
+      <tree string="Failure Functionalities List Tree">
+        <field name="code"/>
+        <field name="name"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="failure_functionalities_list_list_action">
+    <field name="name">failure_functionalities_list</field>
+    <field name="res_model">lgps.failure_functionalities_list</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">Create the first Failures Functionalities List Record</p>
+    </field>
+  </record>
+
+  <menuitem
+          id="failure_functionalities_list_menu"
+          name="Functionalities List"
+          parent="failures_root_conf_menu"
+          action="failure_functionalities_list_list_action"/>
+</odoo>

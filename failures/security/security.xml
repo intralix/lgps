@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="module_lgps_category" model="ir.module.category">
+    <field name="name">Lgps</field>
+  </record>
+
+  <!-- Lgps Guest Group -->
+  <record id="lgps_failures_group_guest" model="res.groups">
+    <field name="name">Lgps / Failures / Guest</field>
+    <field name="category_id" ref="module_lgps_category"/>
+    <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+  </record>
+
+  <!-- Lgps User Group -->
+  <record id="lgps_failures_group_user" model="res.groups">
+    <field name="name">Lgps / Failures / User</field>
+    <field name="category_id" ref="module_lgps_category"/>
+    <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+  </record>
+
+  <!-- Lgps Matainer Group -->
+  <record id="lgps_failures_group_maintainer" model="res.groups">
+    <field name="name">Lgps / Failures / Maintainer</field>
+    <field name="category_id" ref="module_lgps_category"/>
+    <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+  </record>
+
+  <!-- Lgps Manager Group -->
+  <record id="lgps_failures_group_manager" model="res.groups">
+    <field name="name">Lgps / Failures / Manager</field>
+    <field name="category_id" ref="module_lgps_category"/>
+    <field name="implied_ids" eval="[(4, ref('lgps_failures_group_user'))]"/>
+    <field name="users" eval="[
+            (4, ref('base.user_root')),
+            (4, ref('base.user_admin'))
+        ]"/>
+  </record>
+</odoo>

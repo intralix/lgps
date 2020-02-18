@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <act_window id="action_counter_notifications_button"
+              name="Notifications"
+              res_model="lgps.notification"
+              view_mode="tree,form"
+              domain="[('gpsdevice_ids', 'in', [active_id])]"
+              target="current"
+  />
+
+  <record model="ir.ui.view" id="offline_gpsdevice_form_view">
+    <field name="name">offline.gpsdevice.form</field>
+    <field name="model">lgps.gpsdevice</field>
+    <field name="inherit_id" ref="lgps.gpsdevice_form_view"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//div[@name='button_box']" position="inside">
+            <button
+                    class="oe_stat_button"
+                    icon="fa-bell"
+                    type="action"
+                    attrs="{'invisible': [('notifications_count', '&lt;', 1)]}"
+                    name="%(action_counter_notifications_button)d"
+                    context="{'default_client_id': client_id}"
+                    >
+              <field string="Notificaciones" name="notifications_count" widget="statinfo" />
+            </button>
+      </xpath>
+
+      <xpath expr="//notebook" position="inside">
+        <page string="Notificaciones">
+              <group>
+                <group>
+                  <field name="notify_offline"/>
+                </group>
+              </group>
+            </page>
+      </xpath>
+    </field>
+  </record>
+</odoo>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <menuitem id="operations_menu" name="Operations" parent="lgps.main_lgps_menu" sequence="9"/>
+</odoo>

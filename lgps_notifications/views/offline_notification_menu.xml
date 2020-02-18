@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <menuitem id="offline_notifications_menu" name="Offline Notifications" parent="lgps.main_lgps_menu"/>
+  <menuitem id="offline_notification_types_conf_menu" name="Offline Notification Rules" parent="lgps.configuration_menu"/>
+</odoo>

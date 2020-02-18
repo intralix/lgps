@@ -331,35 +331,6 @@ class GpsDevice(models.Model):
         compute='_compute_tasks_count',
     )
 
-    notify_offline = fields.Boolean(
-        default=False,
-        string=_("Notify offline"),
-        track_visibility='onchange',
-    )
-
-    last_notification_date = fields.Datetime(
-        string=_("Last Notification Date"),
-    )
-
-    last_notification_level = fields.Selection(
-        [
-            ('na', _('NA')),
-            ('a', _('A')),
-            ('b', _('B')),
-            ('c', _('C')),
-            ('d', _('D')),
-            ('e', _('E')),
-        ],
-        default='na'
-    )
-
-    last_offline_notification_hours = fields.Integer(
-        string=_("Last Notification hours"),
-        compute="_compute_last_notification_hours",
-        store=True,
-        help="Time since last notification was send.",
-    )
-
     @api.multi
     def _compute_accesories_count(self):
         for rec in self:
@@ -417,23 +388,6 @@ class GpsDevice(models.Model):
             months = int(self.warranty_term[:2])
             start = fields.Date.from_string(self.warranty_start_date)
             self.warranty_end_date = start + timedelta(months * 365 / 12)
-
-    @api.onchange('notify_offline')
-    def onchange_notify_offline(self):
-        if self.notify_offline:
-            self.last_notification_level = 'na'
-
-    @api.one
-    @api.depends('last_notification_date')
-    def _compute_last_notification_hours(self):
-        if not self.last_notification_date:
-            self.last_offline_notification_hours = 0
-        else:
-            start_dt = fields.Datetime.from_string(self.last_notification_date)
-            today_dt = fields.Datetime.from_string(fields.Datetime.now())
-            difference = today_dt - start_dt
-            time_difference_in_hours = difference.total_seconds() / 3600
-            self.last_offline_notification_hours = math.ceil(time_difference_in_hours)
 
     @api.multi
     def copy(self, default=None):

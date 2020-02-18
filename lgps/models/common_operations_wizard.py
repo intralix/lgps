@@ -29,10 +29,11 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             ('bad_service', _('Mal Servicio')),
             ('vehicle_sold', _('Venta de Unidad')),
             ('wrecked_vehicle', _('Unidad siniestrada')),
-            ('client_warehouse', _('Equipo en almacén cliente')),
-            ('own_warehouse', _('Equipo en almacén Intralix')),
+            ('client_warehouse', _('Se desmonta equipo y se entrega a cliente')),
+            ('own_warehouse', _('Equipo regresa a almacén Intralix')),
             ('non_repairable', _('Equipo no reparable')),
             ('financial_situation', _('Cancelación de cuenta por falta de pago')),
+            ('change_of_supplier', _('Cambio de proveedor por precio')),
         ],
     )
 

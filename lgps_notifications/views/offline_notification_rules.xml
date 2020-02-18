@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <record model="ir.ui.view" id="lgps_notification_rules_form_view">
+    <field name="name">lgps_notification_rules.form</field>
+    <field name="model">lgps.notification_rules</field>
+    <field name="arch" type="xml">
+      <form string="Offline Notification Types Form">
+        <sheet>
+        <label for="name"/>
+            <h1>
+                <field name="name"/>
+            </h1>
+            <group>
+              <group string="Rule Information">
+                <separator/>
+                  <field name="description"/>
+                  <field name="create_date" readonly="1"/>
+              </group>
+              <group>
+                  <separator/>
+                  <field name="hours_rule"/>
+                  <field name="is_active"/>
+              </group>
+            </group>
+        </sheet>
+
+        <div class="oe_chatter">
+          <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+          <field name="activity_ids" widget="mail_activity"/>
+          <field name="message_ids" widget="mail_thread"/>
+        </div>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="lgps_notification_rules_search_view">
+    <field name="name">lgps_notification_rules.search</field>
+    <field name="model">lgps.notification_rules</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="name"/>
+        <field name="description"/>
+        <field name="hours_rule"/>
+        <field name="is_active"/>
+      </search>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="lgps_notification_rules_tree_view">
+    <field name="name">lgps_notification_rules.tree</field>
+    <field name="model">lgps.notification_rules</field>
+    <field name="arch" type="xml">
+      <tree string="failures Tree">
+        <field name="name"/>
+        <field name="description"/>
+        <field name="hours_rule"/>
+        <field name="is_active"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="lgps_notification_rules_list_action">
+    <field name="name">lgps_notification_rules</field>
+    <field name="res_model">lgps.notification_rules</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">Create the first Offline Notification Type Record</p>
+    </field>
+  </record>
+
+    <menuitem
+            id="offline_notification_rules"
+            name="Rules"
+            parent="offline_notification_types_conf_menu"
+            action="lgps_notification_rules_list_action"
+    />
+
+</odoo>
