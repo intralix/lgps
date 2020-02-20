@@ -33,8 +33,9 @@
               <field name="client_id" readonly="1"/>
               <field name="repairs_id"/>
               <field name="serialnumber_id"/>
-                <field name="report_date" readonly="1"/>
-                <field name="manipulation_detected"/>
+              <field name="report_date" readonly="1"/>
+              <field name="manipulation_detected"/>
+              <field name="time_spent" attrs="{'invisible': True}" widget="float_time"/>
             </group>
           </group>
           <notebook>

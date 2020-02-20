@@ -29,9 +29,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             ('bad_service', _('Mal Servicio')),
             ('vehicle_sold', _('Venta de Unidad')),
             ('wrecked_vehicle', _('Unidad siniestrada')),
-            ('client_warehouse', _('Se desmonta equipo y se entrega a cliente')),
-            ('own_warehouse', _('Equipo regresa a almacén Intralix')),
-            ('non_repairable', _('Equipo no reparable')),
+            ('client_warehouse', _('Sin uso, en resguardo con el cliente')),
+            ('own_warehouse', _('Error administrativo')),
+            ('non_repairable', _('Equipo gps no reparable')),
             ('financial_situation', _('Cancelación de cuenta por falta de pago')),
             ('change_of_supplier', _('Cambio de proveedor por precio')),
         ],
@@ -190,6 +190,8 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 body += gps_functions_summary
 
             r.message_post(body=body)
+            # Create Object Log
+            self.create_device_log(r)
 
         # Ejecutamos la Baja en el sistema
         active_records.write({
@@ -221,9 +223,6 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         lgps_config = self.sudo().env['ir.config_parameter']
         channel_id = lgps_config.get_param('lgps.device_wizard.drop_default_channel')
         self.log_to_channel(channel_id, channel_msn)
-
-        #Create Object Log
-        self.create_device_log(active_records[0])
 
         return {}
 
@@ -356,6 +355,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 'status': "hibernate",
             })
             r.message_post(body=body)
+            self.create_device_log(r)
 
             # revisamos el tema de las suscripciones:
             default = dict(None or {})
@@ -413,7 +413,6 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
         # Send Message
         self.log_to_channel(channel_id, channel_msn)
-        self.create_device_log(active_records[0])
 
         return {}
 

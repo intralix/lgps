@@ -49,6 +49,8 @@ class Odt(models.Model):
             ('reinstallation', _('Reinstallation')),
             ('uninstallation', _('Uninstallation'))
         ],
+        default="service",
+        required=True,
     )
 
     days_count = fields.Integer(
@@ -86,6 +88,12 @@ class Odt(models.Model):
         ],
         default="s1",
         required=True,
+    )
+
+    time_spent = fields.Float(
+        string=_("Time Spent"),
+        help='Time spent in solution to this record',
+        track_visibility='onchange'
     )
 
     @api.one

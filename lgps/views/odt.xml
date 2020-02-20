@@ -21,6 +21,7 @@
         <field name="service_date"/>
         <field name="closed_date" attrs="{'readonly':True}"/>
         <field name="days_count" attrs="{'readonly':True}"/>
+        <field name="time_spent" widget="float_time"/>
       </xpath>
     </field>
   </record>

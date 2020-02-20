@@ -1501,7 +1501,7 @@ msgstr "Hibernado"
 #. module: lgps
 #: model:ir.ui.menu,name:lgps.device_history_menu
 msgid "History"
-msgstr "Histórico"
+msgstr "Dispositivos"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__id
@@ -3471,7 +3471,7 @@ msgstr "Accesorio"
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_accessory_history
 msgid "lgps.accessory_history"
-msgstr "Acc Histórico"
+msgstr "Accesorios"
 
 #. module: lgps
 #: model:ir.model,name:lgps.model_lgps_cellchip

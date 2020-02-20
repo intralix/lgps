@@ -92,6 +92,18 @@ class Failures(models.Model):
         default=False
     )
 
+    # root_problem_invalidate = fields.Many2one(
+    #     'lgps.failure_root_problem_list',
+    #     string='lgps.failure_root_problem_list',
+    #     related='id.invalidate',
+    # )
+
+    time_spent = fields.Float(
+        string=_("Time Spent"),
+        help='Time spent in solution to this record',
+        track_visibility='onchange'
+    )
+
     @api.model
     def create(self, vals):
         seq = self.env['ir.sequence'].next_by_code('lgps.failures') or _('New')

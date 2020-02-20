@@ -99,5 +99,5 @@
     </field>
   </record>
 
-  <menuitem id="accessory_history_menu" name="Acc. History" parent="configuration_menu" action="accessory_history_list_action"/>
+  <menuitem id="accessory_history_menu" name="Acc. History" parent="operation_logs_root_conf_menu" action="accessory_history_list_action"/>
 </odoo>

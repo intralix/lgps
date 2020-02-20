@@ -101,5 +101,6 @@
     </field>
   </record>
 
-  <menuitem id="device_history_menu" name="History" parent="configuration_menu" action="device_history_list_action"/>
+
+  <menuitem id="device_history_menu" name="History" parent="operation_logs_root_conf_menu" action="device_history_list_action"/>
 </odoo>

@@ -468,7 +468,7 @@ msgstr "Prioridad"
 #: model:ir.model.fields,field_description:lgps_notifications.field_lgps_notification__processed
 #, python-format
 msgid "Processed"
-msgstr "PRocesado"
+msgstr "Procesado"
 
 #. module: lgps_notifications
 #: code:addons/lgps_notifications/models/notification_rule.py:10
@@ -610,15 +610,15 @@ msgstr "Relgas de Notificaciones"
 #. module: lgps_notifications
 #: model:ir.actions.act_window,name:lgps_notifications.lgps_client_configuration_list_action
 msgid "lgps_client_configuration_action"
-msgstr ""
+msgstr "Configuración de Cliente"
 
 #. module: lgps_notifications
 #: model:ir.actions.act_window,name:lgps_notifications.lgps_notification_list_action
 msgid "lgps_notification_action"
-msgstr ""
+msgstr "Notificación"
 
 #. module: lgps_notifications
 #: model:ir.actions.act_window,name:lgps_notifications.lgps_notification_rules_list_action
 msgid "lgps_notification_rules"
-msgstr ""
+msgstr "Reglas"
 
