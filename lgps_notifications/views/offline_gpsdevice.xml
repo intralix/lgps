@@ -9,8 +9,8 @@
               target="current"
   />
 
-  <record model="ir.ui.view" id="offline_gpsdevice_form_view">
-    <field name="name">offline.gpsdevice.form</field>
+  <record model="ir.ui.view" id="lgps_offline_gpsdevice_form_view">
+    <field name="name">lgps.offline_gpsdevice.form</field>
     <field name="model">lgps.gpsdevice</field>
     <field name="inherit_id" ref="lgps.gpsdevice_form_view"/>
     <field name="arch" type="xml">
