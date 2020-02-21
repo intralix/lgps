@@ -15,10 +15,15 @@ class OfflineGpsDevice(models.Model):
         track_visibility='onchange',
     )
 
-
     notifications_count = fields.Integer(
         string=_('Notifications Count'),
         compute='_compute_notifications_count',
+    )
+
+    last_rule_applied = fields.Many2one(
+        comodel_name="lgps.notification_rules",
+        string=_("Last Notification"),
+        ondelete="set null"
     )
 
     @api.multi

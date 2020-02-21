@@ -32,7 +32,10 @@
         <page string="Notificaciones">
               <group>
                 <group>
-                  <field name="notify_offline"/>
+                    <field name="notify_offline"/>
+                </group>
+                <group>
+                    <field name="last_rule_applied"/>
                 </group>
               </group>
             </page>

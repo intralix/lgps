@@ -30,8 +30,9 @@
             </group>
 
             <group>
-                <field name="active"/>
+                <field name="operative"/>
                 <field name="priority"/>
+                <field name="staggering" attrs="{'invisible':[('priority', '==', 'desc')]}"/>
             </group>
           </group>
           <notebook>
@@ -61,7 +62,7 @@
           <field name="name"/>
           <field name="client_id"/>
           <field name="priority"/>
-          <field name="active"/>
+          <field name="operative"/>
           <field name="create_date"/>
       </search>
     </field>
@@ -75,7 +76,7 @@
             <field name="name"/>
             <field name="client_id"/>
             <field name="priority"/>
-            <field name="active"/>
+            <field name="operative"/>
             <field name="create_date"/>
       </tree>
     </field>
