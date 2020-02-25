@@ -33,9 +33,11 @@
               <group>
                 <group>
                     <field name="notify_offline"/>
+                    <field name="needs_reset"/>
                 </group>
                 <group>
-                    <field name="last_rule_applied"/>
+                    <field name="last_rule_applied" readonly="1"/>
+                    <field name="last_rule_applied_on" readonly="1"/>
                 </group>
               </group>
             </page>

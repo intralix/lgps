@@ -16,6 +16,7 @@
       <form string="Client Configuration Form">
         <header>
           <button name="test_generate_notifications" type="object"  string="Test Notifications"  class="btn-warning"/>
+          <button name="cron_reset_device_notifications" type="object"  string="Reset Notifications"  class="btn-danger"/>
         </header>
         <sheet>
         <label for="name"/>
@@ -26,13 +27,15 @@
 
             <group>
                 <field name="client_id"/>
-              <field name="create_date"/>
+                <field name="operative"/>
+                <field name="create_date"/>
             </group>
 
             <group>
-                <field name="operative"/>
                 <field name="priority"/>
-                <field name="staggering" attrs="{'invisible':[('priority', '==', 'desc')]}"/>
+                <field name="staggered" attrs="{'invisible':[('priority', '==', 'desc')]}"/>
+                <field name="repeat_alerts" attrs="{'invisible':[('priority', '=', 'desc')],'required':[('repeat_alerts', '=', 'repeat')]}"/>
+                <field name="reset_options" attrs="{'invisible':['|',('priority', '=', 'desc'),('repeat_alerts', '=', 'no_repeat')],'required':[('repeat_alerts', '=', 'repeat')]}"/>
             </group>
           </group>
           <notebook>

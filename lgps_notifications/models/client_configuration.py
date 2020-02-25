@@ -1,3 +1,5 @@
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 from odoo import api, models, fields, _
 import logging
 
@@ -40,8 +42,8 @@ class ClientConfigurations(models.Model):
                "hours of each rule.\n The priority its switched as described in the option")
     )
 
-    staggering = fields.Boolean(
-        string=_("Staggering"),
+    staggered = fields.Boolean(
+        string=_("staggered"),
         default=False,
         # readonly=True,
         help=_("This option will trigger notifications in steps from lower to higher rules when multiple rules are defined.")
@@ -62,6 +64,28 @@ class ClientConfigurations(models.Model):
 
     contact_ids = fields.Many2many(
         comodel_name="res.partner",
+    )
+
+    repeat_alerts = fields.Selection(
+        selection=[
+            ("repeat", _("Repeat")),
+            ("no_repeat", _("No repeat")),
+        ],
+        defaul="repeat",
+        string=_("Reset Alerts"),
+        help=_("Reset the staggered notifications on devices that has already passed all configured alerts.")
+    )
+
+    reset_options = fields.Selection(
+        selection=[
+            ("1", _("1 Month")),
+            ("3", _("3 Months")),
+            ("6", _("6 months")),
+            ("12", _("12 months")),
+        ],
+        default="1",
+        string=_("Repeat on"),
+        help=_("Configured hold time to reset staggered notifications when devices has already passed all configured alerts.")
     )
 
     @api.model
@@ -88,11 +112,22 @@ class ClientConfigurations(models.Model):
 
     @api.onchange('priority')
     def _onchange_priority_id(self):
-        self.staggering = True if self.priority == 'asc' else False
+        if self.priority == 'asc':
+            self.staggered = True
+            self.repeat_alerts = 'repeat'
+        else:
+            self.staggered = False
+            self.reset_alerts = 'no_repeat'
 
-    @api.onchange('staggering')
-    def _onchange_staggering(self):
-        self.priority = 'asc' if self.staggering else 'desc'
+    @api.onchange('staggered')
+    def _onchange_staggered(self):
+        if self.staggered:
+            self.staggered = True
+            self.reset_alerts = 'repeat'
+        else:
+            self.priority = 'desc'
+            self.staggered = False
+            self.reset_alerts = 'no_repeat'
 
     @api.model
     def _cron_generate_notifications(self):
@@ -136,14 +171,20 @@ class ClientConfigurations(models.Model):
                                         if device.last_report > rule.hours_rule:
                                             #_logger.warning('Apply Rule: %s', rule.name)
                                             rule_lists[str(rule.id)].append(device.id)
-                                            device.write({'last_rule_applied': rule.id})
+                                            device.write({
+                                                'last_rule_applied': rule.id,
+                                                'last_rule_applied_on': datetime.today()
+                                            })
                                     #else:
                                             #_logger.warning('No rules apply: %s - %s ', device.name, rule.name)
                             else:
                                 #_logger.error('No Rule found')
                                 #_logger.warning('Apply Rule For First Time: %s', sorted_rules[0].name)
                                 rule_lists[str(sorted_rules[0].id)].append(device.id)
-                                device.write({'last_rule_applied': sorted_rules[0].id})
+                                device.write({
+                                    'last_rule_applied': sorted_rules[0].id,
+                                    'last_rule_applied_on': datetime.today()
+                                })
                 else:
                     if gps_devices:
                         for device in gps_devices:
@@ -204,14 +245,20 @@ class ClientConfigurations(models.Model):
                                         if device.last_report > rule.hours_rule:
                                             # _logger.warning('Apply Rule: %s', rule.name)
                                             rule_lists[str(rule.id)].append(device.id)
-                                            device.write({'last_rule_applied': rule.id})
+                                            device.write({
+                                                'last_rule_applied': rule.id,
+                                                'last_rule_applied_on': datetime.today()
+                                            })
                                     # else:
                                     # _logger.warning('No rules apply: %s - %s ', device.name, rule.name)
                             else:
                                 # _logger.error('No Rule found')
                                 # _logger.warning('Apply Rule For First Time: %s', sorted_rules[0].name)
                                 rule_lists[str(sorted_rules[0].id)].append(device.id)
-                                device.write({'last_rule_applied': sorted_rules[0].id})
+                                device.write({
+                                    'last_rule_applied': sorted_rules[0].id,
+                                    'last_rule_applied_on': datetime.today()
+                                })
                 else:
                     if gps_devices:
                         for device in gps_devices:
@@ -243,3 +290,43 @@ class ClientConfigurations(models.Model):
         }
         return notification_object.create(dictionary)
 
+    @api.model
+    def _cron_reset_device_notifications(self):
+        """
+            Generates maintenance request on the next_action_date or today if none exists
+        """
+        # Iterate records in this configuration
+        clients_configuration = self.sudo().env['lgps.client_configuration'].search([
+            ('operative', '=', True),
+            ('repeat_alerts', '=', 'repeat'),
+            ('reset_options', '!=', None)
+        ])
+
+        #_logger.warning('Configuraciones Registrados: %s', clients_configuration)
+
+        for config in clients_configuration:
+            #_logger.warning('Cliente: %s', config.client_id.name)
+            #_logger.warning('Cliente ID: %s', config.client_id.id)
+            #_logger.warning('Configuration: %s', config.reset_options)
+            devices = self.sudo().env['lgps.gpsdevice'].search([
+                ('notify_offline', '=', True),
+                ('client_id', '=', config.client_id.id)
+            ])
+            #_logger.warning('Dispositivos: %s', devices)
+            for device in devices:
+                #_logger.warning('Device: %s', device.name)
+                last_rule = fields.Date.from_string(device.last_rule_applied_on)
+                #_logger.warning('Last Rule on: %s', last_rule)
+                if last_rule is not None:
+                    months = int(config.reset_options)
+                    #_logger.warning('Months: %s', months)
+                    if months > 0:
+                        expiration_date = device.last_rule_applied_on + relativedelta(months=months)
+                        #_logger.error('Expiration Date: %s', expiration_date)
+                        if datetime.today().date() > expiration_date:
+                            #_logger.error('Reseting device')
+                            device.write({
+                                'last_rule_applied': None,
+                                'last_rule_applied_on': None
+                            })
+        return
