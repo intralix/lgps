@@ -5,7 +5,7 @@
     'author': 'Intralix',    
     'website': 'https://www.intralix.com',
     'category': 'Uncategorized',
-    'version': '1.0.7',
+    'version': '1.1.0',
     'depends': [
         'base',
         'lgps'

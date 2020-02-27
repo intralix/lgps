@@ -24,16 +24,15 @@
                     name="%(action_counter_notifications_button)d"
                     context="{'default_client_id': client_id}"
                     >
-              <field string="Notificaciones" name="notifications_count" widget="statinfo" />
+              <field string="Notifications" name="notifications_count" widget="statinfo" />
             </button>
       </xpath>
 
       <xpath expr="//notebook" position="inside">
-        <page string="Notificaciones">
+        <page string="Notifications">
               <group>
                 <group>
                     <field name="notify_offline"/>
-                    <field name="needs_reset"/>
                 </group>
                 <group>
                     <field name="last_rule_applied" readonly="1"/>

@@ -47,8 +47,8 @@
           </group>
 
           <notebook>
-            <page string="Email Sent" readonly="1">
-              <field name="email_Sent" widget="html"/>
+            <page string="Email Sent">
+              <field name="email_Sent" widget="html" readonly="1"/>
             </page>
               <page string="Contacts">
                   <field name="contact_ids"/>
@@ -73,10 +73,17 @@
     <field name="model">lgps.notification</field>
     <field name="arch" type="xml">
       <search>
+        <filter string="Processed" name="notifications_processed"  domain="[('processed', '=', True)]"/>
+        <filter string="Without processing" name="notifications_without_processing"  domain="[('processed', '=', False)]"/>
         <field name="name"/>
         <field name="client_id"/>
         <field name="gpsdevice_ids"/>
         <field name="contact_ids"/>
+         <group expand="1" string="Group By">
+          <filter string="Cliente" name="client_group" context="{'group_by':'client_id'}"/>
+           <separator orientation="vertical" />
+           <filter string="Created On" name="created_on_group" context="{'group_by':'create_date'}"/>
+        </group>
       </search>
     </field>
   </record>

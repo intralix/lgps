@@ -14,10 +14,6 @@
     <field name="model">lgps.client_configuration</field>
     <field name="arch" type="xml">
       <form string="Client Configuration Form">
-        <header>
-          <button name="test_generate_notifications" type="object"  string="Test Notifications"  class="btn-warning"/>
-          <button name="cron_reset_device_notifications" type="object"  string="Reset Notifications"  class="btn-danger"/>
-        </header>
         <sheet>
         <label for="name"/>
             <h1>
@@ -62,11 +58,18 @@
     <field name="model">lgps.client_configuration</field>
     <field name="arch" type="xml">
       <search>
+          <filter string="operative" name="configurations_active"  domain="[('operative', '=', True)]"/>
           <field name="name"/>
           <field name="client_id"/>
           <field name="priority"/>
+          <field name="staggered"/>
           <field name="operative"/>
           <field name="create_date"/>
+          <group expand="1" string="Group By">
+              <filter string="Priority" name="priority_group" context="{'group_by':'priority'}"/>
+              <separator orientation="vertical" />
+              <filter string="Created On" name="created_on_group" context="{'group_by':'create_date'}"/>
+        </group>
       </search>
     </field>
   </record>
