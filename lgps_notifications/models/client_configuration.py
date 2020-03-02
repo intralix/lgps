@@ -17,7 +17,7 @@ class ClientConfigurations(models.Model):
             for client in configured:
                 client_id_list.append(client.client_id.id)
 
-        return [('customer', '=', True), ('operative', '=', True),
+        return [('customer', '=', True), ('active', '=', True),
                 ('is_company', '=', True), ('id', 'not in', client_id_list)]
 
     name = fields.Char(
@@ -106,7 +106,7 @@ class ClientConfigurations(models.Model):
                 client_id_list.append(client.client_id.id)
 
         domain = {'client_id': [
-            ('customer', '=', True), ('operative', '=', True),
+            ('customer', '=', True), ('active', '=', True),
             ('is_company', '=', True), ('id', 'not in', client_id_list)
         ]}
 
