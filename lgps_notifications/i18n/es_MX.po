@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-27 17:53+0000\n"
-"PO-Revision-Date: 2020-02-27 17:53+0000\n"
+"POT-Creation-Date: 2020-03-03 20:51+0000\n"
+"PO-Revision-Date: 2020-03-03 20:51+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr ""
 #: code:addons/lgps_notifications/models/client_configuration.py:85
 #, python-format
 msgid "12 months"
-msgstr "12 months"
+msgstr ""
 
 #. module: lgps_notifications
 #: code:addons/lgps_notifications/models/client_configuration.py:83
@@ -112,7 +112,7 @@ msgstr "Configuración del Cliente"
 #. module: lgps_notifications
 #: model:ir.ui.menu,name:lgps_notifications.lgps_client_configuration_menu
 msgid "Client Configurations"
-msgstr "Configuraciones de Clientes"
+msgstr "Configurar Clientes"
 
 #. module: lgps_notifications
 #: model_terms:ir.ui.view,arch_db:lgps_notifications.lgps_notification_search_view
@@ -144,14 +144,18 @@ msgstr ""
 
 #. module: lgps_notifications
 #: model_terms:ir.actions.act_window,help:lgps_notifications.lgps_client_configuration_list_action
+msgid "Create the first Client Configuration Record"
+msgstr "Crea el primer registro de configuración de clientes."
+
+#. module: lgps_notifications
 #: model_terms:ir.actions.act_window,help:lgps_notifications.lgps_notification_list_action
-msgid "Create the first Failures Record"
-msgstr "Crea el primer registro de Falla"
+msgid "Create the first Notification Record"
+msgstr "Crea el primer registro de notificaciones"
 
 #. module: lgps_notifications
 #: model_terms:ir.actions.act_window,help:lgps_notifications.lgps_notification_rules_list_action
-msgid "Create the first Offline Notification Type Record"
-msgstr "Crear el primer registro de Notificaciones"
+msgid "Create the first Offline Notification Rule Record"
+msgstr "Crear el primer registro de Reglas de Notificaciones"
 
 #. module: lgps_notifications
 #: model_terms:ir.ui.view,arch_db:lgps_notifications.lgps_client_configuration_search_view
@@ -174,8 +178,12 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: lgps_notifications
+#: model:ir.model.fields,help:lgps_notifications.field_lgps_gpsdevice__notify_offline
+msgid "Cuanto esta activo, el equipo será evaluado en el envío de notificaciones."
+msgstr ""
+
+#. module: lgps_notifications
 #: code:addons/lgps_notifications/models/notifications_gpsdevice.py:29
-#: model:ir.model.fields,help:lgps_notifications.field_lgps_gpsdevice__last_rule_applied_on
 #, python-format
 msgid "Date when last notification was sent. If client configuration it set to reset notifications, the reset option configuration will be sum to this date for evaluate if is necessary to restart notifications on this device."
 msgstr "Fecha cuando se envió la última notificación. Si en la configuración de cliente esta activada la opción de resetear notificaciones, la opción configurada se suamara a esta fecha para evaluar si es necesario reiniciar las notificaciones en el equipo."
@@ -201,7 +209,7 @@ msgstr ""
 #: code:addons/lgps_notifications/models/notification_rule.py:15
 #, python-format
 msgid "Description"
-msgstr "Descripción"
+msgstr ""
 
 #. module: lgps_notifications
 #: model_terms:ir.ui.view,arch_db:lgps_notifications.lgps_notification_form_view
@@ -245,6 +253,11 @@ msgstr ""
 #: model:ir.model.fields,help:lgps_notifications.field_lgps_client_configuration__priority
 msgid "Esta opción evalúa la forma en que se aplican las reglas definidas en el registro basado en las horas de cada regla.\n"
 " La prioridad cambia conforme se describe en la opción"
+msgstr ""
+
+#. module: lgps_notifications
+#: model:ir.model.fields,help:lgps_notifications.field_lgps_gpsdevice__last_rule_applied_on
+msgid "Fecha cuando se envió la última notificación. Si en la configuración de cliente esta activada la opción de resetear notificaciones, la opción configurada se suamara a esta fecha para evaluar si es necesario reiniciar las notificaciones en el equipo."
 msgstr ""
 
 #. module: lgps_notifications
@@ -330,7 +343,7 @@ msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 #: code:addons/lgps_notifications/models/notification.py:10
 #, python-format
 msgid "Internal Id"
-msgstr "Id Interno"
+msgstr ""
 
 #. module: lgps_notifications
 #: model:ir.actions.server,name:lgps_notifications.offline_notifications_cron_ir_actions_server
@@ -400,22 +413,22 @@ msgstr ""
 #. module: lgps_notifications
 #: model:res.groups,name:lgps_notifications.lgps_offline_notifications_group_guest
 msgid "Lgps / Offline Notifications / Guest"
-msgstr "Lgps / Notificaciones Fuera de línea / Guest"
+msgstr "Lgps / Notificaciones Fuera de línea / Invitado"
 
 #. module: lgps_notifications
 #: model:res.groups,name:lgps_notifications.lgps_offline_notifications_group_maintainer
-msgid "Lgps / Offline Notifications / Maintainer"
-msgstr "Lgps / Notificaciones Fuera de línea / Maintainer"
+msgid "Lgps / Offline Notifications / Colaborador"
+msgstr ""
 
 #. module: lgps_notifications
 #: model:res.groups,name:lgps_notifications.lgps_offline_notifications_group_manager
-msgid "Lgps / Offline Notifications / Manager"
-msgstr "Lgps / Notificaciones Fuera de línea / Manager"
+msgid "Lgps / Offline Notifications / Gerente"
+msgstr ""
 
 #. module: lgps_notifications
 #: model:res.groups,name:lgps_notifications.lgps_offline_notifications_group_user
-msgid "Lgps / Offline Notifications / User"
-msgstr "Lgps / Notificaciones Fuera de línea / User"
+msgid "Lgps / Offline Notifications / Usuario"
+msgstr ""
 
 #. module: lgps_notifications
 #: model:ir.model.fields,field_description:lgps_notifications.field_lgps_client_configuration__message_main_attachment_id
@@ -475,7 +488,7 @@ msgstr "Siguiente tipo de actividad"
 #: code:addons/lgps_notifications/models/client_configuration.py:73
 #, python-format
 msgid "No repeat"
-msgstr "No repetir"
+msgstr "Sin repetición"
 
 #. module: lgps_notifications
 #: selection:lgps.client_configuration,repeat_alerts:0
@@ -513,7 +526,7 @@ msgstr "Notificaciones"
 #: code:addons/lgps_notifications/models/notifications_gpsdevice.py:10
 #, python-format
 msgid "Notify offline"
-msgstr "Notificar fuera de línea"
+msgstr "Notificaciones"
 
 #. module: lgps_notifications
 #: model:ir.model.fields,field_description:lgps_notifications.field_lgps_client_configuration__message_needaction_counter
@@ -609,7 +622,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:lgps_notifications.lgps_notification_search_view
 #, python-format
 msgid "Processed"
-msgstr "Procesadas"
+msgstr "Procesado"
 
 #. module: lgps_notifications
 #: code:addons/lgps_notifications/models/notification_rule.py:10
@@ -646,7 +659,7 @@ msgstr ""
 #: code:addons/lgps_notifications/models/client_configuration.py:72
 #, python-format
 msgid "Repeat"
-msgstr "Repetir"
+msgstr "Repetir en"
 
 #. module: lgps_notifications
 #: code:addons/lgps_notifications/models/client_configuration.py:88
@@ -669,11 +682,6 @@ msgstr ""
 #, python-format
 msgid "Reset Alerts"
 msgstr "Reiniciar Alertas"
-
-#. module: lgps_notifications
-#: model_terms:ir.ui.view,arch_db:lgps_notifications.lgps_client_configuration_form_view
-msgid "Reset Notifications"
-msgstr "Reiniciar Notificaciones"
 
 #. module: lgps_notifications
 #: code:addons/lgps_notifications/models/client_configuration.py:77
@@ -722,11 +730,6 @@ msgstr "Estado basado en actividades\n"
 "Vencida: la fecha tope ya ha pasado\n"
 "Hoy: La fecha tope es hoy\n"
 "Planificada: futuras actividades."
-
-#. module: lgps_notifications
-#: model_terms:ir.ui.view,arch_db:lgps_notifications.lgps_client_configuration_form_view
-msgid "Test Notifications"
-msgstr "Probar Notificaciones"
 
 #. module: lgps_notifications
 #: code:addons/lgps_notifications/models/client_configuration.py:41
@@ -795,7 +798,6 @@ msgstr "Historial de comunicaciones del sitio web"
 
 #. module: lgps_notifications
 #: code:addons/lgps_notifications/models/notifications_gpsdevice.py:12
-#: model:ir.model.fields,help:lgps_notifications.field_lgps_gpsdevice__notify_offline
 #, python-format
 msgid "When checked it will be evaluated to send notifications"
 msgstr "Cuanto esta activo, el equipo será evaluado en el envío de notificaciones."
@@ -830,7 +832,7 @@ msgstr "Notificación"
 #. module: lgps_notifications
 #: model:ir.model,name:lgps_notifications.model_lgps_notification_rules
 msgid "lgps.notification_rules"
-msgstr "Reglas de Notificaciones"
+msgstr "Relgas de Notificaciones"
 
 #. module: lgps_notifications
 #: model:ir.actions.act_window,name:lgps_notifications.lgps_client_configuration_list_action

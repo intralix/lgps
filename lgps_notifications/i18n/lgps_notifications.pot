@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-27 17:54+0000\n"
-"PO-Revision-Date: 2020-02-27 17:54+0000\n"
+"POT-Creation-Date: 2020-03-03 20:52+0000\n"
+"PO-Revision-Date: 2020-03-03 20:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -144,13 +144,17 @@ msgstr ""
 
 #. module: lgps_notifications
 #: model_terms:ir.actions.act_window,help:lgps_notifications.lgps_client_configuration_list_action
+msgid "Create the first Client Configuration Record"
+msgstr ""
+
+#. module: lgps_notifications
 #: model_terms:ir.actions.act_window,help:lgps_notifications.lgps_notification_list_action
-msgid "Create the first Failures Record"
+msgid "Create the first Notification Record"
 msgstr ""
 
 #. module: lgps_notifications
 #: model_terms:ir.actions.act_window,help:lgps_notifications.lgps_notification_rules_list_action
-msgid "Create the first Offline Notification Type Record"
+msgid "Create the first Offline Notification Rule Record"
 msgstr ""
 
 #. module: lgps_notifications
@@ -174,8 +178,12 @@ msgid "Created on"
 msgstr ""
 
 #. module: lgps_notifications
+#: model:ir.model.fields,help:lgps_notifications.field_lgps_gpsdevice__notify_offline
+msgid "Cuanto esta activo, el equipo será evaluado en el envío de notificaciones."
+msgstr ""
+
+#. module: lgps_notifications
 #: code:addons/lgps_notifications/models/notifications_gpsdevice.py:29
-#: model:ir.model.fields,help:lgps_notifications.field_lgps_gpsdevice__last_rule_applied_on
 #, python-format
 msgid "Date when last notification was sent. If client configuration it set to reset notifications, the reset option configuration will be sum to this date for evaluate if is necessary to restart notifications on this device."
 msgstr ""
@@ -245,6 +253,11 @@ msgstr ""
 #: model:ir.model.fields,help:lgps_notifications.field_lgps_client_configuration__priority
 msgid "Esta opción evalúa la forma en que se aplican las reglas definidas en el registro basado en las horas de cada regla.\n"
 " La prioridad cambia conforme se describe en la opción"
+msgstr ""
+
+#. module: lgps_notifications
+#: model:ir.model.fields,help:lgps_notifications.field_lgps_gpsdevice__last_rule_applied_on
+msgid "Fecha cuando se envió la última notificación. Si en la configuración de cliente esta activada la opción de resetear notificaciones, la opción configurada se suamara a esta fecha para evaluar si es necesario reiniciar las notificaciones en el equipo."
 msgstr ""
 
 #. module: lgps_notifications
@@ -671,11 +684,6 @@ msgid "Reset Alerts"
 msgstr ""
 
 #. module: lgps_notifications
-#: model_terms:ir.ui.view,arch_db:lgps_notifications.lgps_client_configuration_form_view
-msgid "Reset Notifications"
-msgstr ""
-
-#. module: lgps_notifications
 #: code:addons/lgps_notifications/models/client_configuration.py:77
 #, python-format
 msgid "Reset the staggered notifications on devices that has already passed all configured alerts."
@@ -718,11 +726,6 @@ msgid "Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
-msgstr ""
-
-#. module: lgps_notifications
-#: model_terms:ir.ui.view,arch_db:lgps_notifications.lgps_client_configuration_form_view
-msgid "Test Notifications"
 msgstr ""
 
 #. module: lgps_notifications
@@ -791,7 +794,6 @@ msgstr ""
 
 #. module: lgps_notifications
 #: code:addons/lgps_notifications/models/notifications_gpsdevice.py:12
-#: model:ir.model.fields,help:lgps_notifications.field_lgps_gpsdevice__notify_offline
 #, python-format
 msgid "When checked it will be evaluated to send notifications"
 msgstr ""
