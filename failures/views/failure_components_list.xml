@@ -38,6 +38,7 @@
         <field name="code"/>
         <field name="failure_functionalities_list_id"/>
         <field name="name"/>
+        <field name="traceability"/>
       </search>
     </field>
   </record>
@@ -50,6 +51,7 @@
         <field name="code"/>
         <field name="failure_functionalities_list_id"/>
         <field name="name"/>
+        <field name="traceability"/>
       </tree>
     </field>
   </record>

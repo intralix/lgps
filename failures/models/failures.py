@@ -130,6 +130,20 @@ class Failures(models.Model):
          "The failure id must be unique"),
     ]
 
+    @api.onchange('failure_symptoms_list_id')
+    def _onchange_failure_failure_symptoms_list_id(self):
+        domain = {}
+        if self.failure_symptoms_list_id.name:
+            if re.search('manipulaci',self.failure_symptoms_list_id.name, re.IGNORECASE):
+                self.manipulation_detected = True
+            else:
+                self.manipulation_detected = False
+                self.failure_functionalities_list_id = None
+                self.failure_components_list_id = None
+                self.failure_root_problem_list_id = None
+
+        return domain
+
     @api.onchange('failure_functionalities_list_id')
     def _onchange_failure_functionalities_list_id(self):
         domain = {}
@@ -170,55 +184,24 @@ class Failures(models.Model):
 
     @api.onchange('failure_root_problem_list_id')
     def _onchange_failure_root_problem_list_id(self):
-
         if self.failure_root_problem_list_id:
             self._check_no_warranty_rules(self.failure_root_problem_list_id.name)
-
+            self._check_if_invalidate(self.failure_root_problem_list_id.invalidate)
         return
-
-    #@api.onchange('gpsdevice_id', 'manipulation_detected')
-    #def _onchange_gpsdevice_id(self):
-        #   domain = {}
-        # warning = {}
-        #_logger.warning('Check fiel manipulation_detected on device change: %s', self.manipulation_detected)
-
-        #if self.gpsdevice_id:
-        #   if self.manipulation_detected:
-                #warning = {
-                #    'title': "Warning",
-                #    'message': "No se contemplará la fecha de garantía del equipo por que se detecta manipulación."
-                #}
-                #self.serialnumber_id = self.gpsdevice_id.serialnumber_id.id
-                #self.warranty_end_date = self.gpsdevice_id.warranty_end_date
-                #_logger.warning('Field manipulation_detected: %s', warning)
-        #else:
-        #                if self.warranty_end_date:
-        #                    start_dt = fields.Datetime.from_string(self.warranty_end_date)
-        #                    today_dt = fields.Datetime.from_string(fields.Datetime.now())
-        #                    difference = today_dt - start_dt
-        #                    time_difference_in_hours = difference.total_seconds()
-        #                    if time_difference_in_hours > 1:
-        #                        self.warranty_status = 'out'
-        #                    else:
-        #                        self.warranty_status = 'on'
-
-        #return {
-        #            'domain': domain,
-        #            'warning': warning
-        #}
 
     def _check_no_warranty_rules(self, field):
+        if not self.manipulation_detected:
+            if field:
+                if re.search('manipulaci', field, re.IGNORECASE):
+                    self.manipulation_detected = True
+                else:
+                    self.manipulation_detected = False
 
-        if re.search('manipulaci', field, re.IGNORECASE):
-            self.manipulation_detected = True
-            self.warranty_status = 'out'
-        else:
-            self.manipulation_detected = False
         return
 
-    @api.onchange('manipulation_detected')
-    def _onchange_manipulation_detected(self):
-        if self.manipulation_detected:
-            self.warranty_status = 'out'
+    def _check_if_invalidate(self, invalidate):
+        if not self.manipulation_detected:
+            if invalidate:
+                self.manipulation_detected = True
+        return
 
-        return {}
