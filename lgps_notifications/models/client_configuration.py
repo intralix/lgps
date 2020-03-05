@@ -168,13 +168,15 @@ class ClientConfigurations(models.Model):
                             #     _logger.warning('Last Rule Applied: %s', device.last_rule_applied)
                             if not device.last_rule_applied:
                                 last_rule_hours = device.last_report
+                                _logger.warning('Not Rule Applied Yet, using last_report %s', last_rule_hours)
                             else:
                                 last_rule_hours = device.last_rule_applied.hours_rule
+                                _logger.warning('Last Rule Applied: %s', device.last_rule_applied)
 
                             for rule in sorted_rules:
                                 _logger.warning('Last Rule: %s vs Current Rule %s', last_rule_hours, rule.hours_rule)
-                                if rule.hours_rule > last_rule_hours:
-                                    _logger.warning('device.last_report: %s vs rule.hours_rule %s', device.last_report, rule.hours_rule)
+                                if last_rule_hours > rule.hours_rule:
+                                    #_logger.warning('device.last_report: %s vs rule.hours_rule %s', device.last_report, rule.hours_rule)
                                     if last_rule_hours > rule.hours_rule:
                                         _logger.warning('Apply Rule: %s', rule.name)
                                         rule_lists[str(rule.id)].append(device.id)
@@ -184,8 +186,8 @@ class ClientConfigurations(models.Model):
                                         })
                                     else:
                                         _logger.warning('No rules apply: %s - %s ', device.name, rule.name)
-                                else:
-                                    _logger.warning('No se han sobrepasado las reglas de tiempo %s vs %s',  rule.hours_rule, last_rule_hours)
+                                # else:
+                                #     _logger.warning('NNo se han sobrepasado las reglas de tiempo %s vs %s',  rule.hours_rule, last_rule_hours)
                 else:
                     if gps_devices:
                         for device in gps_devices:
