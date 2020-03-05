@@ -184,6 +184,7 @@ class ClientConfigurations(models.Model):
                                             'last_rule_applied': rule.id,
                                             'last_rule_applied_on': datetime.today()
                                         })
+                                        break
                                     else:
                                         _logger.warning('No rules apply: %s - %s ', device.name, rule.name)
                                 # else:
