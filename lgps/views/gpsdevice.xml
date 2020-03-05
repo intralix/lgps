@@ -216,11 +216,13 @@
         <field name="message_ids" string="Chatter Messages" filter_domain="[('message_ids.body', 'ilike', self)]"/>
         <group expand="1" string="Group By">
           <filter string="Cliente" name="cliente" context="{'group_by':'client_id'}"/>
-          <filter string="Plataforma" name="plataforma" context="{'group_by':'platform'}"/>
           <filter string="Producto" name="producto" context="{'group_by':'product_id'}"/>
           <separator orientation="vertical" />
-          <filter string="Fin de Garantía" name="end_warranty" context="{'group_by':'warranty_end_date'}"/>
+          <filter string="Plataforma" name="plataforma" context="{'group_by':'platform'}"/>
           <filter string="Estatus" name="status" context="{'group_by':'status'}"/>
+          <separator orientation="vertical" />
+          <filter string="Fecha Instalación" name="installation_date" context="{'group_by':'installation_date'}"/>
+          <filter string="Fin de Garantía" name="end_warranty" context="{'group_by':'warranty_end_date'}"/>
         </group>
       </search>
     </field>
@@ -232,7 +234,7 @@
     <field name="arch" type="xml">
       <tree string="GpsDevices Tree"
             decoration-muted="platform=='Drop'"
-            decoration-info="platform != 'Drop' and (last_report&gt;24)"
+            decoration-info="platform != 'Drop' and (last_report&gt;48)"
             decoration-warning="platform != 'Drop' and (last_report&gt;72)"
             decoration-danger="platform != 'Drop' and (last_report&gt;120)">
         <field name="name"/>

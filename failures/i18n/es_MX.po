@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-07 19:01+0000\n"
-"PO-Revision-Date: 2020-02-07 19:01+0000\n"
+"POT-Creation-Date: 2020-03-04 21:23+0000\n"
+"PO-Revision-Date: 2020-03-04 21:23+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,13 +36,17 @@ msgid "Add internal notes..."
 msgstr "Añadir notas internas..."
 
 #. module: failures
+#: model:ir.model.fields,field_description:failures.field_lgps_failure_attributions_list__name
+msgid "Atribuciones"
+msgstr ""
+
+#. module: failures
 #: model:ir.model.fields,field_description:failures.field_lgps_failures__message_attachment_count
 msgid "Attachment Count"
 msgstr "Conteo de archivos adjuntos"
 
 #. module: failures
 #: code:addons/failures/models/failure_attributions_list.py:9
-#: model:ir.model.fields,field_description:failures.field_lgps_failure_attributions_list__name
 #, python-format
 msgid "Attributions"
 msgstr "Atribuciones"
@@ -53,18 +57,18 @@ msgid "Categoría Componentes"
 msgstr ""
 
 #. module: failures
+#: model:ir.model.fields,field_description:failures.field_lgps_failures__failure_root_problem_list_id
+msgid "Causa Raíz"
+msgstr ""
+
+#. module: failures
 #: model:ir.model.fields,field_description:failures.field_lgps_failure_root_problem_list__name
 msgid "Causa raíz"
 msgstr ""
 
 #. module: failures
-#: code:addons/failures/models/failures.py:108
-#, python-format
-msgid "Closed Date"
-msgstr "Cerrado el"
-
-#. module: failures
 #: model:ir.model.fields,field_description:failures.field_lgps_failure_components_list__name
+#: model:ir.model.fields,field_description:failures.field_lgps_failures__failure_components_list_id
 msgid "Componentes"
 msgstr ""
 
@@ -75,7 +79,7 @@ msgid "Components"
 msgstr "Componentes"
 
 #. module: failures
-#: code:addons/failures/models/failure_root_problem_list.py:28
+#: code:addons/failures/models/failure_root_problem_list.py:29
 #, python-format
 msgid "Components Category"
 msgstr "Categoría Componentes"
@@ -131,7 +135,16 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: failures
-#: code:addons/failures/models/failures.py:112
+#: model:ir.model.fields,field_description:failures.field_lgps_failure_attributions_list__code
+#: model:ir.model.fields,field_description:failures.field_lgps_failure_components_list__code
+#: model:ir.model.fields,field_description:failures.field_lgps_failure_functionalities_list__code
+#: model:ir.model.fields,field_description:failures.field_lgps_failure_root_problem_list__code
+#: model:ir.model.fields,field_description:failures.field_lgps_failure_symptoms_list__code
+msgid "Código Interno"
+msgstr ""
+
+#. module: failures
+#: code:addons/failures/models/failures.py:91
 #, python-format
 msgid "Detected Manipulation"
 msgstr "Manipulación detectada"
@@ -145,17 +158,6 @@ msgstr "Manipulación detectada"
 #: model:ir.model.fields,field_description:failures.field_lgps_failures__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
-
-#. module: failures
-#: code:addons/failures/models/failures.py:72
-#, python-format
-msgid "Does not apply"
-msgstr "No aplica"
-
-#. module: failures
-#: selection:lgps.failures,warranty_status:0
-msgid "En garantía"
-msgstr ""
 
 #. module: failures
 #: code:addons/failures/models/failures.py:52
@@ -192,7 +194,6 @@ msgstr "Causas raíz registradas"
 
 #. module: failures
 #: code:addons/failures/models/failures.py:38
-#: model:ir.model.fields,field_description:failures.field_lgps_failures__failure_symptoms_list_id
 #, python-format
 msgid "Failure Symptoms List"
 msgstr "Síntomas"
@@ -249,11 +250,6 @@ msgid "Fecha de Reporte"
 msgstr ""
 
 #. module: failures
-#: model:ir.model.fields,field_description:failures.field_lgps_failures__closed_date
-msgid "Fecha de cierre"
-msgstr ""
-
-#. module: failures
 #: model:ir.model.fields,field_description:failures.field_lgps_failures__message_follower_ids
 msgid "Followers"
 msgstr "Seguidores"
@@ -269,7 +265,9 @@ msgid "Followers (Partners)"
 msgstr "Seguidores (Empresas)"
 
 #. module: failures
+#: model:ir.model.fields,field_description:failures.field_lgps_failure_components_list__failure_functionalities_list_id
 #: model:ir.model.fields,field_description:failures.field_lgps_failure_functionalities_list__name
+#: model:ir.model.fields,field_description:failures.field_lgps_failures__failure_functionalities_list_id
 msgid "Funcionalidades"
 msgstr ""
 
@@ -280,7 +278,7 @@ msgid "Functionalities"
 msgstr "Funcionalidades"
 
 #. module: failures
-#: code:addons/failures/models/failure_components_list.py:28
+#: code:addons/failures/models/failure_components_list.py:29
 #: model:ir.ui.menu,name:failures.failure_functionalities_list_menu
 #, python-format
 msgid "Functionalities List"
@@ -317,12 +315,6 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
 #. module: failures
-#: code:addons/failures/models/failures.py:70
-#, python-format
-msgid "In warranty"
-msgstr "En garantía"
-
-#. module: failures
 #: model:ir.model.fields,field_description:failures.field_lgps_failures__client_id
 msgid "Instalado En"
 msgstr ""
@@ -331,19 +323,14 @@ msgstr ""
 #: code:addons/failures/models/failures.py:26
 #, python-format
 msgid "Installed On"
-msgstr "Instalado En"
+msgstr ""
 
 #. module: failures
-#: code:addons/failures/models/failure_attributions_list.py:13
-#: code:addons/failures/models/failure_components_list.py:13
-#: code:addons/failures/models/failure_functionalities_list.py:13
-#: code:addons/failures/models/failure_root_problem_list.py:13
-#: code:addons/failures/models/failure_symptom_list.py:13
-#: model:ir.model.fields,field_description:failures.field_lgps_failure_attributions_list__code
-#: model:ir.model.fields,field_description:failures.field_lgps_failure_components_list__code
-#: model:ir.model.fields,field_description:failures.field_lgps_failure_functionalities_list__code
-#: model:ir.model.fields,field_description:failures.field_lgps_failure_root_problem_list__code
-#: model:ir.model.fields,field_description:failures.field_lgps_failure_symptoms_list__code
+#: code:addons/failures/models/failure_attributions_list.py:14
+#: code:addons/failures/models/failure_components_list.py:14
+#: code:addons/failures/models/failure_functionalities_list.py:14
+#: code:addons/failures/models/failure_root_problem_list.py:14
+#: code:addons/failures/models/failure_symptom_list.py:14
 #, python-format
 msgid "Internal Code"
 msgstr "Código Interno"
@@ -352,10 +339,10 @@ msgstr "Código Interno"
 #: code:addons/failures/models/failures.py:12
 #, python-format
 msgid "Internal Id"
-msgstr "Id Interno"
+msgstr ""
 
 #. module: failures
-#: code:addons/failures/models/failures.py:100
+#: code:addons/failures/models/failures.py:87
 #, python-format
 msgid "Internal Notes"
 msgstr "Notas internas"
@@ -434,26 +421,6 @@ msgid "List Info"
 msgstr "Información de la lista"
 
 #. module: failures
-#: model:ir.model.fields,field_description:failures.field_lgps_failure_components_list__failure_functionalities_list_id
-msgid "Lista de Funcionalidades"
-msgstr ""
-
-#. module: failures
-#: model:ir.model.fields,field_description:failures.field_lgps_failures__failure_components_list_id
-msgid "Lista de componentes"
-msgstr ""
-
-#. module: failures
-#: model:ir.model.fields,field_description:failures.field_lgps_failures__failure_functionalities_list_id
-msgid "Lista de funcionalidades"
-msgstr ""
-
-#. module: failures
-#: model:ir.model.fields,field_description:failures.field_lgps_failures__failure_root_problem_list_id
-msgid "Lista de problemas raíz"
-msgstr ""
-
-#. module: failures
 #: model:ir.model.fields,field_description:failures.field_lgps_failures__message_main_attachment_id
 msgid "Main Attachment"
 msgstr "Adjuntos principales"
@@ -479,12 +446,12 @@ msgid "More Information"
 msgstr "Más Información"
 
 #. module: failures
-#: code:addons/failures/models/failure_attributions_list.py:37
-#: code:addons/failures/models/failure_components_list.py:50
-#: code:addons/failures/models/failure_functionalities_list.py:37
-#: code:addons/failures/models/failure_root_problem_list.py:50
-#: code:addons/failures/models/failure_symptom_list.py:37
-#: code:addons/failures/models/failures.py:118
+#: code:addons/failures/models/failure_attributions_list.py:38
+#: code:addons/failures/models/failure_components_list.py:51
+#: code:addons/failures/models/failure_functionalities_list.py:38
+#: code:addons/failures/models/failure_root_problem_list.py:51
+#: code:addons/failures/models/failure_symptom_list.py:38
+#: code:addons/failures/models/failures.py:109
 #, python-format
 msgid "New"
 msgstr ""
@@ -503,11 +470,6 @@ msgstr "Resumen de la siguiente actividad"
 #: model:ir.model.fields,field_description:failures.field_lgps_failures__activity_type_id
 msgid "Next Activity Type"
 msgstr "Siguiente tipo de actividad"
-
-#. module: failures
-#: selection:lgps.failures,warranty_status:0
-msgid "No aplica"
-msgstr ""
 
 #. module: failures
 #: model:ir.model.fields,field_description:failures.field_lgps_failures__internal_notes
@@ -550,7 +512,7 @@ msgid "Nº de serie"
 msgstr ""
 
 #. module: failures
-#: code:addons/failures/models/failures.py:93
+#: code:addons/failures/models/failures.py:80
 #: model:ir.model.fields,field_description:failures.field_lgps_failures__repairs_id
 #, python-format
 msgid "ODT"
@@ -595,7 +557,7 @@ msgid "Repair Order"
 msgstr "Orden de reparación"
 
 #. module: failures
-#: code:addons/failures/models/failures.py:79
+#: code:addons/failures/models/failures.py:66
 #, python-format
 msgid "Report Date"
 msgstr "Fecha de Reporte"
@@ -617,15 +579,10 @@ msgid "Root Problem List"
 msgstr "Causas Raíz"
 
 #. module: failures
-#: code:addons/failures/models/failures.py:85
+#: code:addons/failures/models/failures.py:72
 #, python-format
 msgid "Serial Number"
 msgstr "Número de Serie"
-
-#. module: failures
-#: selection:lgps.failures,warranty_status:0
-msgid "Sin garantía"
-msgstr ""
 
 #. module: failures
 #: model:ir.model.fields,help:failures.field_lgps_failures__activity_state
@@ -655,9 +612,30 @@ msgid "Síntoma"
 msgstr ""
 
 #. module: failures
+#: model:ir.model.fields,field_description:failures.field_lgps_failures__failure_symptoms_list_id
+msgid "Síntomas"
+msgstr ""
+
+#. module: failures
 #: sql_constraint:lgps.failures:0
 msgid "The failure id must be unique"
 msgstr "El identificador de la falla debe ser único"
+
+#. module: failures
+#: model:ir.model.fields,field_description:failures.field_lgps_failures__time_spent
+msgid "Tiempo dedicado"
+msgstr ""
+
+#. module: failures
+#: code:addons/failures/models/failures.py:102
+#, python-format
+msgid "Time Spent"
+msgstr "Tiempo dedicado"
+
+#. module: failures
+#: model:ir.model.fields,help:failures.field_lgps_failures__time_spent
+msgid "Time spent in solution to this record"
+msgstr "Tiempo invertido"
 
 #. module: failures
 #: model:ir.model.fields,field_description:failures.field_lgps_failures__product_id
@@ -670,15 +648,10 @@ msgid "Today"
 msgstr "Hoy"
 
 #. module: failures
-#: code:addons/failures/models/failure_components_list.py:23
+#: code:addons/failures/models/failure_components_list.py:24
 #, python-format
 msgid "Traceability"
 msgstr "Rastreabilidad"
-
-#. module: failures
-#: model:ir.model.fields,field_description:failures.field_lgps_failures__warranty_end_date
-msgid "Término de Garantía"
-msgstr ""
 
 #. module: failures
 #: model:ir.model.fields,field_description:failures.field_lgps_failures__message_unread
@@ -691,21 +664,10 @@ msgid "Unread Messages Counter"
 msgstr "Contador de mensajes sin leer"
 
 #. module: failures
-#: code:addons/failures/models/failure_root_problem_list.py:23
+#: code:addons/failures/models/failure_root_problem_list.py:24
 #, python-format
 msgid "Void Warranty"
 msgstr "Invalida garantía"
-
-#. module: failures
-#: code:addons/failures/models/failures.py:65
-#, python-format
-msgid "Warranty End Date"
-msgstr "Fin de Garantía"
-
-#. module: failures
-#: model:ir.model.fields,field_description:failures.field_lgps_failures__warranty_status
-msgid "Warranty Status"
-msgstr "Estatus de garantía"
 
 #. module: failures
 #: model:ir.model.fields,field_description:failures.field_lgps_failures__website_message_ids
@@ -716,12 +678,6 @@ msgstr "Mensajes del sitio web"
 #: model:ir.model.fields,help:failures.field_lgps_failures__website_message_ids
 msgid "Website communication history"
 msgstr "Historial de comunicaciones del sitio web"
-
-#. module: failures
-#: code:addons/failures/models/failures.py:71
-#, python-format
-msgid "Without warranty"
-msgstr "Sin garantía"
 
 #. module: failures
 #: model:ir.actions.act_window,name:failures.failure_components_list_action

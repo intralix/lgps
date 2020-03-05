@@ -163,31 +163,29 @@ class ClientConfigurations(models.Model):
                 if cnf.priority == 'asc':
                     if gps_devices:
                         for device in gps_devices:
-                            _logger.warning('Device: %s with hours %s offline', device.name, device.last_report)
-                            if device.last_rule_applied:
-                                _logger.warning('Last Rule Applied: %s', device.last_rule_applied)
-                                for rule in sorted_rules:
-                                    _logger.warning('Last Rule: %s vs Current Rule %s', device.last_rule_applied.hours_rule, rule.hours_rule)
-                                    if rule.hours_rule > device.last_rule_applied.hours_rule:
-                                        _logger.warning('device.last_report: %s vs rule.hours_rule %s', device.last_report, rule.hours_rule)
-                                        if device.last_report > rule.hours_rule:
-                                            _logger.warning('Apply Rule: %s', rule.name)
-                                            rule_lists[str(rule.id)].append(device.id)
-                                            device.write({
-                                                'last_rule_applied': rule.id,
-                                                'last_rule_applied_on': datetime.today()
-                                            })
-                                        else:
-                                            _logger.warning('No rules apply: %s - %s ', device.name, rule.name)
-                                    else:
-                                        _logger.warning('No se han sobrepasado las reglas de tiempo %s vs %s',  rule.hours_rule, device.last_report)
+                            # _logger.warning('Device: %s with hours %s offline', device.name, device.last_report)
+                            # if device.last_rule_applied:
+                            #     _logger.warning('Last Rule Applied: %s', device.last_rule_applied)
+                            if not device.last_rule_applied:
+                                last_rule_hours = device.last_report
                             else:
-                                _logger.warning('No rule found, applying rule for the first time: %s', sorted_rules[0].name)
-                                rule_lists[str(sorted_rules[0].id)].append(device.id)
-                                device.write({
-                                    'last_rule_applied': sorted_rules[0].id,
-                                    'last_rule_applied_on': datetime.today()
-                                })
+                                last_rule_hours = device.last_rule_applied.hours_rule
+
+                            for rule in sorted_rules:
+                                _logger.warning('Last Rule: %s vs Current Rule %s', last_rule_hours, rule.hours_rule)
+                                if rule.hours_rule > last_rule_hours:
+                                    _logger.warning('device.last_report: %s vs rule.hours_rule %s', device.last_report, rule.hours_rule)
+                                    if last_rule_hours > rule.hours_rule:
+                                        _logger.warning('Apply Rule: %s', rule.name)
+                                        rule_lists[str(rule.id)].append(device.id)
+                                        device.write({
+                                            'last_rule_applied': rule.id,
+                                            'last_rule_applied_on': datetime.today()
+                                        })
+                                    else:
+                                        _logger.warning('No rules apply: %s - %s ', device.name, rule.name)
+                                else:
+                                    _logger.warning('No se han sobrepasado las reglas de tiempo %s vs %s',  rule.hours_rule, last_rule_hours)
                 else:
                     if gps_devices:
                         for device in gps_devices:
