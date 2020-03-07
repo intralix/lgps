@@ -202,6 +202,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             'logistic': False,
             'fleetrun': False,
             'platform': "Drop",
+            'notify_offline': False,
         })
 
         self.cellchips_list = notify_cellchisp_list
@@ -353,6 +354,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 'tracking': True,
                 'fleetrun': False,
                 'status': "hibernate",
+                'notify_offline': False,
             })
             r.message_post(body=body)
             self.create_device_log(r)
@@ -519,7 +521,12 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             operation_log_comment_device += device.warranty_start_date.strftime('%Y-%m-%d') + '</strong>'
 
             # Estatus del Equipo como desinstalado
-            device.write({'status': "uninstalled", "client_id": self.env.user.company_id.id})
+            device.write({
+                'status': "uninstalled",
+                "client_id": self.env.user.company_id.id,
+                'notify_offline': False,
+            })
+
             device.message_post(body=operation_log_comment)
 
             self.create_device_log(device)
@@ -527,7 +534,8 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
             self.destination_gpsdevice_ids.write({
                 'warranty_start_date': device.warranty_start_date,
-                'status': 'replacement'
+                'status': 'replacement',
+                'notify_offline': True,
             })
             self.destination_gpsdevice_ids.message_post(body=operation_log_comment_device)
 
@@ -731,6 +739,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 'tracking': self.tracking if self.tracking else r.tracking,
                 'fleetrun': self.fleetrun if self.fleetrun else r.fleetrun,
                 'status': self.device_status,
+                'notify_offline': True,
             })
             # write Comment
             r.message_post(body=body)
