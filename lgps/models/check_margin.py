@@ -19,12 +19,12 @@ class CheckMargin(models.Model):
     @api.multi
     def _action_confirm(self):
 
-        lower_margin = 10
+        lower_margin = 1.10
         internal_margin = 0
 
         for line in self.order_line:
 
-            internal_margin = line.purchase_price * (1 * lower_margin)
+            internal_margin = line.purchase_price * lower_margin
 
             if line.price_subtotal < internal_margin:
                 raise UserError('Estas intentando vender por debajo del costo interno. \n\nProducto: ' + line.product_id.name)
