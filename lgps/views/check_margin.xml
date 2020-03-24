@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record model="ir.ui.view" id="custom_tickets_form_view">
+    <field name="name">sale.order.line.check_margin</field>
+    <field name="model">sale.order.line</field>
+    <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly"/>
+    <field name="arch" type="xml">
+    <xpath expr="//field[@name='price_unit']" position="attributes">
+        <attribute name="on_change">check_margin(product_id,price_unit)</attribute>
+    </xpath>
+    </field>
+  </record>
+</odoo>
