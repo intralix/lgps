@@ -37,5 +37,4 @@ class CheckMargin(models.Model):
         if self.margin < 0:
             raise UserError('El margen del presupuesto esta por debajo de lo estipulado.')
 
-        return super(CheckMargin, self).action_validate()
-
+        return super(CheckMargin, self)._action_confirm()
