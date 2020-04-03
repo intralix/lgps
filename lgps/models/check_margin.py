@@ -94,8 +94,8 @@ class CheckMarginOnSalesOrder(models.Model):
 
             _logger.error('max_discount_allowed : %s', max_discount_allowed)
 
-            if margin_percent < 0 or margin_percent > max_discount_allowed:
-                raise UserError('El margen del presupuesto esta por debajo de lo estipulado.')
+            if margin_percent < 0 or margin_percent < max_discount_allowed:
+                raise UserError('El margen del presupuesto esta por debajo de lo esperado.')
 
 
 class CheckMarginOnSalesOrderLine(models.Model):
