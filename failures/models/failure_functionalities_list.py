@@ -3,6 +3,7 @@ from odoo import api, models, fields, _
 class FailureFunctionalitiesList(models.Model):
 
     _name = 'lgps.failure_functionalities_list'
+    _description = "Lista de Funcionalidades"
 
     name = fields.Char(
         required=True,

@@ -6,6 +6,7 @@ _logger = logging.getLogger(__name__)
 class Failures(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _name = 'lgps.failures'
+    _description = "Fallas"
 
     name = fields.Char(
         required=True,

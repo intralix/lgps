@@ -41,4 +41,12 @@
             (4, ref('base.user_admin'))
         ]"/>
   </record>
+
+    <record id="lgps_margin_and_discount_so" model="res.groups">
+    <field name="name">View Max Sales Order Discount Field</field>
+    <field name="users" eval="[
+            (4, ref('base.user_root')),
+            (4, ref('base.user_admin'))
+        ]"/>
+  </record>
 </odoo>

@@ -17,7 +17,8 @@ class Cellchip(models.Model):
         inverse_name='cellchip_id',
         string=_("Installed On"),
         help="GPS Device where the cellchip is on.",
-        readonly=True
+        readonly=True,
+        track_visibility='onchange'
     )
 
     # Estatus de la Línea
@@ -50,6 +51,7 @@ class Cellchip(models.Model):
             ("10GB", "10GB")
         ],
         string="Plan",
+        track_visibility='onchange'
     )
     # Número de Serie
     linenumber_id = fields.Many2one(
@@ -97,6 +99,7 @@ class Cellchip(models.Model):
             ("24", "24")
         ],
         string=_("Line Terms"),
+        track_visibility='onchange'
     )
 
     # Fecha de Compra

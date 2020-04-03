@@ -3,6 +3,7 @@ from odoo import api, models, fields, _
 class FailureAttributionsList(models.Model):
 
     _name = 'lgps.failure_attributions_list'
+    _description = "Lista de Atribuciones"
 
     name = fields.Char(
         required=True,

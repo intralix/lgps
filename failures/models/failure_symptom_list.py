@@ -3,6 +3,7 @@ from odoo import api, models, fields, _
 class FailureSymptomsList(models.Model):
 
     _name = 'lgps.failure_symptoms_list'
+    _description = "Lista de Síntomas"
 
     name = fields.Char(
         required=True,
