@@ -31,6 +31,7 @@ class Cellchip(models.Model):
         ],
         default="active",
         string=_("Status"),
+        track_visibility='onchange'
     )
     # Plan de la línea
     plan = fields.Selection(
@@ -75,6 +76,7 @@ class Cellchip(models.Model):
         ],
         string=_("Cellchip Owner"),
         index=True,
+        track_visibility='onchange'
     )
     # Proveedor de la línea
     provider = fields.Selection(
@@ -90,6 +92,7 @@ class Cellchip(models.Model):
             ("Telcel", "Telcel")
         ],
         string="Provider",
+        track_visibility='onchange'
     )
     # Plazo de la línea
     term = fields.Selection(

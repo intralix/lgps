@@ -6,10 +6,10 @@
     <field name="inherit_id" ref="base.view_users_form"/>
     <field name="arch" type="xml">
       <xpath expr="//notebook" position="inside">
-        <page string="Sales Order" groups="lgps.lgps_margin_and_discount_so">
+        <page string="Sales Order" groups="lgps_margins.lgps_margin_and_discount_in_so">
               <group>
                 <group>
-                    <field name="max_discount_allowed" widget="percentage"/>
+                    <field name="min_margin" widget="percentage"/>
                 </group>
               </group>
             </page>

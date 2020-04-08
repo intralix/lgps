@@ -125,13 +125,3 @@ class CheckMarginOnSalesOrderLine(models.Model):
             return {'warning': warning_mess}
 
         return
-
-
-class UserMarginConfigurations(models.Model):
-    _inherit = ['res.users']
-
-    max_discount_allowed = fields.Float(
-        string=_("Max Discount"),
-        digits=(2, 2),
-        help=_('Max Discount for this users')
-    )
