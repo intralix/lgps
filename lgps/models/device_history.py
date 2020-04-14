@@ -68,6 +68,8 @@ class DeviceHistory(models.Model):
             ('non_repairable', _('Equipo gps no reparable')),
             ('financial_situation', _('Cancelación de cuenta por falta de pago')),
             ('change_of_supplier', _('Cambio de proveedor por precio')),
+            ('return_to_stock', _('Regresa a Almacén Respaldo/Provisional/Prestado')),
+            ('return_from_loan', _('Regresa a Almacén Estuvo en Comodato')),
         ],
     )
 

@@ -34,6 +34,8 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             ('non_repairable', _('Equipo gps no reparable')),
             ('financial_situation', _('Cancelación de cuenta por falta de pago')),
             ('change_of_supplier', _('Cambio de proveedor por precio')),
+            ('return_to_stock', _('Regresa a Almacén Respaldo/Provisional/Prestado')),
+            ('return_from_loan', _('Regresa a Almacén Estuvo en Comodato')),
         ],
     )
 
@@ -150,7 +152,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             client = r.client_id.name if r.client_id else 'Sin Cliente'
             equipo = r.name
             nick = r.nick if r.nick else 'NA'
+            reason = dict(self._fields['reason']._description_selection(self.env)).get(self.reason)
 
+            acumulador += '<br/><b>Motivo:</b> ' + reason
             acumulador += '<br/><b>Plataforma:</b> ' + platform
             acumulador += '<br/><b>Cliente:</b> ' + client
             acumulador += '<br/><b>Solicitado Por:</b> ' + requested_by
