@@ -49,8 +49,18 @@ class AuthorizationODTWizard(models.TransientModel):
                 raise UserError(_('This record does not have and authorization request'))
 
             if odt.authorized_warranty == 'waiting':
-                odt.write({'authorized_warranty': self.status})
-                str_status = 'Rechazada' if self.status == 'rejected' else 'Autorizada'
+                if self.status == 'rejected':
+                    str_status = 'Rechazada'
+                    is_guarantee = False
+                else:
+                    str_status = 'Autorizada'
+                    is_guarantee = True
+
+                odt.write({
+                    'authorized_warranty': self.status,
+                    'is_guarantee': is_guarantee
+                })
+
                 operation_log_comment = operation_log_comment.replace("STATUS", str_status)
                 operation_log_comment = operation_log_comment.replace("REQUEST_COMMENT", self.request_comment)
                 odt.message_post(body=operation_log_comment)

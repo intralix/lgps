@@ -9,9 +9,10 @@
         <field name="gpsdevice_id"/>
         <field name="odt_type"/>
         <field name="installer_id"/>
-        <field name="is_guarantee"/>
+        <field name="is_guarantee" attrs="{'readonly':[('authorized_warranty','in',['waiting','authorized'])]}"/>
         <field name="authorization_requested" attrs="{'readonly':True, 'invisible':[('authorization_requested', '!=', True)]}"/>
         <field name="authorized_warranty" attrs="{'readonly':True}"/>
+        <field name="authorizations_count" attrs="{'readonly':True}" groups="lgps.lgps_group_odts_authorizer,lgps.lgps_group_manager"/>
       </xpath>
 
       <xpath expr="//field[@name='invoice_method']" position="after">
@@ -23,6 +24,15 @@
         <field name="days_count" attrs="{'readonly':True}"/>
         <field name="time_spent" widget="float_time"/>
       </xpath>
+
+      <xpath expr="//field[@name='operations']" position="attributes">
+        <attribute name="attrs">{'readonly':['|',('authorized_warranty','in',['waiting','authorized']), ('state','not in',['draft'])]}</attribute>
+      </xpath>
+
+      <xpath expr="//field[@name='fees_lines']" position="attributes">
+        <attribute name="attrs">{'readonly':['|',('authorized_warranty','in',['waiting','authorized']), ('state','not in',['draft'])]}</attribute>
+      </xpath>
+
     </field>
   </record>
 </odoo>

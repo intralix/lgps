@@ -54,16 +54,14 @@ class AuthorizationRequestODTWizard(models.TransientModel):
             if not odt.is_guarantee:
                 raise UserError(_('This record does not have warranty check box checked'))
 
-            # Estatus del Equipo como desinstalado
-            #odt.write({ 'authorized_warranty': True })
-
             operation_log_comment = operation_log_comment.replace("REQUEST_BY", self.requested_by.name)
             operation_log_comment = operation_log_comment.replace("REQUEST_COMMENT", self.request_comment)
             operation_log_comment = operation_log_comment.replace("LAST_WARRANTY_DATE", self.last_warranty_date.strftime('%Y-%m-%d'))
             odt.write({
                     'is_guarantee': True,
                     'authorization_requested': True,
-                    'authorized_warranty': 'waiting'
+                    'authorized_warranty': 'waiting',
+                    'authorizations_count': odt.authorizations_count + 1
             })
             odt.message_post(body=operation_log_comment)
 

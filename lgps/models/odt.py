@@ -96,6 +96,10 @@ class Odt(models.Model):
         track_visibility='onchange'
     )
 
+    authorizations_count = fields.Integer(
+        string=_("Authorizations Count"),
+    )
+
     @api.one
     @api.depends('closed_date')
     def _compute_days_count(self):
@@ -114,10 +118,12 @@ class Odt(models.Model):
 
     def _check_rules(self):
         warranty_was_void = False
+        billable_odt_types = ['service', 'reinstallation', 'uninstallation']
+
         # Validamos que el registro es una ODT
         if self.name.startswith('ODT'):
-            # ¿Es un servicio?
-            if self.odt_type == 'service' and self.invoice_method == 'none':
+            # Si la ODT no es una instalación nueva, validamos que se cobre con su procedimiento de autorización
+            if self.odt_type in billable_odt_types and self.invoice_method == 'none':
                 warranty_was_void = self.check_has_failures()
                 if not warranty_was_void:
                     if not self.is_guarantee:
@@ -138,31 +144,32 @@ class Odt(models.Model):
                     raise UserError(
                         _("Repair was not authorized.\n\nYou must change the invoicing method for invoice this service")
                     )
-                        #Check for Failures
-                        #values = self.env['lgps.failures'].search([('id', 'in', self.failures_ids)])
+
         return
 
     def check_has_failures(self):
-        # ¿Tiene fallas registradas?
-        failures = self.env['lgps.failures'].search([('repairs_id', '=', self.id)])
-        if not failures:
-            raise UserError(
-                _("Each service ODT must have a failure record associated.\n\nCreate this record first.")
-            )
-        else:
-            needs_void_warranty = False
-            msn_buff = ""
-            for f in failures:
-                _logger.warning('Failure: %s', f)
-                if f.manipulation_detected:
-                    msn_buff += "[" + f.name + "] : " + f.failure_functionalities_list_id.name \
+        needs_void_warranty = False
+        msn_buff = ""
+
+        # Revisamos si es un servicio, si lo es hay que revisar si tiene fallas asociadas
+        if self.odt_type == 'service':
+            # ¿Tiene fallas registradas?
+            failures = self.env['lgps.failures'].search([('repairs_id', '=', self.id)])
+            if not failures:
+                raise UserError(
+                    _("Each service ODT must have a failure record associated.\n\nCreate this record first.")
+                )
+            else:
+                for f in failures:
+                    _logger.warning('Failure: %s', f)
+                    if f.manipulation_detected:
+                        msn_buff += "[" + f.name + "] : " + f.failure_functionalities_list_id.name \
                                 + " / " + f.failure_components_list_id.name \
                                 + " / " + f.failure_root_problem_list_id.name + "\n"
-                    needs_void_warranty = True
+                        needs_void_warranty = True
 
-            if needs_void_warranty:
-                # self.void_warranty(msn_buff)
-                raise UserError(_("Manipulation detected on:\n\n" + msn_buff +"\n\nThis service has to be invoiced."))
+        if needs_void_warranty:
+            raise UserError(_("Manipulation detected on:\n\n" + msn_buff +"\n\nThis service has to be invoiced."))
 
         return needs_void_warranty
 
@@ -175,7 +182,8 @@ class Odt(models.Model):
             'authorized_warranty': 'rejected',
         })
 
-        operation_log_comment = "Esta ODT se marca como <strong style='color:red'>garantía no autorizada</strong> por las fallas encontradas:<br><br>"
+        operation_log_comment = "Esta ODT se marca como <strong style='color:red'>garantía no autorizada</strong>" \
+                                " por las fallas encontradas:<br><br>"
         string_reason = string_reason.replace("\n", "<br>")
         operation_log_comment += string_reason
 

@@ -6,7 +6,7 @@
     'application': True,
     'website': 'https://www.intralix.com',
     'category': 'Uncategorized',
-    'version': '0.3.4',
+    'version': '0.3.5',
     'depends': [
         'base',
         'stock',
