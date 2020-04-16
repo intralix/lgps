@@ -141,7 +141,6 @@ class Odt(models.Model):
     def validate_service_rules(self):
         # Ensure Failures
         warranty_was_void = self.check_has_failures()
-
         # Check if need Warranty
         if self.invoice_method == 'none':
             if not warranty_was_void:

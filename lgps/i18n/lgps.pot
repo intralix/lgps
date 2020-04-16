@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-14 17:10+0000\n"
-"PO-Revision-Date: 2020-04-14 17:10+0000\n"
+"POT-Creation-Date: 2020-04-16 22:33+0000\n"
+"PO-Revision-Date: 2020-04-16 22:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -538,6 +538,13 @@ msgstr ""
 #: code:addons/lgps/models/odt.py:70
 #, python-format
 msgid "Authorization requested"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/odt.py:100
+#: model:ir.model.fields,field_description:lgps.field_repair_order__authorizations_count
+#, python-format
+msgid "Authorizations Count"
 msgstr ""
 
 #. module: lgps
@@ -1222,9 +1229,6 @@ msgstr ""
 #: code:addons/lgps/models/accessory.py:56
 #: code:addons/lgps/models/common_operations_wizard.py:89
 #: code:addons/lgps/models/gpsdevice.py:170
-#: selection:lgps.accessory,status:0
-#: selection:lgps.common_operations_device_wizard,device_status:0
-#: selection:lgps.gpsdevice,status:0
 #, python-format
 msgid "Demo"
 msgstr ""
@@ -1232,6 +1236,13 @@ msgstr ""
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_search_view
 msgid "Demos"
+msgstr ""
+
+#. module: lgps
+#: selection:lgps.accessory,status:0
+#: selection:lgps.common_operations_device_wizard,device_status:0
+#: selection:lgps.gpsdevice,status:0
+msgid "Demostración"
 msgstr ""
 
 #. module: lgps
@@ -1395,7 +1406,7 @@ msgid "Días transcurridos"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:150
+#: code:addons/lgps/models/odt.py:163
 #, python-format
 msgid "Each service ODT must have a failure record associated.\n"
 "\n"
@@ -2158,7 +2169,7 @@ msgid "Mal Servicio"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:165
+#: code:addons/lgps/models/odt.py:175
 #, python-format
 msgid "Manipulation detected on:\n"
 "\n"
@@ -2913,13 +2924,13 @@ msgid "Repair Order"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/authorization_odt_wizard.py:59
+#: code:addons/lgps/models/authorization_odt_wizard.py:69
 #, python-format
 msgid "Repair does not have an authorization request"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:135
+#: code:addons/lgps/models/odt.py:187
 #, python-format
 msgid "Repair has not been authorized.\n"
 "\n"
@@ -2927,7 +2938,7 @@ msgid "Repair has not been authorized.\n"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:131
+#: code:addons/lgps/models/odt.py:183
 #, python-format
 msgid "Repair must be authorized before confirmation.\n"
 "\n"
@@ -2935,7 +2946,8 @@ msgid "Repair must be authorized before confirmation.\n"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:125
+#: code:addons/lgps/models/odt.py:135
+#: code:addons/lgps/models/odt.py:149
 #, python-format
 msgid "Repair seems to be a warranty.\n"
 "\n"
@@ -2943,7 +2955,7 @@ msgid "Repair seems to be a warranty.\n"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:139
+#: code:addons/lgps/models/odt.py:191
 #, python-format
 msgid "Repair was not authorized.\n"
 "\n"
