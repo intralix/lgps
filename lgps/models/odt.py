@@ -118,33 +118,37 @@ class Odt(models.Model):
 
     def _check_rules(self):
         warranty_was_void = False
-        billable_odt_types = ['service', 'reinstallation', 'uninstallation']
+        billable_odt_types = ['reinstallation', 'uninstallation']
 
         # Validamos que el registro es una ODT
         if self.name.startswith('ODT'):
-            # Si la ODT no es una instalación nueva, validamos que se cobre con su procedimiento de autorización
+
+            # ODT De Tipo Servicio
+            if self.odt_type == 'service':
+                self.validate_service_rules()
+                self.check_warranty()
+
+                # Si la ODT no es una instalación nueva, validamos que se cobre con su procedimiento de autorización
             if self.odt_type in billable_odt_types and self.invoice_method == 'none':
-                warranty_was_void = self.check_has_failures()
-                if not warranty_was_void:
-                    if not self.is_guarantee:
-                        raise UserError(
-                            _("Repair seems to be a warranty.\n\nYou must check warranty checkbox")
-                        )
+                if not self.is_guarantee:
+                    raise UserError(
+                        _("Repair seems to be a warranty.\n\nYou must check warranty checkbox")
+                    )
+                self.check_warranty()
 
-            if self.is_guarantee:
-                if self.authorized_warranty == 'na':
-                    raise UserError(
-                        _("Repair must be authorized before confirmation.\n\nYou must create an authorization request")
-                    )
-                if self.authorized_warranty == 'waiting':
-                    raise UserError(
-                        _("Repair has not been authorized.\n\nYou must wait for resolution to the previous request")
-                    )
-                if self.authorized_warranty == 'rejected':
-                    raise UserError(
-                        _("Repair was not authorized.\n\nYou must change the invoicing method for invoice this service")
-                    )
+        return
 
+    def validate_service_rules(self):
+        # Ensure Failures
+        warranty_was_void = self.check_has_failures()
+
+        # Check if need Warranty
+        if self.invoice_method == 'none':
+            if not warranty_was_void:
+                if not self.is_guarantee:
+                    raise UserError(
+                        _("Repair seems to be a warranty.\n\nYou must check warranty checkbox")
+                    )
         return
 
     def check_has_failures(self):
@@ -172,6 +176,22 @@ class Odt(models.Model):
             raise UserError(_("Manipulation detected on:\n\n" + msn_buff +"\n\nThis service has to be invoiced."))
 
         return needs_void_warranty
+
+    def check_warranty(self):
+        if self.is_guarantee:
+            if self.authorized_warranty == 'na':
+                raise UserError(
+                    _("Repair must be authorized before confirmation.\n\nYou must create an authorization request")
+                )
+            if self.authorized_warranty == 'waiting':
+                raise UserError(
+                    _("Repair has not been authorized.\n\nYou must wait for resolution to the previous request")
+                )
+            if self.authorized_warranty == 'rejected':
+                raise UserError(
+                    _("Repair was not authorized.\n\nYou must change the invoicing method for invoice this service")
+                )
+        return
 
     def void_warranty(self, string_reason):
 
