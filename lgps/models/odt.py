@@ -171,7 +171,7 @@ class Odt(models.Model):
                                 + " / " + f.failure_root_problem_list_id.name + "\n"
                         needs_void_warranty = True
 
-        if needs_void_warranty:
+        if needs_void_warranty and self.invoice_method == 'none':
             raise UserError(_("Manipulation detected on:\n\n" + msn_buff +"\n\nThis service has to be invoiced."))
 
         return needs_void_warranty
