@@ -70,6 +70,7 @@ class DeviceHistory(models.Model):
             ('change_of_supplier', _('Cambio de proveedor por precio')),
             ('return_to_stock', _('Regresa a Almacén Respaldo/Provisional/Prestado')),
             ('return_from_loan', _('Regresa a Almacén Estuvo en Comodato')),
+            ('on_stock_not_assigned', _('En almacén Intralix sin asignación')),
         ],
     )
 
