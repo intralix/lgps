@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
     <record model="ir.ui.view" id="user_discount_custom_form_view">
     <field name="name">res.users.custom</field>
     <field name="model">res.users</field>
@@ -11,11 +12,15 @@
                 <group>
                     <field name="min_margin" widget="percentage"/>
                 </group>
+                  <group>
+                    <field name="skip_min_margin_rule"/>
+                </group>
               </group>
             </page>
       </xpath>
     </field>
   </record>
+
 
     <record model="ir.ui.view" id="lgps_sale_margin_sale_order">
         <field name="name">lgps.sale.order.margin.view.form</field>

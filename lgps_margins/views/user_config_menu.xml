@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <menuitem id="user_margin_config_menu" name="Margin Configurations" parent="lgps.configuration_menu" sequence="10"/>
+</odoo>

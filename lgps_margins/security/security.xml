@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
+  <record id="lgps_margin_configurator" model="res.groups">
+    <field name="name">Lgps Margin Configurator</field>
+    <field name="category_id" ref="lgps.module_lgps_category"/>
+    <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+  </record>
+
   <record id="lgps_margin_and_discount_in_so" model="res.groups">
     <field name="name">See Margins And Costs in Sales Orders</field>
     <field name="users" eval="[
