@@ -36,9 +36,9 @@ class CheckMarginOnSalesOrder(models.Model):
         user = self.env.user
         _logger.error('Trabajando con el usuario : %s', self.env.user)
         if user.id == 1:
-            #user = self.env['res.users'].search([['id', '=', self.user_id.id]], limit=1)
-            user = self.user_id
-            _logger.error('Cambiando a el usuario : %s', user)
+            if self.user_id:
+                user = self.env['res.users'].search([['id', '=', self.user_id.id]], limit=1)
+                _logger.error('Cambiando a el usuario : %s', user)
 
         max_discount_allowed = round(user.min_margin * 100)
         skip_min_margin_rule = user.skip_min_margin_rule

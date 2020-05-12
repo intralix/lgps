@@ -1,0 +1,98 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* lgps_margins
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-12 21:58+0000\n"
+"PO-Revision-Date: 2020-05-12 21:58+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: lgps_margins
+#: code:addons/lgps_margins/models/user_margin_configuration.py:24
+#: model:ir.model.fields,help:lgps_margins.field_res_users__skip_min_margin_rule
+#, python-format
+msgid "Allow to sell with negative margin"
+msgstr "Permitir vender con pérdida"
+
+#. module: lgps_margins
+#: model:res.groups,name:lgps_margins.lgps_margin_configurator
+msgid "Lgps Margin Configurator"
+msgstr "Configurar Márgenes"
+
+#. module: lgps_margins
+#: model:ir.ui.menu,name:lgps_margins.user_margin_config_menu
+msgid "Margin Configurations"
+msgstr "Configuración de Márgenes"
+
+#. module: lgps_margins
+#: code:addons/lgps_margins/models/so_margin.py:12
+#: model:ir.model.fields,field_description:lgps_margins.field_sale_order__margin_percent
+#, python-format
+msgid "Margin Percent"
+msgstr "Margen %"
+
+#. module: lgps_margins
+#: code:addons/lgps_margins/models/user_margin_configuration.py:16
+#: model:ir.model.fields,field_description:lgps_margins.field_res_users__min_margin
+#, python-format
+msgid "Min Margin"
+msgstr "Margen mínimo"
+
+#. module: lgps_margins
+#: code:addons/lgps_margins/models/user_margin_configuration.py:18
+#: model:ir.model.fields,help:lgps_margins.field_res_users__min_margin
+#, python-format
+msgid "Min Margin expected for this user in Sales Orders"
+msgstr "Margen mínimo esperado de venta en presupuestos"
+
+#. module: lgps_margins
+#: model:ir.model,name:lgps_margins.model_sale_order
+msgid "Sale Order"
+msgstr "Pedido de venta"
+
+#. module: lgps_margins
+#: model_terms:ir.ui.view,arch_db:lgps_margins.user_discount_custom_form_view
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: lgps_margins
+#: model:ir.model,name:lgps_margins.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: lgps_margins
+#: model:res.groups,name:lgps_margins.lgps_margin_and_discount_in_so
+msgid "See Margins And Costs in Sales Orders"
+msgstr "Ver margen y costes en presupuestos"
+
+#. module: lgps_margins
+#: code:addons/lgps_margins/models/user_margin_configuration.py:22
+#: model:ir.model.fields,field_description:lgps_margins.field_res_users__skip_min_margin_rule
+#, python-format
+msgid "Skip Margin Rule"
+msgstr "Ignorar Regla de Margen"
+
+#. module: lgps_margins
+#: model:ir.model,name:lgps_margins.model_res_users
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: lgps_margins
+#: code:addons/lgps_margins/models/so_margin.py:116
+#, python-format
+msgid "Vendiendo por debajo del costo!"
+msgstr ""
+
+#. module: lgps_margins
+#: model:ir.model,name:lgps_margins.model_lgps_user_margin_configuration
+msgid "lgps.user_margin_configuration"
+msgstr "Lgps Márgenes"
+
