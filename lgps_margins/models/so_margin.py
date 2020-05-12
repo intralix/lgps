@@ -26,7 +26,8 @@ class CheckMarginOnSalesOrder(models.Model):
     @api.multi
     def _write(self, values):
         # _logger.error('Calling Write Method')
-        self._check_rules_on_sales_order()
+        for po in self:
+            po._check_rules_on_sales_order()
         # _logger.error('Already Saved. Checking now')
         return super(CheckMarginOnSalesOrder, self)._write(values)
 
