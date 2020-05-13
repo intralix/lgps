@@ -5,7 +5,7 @@
     'author': 'Intralix',    
     'website': 'https://www.intralix.com',
     'category': 'Uncategorized',
-    'version': '0.0.4',
+    'version': '0.0.5',
     'depends': [
         'base',
         'sale_margin',
@@ -13,9 +13,6 @@
     ],
     'data': [
         'security/security.xml',
-        'security/ir.model.access.csv',
-        'views/user_config_menu.xml',
-        #'views/user_margin_config.xml',
         'views/custom_so_margin.xml',
         'views/margin_permissions.xml',
     ],

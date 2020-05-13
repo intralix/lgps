@@ -84,7 +84,7 @@ class CheckMarginOnSalesOrder(models.Model):
             margin_percent = round(internal_margin / amount_untaxed * 100)
         else:
             margin_percent = 0
-            
+
         _logger.error('Base Imponible : %s', amount_untaxed)
         _logger.error('Impuestos : %s', amount_tax)
         _logger.error('Total : %s', amount_total)
