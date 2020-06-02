@@ -194,6 +194,7 @@ class GpsDevice(models.Model):
             ("Drop", _("Drop")),
             ("Gurtam", "Gurtam"),
             ("Gurtam_Utrax", "Gurtam/Utrax"),
+            ("Lkgps", "Lkgps"),
             ("Mapaloc", "Mapaloc"),
             ("Novit", "Novit"),
             ("Position Logic", "Position Logic"),
