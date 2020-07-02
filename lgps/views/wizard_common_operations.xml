@@ -13,7 +13,7 @@
            <hr/>
            <group><p class="text-primary"> Dispositivo(s) Seleccionado(s):</p></group>
         <group>
-             <field name="gpsdevice_ids" readonly="1" string="Equipo sustituido">
+             <field name="gpsdevice_ids" readonly="1" string="Procesando para">
                 <tree string="GPS Devices to Process">
                   <field name="name"/>
                   <field name="nick"/>
@@ -40,23 +40,23 @@
                <group>
                    <field name="destination_gpsdevice_ids"
                           attrs="{
-                          'invisible':[('operation_mode', 'in', ['drop','hibernation','wakeup'])],
-                          'required':[('operation_mode', 'not in', ['drop','hibernation','wakeup'])]
+                          'invisible':[('operation_mode', 'in', ['drop','hibernation','wakeup','add_reactivate'])],
+                          'required':[('operation_mode', 'not in', ['drop','hibernation','wakeup','add_reactivate'])]
                           }"/>
 
                    <field name="related_odt"
                           attrs="{
-                          'invisible':[('operation_mode', 'in', ['drop','hibernation','wakeup'])],
-                          'required':[('operation_mode', 'not in', ['drop','hibernation','wakeup'])]
+                          'invisible':[('operation_mode', 'in', ['drop','hibernation','wakeup','add_reactivate'])],
+                          'required':[('operation_mode', 'not in', ['drop','hibernation','wakeup','add_reactivate'])]
                           }"/>
                </group>
 
            </group>
 
-           <notebook  attrs="{'invisible':[('operation_mode', '!=', 'wakeup')]}">
+           <notebook  attrs="{'invisible':[('operation_mode', 'not in', ['wakeup','add_reactivate'])]}">
            <page string="Services">
                <group>
-                   <p class="text-primary"> Selecciona los servicios que seràn reactivados en los dispositivos</p>
+                   <p class="text-primary"> Selecciona los servicios que serán reactivados en los dispositivos</p>
                </group>
               <group>
                   <group>
@@ -69,6 +69,12 @@
                       <field name="temperature"/>
                       <field name="logistic"/>
                       <field name="device_status"/>
+                      <field name="platform"
+                      attrs="{
+                          'invisible':[('operation_mode', 'not in', ['add_reactivate'])],
+                          'required':[('operation_mode', 'in', ['add_reactivate'])]
+                          }"
+                      />
                   </group>
               </group>
             </page>

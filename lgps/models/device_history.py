@@ -38,7 +38,7 @@ class DeviceHistory(models.Model):
 
     destination_gpsdevice_ids = fields.Many2one(
         comodel_name='lgps.gpsdevice',
-        string="Substitute equipment",
+        string=_("Substitute equipment"),
     )
 
     product_id = fields.Many2one(
@@ -54,6 +54,7 @@ class DeviceHistory(models.Model):
             ('substitution', _('Sustitución de equipo por revisión')),
             ('accsubstitution', _('Sustitución de accesorio por revisión')),
             ('accreplacement', _('Reemplazo de accesorio')),
+            ('add_reactivate', _('Alta / Reactivación Equipo')),
         ],
         default='drop',
     )

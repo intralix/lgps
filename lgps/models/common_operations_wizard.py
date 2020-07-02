@@ -20,6 +20,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             ('wakeup', _('Deshibernación de Equipos')),
             ('replacement', _('Reemplazo de equipo por garantía')),
             ('substitution', _('Sustitución de equipo por revisión')),
+            ('add_reactivate', _('Alta / Reactivación Equipo')),
         ],
         default='drop'
     )
@@ -49,7 +50,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
     destination_gpsdevice_ids = fields.Many2one(
         comodel_name='lgps.gpsdevice',
-        string="Substitute equipment",
+        string=_("Substitute equipment"),
         domain="[('status', 'in', ['installed', 'demo', 'comodato', 'borrowed','replacement']),('platform', '!=', 'Drop')]"
     )
 
@@ -106,6 +107,23 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         string=_("Status"),
     )
 
+    platform = fields.Selection(
+        selection=[
+            ("Ceiba2", "Ceiba2"),
+            ("Cybermapa", "Cybermapa"),
+            ("Drop", _("Drop")),
+            ("Gurtam", "Gurtam"),
+            ("Gurtam_Utrax", "Gurtam/Utrax"),
+            ("Lkgps", "Lkgps"),
+            ("Mapaloc", "Mapaloc"),
+            ("Novit", "Novit"),
+            ("Position Logic", "Position Logic"),
+            ("Sosgps", "Sosgps"),
+            ("Utrax", "Utrax"),
+        ],
+        string=_("Platform"),
+    )
+
     @api.multi
     def execute_operation(self):
         if len(self._context.get('active_ids')) < 1:
@@ -126,7 +144,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         # Wakeup
         if self.operation_mode == 'wakeup':
             self.execute_wakeup()
-            
+        # Wakeup
+        if self.operation_mode == 'add_reactivate':
+            self.execute_add_reactivate()
         return {}
 
     def execute_drop(self):
@@ -784,7 +804,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             # Create Object Log
             self.create_device_log(r)
 
-        channel_msn = '<br/>Los equipos mencionados a continuación se procesaron para ser dehibernados por motivo de:<br/>'
+        channel_msn = '<br/>Los equipos mencionados a continuación se procesaron para ser deshibernados por motivo de:<br/>'
         channel_msn += self.comment + '<br/> soliciato por: ' + self.requested_by + '<br/>'
         channel_msn += notify_gps_list
 
@@ -792,6 +812,85 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
         return {}
 
+    def execute_add_reactivate(self):
+        body = ''
+        notify_gps_list = ''
+        active_records = self.return_active_records()
+
+        # LGPS Global Configuration
+        lgps_config = self.sudo().env['ir.config_parameter']
+
+        channel_id = lgps_config.get_param('lgps.add_reactivation_device_wizard.default_channel')
+        if not channel_id:
+            raise UserError(_(
+                'There is not configuration for default channel.\n Configure this in order to send the notification.'))
+
+        for r in active_records:
+            acumulador = ""
+            body = "[Proceso de Alta/Reactivación]<br/><br/>" + self.comment + '<br/>'
+            body += '<br/><b>Solicitado por</b>: '
+            body += self.requested_by + '<br/>'
+            gps_functions_summary = "<hr/>Se activan las funciones de:<br/><br/>"
+            additional_functions = False
+
+            platform = self.platform if self.platform else 'Sin Plataforma'
+            client = r.client_id.name if r.client_id else 'Sin Cliente'
+            equipo = r.name
+            nick = r.nick if r.nick else 'NA'
+
+            acumulador += '<br/><b>Plataforma:</b> ' + platform
+            acumulador += '<br/><b>Cliente:</b> ' + client
+            acumulador += '<br/><b>Solicitado Por:</b> ' + self.requested_by
+            acumulador += '<br/><b>Equipo:</b> ' + equipo
+            acumulador += '<br/><b>Nick:</b> ' + nick
+            notify_gps_list += '<br/>' + client + ' || ' + equipo + ' || ' + nick + ' || ' + platform
+
+            if self.tracking:
+                additional_functions = True
+                gps_functions_summary += "Rastreo<br/>"
+            if self.fuel:
+                additional_functions = True
+                gps_functions_summary += "Combustible<br/>"
+            if self.scanner:
+                additional_functions = True
+                gps_functions_summary += "Escánner<br/>"
+            if self.temperature:
+                additional_functions = True
+                gps_functions_summary += "Temperatura<br/>"
+            if self.logistic:
+                additional_functions = True
+                gps_functions_summary += "Logística<br/>"
+            if self.fleetrun:
+                additional_functions = True
+                gps_functions_summary += "Mantenimiento de Flotilla<br/>"
+
+            body += '<br/>' + acumulador
+            if additional_functions:
+                body += gps_functions_summary
+
+            # Activando el equipo
+            r.write({
+                'fuel': self.fuel if self.fuel else r.fuel,
+                'scanner': self.scanner if self.scanner else r.scanner,
+                'temperature': self.temperature if self.temperature else r.temperature,
+                'logistic': self.logistic if self.logistic else r.logistic,
+                'tracking': self.tracking if self.tracking else r.tracking,
+                'fleetrun': self.fleetrun if self.fleetrun else r.fleetrun,
+                'status': self.device_status,
+                'platform': self.platform,
+
+            })
+            # write Comment
+            r.message_post(body=body)
+            self.create_device_log(r)
+
+            channel_msn = '<br/>Los equipos mencionados a continuación se procesaron para Alta/Reactivación por motivo de:<br/>'
+            channel_msn += self.comment + '<br/> soliciato por: ' + self.requested_by + '<br/>'
+            channel_msn += notify_gps_list
+
+            self.log_to_channel(channel_id, channel_msn)
+
+        return {}
 
     def return_active_records(self):
         active_model = self._context.get('active_model')

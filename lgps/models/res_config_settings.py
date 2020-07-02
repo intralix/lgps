@@ -79,6 +79,12 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='lgps.device_wizard.repairs_default_price_list_id',
     )
 
+    add_reactivation_channel_id = fields.Many2one(
+        'mail.channel',
+        string=_("Default Add/Reactivation Channel"),
+        config_parameter='lgps.add_reactivation_device_wizard.default_channel',
+    )
+
     def set_values(self):
         super(ResConfigSettings, self).set_values()
 
