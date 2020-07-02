@@ -828,8 +828,6 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         for r in active_records:
             acumulador = ""
             body = "[Proceso de Alta/Reactivación]<br/><br/>" + self.comment + '<br/>'
-            body += '<br/><b>Solicitado por</b>: '
-            body += self.requested_by + '<br/>'
             gps_functions_summary = "<hr/>Se activan las funciones de:<br/><br/>"
             additional_functions = False
 
