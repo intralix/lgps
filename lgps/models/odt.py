@@ -100,6 +100,16 @@ class Odt(models.Model):
         string=_("Authorizations Count"),
     )
 
+    guarantee_type = fields.Selection(
+        [
+            ('manpower_warranty', _('Garantía de mano de obra')),
+            ('product warranty', _('Garantía de producto')),
+            ('all_warranty', _('Ambas')),
+        ],
+        string=_("Guarantee Type"),
+        track_visibility='onchange',
+    )
+
     @api.one
     @api.depends('closed_date')
     def _compute_days_count(self):

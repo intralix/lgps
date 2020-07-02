@@ -10,6 +10,8 @@
         <field name="odt_type"/>
         <field name="installer_id"/>
         <field name="is_guarantee" attrs="{'readonly':[('authorized_warranty','in',['waiting','authorized'])]}"/>
+        <field name="guarantee_type" attrs="{
+        'invisible':[('is_guarantee', '!=', True)], 'required':[('is_guarantee', '=', True)]}"/>
         <field name="authorization_requested" attrs="{'readonly':True, 'invisible':[('authorization_requested', '!=', True)]}"/>
         <field name="authorized_warranty" attrs="{'readonly':True}"/>
         <field name="authorizations_count" attrs="{'readonly':True}" groups="lgps.lgps_group_odts_authorizer,lgps.lgps_group_manager"/>
