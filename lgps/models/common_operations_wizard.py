@@ -475,6 +475,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             product_id = device.product_id
             serialnumber_id = device.serialnumber_id
             client_id = self.env.user.company_id
+            device_current_client = device.client_id
             device_id = device.id
 
             repair_internal_notes = repair_internal_notes.replace("REEMPLAZADO", device.name)
@@ -556,6 +557,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
             self.destination_gpsdevice_ids.write({
                 'warranty_start_date': device.warranty_start_date,
+                "client_id": device_current_client.id,
                 'status': 'replacement',
                 'notify_offline': True,
             })
