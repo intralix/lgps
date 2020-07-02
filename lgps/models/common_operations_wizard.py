@@ -557,7 +557,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
             self.destination_gpsdevice_ids.write({
                 'warranty_start_date': device.warranty_start_date,
-                "client_id": device_current_client.id,
+                'client_id': device_current_client.id,
                 'status': 'replacement',
                 'notify_offline': True,
             })
@@ -681,7 +681,10 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             operation_log_comment_device = operation_log_comment_device.replace('EQUIPO', device.name)
             operation_log_comment_device = operation_log_comment_device.replace('SUSTITUIDO', self.destination_gpsdevice_ids.name)
             operation_log_comment_device = operation_log_comment_device.replace('RMA_ODT', nodt.name)
-            self.destination_gpsdevice_ids.write({'status': "borrowed"})
+            self.destination_gpsdevice_ids.write({
+                'status': "borrowed",
+                'client_id': client_id.id,
+            })
             self.destination_gpsdevice_ids.message_post(body=operation_log_comment_device)
             self.create_device_log(device)
             self.log_to_channel(channel_id, operation_log_comment)
