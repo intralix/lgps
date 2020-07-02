@@ -68,7 +68,11 @@
                   <group>
                       <field name="temperature"/>
                       <field name="logistic"/>
-                      <field name="device_status"/>
+                      <field name="device_status"
+                             attrs="{
+                          'invisible':[('operation_mode', 'not in', ['wakeup'])],
+                          'required':[('operation_mode', 'in', ['wakeup'])]
+                          }"/>
                       <field name="platform"
                       attrs="{
                           'invisible':[('operation_mode', 'not in', ['add_reactivate'])],
