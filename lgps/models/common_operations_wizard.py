@@ -50,7 +50,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
     destination_gpsdevice_ids = fields.Many2one(
         comodel_name='lgps.gpsdevice',
         string="Substitute equipment",
-        domain="[('status', 'in', ['installed', 'demo', 'comodato', 'borrowed']),('platform', '!=', 'Drop')]"
+        domain="[('status', 'in', ['installed', 'demo', 'comodato', 'borrowed','replacement']),('platform', '!=', 'Drop')]"
     )
 
     related_odt = fields.Many2one(
@@ -442,7 +442,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         operation_log_comment += '<strong>EQUIPO</strong> con número de ODT <strong>RELATED_ODT</strong>. <br/>'
         operation_log_comment += 'El equipo pasa a propiedad de la empresa.<br/>'
         operation_log_comment += 'Se entrega equipo a Soporte para revisión.<br/><br/>Comentario: ' + self.comment
-        operation_log_comment_device = 'Se coloca equipo como reemplazo para el equipo <strong>EQUIPO</strong> '
+        operation_log_comment_device = 'Se coloca <strong>REEMPLAZADO</strong> como reemplazo para <strong>EQUIPO</strong> '
         operation_log_comment_device += 'con la ODT <strong>RELATED_ODT</strong><br/><br/>Comentario: ' + self.comment
 
         for device in active_records:
@@ -502,8 +502,8 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                         _logger.warning('Subscription Recurring invoice line ids: %s', s.recurring_invoice_line_ids)
 
                         subscription_copy = self.copy_subscription(s, {
-                            'name': 'Sustitución ' + self.destination_gpsdevice_ids.name,
-                            'code': 'Sustitución ' + self.destination_gpsdevice_ids.name,
+                            'name': 'Reemplazo ' + self.destination_gpsdevice_ids.name,
+                            'code': 'Reemplazo ' + self.destination_gpsdevice_ids.name,
                             'stage_id': subscription_in_progress_stage.id,
                             'gpsdevice_id': self.destination_gpsdevice_ids.id,
                         })
@@ -519,11 +519,8 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 operation_log_comment_device += device.name + ' no tiene suscripciones.</p>'
 
             operation_log_comment_device = operation_log_comment_device.replace('EQUIPO', device.name)
+            operation_log_comment_device = operation_log_comment_device.replace('REEMPLAZADO', self.destination_gpsdevice_ids.name)
             operation_log_comment_device = operation_log_comment_device.replace('RELATED_ODT', self.related_odt.name)
-            operation_log_comment_device += '<br/>Fecha de garantía de <strong>'
-            operation_log_comment_device += self.destination_gpsdevice_ids.warranty_start_date.strftime('%Y-%m-%d')
-            operation_log_comment_device += '</strong> a <strong>'
-            operation_log_comment_device += device.warranty_start_date.strftime('%Y-%m-%d') + '</strong>'
 
             # Estatus del Equipo como desinstalado
             device.write({
@@ -542,6 +539,12 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 'status': 'replacement',
                 'notify_offline': True,
             })
+
+            operation_log_comment_device += '<br/>Fecha de garantía de <strong>'
+            operation_log_comment_device += self.destination_gpsdevice_ids.warranty_start_date.strftime('%Y-%m-%d')
+            operation_log_comment_device += '</strong> a <strong>'
+            operation_log_comment_device +=self.destination_gpsdevice_ids.warranty_end_date.strftime('%Y-%m-%d') + '</strong>'
+
             self.destination_gpsdevice_ids.message_post(body=operation_log_comment_device)
 
         return {}
@@ -570,7 +573,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         operation_log_comment +=' <strong>RMA_ODT</strong>. Se instala el equipo: <strong>EQUIPO</strong> en su lugar'
         operation_log_comment +=' con la ODT <strong>RELATED_ODT</strong>. <br/>'
         operation_log_comment +='Se entrega equipo a Soporte para revisión.'
-        operation_log_comment_device = 'Se coloca como sustituto al equipo <strong>EQUIPO</strong>  mientras está en '
+        operation_log_comment_device = 'Se coloca <strong>SUSTITUIDO</strong> como sustituto de <strong>EQUIPO</strong>  mientras está en '
         operation_log_comment_device +='revisión con la ODT <strong>RMA_ODT</strong><br/><br/> '
         operation_log_comment_device += 'Comentario: ' + self.comment
 
@@ -654,6 +657,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             device.message_post(body=operation_log_comment)
 
             operation_log_comment_device = operation_log_comment_device.replace('EQUIPO', device.name)
+            operation_log_comment_device = operation_log_comment_device.replace('SUSTITUIDO', self.destination_gpsdevice_ids.name)
             operation_log_comment_device = operation_log_comment_device.replace('RMA_ODT', nodt.name)
             self.destination_gpsdevice_ids.write({'status': "borrowed"})
             self.destination_gpsdevice_ids.message_post(body=operation_log_comment_device)
