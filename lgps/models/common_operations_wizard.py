@@ -131,13 +131,12 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
     reactivation_reason = fields.Selection(
         [
-            ('op1', _('Alta de equipo para pedido')),
+            ('op1', _('Alta de equipo para pedido de venta')),
             ('op2', _('Alta de equipo para pruebas')),
-            ('op3', _('Cuenta cancelada se reactivó')),
-            ('op4', _('Equipo como respaldo')),
-            ('op5', _('Equipo como préstamo')),
-            ('op6', _('Revisión de equipo')),
-            ('op7', _('Solicitud de reactivación por el Cliente')),
+            ('op3', _('Equipo como respaldo')),
+            ('op4', _('Equipo como préstamo')),
+            ('op5', _('Revisión de equipo')),
+            ('op6', _('Solicitud de reactivación')),
         ],
         string=_("Motivo del Alta / Reactivación"),
         default="op1"
@@ -866,7 +865,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             acumulador += '<br/><b>Solicitado Por:</b> ' + self.requested_by
             acumulador += '<br/><b>Motivo:</b> ' + reactivation_reason
             acumulador += '<br/><b>Equipo:</b> ' + equipo
-            acumulador += '<br/><b>Nick:</b> ' + nick
+            #acumulador += '<br/><b>Nick:</b> ' + nick
             if self.cellchip_id:
                 acumulador += '<br/><b>Línea Asignada:</b> ' + self.cellchip_id.name
 

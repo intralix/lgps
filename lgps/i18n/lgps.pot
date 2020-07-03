@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-02 19:13+0000\n"
-"PO-Revision-Date: 2020-07-02 19:13+0000\n"
+"POT-Creation-Date: 2020-07-03 21:49+0000\n"
+"PO-Revision-Date: 2020-07-03 21:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -488,6 +488,20 @@ msgid "Alta / Reactivación Equipo"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:134
+#: selection:lgps.common_operations_device_wizard,reactivation_reason:0
+#, python-format
+msgid "Alta de equipo para pedido de venta"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:135
+#: selection:lgps.common_operations_device_wizard,reactivation_reason:0
+#, python-format
+msgid "Alta de equipo para pruebas"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/odt.py:107
 #: selection:repair.order,guarantee_type:0
 #, python-format
@@ -739,6 +753,7 @@ msgid "Cellchip Info"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:129
 #: code:addons/lgps/models/gpsdevice.py:210
 #, python-format
 msgid "Cellchip Number"
@@ -1471,6 +1486,20 @@ msgstr ""
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_condensed_view
 msgid "Equipo"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:137
+#: selection:lgps.common_operations_device_wizard,reactivation_reason:0
+#, python-format
+msgid "Equipo como préstamo"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:136
+#: selection:lgps.common_operations_device_wizard,reactivation_reason:0
+#, python-format
+msgid "Equipo como respaldo"
 msgstr ""
 
 #. module: lgps
@@ -2211,6 +2240,11 @@ msgid "Lkgps"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.device_history_form_view
+msgid "Log"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/common_operations_wizard.py:84
 #: code:addons/lgps/models/gpsdevice.py:137
 #, python-format
@@ -2323,10 +2357,13 @@ msgid "Monto Ponderado"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/device_history.py:92
+#: model:ir.model.fields,field_description:lgps.field_lgps_device_history__log_msn
 #: model_terms:ir.ui.view,arch_db:lgps.accessory_form_view
 #: model_terms:ir.ui.view,arch_db:lgps.accessory_history_form_view
 #: model_terms:ir.ui.view,arch_db:lgps.device_history_form_view
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
+#, python-format
 msgid "More Info"
 msgstr ""
 
@@ -2338,6 +2375,13 @@ msgstr ""
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.view_authorization_request_odt_wizard
 msgid "Motivo de la solicitud"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:141
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__reactivation_reason
+#, python-format
+msgid "Motivo del Alta / Reactivación"
 msgstr ""
 
 #. module: lgps
@@ -2358,7 +2402,7 @@ msgstr ""
 #: code:addons/lgps/models/accessory.py:62
 #: code:addons/lgps/models/accessory.py:125
 #: code:addons/lgps/models/common_operations_wizard.py:97
-#: code:addons/lgps/models/device_history.py:94
+#: code:addons/lgps/models/device_history.py:97
 #: code:addons/lgps/models/gpsdevice.py:176
 #: code:addons/lgps/models/partner.py:22
 #, python-format
@@ -2539,6 +2583,7 @@ msgstr ""
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__name
+#: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__cellchip_id
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__cellchip_id
 msgid "Número de Línea"
 msgstr ""
@@ -3109,6 +3154,13 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:138
+#: selection:lgps.common_operations_device_wizard,reactivation_reason:0
+#, python-format
+msgid "Revisión de equipo"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/tracking.py:90
 #, python-format
 msgid "Route"
@@ -3198,7 +3250,7 @@ msgstr ""
 #: code:addons/lgps/models/authorization_odt_wizard.py:37
 #: code:addons/lgps/models/authorization_request_odt_wizard.py:43
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:54
-#: code:addons/lgps/models/common_operations_wizard.py:130
+#: code:addons/lgps/models/common_operations_wizard.py:148
 #, python-format
 msgid "Select at least one record."
 msgstr ""
@@ -3323,6 +3375,13 @@ msgid "Solicitado por"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/common_operations_wizard.py:139
+#: selection:lgps.common_operations_device_wizard,reactivation_reason:0
+#, python-format
+msgid "Solicitud de reactivación"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:309
 #, python-format
 msgid "Some accessories does not has the right status for this operation.\n"
@@ -3331,7 +3390,7 @@ msgid "Some accessories does not has the right status for this operation.\n"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/common_operations_wizard.py:914
+#: code:addons/lgps/models/common_operations_wizard.py:941
 #, python-format
 msgid "Some devices does not has the right status for this operation.\n"
 "\n"
@@ -3570,14 +3629,14 @@ msgid "The cellchip id must be unique"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/common_operations_wizard.py:470
+#: code:addons/lgps/models/common_operations_wizard.py:488
 #, python-format
 msgid "The device does not have Warranty Start Date.\n"
 "Complete this first in order to process the Replacement Operation."
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/common_operations_wizard.py:602
+#: code:addons/lgps/models/common_operations_wizard.py:622
 #, python-format
 msgid "The device does not have Warranty Start Date. \n"
 "Complete this first in order to process the Substitution Operation."
@@ -3600,28 +3659,28 @@ msgstr ""
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:71
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:190
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:390
-#: code:addons/lgps/models/common_operations_wizard.py:287
-#: code:addons/lgps/models/common_operations_wizard.py:293
-#: code:addons/lgps/models/common_operations_wizard.py:450
-#: code:addons/lgps/models/common_operations_wizard.py:579
-#: code:addons/lgps/models/common_operations_wizard.py:709
-#: code:addons/lgps/models/common_operations_wizard.py:825
-#: code:addons/lgps/models/common_operations_wizard.py:1006
+#: code:addons/lgps/models/common_operations_wizard.py:305
+#: code:addons/lgps/models/common_operations_wizard.py:311
+#: code:addons/lgps/models/common_operations_wizard.py:468
+#: code:addons/lgps/models/common_operations_wizard.py:599
+#: code:addons/lgps/models/common_operations_wizard.py:732
+#: code:addons/lgps/models/common_operations_wizard.py:848
+#: code:addons/lgps/models/common_operations_wizard.py:1034
 #, python-format
 msgid "There is not configuration for default channel.\n"
 " Configure this in order to send the notification."
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/common_operations_wizard.py:308
+#: code:addons/lgps/models/common_operations_wizard.py:326
 #, python-format
 msgid "There is not configuration for default commercial team.\n"
 " Configure this in order to create subscription successfully."
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/common_operations_wizard.py:280
-#: code:addons/lgps/models/common_operations_wizard.py:703
+#: code:addons/lgps/models/common_operations_wizard.py:298
+#: code:addons/lgps/models/common_operations_wizard.py:726
 #, python-format
 msgid "There is not configuration for default current subscriptions stage.\n"
 "Configure this in order to send the notification."
@@ -3636,28 +3695,28 @@ msgid "There is not configuration for default list price in RMA repairs.\n"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/common_operations_wizard.py:322
+#: code:addons/lgps/models/common_operations_wizard.py:340
 #, python-format
 msgid "There is not configuration for default price list.\n"
 " Configure this in order to create subscription successfully."
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/common_operations_wizard.py:299
+#: code:addons/lgps/models/common_operations_wizard.py:317
 #, python-format
 msgid "There is not configuration for default service.\n"
 " Configure this in order to create subscription successfully."
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/common_operations_wizard.py:273
+#: code:addons/lgps/models/common_operations_wizard.py:291
 #, python-format
 msgid "There is not configuration for default stage on new subscription.\n"
 "Configure this in order to send the notification."
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/common_operations_wizard.py:315
+#: code:addons/lgps/models/common_operations_wizard.py:333
 #, python-format
 msgid "There is not configuration for default user as responsable.\n"
 " Configure this in order to create subscription successfully."
@@ -3972,7 +4031,7 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:342
-#: code:addons/lgps/models/common_operations_wizard.py:952
+#: code:addons/lgps/models/common_operations_wizard.py:979
 #, python-format
 msgid "Who authorizes this request?"
 msgstr ""
@@ -3988,14 +4047,14 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:340
-#: code:addons/lgps/models/common_operations_wizard.py:950
+#: code:addons/lgps/models/common_operations_wizard.py:977
 #, python-format
 msgid "You forgot to comment the reason for this process to run."
 msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:344
-#: code:addons/lgps/models/common_operations_wizard.py:954
+#: code:addons/lgps/models/common_operations_wizard.py:981
 #, python-format
 msgid "You forgot to select the Related ODT"
 msgstr ""
