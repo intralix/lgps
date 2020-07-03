@@ -124,6 +124,25 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         string=_("Platform"),
     )
 
+    cellchip_id = fields.Many2one(
+        comodel_name="lgps.cellchip",
+        string=_("Cellchip Number"),
+    )
+
+    reactivation_reason = fields.Selection(
+        [
+            ('op1', _('Alta de equipo para pedido')),
+            ('op2', _('Alta de equipo para pruebas')),
+            ('op3', _('Cuenta cancelada se reactivó')),
+            ('op4', _('Equipo como respaldo')),
+            ('op5', _('Equipo como préstamo')),
+            ('op6', _('Revisión de equipo')),
+            ('op7', _('Solicitud de reactivación por el Cliente')),
+        ],
+        string=_("Motivo del Alta / Reactivación"),
+        default="op1"
+    )
+
     @api.multi
     def execute_operation(self):
         if len(self._context.get('active_ids')) < 1:
@@ -216,7 +235,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
             r.message_post(body=body)
             # Create Object Log
-            self.create_device_log(r)
+            self.create_device_log(r, body)
 
         # Ejecutamos la Baja en el sistema
         active_records.write({
@@ -382,7 +401,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 'notify_offline': False,
             })
             r.message_post(body=body)
-            self.create_device_log(r)
+            self.create_device_log(r, body)
 
             # revisamos el tema de las suscripciones:
             default = dict(None or {})
@@ -552,7 +571,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
             device.message_post(body=operation_log_comment)
 
-            self.create_device_log(device)
+            self.create_device_log(device, operation_log_comment)
             self.log_to_channel(channel_id, operation_log_comment)
 
             self.destination_gpsdevice_ids.write({
@@ -686,7 +705,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 'client_id': client_id.id,
             })
             self.destination_gpsdevice_ids.message_post(body=operation_log_comment_device)
-            self.create_device_log(device)
+            self.create_device_log(device, operation_log_comment)
             self.log_to_channel(channel_id, operation_log_comment)
 
         return {}
@@ -807,7 +826,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 )
 
             # Create Object Log
-            self.create_device_log(r)
+            self.create_device_log(r, body)
 
         channel_msn = '<br/>Los equipos mencionados a continuación se procesaron para ser deshibernados por motivo de:<br/>'
         channel_msn += self.comment + '<br/> soliciato por: ' + self.requested_by + '<br/>'
@@ -835,6 +854,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             body = "[Proceso de Alta/Reactivación]<br/><br/>" + self.comment + '<br/>'
             gps_functions_summary = "<hr/>Se activan las funciones de:<br/><br/>"
             additional_functions = False
+            reactivation_reason = dict(self._fields['reactivation_reason']._description_selection(self.env)).get(self.reactivation_reason)
 
             platform = self.platform if self.platform else 'Sin Plataforma'
             client = r.client_id.name if r.client_id else 'Sin Cliente'
@@ -844,10 +864,13 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             acumulador += '<br/><b>Plataforma:</b> ' + platform
             acumulador += '<br/><b>Cliente:</b> ' + client
             acumulador += '<br/><b>Solicitado Por:</b> ' + self.requested_by
+            acumulador += '<br/><b>Motivo:</b> ' + reactivation_reason
             acumulador += '<br/><b>Equipo:</b> ' + equipo
             acumulador += '<br/><b>Nick:</b> ' + nick
-            notify_gps_list += '<br/>' + client + ' || ' + equipo + ' || ' + nick + ' || ' + platform
+            if self.cellchip_id:
+                acumulador += '<br/><b>Línea Asignada:</b> ' + self.cellchip_id.name
 
+            notify_gps_list += '<br/>' + client + ' || ' + equipo + ' || ' + nick + ' || ' + platform
             if self.tracking:
                 additional_functions = True
                 gps_functions_summary += "Rastreo<br/>"
@@ -881,11 +904,11 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 'fleetrun': self.fleetrun if self.fleetrun else r.fleetrun,
                 'status': self.device_status,
                 'platform': self.platform,
-
+                'cellchip_id': self.cellchip_id.id if self.cellchip_id else None
             })
             # write Comment
             r.message_post(body=body)
-            self.create_device_log(r)
+            self.create_device_log(r, body)
 
             channel_msn = '<br/>Los equipos mencionados a continuación se procesaron para Alta/Reactivación por motivo de:<br/>'
             channel_msn += self.comment + '<br/> soliciato por: ' + self.requested_by + '<br/>'
@@ -985,7 +1008,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
 
         return True
 
-    def create_device_log(self, device):
+    def create_device_log(self, device, log_comment=""):
         log_object = self.env['lgps.device_history']
 
         dictionary = {
@@ -999,7 +1022,8 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             'related_odt': self.related_odt.id,
             'requested_by': self.requested_by,
             'comment': self.comment,
-            'reason': self.reason
+            'reason': self.reason,
+            'log_msn': log_comment
         }
         device_log = log_object.create(dictionary)
         return device_log

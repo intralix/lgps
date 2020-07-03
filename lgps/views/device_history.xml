@@ -42,6 +42,11 @@
                   <field name="comment"/>
                 </group>
             </page>
+            <page string="Log">
+                <group>
+                  <field name="log_msn" widget="html" readonly="1"/>
+                </group>
+            </page>
         </notebook>
         </sheet>
 

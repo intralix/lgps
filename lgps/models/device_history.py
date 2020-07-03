@@ -88,6 +88,9 @@ class DeviceHistory(models.Model):
         string=_("Operation Reason"),
     )
 
+    log_msn = fields.Html(
+        string=_("More Info"),
+    )
 
     @api.model
     def create(self, vals):

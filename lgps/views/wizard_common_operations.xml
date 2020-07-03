@@ -49,6 +49,18 @@
                           'invisible':[('operation_mode', 'in', ['drop','hibernation','wakeup','add_reactivate'])],
                           'required':[('operation_mode', 'not in', ['drop','hibernation','wakeup','add_reactivate'])]
                           }"/>
+
+                   <field name="cellchip_id" attrs="{
+                          'invisible':[('operation_mode', 'not in', ['add_reactivate'])],
+                          }"
+                   />
+
+                   <field name="reactivation_reason" attrs="{
+                          'invisible':[('operation_mode', 'not in', ['add_reactivate'])],
+                          'required':[('operation_mode', 'in', ['add_reactivate'])]
+                          }"
+                   />
+
                </group>
 
            </group>
