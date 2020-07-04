@@ -901,7 +901,6 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 'logistic': self.logistic if self.logistic else r.logistic,
                 'tracking': self.tracking if self.tracking else r.tracking,
                 'fleetrun': self.fleetrun if self.fleetrun else r.fleetrun,
-                'status': self.device_status,
                 'platform': self.platform,
                 'cellchip_id': self.cellchip_id.id if self.cellchip_id else None
             })
