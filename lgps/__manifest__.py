@@ -6,7 +6,7 @@
     'application': True,
     'website': 'https://www.intralix.com',
     'category': 'Uncategorized',
-    'version': '0.3.8',
+    'version': '0.4.0',
     'depends': [
         'base',
         'stock',
@@ -53,5 +53,7 @@
         'views/authorization_odt_wizard.xml',
         'views/custom_account_invoice_cancel.xml',
         'views/custom_payment_invoice_cancel.xml',
+        'views/wizard_mass_comment.xml',
+        'device_history.xml'
     ],
 }

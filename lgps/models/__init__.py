@@ -19,3 +19,6 @@ from . import common_accesories_operations_wizard
 from . import accesory_history
 from . import authorization_request_odt_wizard
 from . import authorization_odt_wizard
+from . import mass_device_comment_wizard
+from . import dolar_history
+

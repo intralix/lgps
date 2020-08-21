@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Split Record -->
+  <record id="view_mass_device_comment_wizard" model="ir.ui.view">
+    <field name="name">lgps.mass_device_comment_wizard.form</field>
+    <field name="model">lgps.mass_device_comment_wizard</field>
+    <field name="arch" type="xml">
+       <form string="Drop Process">
+           <group><p class="text-primary"> Dispositivo(s) Seleccionado(s):</p></group>
+        <group>
+             <field name="gpsdevice_ids" readonly="1" string="Procesando para">
+                <tree string="GPS Devices to Process">
+                  <field name="name"/>
+                  <field name="nick"/>
+                  <field name="installation_date"/>
+                  <field name="platform"/>
+                  <field name="cellchip_id"/>
+                  <field name="serialnumber_id"/>
+                </tree>
+            </field>
+        </group>
+           <group>
+               <field name="comment" string="Comentario / Falla Presentada"/>
+           </group>
+
+        <footer>
+          <button name="execute_operation" type="object" string="Execute Process" class="oe_highlight"/>
+          or
+          <button special="cancel" string="Cancel" type="object" class="btn-danger"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+    <act_window id="action_view_mass_device_comment_wizard"
+                name="Device Mass Comments"
+                src_model="lgps.gpsdevice"
+                res_model="lgps.mass_device_comment_wizard"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi"
+    />
+</odoo>
