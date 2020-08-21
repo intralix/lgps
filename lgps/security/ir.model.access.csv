@@ -17,8 +17,8 @@ cellchip_maintainer,Cellchips Maintainer,model_lgps_cellchip,lgps_group_maintain
 gpsdevice_maintainer,Gps Devices Maintainer,model_lgps_gpsdevice,lgps_group_maintainer,1,1,0,0
 accessory_maintainer,Accessories Maintainer,model_lgps_accessory,lgps_group_maintainer,1,1,0,0
 tracking_maintainer,Tracking Maintainer,model_lgps_tracking,lgps_group_maintainer,1,1,0,0
-device_log_maintainer,Device Log Maintainer,model_lgps_device_history,lgps_group_maintainer,1,1,0,0
-accessory_log_maintainer,Accessory Log Maintainer,model_lgps_accessory_history,lgps_group_maintainer,1,1,0,0
+device_log_maintainer,Device Log Maintainer,model_lgps_device_history,lgps_group_maintainer,1,0,0,0
+accessory_log_maintainer,Accessory Log Maintainer,model_lgps_accessory_history,lgps_group_maintainer,1,0,0,0
 dolar_history_maintainer,TC Mantainer,model_lgps_dolar_history,lgps_group_maintainer,1,1,0,0
 cellchip_guest,Cellchips guest,model_lgps_cellchip,lgps_group_guest,1,0,0,0
 gpsdevice_guest,Gps Devices guest,model_lgps_gpsdevice,lgps_group_guest,1,0,0,0
@@ -26,4 +26,4 @@ accessory_guest,Accessories guest,model_lgps_accessory,lgps_group_guest,1,0,0,0
 tracking_guest,Tracking guest,model_lgps_tracking,lgps_group_guest,1,0,0,0
 device_log_guest,Device Log guest,model_lgps_device_history,lgps_group_guest,1,0,0,0
 accessory_log_guest,Accessory Log guest,model_lgps_accessory_history,lgps_group_guest,1,0,0,0
-dolar_history_guest,TC guest,model_lgps_dolar_history,lgps_group_guest,1,0,0,0
+dolar_history_guest,TC Guest,model_lgps_dolar_history,lgps_group_guest,1,0,0,0
