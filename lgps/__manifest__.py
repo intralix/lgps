@@ -53,7 +53,7 @@
         'views/authorization_odt_wizard.xml',
         'views/custom_account_invoice_cancel.xml',
         'views/custom_payment_invoice_cancel.xml',
-        'views/wizard_mass_comment.xml',
-        'device_history.xml'
+        'views/dolar_history.xml',
+        'views/wizard_mass_comment.xml'
     ],
 }
