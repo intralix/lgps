@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="seq_dolar_history" model="ir.sequence">
+    <field name="name">Record Sequence</field>
+    <field name="code">lgps.dolar_history</field>
+    <field name="prefix">RTC</field>
+    <field name="padding">10</field>
+    <field name="company_id" eval="False"/>
+  </record>
+
+  <record model="ir.ui.view" id="dolar_history_form_view">
+    <field name="name">dolar_history.form</field>
+    <field name="model">lgps.dolar_history</field>
+    <field name="arch" type="xml">
+      <form string="Dolar History Form">
+        <header>
+        </header>
+        <sheet>
+          <group>
+            <group string="Record Info">
+              <separator/>
+              <field name="name"/>
+              <field name="registered_date"/>
+              <field name="conversion_rate"/>
+            </group>
+          </group>
+        </sheet>
+
+        <div class="oe_chatter">
+          <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+          <field name="activity_ids" widget="mail_activity"/>
+          <field name="message_ids" widget="mail_thread"/>
+        </div>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="dolar_history_search_view">
+    <field name="name">dolar_history.search</field>
+    <field name="model">lgps.dolar_history</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="name"/>
+        <field name="registered_date"/>
+        <field name="conversion_rate"/>
+      </search>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="dolar_history_tree_view">
+    <field name="name">dolar_history.tree</field>
+    <field name="model">lgps.dolar_history</field>
+    <field name="arch" type="xml">
+      <tree string="dolar_history Tree">
+        <field name="name"/>
+        <field name="registered_date"/>
+        <field name="conversion_rate"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="dolar_history_list_action">
+    <field name="name">dolar_history</field>
+    <field name="res_model">lgps.dolar_history</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">Create the first Dolar History Record</p>
+    </field>
+  </record>
+
+  <menuitem id="config_menu" name="TC History" parent="lgps.main_lgps_menu" action="dolar_history_list_action"/>
+</odoo>
