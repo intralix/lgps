@@ -306,7 +306,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 'There is not configuration for default channel.\n Configure this in order to send the notification.'))
 
         channel_id = lgps_config.get_param('lgps.hibernate_device_wizard.default_channel')
-        #_logger.warning('channel_id: %s', channel_id)
+        #_logger.warning('lgps_default_channel_id: %s', lgps_default_channel_id)
         if not channel_id:
             raise UserError(_(
                 'There is not configuration for default channel.\n Configure this in order to send the notification.'))

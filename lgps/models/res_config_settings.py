@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models, _
 
+
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
-    channel_id = fields.Many2one(
+    lgps_default_channel_id = fields.Many2one(
         'mail.channel',
         string=_("Default Drop Channel"),
         config_parameter='lgps.device_wizard.drop_default_channel',

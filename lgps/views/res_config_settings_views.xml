@@ -31,14 +31,14 @@
                     <div class="row mt16 o_settings_container">
                         <div class="col-12 col-lg-6 o_setting_box" title="Selecciona el canal de comunicación que será utilizado por default para enviar notificaciones de las bajas de equipos">
                             <div class="o_setting_right_pane">
-                                <label for="channel_id"/>
+                                <label for="lgps_default_channel_id"/>
                                 <div class="text-muted">
                                     Pick a Drop Default Channel
                                 </div>
                                 <div class="content-group">
                                     <div class="mt16">
-                                        <label for="channel_id" class="o_light_label"/>
-                                        <field name="channel_id" class="oe_inline"/>
+                                        <label for="lgps_default_channel_id" class="o_light_label"/>
+                                        <field name="lgps_default_channel_id" class="oe_inline"/>
                                     </div>
                                 </div>
                             </div>
