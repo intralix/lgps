@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
+
 from odoo import api, models, fields, _
+
 
 class FailureComponentsList(models.Model):
 

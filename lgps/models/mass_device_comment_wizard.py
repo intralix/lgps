@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
+
 from odoo import api, models, fields, _
-from odoo.exceptions import UserError
-import logging
+
 
 class MassDeviceCommentWizard(models.TransientModel):
     _name = "lgps.mass_device_comment_wizard"

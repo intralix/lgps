@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
+
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError
-import logging, re
+import logging
+import re
 
 _logger = logging.getLogger(__name__)
 TAG_RE = re.compile(r'<[^>]+>')

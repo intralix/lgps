@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from datetime import timedelta
 from odoo import api, models, fields, _
-from odoo.exceptions import Warning
 
 
 class AccessoryHistory(models.Model):
@@ -65,7 +63,6 @@ class AccessoryHistory(models.Model):
     comment = fields.Text(
         string=_("Operation Reason"),
     )
-
 
     @api.model
     def create(self, vals):

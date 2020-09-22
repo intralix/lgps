@@ -1,7 +1,10 @@
+# -*- coding: utf-8 -*-
+
 from odoo import api, models, fields, _
 import re
 import logging
 _logger = logging.getLogger(__name__)
+
 
 class Failures(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']

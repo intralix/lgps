@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
+
 from odoo import api, models, fields, _
+
 
 class FailureOdt(models.Model):
     _inherit = 'repair.order'

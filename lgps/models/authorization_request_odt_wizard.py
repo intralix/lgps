@@ -6,6 +6,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+
 class AuthorizationRequestODTWizard(models.TransientModel):
     _name = "lgps.authorization_request_odt_wizard"
     _description = "Authorizations for ODT in Warranty"
