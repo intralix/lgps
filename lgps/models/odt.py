@@ -85,6 +85,7 @@ class Odt(models.Model):
             ('s1', _('Guadalajara')),
             ('s2', _('Querétaro')),
             ('s3', _('México')),
+            ('s4', _('Córdoba')),
         ],
         default="s1",
         required=True,
