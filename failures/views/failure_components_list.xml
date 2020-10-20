@@ -21,8 +21,8 @@
             <group string="List Info">
               <separator/>
               <field name="code"/>
-              <field name="failure_functionalities_list_id"/>
               <field name="name"/>
+              <field name="failure_functionalities_list_id"/>
               <field name="traceability"/>
             </group>
         </sheet>
@@ -36,8 +36,8 @@
     <field name="arch" type="xml">
       <search>
         <field name="code"/>
-        <field name="failure_functionalities_list_id"/>
         <field name="name"/>
+        <field name="failure_functionalities_list_id"/>
         <field name="traceability"/>
       </search>
     </field>
@@ -49,8 +49,8 @@
     <field name="arch" type="xml">
       <tree string="Failure components List Tree">
         <field name="code"/>
-        <field name="failure_functionalities_list_id"/>
         <field name="name"/>
+        <field name="failure_functionalities_list_id"/>
         <field name="traceability"/>
       </tree>
     </field>
