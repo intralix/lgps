@@ -3,6 +3,7 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from odoo import api, models, fields, _
+import math
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -138,75 +139,98 @@ class ClientConfigurations(models.Model):
         """
             Generates notifications for configurations defined
         """
-        #_logger.warning('Order by: %s', self.priority)
+        _logger.debug('Running Notifications Service')
+        # _logger.debug('Order by: %s', self.priority)
         order = True if self.priority == 'desc' else False
-        rule_lists = {}
-
         configurations = self.sudo().env['lgps.client_configuration'].search([('operative', '=', True)])
-        #_logger.warning('Configurations found: %s', configurations)
+        # _logger.debug('Configurations found: %s', configurations)
 
         # Iterate records in this configuration
         for cnf in configurations:
-            #_logger.warning('Current Configuration: %s', cnf.name)
+            rule_lists = {}
+            gps_devices = {}
+
+            _logger.debug('Current Configuration: %s', cnf.name)
             if cnf.rule_ids:
                 rules = cnf.rule_ids
-                #_logger.warning('Rules found: %s', rules)
+                # _logger.warning('Rules found: %s', rules)
 
-                sorted_rules = rules.sorted(key=lambda r: r.hours_rule, reverse=order)
+                sorted_rules = rules.sorted(key=lambda r: r.hours_rule)
+                # _logger.warning('Sorted Rules: %s', sorted_rules)
                 for rule in sorted_rules:
                     rule_lists[str(rule.id)] = []
+                    # _logger.warning('Rule: %s', rule.name)
 
                 gps_devices = self.sudo().env['lgps.gpsdevice'].search([
                     ('client_id', "=", cnf.client_id.id),
                     ('notify_offline', "=", True)
                 ])
-                _logger.error('Devices Configured: %s', gps_devices)
-
+                # _logger.error('Devices that match client and are configured: %s', gps_devices)
+                # Check if is asc order
                 if cnf.priority == 'asc':
                     if gps_devices:
                         for device in gps_devices:
                             # _logger.warning('Device: %s with hours %s offline', device.name, device.last_report)
-                            # if device.last_rule_applied:
-                            #     _logger.warning('Last Rule Applied: %s', device.last_rule_applied)
                             if not device.last_rule_applied:
+                                # Si nunca se ha aplicado una regla, validamos directamente contra la primera y omitimos las demás
                                 last_rule_hours = device.last_report
-                                _logger.warning('Not Rule Applied Yet, using last_report %s', last_rule_hours)
-                            else:
-                                last_rule_hours = device.last_rule_applied.hours_rule
-                                _logger.warning('Last Rule Applied: %s', device.last_rule_applied)
+                                # _logger.warning('Not Rule Applied Yet, using last_report %s', last_rule_hours)
+                                today_diff_to_last_rule = device.last_report
+                                # _logger.warning('sorted_rules %s', sorted_rules[0])
 
-                            for rule in sorted_rules:
-                                _logger.warning('Last Rule: %s vs Current Rule %s', last_rule_hours, rule.hours_rule)
-                                if last_rule_hours > rule.hours_rule:
-                                    #_logger.warning('device.last_report: %s vs rule.hours_rule %s', device.last_report, rule.hours_rule)
-                                    if last_rule_hours > rule.hours_rule:
-                                        _logger.warning('Apply Rule: %s', rule.name)
+                                if device.last_report > sorted_rules[0].hours_rule:
+                                    rule_lists[str(sorted_rules[0].id)].append(device.id)
+                                    device.write({
+                                        'last_rule_applied': sorted_rules[0].id,
+                                        'last_rule_applied_on': datetime.now()
+                                    })
+                            else:
+                                # si ya se aplico una regla, omitimos esa y vamos contra las que quedan
+                                # _logger.warning('Device %s Last Rule Applied: %s', device.name, device.last_rule_applied)
+                                rule_to_check = sorted_rules.filtered(lambda r: r.hours_rule > device.last_rule_applied.hours_rule)
+                                # _logger.warning('Rules to Check: %s', rule_to_check)
+                                start_dt = fields.Datetime.from_string(device.last_rule_applied_on)
+                                today_dt = fields.Datetime.from_string(fields.Datetime.now())
+                                # _logger.error('Today: %s vs Start %s', today_dt, start_dt)
+                                difference = today_dt - start_dt
+                                # _logger.error('difference %s', difference)
+                                time_difference_in_hours = difference.total_seconds() / 3600
+                                # time_difference_in_hours = 50
+                                # _logger.error('time_difference_in_hours %s', time_difference_in_hours)
+                                today_diff_to_last_rule = math.ceil(time_difference_in_hours)
+                                # _logger.error('today_diff_to_last_rule %s', today_diff_to_last_rule)
+                                total_time_from_last_notification = device.last_rule_applied.hours_rule + today_diff_to_last_rule
+
+                                for rule in rule_to_check:
+                                    if total_time_from_last_notification >= rule.hours_rule and device.last_report > rule.hours_rule:
+                                        _logger.debug('Apply Rule: %s To %s ', rule.name, device.name)
                                         rule_lists[str(rule.id)].append(device.id)
                                         device.write({
                                             'last_rule_applied': rule.id,
-                                            'last_rule_applied_on': datetime.today()
+                                            'last_rule_applied_on': datetime.now()
                                         })
                                         break
-                                    else:
-                                        _logger.warning('No rules apply: %s - %s ', device.name, rule.name)
-                                # else:
-                                #     _logger.warning('NNo se han sobrepasado las reglas de tiempo %s vs %s',  rule.hours_rule, last_rule_hours)
+                                    # else:
+                                        # _logger.warning('No rules apply: %s - %s ', device.name, rule.name)
+                    else:
+                        _logger.debug('No devices configured for notification')
+                # Check if is desc order
                 else:
+                    sorted_rules = rules.sorted(key=lambda r: r.hours_rule, reverse=order)
                     if gps_devices:
                         for device in gps_devices:
-                            for rule in sorted_rules:
-                                if device.last_report > rule.hours_rule:
-                                    #_logger.warning('Apply Rule: %s', rule.name)
-                                    rule_lists[str(rule.id)].append(device.id)
-                                #else:
-                                    #_logger.warning('No rules apply: %s - %s ', device.name, rule.name)
+                            if device.last_report > sorted_rules[0].hours_rule:
+                                # _logger.warning('Apply Rule: %s', sorted_rules[0].name)
+                                rule_lists[str(sorted_rules[0].id)].append(device.id)
+                                # else:
+                                # _logger.warning('No rules apply: %s - %s ', device.name, sorted_rules[0].name)
 
-            #_logger.warning('Lists: %s', rule_lists)
-            for infraction in rule_lists:
-                if len(rule_lists[infraction]) > 0:
-                    #_logger.warning('Infraction: %s', rule_lists[infraction])
-                    record = self.create_notification(cnf, infraction, rule_lists[infraction])
-                    #_logger.warning('Notification created: %s', record.name)
+            _logger.debug('Notifications to create for rule in configuration %s: %s', cnf.name, rule_lists)
+            for rule in rule_lists:
+                if len(rule_lists[rule]) > 0:
+                    # _logger.warning('Infraction: %s', rule_lists[infraction])
+                    record = self.create_notification(cnf, rule, rule_lists[rule])
+                    _logger.debug('Notification created: %s', record.name)
         return
 
     @api.multi

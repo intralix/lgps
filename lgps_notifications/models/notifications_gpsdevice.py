@@ -24,7 +24,7 @@ class OfflineGpsDevice(models.Model):
         ondelete="set null"
     )
 
-    last_rule_applied_on = fields.Date(
+    last_rule_applied_on = fields.Datetime(
         string=_("Last Notification On"),
         ondelete="set null",
         help=_("Date when last notification was sent. If client configuration it set to reset notifications, the reset "
