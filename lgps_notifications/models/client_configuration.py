@@ -75,7 +75,7 @@ class ClientConfigurations(models.Model):
             ("repeat", _("Repeat")),
             ("no_repeat", _("No repeat")),
         ],
-        defaul="repeat",
+        defaul="no_repeat",
         string=_("Reset Alerts"),
         help=_("Reset the staggered notifications on devices that has already passed all configured alerts.")
     )
@@ -153,84 +153,52 @@ class ClientConfigurations(models.Model):
             _logger.debug('Current Configuration: %s', cnf.name)
             if cnf.rule_ids:
                 rules = cnf.rule_ids
-                # _logger.warning('Rules found: %s', rules)
+                _logger.warning('Rules found: %s', rules)
 
-                sorted_rules = rules.sorted(key=lambda r: r.hours_rule)
-                # _logger.warning('Sorted Rules: %s', sorted_rules)
+                sorted_rules = rules.sorted(key=lambda r: r.hours_rule, reverse=True)
+                _logger.warning('Sorted Rules: %s', sorted_rules)
                 for rule in sorted_rules:
                     rule_lists[str(rule.id)] = []
-                    # _logger.warning('Rule: %s', rule.name)
+                    _logger.warning('Rule: %s', rule.name)
 
                 gps_devices = self.sudo().env['lgps.gpsdevice'].search([
                     ('client_id', "=", cnf.client_id.id),
                     ('notify_offline', "=", True)
                 ])
-                # _logger.error('Devices that match client and are configured: %s', gps_devices)
-                # Check if is asc order
-                if cnf.priority == 'asc':
-                    if gps_devices:
-                        for device in gps_devices:
-                            # _logger.warning('Device: %s with hours %s offline', device.name, device.last_report)
-                            if not device.last_rule_applied:
-                                # Si nunca se ha aplicado una regla, validamos directamente contra la primera y omitimos las demás
-                                last_rule_hours = device.last_report
-                                # _logger.warning('Not Rule Applied Yet, using last_report %s', last_rule_hours)
-                                today_diff_to_last_rule = device.last_report
-                                # _logger.warning('sorted_rules %s', sorted_rules[0])
 
-                                if device.last_report > sorted_rules[0].hours_rule:
-                                    rule_lists[str(sorted_rules[0].id)].append(device.id)
+                if gps_devices:
+                    for device in gps_devices:
+                        notify_offline = device.notify_offline
+                        # Si el equipo no tiene más de 24 horas sin reportar no tiene caso revisarlo.
+                        if device.last_report > 23:
+                            # _logger.info('Eval Device: %s - Last Report: %s', device.name,  device.last_report)
+                            for i in range(len(sorted_rules)):
+                                rule = sorted_rules[i]
+                                _logger.warning('Indice %s : Rules %s', i, rule.name)
+                                if device.last_report > rule.hours_rule:
+                                    # Desactivar las notificaciones del equipo por cumplir con la regla de mayor jerarquía
+                                    if i == 0:
+                                        notify_offline = False
+                                    # Almacenar el equipo en la regla correspondiente.
+                                    rule_lists[str(rule.id)].append(device.id)
+                                    # Actualizar el equipo con la regla a ser aplicada.
                                     device.write({
-                                        'last_rule_applied': sorted_rules[0].id,
-                                        'last_rule_applied_on': datetime.now()
+                                        'last_rule_applied': rule.id,
+                                        'last_rule_applied_on': datetime.now(),
+                                        'notify_offline': notify_offline
                                     })
-                            else:
-                                # si ya se aplico una regla, omitimos esa y vamos contra las que quedan
-                                # _logger.warning('Device %s Last Rule Applied: %s', device.name, device.last_rule_applied)
-                                rule_to_check = sorted_rules.filtered(lambda r: r.hours_rule > device.last_rule_applied.hours_rule)
-                                # _logger.warning('Rules to Check: %s', rule_to_check)
-                                start_dt = fields.Datetime.from_string(device.last_rule_applied_on)
-                                today_dt = fields.Datetime.from_string(fields.Datetime.now())
-                                # _logger.error('Today: %s vs Start %s', today_dt, start_dt)
-                                difference = today_dt - start_dt
-                                # _logger.error('difference %s', difference)
-                                time_difference_in_hours = difference.total_seconds() / 3600
-                                # time_difference_in_hours = 50
-                                # _logger.error('time_difference_in_hours %s', time_difference_in_hours)
-                                today_diff_to_last_rule = math.ceil(time_difference_in_hours)
-                                # _logger.error('today_diff_to_last_rule %s', today_diff_to_last_rule)
-                                total_time_from_last_notification = device.last_rule_applied.hours_rule + today_diff_to_last_rule
-
-                                for rule in rule_to_check:
-                                    if total_time_from_last_notification >= rule.hours_rule and device.last_report > rule.hours_rule:
-                                        _logger.debug('Apply Rule: %s To %s ', rule.name, device.name)
-                                        rule_lists[str(rule.id)].append(device.id)
-                                        device.write({
-                                            'last_rule_applied': rule.id,
-                                            'last_rule_applied_on': datetime.now()
-                                        })
-                                        break
-                                    # else:
-                                        # _logger.warning('No rules apply: %s - %s ', device.name, rule.name)
-                    else:
-                        _logger.debug('No devices configured for notification')
-                # Check if is desc order
-                else:
-                    sorted_rules = rules.sorted(key=lambda r: r.hours_rule, reverse=order)
-                    if gps_devices:
-                        for device in gps_devices:
-                            if device.last_report > sorted_rules[0].hours_rule:
-                                # _logger.warning('Apply Rule: %s', sorted_rules[0].name)
-                                rule_lists[str(sorted_rules[0].id)].append(device.id)
-                                # else:
-                                # _logger.warning('No rules apply: %s - %s ', device.name, sorted_rules[0].name)
-
-            _logger.debug('Notifications to create for rule in configuration %s: %s', cnf.name, rule_lists)
-            for rule in rule_lists:
-                if len(rule_lists[rule]) > 0:
-                    # _logger.warning('Infraction: %s', rule_lists[infraction])
-                    record = self.create_notification(cnf, rule, rule_lists[rule])
-                    _logger.debug('Notification created: %s', record.name)
+                                    break
+                        else:
+                            _logger.info('skip device %s with Last Report: last_report %s', device.name,  device.last_report)
+                    # _logger.info('Notifications to create for rule in configuration %s', rule_lists)
+                for r in rule_lists:
+                    if len(rule_lists[r]) > 0:
+                        # _logger.warning('Create Notification for: %s', rule_lists[r])
+                        record = self.create_notification(cnf, r, rule_lists[r])
+                        # if len(record) > 0:
+                        #     _logger.debug('Notification created: %s', record.name)
+                        # else:
+                        #     _logger.debug('No hay contactos configurados para el registro: %s.', cnf.name)
         return
 
     @api.multi
@@ -240,16 +208,32 @@ class ClientConfigurations(models.Model):
 
     def create_notification(self, record, rule, devices):
 
-        notification_object = self.env['lgps.notification']
+        # Revisamos si no hay contactos en la notificación
+        if len(record.contact_ids.ids) > 0:
+            contacts = record.contact_ids
+        else:
+            contacts = self.sudo().env['res.partner'].search([
+                ('id', '=', record.client_id.id),
+                ('email', '!=', ''),
+                ('type', '=', 'contact'),
+            ])
 
-        dictionary = {
-            'description': 'Notificación generada por sistema',
-            'rule_id': rule,
-            'client_id': record.client_id.id,
-            'gpsdevice_ids': [(6, _, devices)],
-            'contact_ids': [(6, _, record.contact_ids.ids)]
-        }
-        return notification_object.create(dictionary)
+        # Solo si hay contactos creamos la notificaión
+        if len(contacts.ids) > 0:
+            notification_object = self.env['lgps.notification']
+
+            dictionary = {
+                'description': 'Notificación generada por sistema',
+                'rule_id': rule,
+                'client_id': record.client_id.id,
+                'gpsdevice_ids': [(6, _, devices)],
+                'contact_ids': [(6, _, contacts.ids)]
+            }
+            return notification_object.create(dictionary)
+        else:
+            _logger.warning('No hay contactos configurados para el registro: %s.', record.name)
+
+        return -1
 
     @api.model
     def _cron_reset_device_notifications(self):
