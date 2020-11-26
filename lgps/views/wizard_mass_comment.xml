@@ -20,7 +20,7 @@
             </field>
         </group>
            <group>
-               <field name="comment" string="Comentario / Falla Presentada"/>
+               <field name="comment" string="Comentario / Falla Presentada" widget="html"/>
            </group>
 
         <footer>

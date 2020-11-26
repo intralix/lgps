@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, models, fields, _
-
+from odoo.exceptions import UserError
 
 class MassDeviceCommentWizard(models.TransientModel):
     _name = "lgps.mass_device_comment_wizard"
@@ -17,13 +17,16 @@ class MassDeviceCommentWizard(models.TransientModel):
         default=_default_gpsdevices,
     )
 
-    comment = fields.Text(
+    comment = fields.Html(
         string=_("Comment"),
         required=True,
     )
 
     @api.multi
     def execute_operation(self):
+        if len(self._context.get('active_ids')) < 1:
+            raise UserError(_('Select at least one record.'))
+
         active_model = self._context.get('active_model')
         active_records = self.env[active_model].browse(self._context.get('active_ids'))
         for r in active_records:
