@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- RMA Process App Menu -->
+    <menuitem id="menu_rma_process"  name="RMA Process" parent="lgps.main_lgps_menu"/>
+</odoo>

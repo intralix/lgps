@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<data noupdate="0">
+    <record id="rma_finished_email_template" model="mail.template">
+        <field name="name">RMA Finished: Send By Email</field>
+        <field name="model_id" ref="lgps_rma.model_lgps_rma_process"/>
+        <field name="email_from">${user.email|safe}</field>
+        <field name="email_to">${object.coordinator.email|safe}</field>
+        <field name="subject">RMA Finished: ${object.name}</field>
+        <field name="lang">${object.lang}</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+            <div style="margin 2px; padding: 2px;">
+                <p style="margin 0px; padding: 0px; font-size: 13px;">
+                    Estimado ${object.coordinator.name}
+                    <br/><br/>
+                    Le informamos que el proceso de <b>RMA ${object.name}</b> ha concluído en el sistema.
+                </p>
+            </div>
+        </field>
+<!--
+        <field name="report_template" ref="report_rma_finished"/>
+        <field name="report_name">RMA ${object.name} </field>
+-->
+    </record>
+</data>
+</odoo>
