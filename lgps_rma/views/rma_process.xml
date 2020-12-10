@@ -33,11 +33,6 @@
                       type="object"
                       class="btn-primary"
                       attrs="{'invisible': ['|', ('id', '=', False), ('state','in' , ['reception', 'done'])]}"/>
-              <button
-                      name="testMail"
-                      string="Test Servers"
-                      type="object"
-                      class="btn-primary"/>
 
               <field name="state" widget="statusbar"/>
           </header>

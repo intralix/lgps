@@ -186,9 +186,3 @@ class RmaProcess(models.Model):
 
         template = self.env.ref('lgps_rma.rma_finished_email_template')
         res = self.env['mail.template'].browse(template.id).send_mail(self.id)
-
-
-    def testMail(self):
-        mail_server = self.env['ir.mail_server'].search([])
-        for ms in mail_server:
-            _logger.warning('Servidor %s', ms)
