@@ -136,7 +136,7 @@ msgstr "Entrega a Cliente"
 #: code:addons/lgps_rma/models/rma_process.py:63
 #, python-format
 msgid "Delivery Responsable"
-msgstr "Responable de Envío"
+msgstr "Responsable de Envío"
 
 #. module: lgps_rma
 #: code:addons/lgps_rma/models/rma_process.py:22

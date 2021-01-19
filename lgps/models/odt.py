@@ -111,6 +111,16 @@ class Odt(models.Model):
         track_visibility='onchange',
     )
 
+    stock_out_id = fields.Many2one(
+        comodel_name="stock.picking",
+        string=_("Stock Out"),
+    )
+
+    stock_in_id = fields.Many2one(
+        comodel_name="stock.picking",
+        string=_("Stock In"),
+    )
+
     @api.one
     @api.depends('closed_date')
     def _compute_days_count(self):

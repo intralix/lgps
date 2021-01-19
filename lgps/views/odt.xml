@@ -15,6 +15,9 @@
         <field name="authorization_requested" attrs="{'readonly':True, 'invisible':[('authorization_requested', '!=', True)]}"/>
         <field name="authorized_warranty" attrs="{'readonly':True}"/>
         <field name="authorizations_count" attrs="{'readonly':True}" groups="lgps.lgps_group_odts_authorizer,lgps.lgps_group_manager"/>
+
+        <field name="stock_out_id"/>
+        <field name="stock_in_id"/>
       </xpath>
 
       <xpath expr="//field[@name='invoice_method']" position="after">
