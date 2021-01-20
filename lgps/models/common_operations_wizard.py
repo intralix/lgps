@@ -21,6 +21,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             ('replacement', _('Reemplazo de equipo por garantía')),
             ('substitution', _('Sustitución de equipo por revisión')),
             ('add_reactivate', _('Alta / Reactivación Equipo')),
+            ('loan_substitution', _('Reemplazo de Comodato'))
         ],
         default='drop'
     )
@@ -163,9 +164,12 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         # Wakeup
         if self.operation_mode == 'wakeup':
             self.execute_wakeup()
-        # Wakeup
+        # Reactivate
         if self.operation_mode == 'add_reactivate':
             self.execute_add_reactivate()
+        # Loan Substitution
+        if self.operation_mode == 'loan_substitution':
+            self.execute_loan_substitution()
         return {}
 
     def execute_drop(self):
@@ -916,6 +920,111 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             self.log_to_channel(channel_id, channel_msn)
 
         return {}
+
+    def execute_loan_substitution(self):
+
+        lgps_config = self.sudo().env['ir.config_parameter']
+        channel_id = lgps_config.get_param('lgps.device_wizard.replacement_default_channel')
+        if not channel_id:
+            raise UserError(_(
+                'There is not configuration for default channel.\n Configure this in order to send the notification.'))
+        self._check_mandatory_fields(['comment', 'related_odt'])
+
+        # Obtenemos los Ids seleccionados
+        active_model = self._context.get('active_model')
+        active_records = self.env[active_model].browse(self._context.get('active_ids'))
+        subscription_close_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_closed')
+        subscription_in_progress_stage = self.sudo().env.ref('sale_subscription.sale_subscription_stage_in_progress')
+
+        repair_internal_notes = 'El equipo REEMPLAZADO se cambia por servicio en comodato con el equipo: '
+        repair_internal_notes += 'EQUIPO en la ODT: RELATED_ODT'
+
+        operation_log_comment = 'El equipo <strong>REEMPLAZADO</strong> se cambia por servicio en comodato con el  '
+        operation_log_comment += 'equipo <strong>EQUIPO</strong> con número de ODT <strong>RELATED_ODT</strong>. <br/>'
+        operation_log_comment += 'Se entrega equipo a Soporte para revisión.<br/><br/>Comentario: ' + self.comment
+
+        operation_log_comment_device = 'Se coloca <strong>REEMPLAZADO</strong> como cabio de servicio en comodato para '
+        operation_log_comment_device += ' <strong>EQUIPO</strong> con la ODT <strong>RELATED_ODT</strong><br/><br/>'
+        operation_log_comment_device += 'Comentario: ' + self.comment
+
+        for device in active_records:
+            if device.status != "comodato":
+                raise UserError(_(
+                    'The device does not have status COMODATO.\n'
+                    'Choose the right device or make sure the device status is correct to proceed.'))
+
+            # Preparando Datos para la suscripcion
+            product_id = device.product_id
+            serialnumber_id = device.serialnumber_id
+            client_id = self.env.user.company_id
+            device_current_client = device.client_id
+            device_id = device.id
+
+            repair_internal_notes = repair_internal_notes.replace("REEMPLAZADO", device.name)
+            repair_internal_notes = repair_internal_notes.replace("EQUIPO", self.destination_gpsdevice_ids.name)
+            repair_internal_notes = repair_internal_notes.replace("RELATED_ODT", self.related_odt.name)
+
+            # Cerramos las Suscripciones del equipo que sustituye
+            subscription_to_close = self.destination_gpsdevice_ids.suscription_id
+            if subscription_to_close:
+                self._change_subscriptions_stage(subscription_to_close, repair_internal_notes)
+
+            operation_log_comment = operation_log_comment.replace("REEMPLAZADO", device.name)
+            operation_log_comment = operation_log_comment.replace('EQUIPO', self.destination_gpsdevice_ids.name)
+            operation_log_comment = operation_log_comment.replace('RELATED_ODT', self.related_odt.name)
+
+            # Check subscriptions
+            if device.suscription_id:
+                # Recorremos las suscripciones asociadas al equipos GPS.
+                for s in device.suscription_id:
+                    # Si alguna subscripción esta en progreso vamos a copiarla:
+                    if s.stage_id.id == subscription_in_progress_stage.id:
+                        s.message_post(body='Se cierra suscripción por motivo de: <br/><br/>' + operation_log_comment)
+
+
+                        subscription_copy = self.copy_subscription(s, {
+                            'name': 'Reemplazo ' + self.destination_gpsdevice_ids.name,
+                            'code': 'Reemplazo ' + self.destination_gpsdevice_ids.name,
+                            'stage_id': subscription_in_progress_stage.id,
+                            'gpsdevice_id': self.destination_gpsdevice_ids.id,
+                        })
+
+                        #_logger.warning('subscription_copy: %s', subscription_copy)
+                        s.write({'stage_id': subscription_close_stage.id})
+                    else:
+                        operation_log_comment_device += '<p style="color:red">La suscripción ' + s.code
+                        operation_log_comment_device += ' de el equipo reemplazado ' + device.name
+                        operation_log_comment_device += ' tiene el estatus de ' + s.stage_id.name + '</p>'
+            else:
+                operation_log_comment_device += '<p style="color:red">El equipo reemplazado '
+                operation_log_comment_device += device.name + ' no tiene suscripciones.</p>'
+
+            operation_log_comment_device = operation_log_comment_device.replace('EQUIPO', device.name)
+            operation_log_comment_device = operation_log_comment_device.replace('REEMPLAZADO', self.destination_gpsdevice_ids.name)
+            operation_log_comment_device = operation_log_comment_device.replace('RELATED_ODT', self.related_odt.name)
+
+            # Estatus del Equipo como desinstalado
+            device.write({
+                'status': "uninstalled",
+                "client_id": self.env.user.company_id.id,
+                'notify_offline': False,
+            })
+
+            device.message_post(body=operation_log_comment)
+
+            self.create_device_log(device, operation_log_comment)
+            self.log_to_channel(channel_id, operation_log_comment)
+
+            self.destination_gpsdevice_ids.write({
+                'client_id': device_current_client.id,
+                'status': 'comodato',
+                'notify_offline': True,
+            })
+
+            self.destination_gpsdevice_ids.message_post(body=operation_log_comment_device)
+
+        return {}
+
 
     def return_active_records(self):
         active_model = self._context.get('active_model')

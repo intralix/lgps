@@ -29,8 +29,8 @@
                <group>
                    <field name="requested_by"
                           attrs="{
-                          'invisible':[('operation_mode', 'in', ['substitution','replacement'])],
-                          'required':[('operation_mode', 'not in', ['substitution','replacement'])]
+                          'invisible':[('operation_mode', 'in', ['substitution','replacement', 'loan_substitution'])],
+                          'required':[('operation_mode', 'not in', ['substitution','replacement', 'loan_substitution'])]
                           }"/>
 
                    <field name="reason" attrs="{

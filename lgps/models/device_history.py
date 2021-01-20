@@ -55,6 +55,7 @@ class DeviceHistory(models.Model):
             ('accsubstitution', _('Sustitución de accesorio por revisión')),
             ('accreplacement', _('Reemplazo de accesorio')),
             ('add_reactivate', _('Alta / Reactivación Equipo')),
+            ('loan_substitution', _('Reemplazo de Comodato'))
         ],
         default='drop',
     )
