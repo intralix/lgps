@@ -943,7 +943,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         operation_log_comment += 'equipo <strong>EQUIPO</strong> con número de ODT <strong>RELATED_ODT</strong>. <br/>'
         operation_log_comment += 'Se entrega equipo a Soporte para revisión.<br/><br/>Comentario: ' + self.comment
 
-        operation_log_comment_device = 'Se coloca <strong>REEMPLAZADO</strong> como cabio de servicio en comodato para '
+        operation_log_comment_device = 'Se coloca <strong>REEMPLAZADO</strong> como cambio de servicio en comodato para '
         operation_log_comment_device += ' <strong>EQUIPO</strong> con la ODT <strong>RELATED_ODT</strong><br/><br/>'
         operation_log_comment_device += 'Comentario: ' + self.comment
 
@@ -1024,7 +1024,6 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             self.destination_gpsdevice_ids.message_post(body=operation_log_comment_device)
 
         return {}
-
 
     def return_active_records(self):
         active_model = self._context.get('active_model')
