@@ -8,6 +8,11 @@
         <xpath expr="//field[@name='amount_total']" position="after">
             <field name="margin_percent" groups="base.group_user" widget="percentage"/>
         </xpath>
+
+        <xpath expr="//field[@name='payment_term_id']" position="after">
+            <field name="sacrifice_sale" groups="lgps_margins.lgps_margin_and_discount_in_so"/>
+        </xpath>
+
     </field>
   </record>
 </odoo>
