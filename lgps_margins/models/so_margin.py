@@ -23,13 +23,18 @@ class CheckMarginOnSalesOrder(models.Model):
         help=_('Allow to Sell at a loss')
     )
 
-    @api.one
     @api.depends('margin', 'amount_untaxed')
     def _compute_margin_percent(self):
-        if not (self.margin and self.amount_untaxed):
-            self.margin_percent = 0
-        else:
-            self.margin_percent = (self.margin / self.amount_untaxed)
+        for record in self:
+            if not (record.margin and record.amount_untaxed):
+                record.margin_percent = 0
+            else:
+                # _logger.warning('margin: %s', record.margin)
+                # _logger.warning('amount_untaxed: %s', record.amount_untaxed)
+                record.margin_percent = ((record.margin * 100) / record.amount_untaxed / 100)
+                # _logger.error('margin_percent afther all: %s', record.margin_percent)
+
+
 
     @api.model
     def create(self, values):
@@ -53,47 +58,19 @@ class CheckMarginOnSalesOrder(models.Model):
     def check_rules_on_sales_order(self):
         # Gettin Max discount Rule
         user = self.env.user
-        _logger.info('Trabajando con el usuario : %s', self.env.user)
-        max_discount_allowed = round(user.min_margin * 100)
-        _logger.info('Max discount allowed : %s', max_discount_allowed)
-
-        order = self
-        amount_untaxed = amount_tax = 0.0
-        internal_margin = 0
-
-        _logger.info('Current order %s', order)
-        for line in order.order_line:
-
-            amount_untaxed += line.price_subtotal
-            amount_tax += line.price_tax
-            line_margin = line.price_subtotal - line.purchase_price
-            internal_margin += line_margin
-            price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-
-            _logger.info('Line :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
-            _logger.info('product: %s', line.product_id.name)
-            _logger.info('quantity: %s', line.product_uom_qty)
-            _logger.info('price_unit: %s', line.price_unit)
-            _logger.info('purchase_price: %s', line.purchase_price)
-            _logger.info('price_tax: %s', line.price_tax)
-            _logger.info('discount: %s', line.discount)
-            _logger.info('price_subtotal: %s', line.price_subtotal)
-            _logger.info('margin: %s', line_margin)
-            _logger.info('price_total: %s', line.price_total)
-
-        amount_total = amount_untaxed + amount_tax
-        if amount_untaxed > 0:
-            margin_percent = round(internal_margin / amount_untaxed * 100)
-        else:
-            margin_percent = 0
+        # _logger.info('Trabajando con el usuario : %s', self.env.user)
+        max_discount_allowed = user.min_margin * 100
+        # _logger.info('Max discount allowed : %s', max_discount_allowed)
+        margin_percent = self.margin_percent * 100
+        # _logger.info('Sel Margin Discount: %s', margin_percent)
 
         _logger.info(':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
-        _logger.info('Base Imponible : %s', amount_untaxed)
-        _logger.info('Impuestos : %s', amount_tax)
-        _logger.info('Total : %s', amount_total)
-        _logger.info('Margin : %s', internal_margin)
+        _logger.info('Base Imponible : %s', self.amount_untaxed)
+        _logger.info('Impuestos : %s', self.amount_tax)
+        _logger.info('Total : %s', self.amount_total)
+        _logger.info('Margin : %s', self.margin)
+        _logger.info('Margin in decimal: %s', self.margin_percent)
         _logger.info('Margin in Percent: %s', margin_percent)
-        _logger.info('amount_untaxed: %s', order.amount_untaxed)
 
         if margin_percent < 0 or margin_percent < max_discount_allowed:
             if user.skip_min_margin_rule is False:
