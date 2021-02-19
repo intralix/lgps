@@ -138,6 +138,18 @@ class GpsDevice(models.Model):
         track_visibility='onchange',
     )
 
+    collective = fields.Boolean(
+        default=False,
+        string=_("Collective"),
+        track_visibility='onchange',
+    )
+
+    fuel_hall = fields.Boolean(
+        default=False,
+        string=_("Efecto Hall"),
+        track_visibility='onchange',
+    )
+
     disengagement_sensor = fields.Boolean(
         default=False,
         string=_("Disengagement Sensor"),
