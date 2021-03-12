@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="custom_vehicle_form_view">
+        <field name="name">lgps_vehicle</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='driver_id']" position="before">
+                <field name="nick"></field>
+                <field name="client_id"/>
+                <field name="vehicle_type_id"/>
+            </xpath>
+
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                <page string="Devices">
+                    <field name="gpsdevice_id" widget="many2many" options="{'no_create': True}">
+                         <tree string="Gps Devices" open="false">
+                             <field name="name"/>
+                             <field name="client_id"/>
+                             <field name="serialnumber_id"/>
+                             <field name="imei"/>
+                              <field name="status"/>
+                             <field name="platform"/>
+                             <field name="product_id"/>
+                             <field name="cellchip_id"/>
+                             <field name="installation_date"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+            </xpath>
+        </field>
+  </record>
+</odoo>

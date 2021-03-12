@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="custom_vehicle_device_form_view">
+        <field name="name">lgps_vehicle_device</field>
+        <field name="model">lgps.gpsdevice</field>
+        <field name="inherit_id" ref="lgps.gpsdevice_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='idf']" position="after">
+                <field name="vehicle_id"></field>
+            </xpath>
+        </field>
+  </record>
+</odoo>
