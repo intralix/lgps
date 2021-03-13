@@ -15,6 +15,7 @@
         'security/ir.model.access.csv',
         'views/vehicle_device.xml',
         'views/vehicle.xml',
-        'views/vehicle_type.xml'
+        'views/vehicle_type.xml',
+        'views/vehicle_custom_tree.xml',
     ],
 }

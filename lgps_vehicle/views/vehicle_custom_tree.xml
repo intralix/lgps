@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record model="ir.ui.view" id="custom_lgps_vehicle_tree_view">
+    <field name="name">lgps_vehicle.tree</field>
+    <field name="model">fleet.vehicle</field>
+    <field name="inherit_id" ref="fleet.fleet_vehicle_view_tree"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='license_plate']" position="before">
+          <field name="nick"/>
+          <field name="client_id"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>
