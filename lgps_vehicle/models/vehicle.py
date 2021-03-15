@@ -23,10 +23,9 @@ class Vehicle(models.Model):
     client_id = fields.Many2one(
         comodel_name="res.partner",
         required=True,
-        string=_("Installed On"),
+        string=_("Account"),
         domain=[
             ('customer', '=', True),
-            ('active', '=', True),
             ('is_company', '=', True)
         ],
         index=True,

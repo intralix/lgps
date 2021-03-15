@@ -1,0 +1,162 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* lgps_vehicle
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-15 22:21+0000\n"
+"PO-Revision-Date: 2021-03-15 22:21+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: lgps_vehicle
+#: code:addons/lgps_vehicle/models/vehicle.py:26
+#, python-format
+msgid "Account"
+msgstr ""
+
+#. module: lgps_vehicle
+#: model_terms:ir.actions.act_window,help:lgps_vehicle.lgps_vehicle_type_list_action
+msgid "Create the first Vehicle Type List Record"
+msgstr "Crear el primer registro de los tipos de Vehículos"
+
+#. module: lgps_vehicle
+#: model:ir.model.fields,field_description:lgps_vehicle.field_lgps_vehicle_type__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: lgps_vehicle
+#: model:ir.model.fields,field_description:lgps_vehicle.field_lgps_vehicle_type__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: lgps_vehicle
+#: model:ir.model.fields,field_description:lgps_vehicle.field_fleet_vehicle__client_id
+msgid "Cuenta"
+msgstr ""
+
+#. module: lgps_vehicle
+#: model_terms:ir.ui.view,arch_db:lgps_vehicle.custom_vehicle_form_view
+msgid "Devices"
+msgstr "Dispositivos"
+
+#. module: lgps_vehicle
+#: model:ir.model.fields,field_description:lgps_vehicle.field_lgps_vehicle_type__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: lgps_vehicle
+#: model:ir.model.fields,help:lgps_vehicle.field_fleet_vehicle__gpsdevice_id
+msgid "GPS Device associated to this vehicle."
+msgstr "Dispositivo asociado al vehículo"
+
+#. module: lgps_vehicle
+#: model_terms:ir.ui.view,arch_db:lgps_vehicle.custom_vehicle_form_view
+msgid "Gps Devices"
+msgstr "Dispositivos GPS"
+
+#. module: lgps_vehicle
+#: model:ir.model.fields,field_description:lgps_vehicle.field_lgps_vehicle_type__id
+msgid "ID"
+msgstr ""
+
+#. module: lgps_vehicle
+#: model:ir.model.fields,field_description:lgps_vehicle.field_fleet_vehicle__gpsdevice_id
+msgid "Instalado En"
+msgstr ""
+
+#. module: lgps_vehicle
+#: code:addons/lgps_vehicle/models/vehicle.py:18
+#, python-format
+msgid "Installed On"
+msgstr "Instalado en"
+
+#. module: lgps_vehicle
+#: model:ir.model.fields,field_description:lgps_vehicle.field_lgps_vehicle_type____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: lgps_vehicle
+#: model:ir.model.fields,field_description:lgps_vehicle.field_lgps_vehicle_type__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: lgps_vehicle
+#: model:ir.model.fields,field_description:lgps_vehicle.field_lgps_vehicle_type__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: lgps_vehicle
+#: model_terms:ir.ui.view,arch_db:lgps_vehicle.lgps_vehicle_type_form_view
+msgid "List Info"
+msgstr "Información de la lista"
+
+#. module: lgps_vehicle
+#: model:ir.model.fields,field_description:lgps_vehicle.field_lgps_vehicle_type__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: lgps_vehicle
+#: code:addons/lgps_vehicle/models/vehicle.py:12
+#: model:ir.model.fields,field_description:lgps_vehicle.field_fleet_vehicle__nick
+#, python-format
+msgid "Nick"
+msgstr ""
+
+#. module: lgps_vehicle
+#: code:addons/lgps_vehicle/models/device.py:13
+#: model:ir.model,name:lgps_vehicle.model_fleet_vehicle
+#: model:ir.model.fields,field_description:lgps_vehicle.field_lgps_gpsdevice__vehicle_id
+#, python-format
+msgid "Vehicle"
+msgstr "Vehículo"
+
+#. module: lgps_vehicle
+#: code:addons/lgps_vehicle/models/vehicle.py:38
+#: model:ir.model,name:lgps_vehicle.model_lgps_vehicle_type
+#: model:ir.model.fields,field_description:lgps_vehicle.field_fleet_vehicle__vehicle_type_id
+#, python-format
+msgid "Vehicle Type"
+msgstr "Tipo de Vehículo"
+
+#. module: lgps_vehicle
+#: model_terms:ir.ui.view,arch_db:lgps_vehicle.lgps_vehicle_type_form_view
+msgid "Vehicle Type Form"
+msgstr "Formulario de Tipo de Vehículo"
+
+#. module: lgps_vehicle
+#: model:ir.ui.menu,name:lgps_vehicle.lgps_vehicle_type_list_menu
+msgid "Vehicle Type List"
+msgstr "Lista de tipos de vehículos"
+
+#. module: lgps_vehicle
+#: model_terms:ir.ui.view,arch_db:lgps_vehicle.lgps_vehicle_type_list_tree_view
+msgid "Vehicle Type List Tree"
+msgstr "Arbol de Tipos de Vehículos"
+
+#. module: lgps_vehicle
+#: model:ir.model,name:lgps_vehicle.model_lgps_vehicle_type_list
+msgid "Vehicle Types List"
+msgstr "Lista de Tipos de Vehículos"
+
+#. module: lgps_vehicle
+#: sql_constraint:lgps.vehicle.type:0
+msgid "Vehicle type already exist !"
+msgstr "El vehículo ya existe"
+
+#. module: lgps_vehicle
+#: model:ir.model,name:lgps_vehicle.model_lgps_gpsdevice
+msgid "lgps.gpsdevice"
+msgstr "Desipositivo Gps"
+
+#. module: lgps_vehicle
+#: model:ir.actions.act_window,name:lgps_vehicle.lgps_vehicle_type_list_action
+msgid "lgps_vehicle_type"
+msgstr "Tipos de Vehículo"
+
