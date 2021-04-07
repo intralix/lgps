@@ -121,6 +121,24 @@ class Odt(models.Model):
         string=_("Stock In"),
     )
 
+    initial_photos = fields.Boolean(
+        default=False,
+        string=_("Initial photos"),
+        track_visibility='onchange',
+    )
+
+    end_photos = fields.Boolean(
+        default=False,
+        string=_("End Photos"),
+        track_visibility='onchange',
+    )
+
+    tests_run = fields.Boolean(
+        default=False,
+        string=_("Tests run"),
+        track_visibility='onchange',
+    )
+
     @api.one
     @api.depends('closed_date')
     def _compute_days_count(self):

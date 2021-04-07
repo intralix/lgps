@@ -38,6 +38,16 @@
         <attribute name="attrs">{'readonly':['|',('authorized_warranty','in',['waiting','authorized']), ('state','not in',['draft'])]}</attribute>
       </xpath>
 
+      <xpath expr="//notebook" position="inside">
+        <page string="Evidences">
+           <group>
+              <field name="initial_photos"/>
+              <field name="end_photos"/>
+              <field name="tests_run"/>
+           </group>
+        </page>
+      </xpath>
+
     </field>
   </record>
 

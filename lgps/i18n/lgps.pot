@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-20 01:15+0000\n"
-"PO-Revision-Date: 2021-01-20 01:15+0000\n"
+"POT-Creation-Date: 2021-04-07 04:09+0000\n"
+"PO-Revision-Date: 2021-04-07 04:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -307,7 +307,7 @@ msgid "Accesories"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:306
+#: code:addons/lgps/models/gpsdevice.py:318
 #, python-format
 msgid "Accesories Count"
 msgstr ""
@@ -346,7 +346,7 @@ msgid "Accesory"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:258
+#: code:addons/lgps/models/gpsdevice.py:270
 #: model:ir.ui.menu,name:lgps.accessory_menu
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 #, python-format
@@ -529,7 +529,7 @@ msgid "Asignado"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:270
+#: code:addons/lgps/models/gpsdevice.py:282
 #: selection:lgps.gpsdevice,state:0
 #, python-format
 msgid "Asignar"
@@ -618,7 +618,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:67
 #: code:addons/lgps/models/common_operations_wizard.py:104
-#: code:addons/lgps/models/gpsdevice.py:181
+#: code:addons/lgps/models/gpsdevice.py:193
 #, python-format
 msgid "Backup"
 msgstr ""
@@ -676,7 +676,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:64
 #: code:addons/lgps/models/common_operations_wizard.py:101
-#: code:addons/lgps/models/gpsdevice.py:178
+#: code:addons/lgps/models/gpsdevice.py:190
 #, python-format
 msgid "Borrowed"
 msgstr ""
@@ -759,7 +759,7 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/common_operations_wizard.py:131
-#: code:addons/lgps/models/gpsdevice.py:210
+#: code:addons/lgps/models/gpsdevice.py:222
 #, python-format
 msgid "Cellchip Number"
 msgstr ""
@@ -850,6 +850,13 @@ msgid "Closed Date"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/gpsdevice.py:143
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__collective
+#, python-format
+msgid "Collective"
+msgstr ""
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__fuel
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel
 msgid "Combustible"
@@ -899,7 +906,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:54
 #: code:addons/lgps/models/common_operations_wizard.py:91
-#: code:addons/lgps/models/gpsdevice.py:168
+#: code:addons/lgps/models/gpsdevice.py:180
 #: selection:lgps.accessory,status:0
 #: selection:lgps.common_operations_device_wizard,device_status:0
 #: selection:lgps.gpsdevice,status:0
@@ -983,13 +990,13 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:55
 #: code:addons/lgps/models/common_operations_wizard.py:92
-#: code:addons/lgps/models/gpsdevice.py:169
+#: code:addons/lgps/models/gpsdevice.py:181
 #, python-format
 msgid "Courtesy"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:269
+#: code:addons/lgps/models/gpsdevice.py:281
 #: selection:lgps.gpsdevice,state:0
 #, python-format
 msgid "Crear"
@@ -1130,13 +1137,13 @@ msgid "Date"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:147
+#: code:addons/lgps/models/gpsdevice.py:159
 #, python-format
 msgid "DateTime GPS"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:151
+#: code:addons/lgps/models/gpsdevice.py:163
 #, python-format
 msgid "DateTime Server"
 msgstr ""
@@ -1312,7 +1319,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:56
 #: code:addons/lgps/models/common_operations_wizard.py:93
-#: code:addons/lgps/models/gpsdevice.py:170
+#: code:addons/lgps/models/gpsdevice.py:182
 #, python-format
 msgid "Demo"
 msgstr ""
@@ -1427,7 +1434,7 @@ msgid "Devolución de Material"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:143
+#: code:addons/lgps/models/gpsdevice.py:155
 #, python-format
 msgid "Disengagement Sensor"
 msgstr ""
@@ -1483,8 +1490,8 @@ msgstr ""
 #: code:addons/lgps/models/accessory.py:53
 #: code:addons/lgps/models/common_operations_wizard.py:90
 #: code:addons/lgps/models/common_operations_wizard.py:116
-#: code:addons/lgps/models/gpsdevice.py:167
-#: code:addons/lgps/models/gpsdevice.py:194
+#: code:addons/lgps/models/gpsdevice.py:179
+#: code:addons/lgps/models/gpsdevice.py:206
 #, python-format
 msgid "Drop"
 msgstr ""
@@ -1510,7 +1517,7 @@ msgid "Días transcurridos"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:184
+#: code:addons/lgps/models/odt.py:202
 #, python-format
 msgid "Each service ODT must have a failure record associated.\n"
 "\n"
@@ -1520,6 +1527,13 @@ msgstr ""
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.report_suscriptions_detail_condensed_view
 msgid "Económico"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/gpsdevice.py:149
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel_hall
+#, python-format
+msgid "Efecto Hall"
 msgstr ""
 
 #. module: lgps
@@ -1535,6 +1549,13 @@ msgstr ""
 #: code:addons/lgps/models/cellchip.py:131
 #, python-format
 msgid "End Forced Plan Date"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/odt.py:132
+#: model:ir.model.fields,field_description:lgps.field_repair_order__end_photos
+#, python-format
+msgid "End Photos"
 msgstr ""
 
 #. module: lgps
@@ -1612,6 +1633,11 @@ msgid "Etapa para suscripciones del dispositivo"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.custom_repairs_form_view
+msgid "Evidences"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/dolar_history.py:24
 #, python-format
 msgid "Exchange Rate"
@@ -1629,7 +1655,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:58
 #: code:addons/lgps/models/common_operations_wizard.py:95
-#: code:addons/lgps/models/gpsdevice.py:172
+#: code:addons/lgps/models/gpsdevice.py:184
 #, python-format
 msgid "External"
 msgstr ""
@@ -1796,7 +1822,7 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/common_operations_wizard.py:100
-#: code:addons/lgps/models/gpsdevice.py:177
+#: code:addons/lgps/models/gpsdevice.py:189
 #, python-format
 msgid "For Installing"
 msgstr ""
@@ -1941,7 +1967,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:59
 #: code:addons/lgps/models/common_operations_wizard.py:96
-#: code:addons/lgps/models/gpsdevice.py:173
+#: code:addons/lgps/models/gpsdevice.py:185
 #, python-format
 msgid "Hibernate"
 msgstr ""
@@ -2058,12 +2084,19 @@ msgid "Initial Date"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/odt.py:126
+#: model:ir.model.fields,field_description:lgps.field_repair_order__initial_photos
+#, python-format
+msgid "Initial photos"
+msgstr ""
+
+#. module: lgps
 #: selection:repair.order,odt_type:0
 msgid "Instalación Nueva"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:273
+#: code:addons/lgps/models/gpsdevice.py:285
 #: selection:lgps.accessory,status:0
 #: selection:lgps.common_operations_device_wizard,device_status:0
 #: selection:lgps.gpsdevice,state:0
@@ -2095,7 +2128,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:60
 #: code:addons/lgps/models/common_operations_wizard.py:97
-#: code:addons/lgps/models/gpsdevice.py:174
+#: code:addons/lgps/models/gpsdevice.py:186
 #: model_terms:ir.ui.view,arch_db:lgps.cellchip_form_view
 #, python-format
 msgid "Installed"
@@ -2104,7 +2137,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:40
 #: code:addons/lgps/models/cellchip.py:18
-#: code:addons/lgps/models/gpsdevice.py:231
+#: code:addons/lgps/models/gpsdevice.py:243
 #, python-format
 msgid "Installed On"
 msgstr ""
@@ -2155,7 +2188,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:61
 #: code:addons/lgps/models/common_operations_wizard.py:98
-#: code:addons/lgps/models/gpsdevice.py:175
+#: code:addons/lgps/models/gpsdevice.py:187
 #, python-format
 msgid "Inventory"
 msgstr ""
@@ -2201,13 +2234,13 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:155
+#: code:addons/lgps/models/gpsdevice.py:167
 #, python-format
 msgid "Last Position"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:159
+#: code:addons/lgps/models/gpsdevice.py:171
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 #, python-format
 msgid "Last Report"
@@ -2367,7 +2400,7 @@ msgid "Mal Servicio"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:196
+#: code:addons/lgps/models/odt.py:214
 #, python-format
 msgid "Manipulation detected on:\n"
 "\n"
@@ -2505,7 +2538,7 @@ msgstr ""
 #: code:addons/lgps/models/common_operations_wizard.py:99
 #: code:addons/lgps/models/device_history.py:99
 #: code:addons/lgps/models/dolar_history.py:30
-#: code:addons/lgps/models/gpsdevice.py:176
+#: code:addons/lgps/models/gpsdevice.py:188
 #: code:addons/lgps/models/partner.py:22
 #, python-format
 msgid "New"
@@ -2701,7 +2734,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/authorization_odt_wizard.py:16
 #: code:addons/lgps/models/authorization_request_odt_wizard.py:19
-#: code:addons/lgps/models/gpsdevice.py:290
+#: code:addons/lgps/models/gpsdevice.py:302
 #: model:ir.model.fields,field_description:lgps.field_lgps_authorization_odt_wizard__odt_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_authorization_request_odt_wizard__odt_ids
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__repairs_ids
@@ -2723,7 +2756,7 @@ msgid "ODT's"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:311
+#: code:addons/lgps/models/gpsdevice.py:323
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__repairs_count
 #, python-format
 msgid "ODTs"
@@ -2917,7 +2950,7 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/common_operations_wizard.py:126
-#: code:addons/lgps/models/gpsdevice.py:204
+#: code:addons/lgps/models/gpsdevice.py:216
 #, python-format
 msgid "Platform"
 msgstr ""
@@ -2991,7 +3024,7 @@ msgstr ""
 #: code:addons/lgps/models/accesory_history.py:44
 #: code:addons/lgps/models/accessory.py:79
 #: code:addons/lgps/models/device_history.py:46
-#: code:addons/lgps/models/gpsdevice.py:219
+#: code:addons/lgps/models/gpsdevice.py:231
 #, python-format
 msgid "Product Type"
 msgstr ""
@@ -3002,8 +3035,8 @@ msgid "Producto"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:271
-#: code:addons/lgps/models/gpsdevice.py:272
+#: code:addons/lgps/models/gpsdevice.py:283
+#: code:addons/lgps/models/gpsdevice.py:284
 #: selection:lgps.gpsdevice,state:0
 #, python-format
 msgid "Programar"
@@ -3038,7 +3071,7 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:84
-#: code:addons/lgps/models/gpsdevice.py:224
+#: code:addons/lgps/models/gpsdevice.py:236
 #, python-format
 msgid "Provider Invoice"
 msgstr ""
@@ -3046,7 +3079,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:90
 #: code:addons/lgps/models/cellchip.py:111
-#: code:addons/lgps/models/gpsdevice.py:284
+#: code:addons/lgps/models/gpsdevice.py:296
 #, python-format
 msgid "Purchase Date"
 msgstr ""
@@ -3061,7 +3094,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:68
 #: code:addons/lgps/models/common_operations_wizard.py:105
-#: code:addons/lgps/models/gpsdevice.py:182
+#: code:addons/lgps/models/gpsdevice.py:194
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_search_view
 #: selection:lgps.accessory,status:0
 #: selection:lgps.common_operations_device_wizard,device_status:0
@@ -3205,7 +3238,7 @@ msgid "Repair does not have an authorization request"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:208
+#: code:addons/lgps/models/odt.py:226
 #, python-format
 msgid "Repair has not been authorized.\n"
 "\n"
@@ -3213,7 +3246,7 @@ msgid "Repair has not been authorized.\n"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:204
+#: code:addons/lgps/models/odt.py:222
 #, python-format
 msgid "Repair must be authorized before confirmation.\n"
 "\n"
@@ -3221,8 +3254,8 @@ msgid "Repair must be authorized before confirmation.\n"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:156
-#: code:addons/lgps/models/odt.py:170
+#: code:addons/lgps/models/odt.py:174
+#: code:addons/lgps/models/odt.py:188
 #, python-format
 msgid "Repair seems to be a warranty.\n"
 "\n"
@@ -3230,7 +3263,7 @@ msgid "Repair seems to be a warranty.\n"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:212
+#: code:addons/lgps/models/odt.py:230
 #, python-format
 msgid "Repair was not authorized.\n"
 "\n"
@@ -3246,7 +3279,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:66
 #: code:addons/lgps/models/common_operations_wizard.py:103
-#: code:addons/lgps/models/gpsdevice.py:180
+#: code:addons/lgps/models/gpsdevice.py:192
 #, python-format
 msgid "Replacement"
 msgstr ""
@@ -3407,7 +3440,7 @@ msgstr ""
 #: code:addons/lgps/models/accesory_history.py:18
 #: code:addons/lgps/models/accessory.py:20
 #: code:addons/lgps/models/device_history.py:20
-#: code:addons/lgps/models/gpsdevice.py:251
+#: code:addons/lgps/models/gpsdevice.py:263
 #, python-format
 msgid "Serial Number"
 msgstr ""
@@ -3493,7 +3526,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:69
 #: code:addons/lgps/models/common_operations_wizard.py:106
-#: code:addons/lgps/models/gpsdevice.py:183
+#: code:addons/lgps/models/gpsdevice.py:195
 #, python-format
 msgid "Sold"
 msgstr ""
@@ -3528,7 +3561,7 @@ msgid "Some accessories does not has the right status for this operation.\n"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/common_operations_wizard.py:1050
+#: code:addons/lgps/models/common_operations_wizard.py:1049
 #, python-format
 msgid "Some devices does not has the right status for this operation.\n"
 "\n"
@@ -3559,7 +3592,7 @@ msgstr ""
 #: code:addons/lgps/models/authorization_odt_wizard.py:27
 #: code:addons/lgps/models/cellchip.py:33
 #: code:addons/lgps/models/common_operations_wizard.py:109
-#: code:addons/lgps/models/gpsdevice.py:186
+#: code:addons/lgps/models/gpsdevice.py:198
 #: model_terms:ir.ui.view,arch_db:lgps.report_gpsdevice_view
 #, python-format
 msgid "Status"
@@ -3609,7 +3642,7 @@ msgid "Subscription"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:326
+#: code:addons/lgps/models/gpsdevice.py:338
 #, python-format
 msgid "Subscriptions"
 msgstr ""
@@ -3639,7 +3672,7 @@ msgid "Suscripción"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:244
+#: code:addons/lgps/models/gpsdevice.py:256
 #, python-format
 msgid "Suscription"
 msgstr ""
@@ -3718,7 +3751,7 @@ msgid "Task"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:302
+#: code:addons/lgps/models/gpsdevice.py:314
 #: model:ir.actions.act_window,name:lgps.action_counter_tasks_button
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
 #, python-format
@@ -3726,7 +3759,7 @@ msgid "Tasks"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:331
+#: code:addons/lgps/models/gpsdevice.py:343
 #, python-format
 msgid "Tasks Count"
 msgstr ""
@@ -3764,12 +3797,19 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:65
 #: code:addons/lgps/models/common_operations_wizard.py:102
-#: code:addons/lgps/models/gpsdevice.py:179
+#: code:addons/lgps/models/gpsdevice.py:191
 #: selection:lgps.accessory,status:0
 #: selection:lgps.common_operations_device_wizard,device_status:0
 #: selection:lgps.gpsdevice,status:0
 #, python-format
 msgid "Tests"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/odt.py:138
+#: model:ir.model.fields,field_description:lgps.field_repair_order__tests_run
+#, python-format
+msgid "Tests run"
 msgstr ""
 
 #. module: lgps
@@ -3834,7 +3874,7 @@ msgstr ""
 #: code:addons/lgps/models/common_operations_wizard.py:737
 #: code:addons/lgps/models/common_operations_wizard.py:853
 #: code:addons/lgps/models/common_operations_wizard.py:929
-#: code:addons/lgps/models/common_operations_wizard.py:1143
+#: code:addons/lgps/models/common_operations_wizard.py:1142
 #, python-format
 msgid "There is not configuration for default channel.\n"
 " Configure this in order to send the notification."
@@ -3906,7 +3946,7 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:115
-#: code:addons/lgps/models/gpsdevice.py:296
+#: code:addons/lgps/models/gpsdevice.py:308
 #: model:ir.actions.act_window,name:lgps.action_count_tickets_accesories_button
 #: model:ir.actions.act_window,name:lgps.action_counter_tickets_button
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory__helpdesk_tickets_ids
@@ -3919,7 +3959,7 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:119
-#: code:addons/lgps/models/gpsdevice.py:316
+#: code:addons/lgps/models/gpsdevice.py:328
 #, python-format
 msgid "Tickets Count"
 msgstr ""
@@ -4008,7 +4048,7 @@ msgid "Tracking Info"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:264
+#: code:addons/lgps/models/gpsdevice.py:276
 #: model:ir.actions.act_window,name:lgps.action_counter_trackings_button
 #: model:ir.actions.act_window,name:lgps.tracking_list_action
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
@@ -4017,7 +4057,7 @@ msgid "Trackings"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:321
+#: code:addons/lgps/models/gpsdevice.py:333
 #, python-format
 msgid "Trackings Count"
 msgstr ""
@@ -4076,7 +4116,7 @@ msgstr ""
 #. module: lgps
 #: code:addons/lgps/models/accessory.py:57
 #: code:addons/lgps/models/common_operations_wizard.py:94
-#: code:addons/lgps/models/gpsdevice.py:171
+#: code:addons/lgps/models/gpsdevice.py:183
 #, python-format
 msgid "Uninstalled"
 msgstr ""
@@ -4215,7 +4255,7 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:343
-#: code:addons/lgps/models/common_operations_wizard.py:1088
+#: code:addons/lgps/models/common_operations_wizard.py:1087
 #, python-format
 msgid "Who authorizes this request?"
 msgstr ""
@@ -4231,14 +4271,14 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:341
-#: code:addons/lgps/models/common_operations_wizard.py:1086
+#: code:addons/lgps/models/common_operations_wizard.py:1085
 #, python-format
 msgid "You forgot to comment the reason for this process to run."
 msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/common_accesories_operations_wizard.py:345
-#: code:addons/lgps/models/common_operations_wizard.py:1090
+#: code:addons/lgps/models/common_operations_wizard.py:1089
 #, python-format
 msgid "You forgot to select the Related ODT"
 msgstr ""
