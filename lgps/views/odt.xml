@@ -38,12 +38,12 @@
         <attribute name="attrs">{'readonly':['|',('authorized_warranty','in',['waiting','authorized']), ('state','not in',['draft'])]}</attribute>
       </xpath>
 
-      <xpath expr="//notebook" position="inside">
+       <xpath expr="//notebook" position="inside">
         <page string="Evidences">
            <group>
-              <field name="initial_photos"/>
-              <field name="end_photos"/>
-              <field name="tests_run"/>
+              <field name="initial_photos" attrs="{'readonly':1}"/>
+              <field name="end_photos" attrs="{'readonly':1}"/>
+              <field name="tests_run" attrs="{'readonly':1}"/>
            </group>
         </page>
       </xpath>
@@ -63,4 +63,39 @@
     </record>
 
 
+   <record model="ir.ui.view" id="custom_repairs_form_view_allow_initial_photos">
+    <field name="name">repair.order.lgps.odt</field>
+    <field name="model">repair.order</field>
+    <field name="inherit_id" ref="repair.view_repair_order_form"/>
+    <field name="groups_id" eval="[(6, 0, [ref('lgps.lgps_odts_evidences_manager') ])]"/>
+    <field name="arch" type="xml">
+        <field name="initial_photos" position="attributes">
+            <attribute name="readonly">0</attribute>
+        </field>
+    </field>
+   </record>
+
+     <record model="ir.ui.view" id="custom_repairs_form_view_allow_end_photos">
+    <field name="name">repair.order.lgps.odt</field>
+    <field name="model">repair.order</field>
+    <field name="inherit_id" ref="repair.view_repair_order_form"/>
+    <field name="groups_id" eval="[(6, 0, [ref('lgps.lgps_odts_evidences_manager') ])]"/>
+    <field name="arch" type="xml">
+        <field name="end_photos" position="attributes">
+            <attribute name="readonly">0</attribute>
+        </field>
+    </field>
+   </record>
+
+     <record model="ir.ui.view" id="custom_repairs_form_view_allow_tests_run">
+    <field name="name">repair.order.lgps.odt</field>
+    <field name="model">repair.order</field>
+    <field name="inherit_id" ref="repair.view_repair_order_form"/>
+    <field name="groups_id" eval="[(6, 0, [ref('lgps.lgps_odts_evidences_manager') ])]"/>
+    <field name="arch" type="xml">
+        <field name="tests_run" position="attributes">
+            <attribute name="readonly">0</attribute>
+        </field>
+    </field>
+   </record>
 </odoo>
