@@ -5,6 +5,7 @@ from odoo.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
+
 class Device(models.Model):
     _inherit = ['lgps.gpsdevice']
 

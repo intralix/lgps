@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="lgps.gpsdevice_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='idf']" position="after">
-                <field name="vehicle_id"></field>
+                <field name="vehicle_id"/>
             </xpath>
         </field>
   </record>

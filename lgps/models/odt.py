@@ -150,6 +150,21 @@ class Odt(models.Model):
             time_difference_in_days = difference.days
             self.days_count = time_difference_in_days
 
+    @api.model
+    def create(self, values):
+        _logger.warning('Calling Created Method')
+        new_record = super(Odt, self).create(values)
+
+        service_date = fields.Date.from_string(values.get('service_date'))
+        today = fields.Date.today()
+        difference = today - service_date
+        time_difference_in_days = difference.days
+
+        if time_difference_in_days > 2:
+            raise UserError(_("Por políticas de la empresa, no puedes dar de alta un servicio con fecha de servicio anterior a 2 días."))
+
+        return new_record
+
     def action_validate(self):
         self._check_rules()
         self.closed_date = fields.Date.today()

@@ -53,6 +53,7 @@
               <field name="purchase_date"/>
             </group>
           </group>
+
           <notebook>
             <page string="Warranty">
               <group>
@@ -76,6 +77,7 @@
           <field name="activity_ids" widget="mail_activity"/>
           <field name="message_ids" widget="mail_thread"/>
         </div>
+        
       </form>
     </field>
   </record>
