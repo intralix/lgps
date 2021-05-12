@@ -140,6 +140,12 @@ class Odt(models.Model):
         track_visibility='onchange',
     )
 
+    related_invoice = fields.Many2one(
+        comodel_name="account.invoice",
+        string=_("Related Invoice"),
+        ondelete="set null"
+    )
+
     @api.one
     @api.depends('closed_date')
     def _compute_days_count(self):
