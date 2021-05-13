@@ -74,12 +74,14 @@
                   <group>
                       <field name="tracking"/>
                       <field name="fuel"/>
+                      <field name="fuel_hall"/>
                       <field name="fleetrun"/>
                       <field name="scanner"/>
                   </group>
                   <group>
                       <field name="temperature"/>
                       <field name="logistic"/>
+                      <field name="collective"/>
                       <field name="device_status"
                              attrs="{
                           'invisible':[('operation_mode', 'not in', ['wakeup'])],

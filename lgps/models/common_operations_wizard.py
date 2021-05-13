@@ -81,9 +81,11 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
     # Available services
     tracking = fields.Boolean(default=False, string=_("Tracking"))
     fuel = fields.Boolean(default=False, string=_("Fuel"))
+    fuel_hall = fields.Boolean(default=False,string=_("Efecto Hall"))
     scanner = fields.Boolean(default=False, string="Scanner")
     temperature = fields.Boolean(default=False, string=_("Temperature"))
     logistic = fields.Boolean(default=False, string=_("Logistic"))
+    collective = fields.Boolean(default=False,string=_("Collective"))
     fleetrun = fields.Boolean(default=False, string=_("Fleetrun"))
     device_status = fields.Selection(
         selection=[
@@ -220,6 +222,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             if r.fuel:
                 additional_functions = True
                 gps_functions_summary += "Combustible<br/>"
+            if r.fuel_hall:
+                additional_functions = True
+                gps_functions_summary += "Combustible Efecto Hall<br/>"
             if r.scanner:
                 additional_functions = True
                 gps_functions_summary += "Escánner<br/>"
@@ -229,6 +234,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             if r.logistic:
                 additional_functions = True
                 gps_functions_summary += "Logística<br/>"
+            if r.collective:
+                additional_functions = True
+                gps_functions_summary += "Colectivos Boson<br/>"
             if r.fleetrun:
                 additional_functions = True
                 gps_functions_summary += "Mantenimiento de Flotilla<br/>"
@@ -245,9 +253,11 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         active_records.write({
             'tracking': False,
             'fuel': False,
+            'fuel_hall': False,
             'scanner': False,
             'temperature': False,
             'logistic': False,
+            'collective': False,
             'fleetrun': False,
             'platform': "Drop",
             'notify_offline': False,
@@ -377,6 +387,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             if r.fuel:
                 additional_functions = True
                 gps_functions_summary += "Combustible<br/>"
+            if r.fuel_hall:
+                additional_functions = True
+                gps_functions_summary += "Combustible Efecto Hall<br/>"
             if r.scanner:
                 additional_functions = True
                 gps_functions_summary += "Escánner<br/>"
@@ -386,6 +399,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             if r.logistic:
                 additional_functions = True
                 gps_functions_summary += "Logística<br/>"
+            if r.collective:
+                additional_functions = True
+                gps_functions_summary += "Colectivos Boson<br/>"
             if r.fleetrun:
                 additional_functions = True
                 gps_functions_summary += "Mantenimiento de Flotilla<br/>"
@@ -396,9 +412,11 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             # Desactivamos funciones e hibernamos
             r.write({
                 'fuel': False,
+                'fuel_hall': False,
                 'scanner': False,
                 'temperature': False,
                 'logistic': False,
+                'collective': False,
                 'tracking': True,
                 'fleetrun': False,
                 'status': "hibernate",
@@ -523,7 +541,8 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 'quotation_notes': repair_internal_notes,
                 'installer_id': self.related_odt.installer_id.id,
                 'assistant_a_id': self.related_odt.assistant_a_id.id,
-                'assistant_b_id': self.related_odt.assistant_b_id.id
+                'assistant_b_id': self.related_odt.assistant_b_id.id,
+                'service_date': fields.Date.today()
             }
             nodt = self.create_odt(dictionary)
 
@@ -657,7 +676,8 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
                 'quotation_notes': repair_internal_notes,
                 'installer_id': self.related_odt.installer_id.id,
                 'assistant_a_id': self.related_odt.assistant_a_id.id,
-                'assistant_b_id': self.related_odt.assistant_b_id.id
+                'assistant_b_id': self.related_odt.assistant_b_id.id,
+                'service_date': fields.Date.today()
             })
             # Comments to log on the operation log comment
             repair_internal_notes = repair_internal_notes.replace("RMA_ODT", nodt.name)
@@ -770,6 +790,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             if self.fuel:
                 additional_functions = True
                 gps_functions_summary += "Combustible<br/>"
+            if self.fuel_hall:
+                additional_functions = True
+                gps_functions_summary += "Combustible Efecto Hall<br/>"
             if self.scanner:
                 additional_functions = True
                 gps_functions_summary += "Escánner<br/>"
@@ -779,6 +802,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             if self.logistic:
                 additional_functions = True
                 gps_functions_summary += "Logística<br/>"
+            if self.collective:
+                additional_functions = True
+                gps_functions_summary += "Colectivos Boson<br/>"
             if self.fleetrun:
                 additional_functions = True
                 gps_functions_summary += "Mantenimiento de Flotilla<br/>"
@@ -790,9 +816,11 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             # Activando el equipo
             r.write({
                 'fuel': self.fuel if self.fuel else r.fuel,
+                'fuel_hall': self.fuel_hall if self.fuel_hall else r.fuel_hall,
                 'scanner': self.scanner if self.scanner else r.scanner,
                 'temperature': self.temperature if self.temperature else r.temperature,
                 'logistic': self.logistic if self.logistic else r.logistic,
+                'collective': self.collective if self.collective else r.collective,
                 'tracking': self.tracking if self.tracking else r.tracking,
                 'fleetrun': self.fleetrun if self.fleetrun else r.fleetrun,
                 'status': self.device_status,
@@ -881,6 +909,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             if self.fuel:
                 additional_functions = True
                 gps_functions_summary += "Combustible<br/>"
+            if self.fuel_hall:
+                additional_functions = True
+                gps_functions_summary += "Combustible Efecto Hall<br/>"
             if self.scanner:
                 additional_functions = True
                 gps_functions_summary += "Escánner<br/>"
@@ -890,6 +921,9 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             if self.logistic:
                 additional_functions = True
                 gps_functions_summary += "Logística<br/>"
+            if self.collective:
+                additional_functions = True
+                gps_functions_summary += "Colectivos Boson<br/>"
             if self.fleetrun:
                 additional_functions = True
                 gps_functions_summary += "Mantenimiento de Flotilla<br/>"
@@ -901,9 +935,11 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             # Activando el equipo
             r.write({
                 'fuel': self.fuel if self.fuel else r.fuel,
+                'fuel_hall': self.fuel_hall if self.fuel_hall else r.fuel_hall,
                 'scanner': self.scanner if self.scanner else r.scanner,
                 'temperature': self.temperature if self.temperature else r.temperature,
                 'logistic': self.logistic if self.logistic else r.logistic,
+                'collective': self.collective if self.collective else r.collective,
                 'tracking': self.tracking if self.tracking else r.tracking,
                 'fleetrun': self.fleetrun if self.fleetrun else r.fleetrun,
                 'platform': self.platform,
