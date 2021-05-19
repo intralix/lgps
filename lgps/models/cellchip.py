@@ -89,7 +89,8 @@ class Cellchip(models.Model):
             ("Movistar", "Movistar"),
             ("Prossea", "Prossea"),
             ("Simpacsys", "Simpacsys"),
-            ("Telcel", "Telcel")
+            ("Skywave", "Skywave"),
+            ("Telcel", "Telcel"),
         ],
         string="Provider",
         track_visibility='onchange'
