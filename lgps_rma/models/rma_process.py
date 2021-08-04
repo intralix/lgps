@@ -110,6 +110,11 @@ class RmaProcess(models.Model):
         string=_("Coordinator"),
     )
 
+    assistant = fields.Many2one(
+        comodel_name="hr.employee",
+        string=_("Assistant A"),
+    )
+
     @api.model
     def create(self, values):
         seq = self.env['ir.sequence'].next_by_code('lgps.rma_process') or _('New')

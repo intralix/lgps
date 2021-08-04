@@ -140,10 +140,10 @@ class ClientConfigurations(models.Model):
             Generates notifications for configurations defined
         """
         _logger.debug('Running Notifications Service')
-        # _logger.debug('Order by: %s', self.priority)
+        _logger.debug('Order by: %s', self.priority)
         order = True if self.priority == 'desc' else False
         configurations = self.sudo().env['lgps.client_configuration'].search([('operative', '=', True)])
-        # _logger.debug('Configurations found: %s', configurations)
+        _logger.debug('Configurations found: %s', configurations)
 
         # Iterate records in this configuration
         for cnf in configurations:
@@ -166,12 +166,14 @@ class ClientConfigurations(models.Model):
                     ('notify_offline', "=", True)
                 ])
 
+                _logger.warning('Devices to Check: %s', gps_devices)
+
                 if gps_devices:
                     for device in gps_devices:
                         notify_offline = device.notify_offline
                         # Si el equipo no tiene más de 24 horas sin reportar no tiene caso revisarlo.
                         if device.last_report > 23:
-                            # _logger.info('Eval Device: %s - Last Report: %s', device.name,  device.last_report)
+                            _logger.info('Eval Device: %s - Last Report: %s', device.name,  device.last_report)
                             for i in range(len(sorted_rules)):
                                 rule = sorted_rules[i]
                                 _logger.warning('Indice %s : Rules %s', i, rule.name)
@@ -193,7 +195,7 @@ class ClientConfigurations(models.Model):
                     # _logger.info('Notifications to create for rule in configuration %s', rule_lists)
                 for r in rule_lists:
                     if len(rule_lists[r]) > 0:
-                        # _logger.warning('Create Notification for: %s', rule_lists[r])
+                        _logger.warning('Create Notification for: %s', rule_lists[r])
                         record = self.create_notification(cnf, r, rule_lists[r])
                         # if len(record) > 0:
                         #     _logger.debug('Notification created: %s', record.name)

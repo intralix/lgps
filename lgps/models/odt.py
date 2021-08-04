@@ -158,7 +158,7 @@ class Odt(models.Model):
 
     @api.model
     def create(self, values):
-        _logger.warning('Calling Created Method')
+        # _logger.warning('Calling Created Method')
         new_record = super(Odt, self).create(values)
 
         service_date = fields.Date.from_string(values.get('service_date'))
@@ -170,6 +170,19 @@ class Odt(models.Model):
             raise UserError(_("Por políticas de la empresa, no puedes dar de alta un servicio con fecha de servicio anterior a 2 días."))
 
         return new_record
+
+    @api.multi
+    def write(self, values):
+        # _logger.warning('Calling Created Method')
+        service_date = fields.Date.from_string(values.get('service_date'))
+        today = fields.Date.today()
+        difference = today - service_date
+        time_difference_in_days = difference.days
+
+        if time_difference_in_days > 2:
+            raise UserError(_("Por políticas de la empresa, no puedes dar de alta un servicio con fecha de servicio anterior a 2 días."))
+        else:
+            return super(Odt, self).write(values)
 
     def action_validate(self):
         self._check_rules()

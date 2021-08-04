@@ -47,6 +47,7 @@
                   <field name="client_id"/>
                   <field name="create_date"/>
                   <field name="coordinator"/>
+                  <field name="assistant"/>
               </group>
               <group>
                   <field name="delivery_responsable"/>

@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import pika  # Library RabbitMQ
+import json
+import time
 from datetime import timedelta
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError
@@ -172,6 +175,8 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         # Loan Substitution
         if self.operation_mode == 'loan_substitution':
             self.execute_loan_substitution()
+
+        self.publishMessageToQueue()
         return {}
 
     def execute_drop(self):
@@ -1191,3 +1196,23 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         _logger.warning('buffer: %s', buffer)
 
         return buffer
+
+    def publishMessageToQueue(self):
+
+        # Creamos la conexión con nuestros host de rabbitMQ,la conexión sigue el formato:
+        # amqp:usuario:contraseña@host/virtualhost
+        connection = pika.BlockingConnection(
+            pika.URLParameters(
+                'amqp://intralixAdmin:CA4B10F7D3@intralixbroker.southcentralus.cloudapp.azure.com/odoo_hub'))
+        channel = connection.channel()  # Creamos un canal de communication a partir de la conexión.
+
+        # Definimos una cola de mensaje
+        channel.queue_declare(queue='hello')
+        # Se publica un mensaje cada 5 segundos usando la conexión de rabbit mq.
+        message = self.operation_mode
+        # Enviamos el mensaje
+        channel.basic_publish(exchange='', routing_key='hello', body=message)
+        # print(" [x] Sent 'Hello World Num:'", x)
+        _logger.warning('Enviado a RabbitMQ: %s', message)
+        connection.close()
+        return True

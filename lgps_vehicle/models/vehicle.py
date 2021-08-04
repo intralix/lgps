@@ -23,7 +23,7 @@ class Vehicle(models.Model):
 
     client_id = fields.Many2one(
         comodel_name="res.partner",
-        required=True,
+        required=False,
         string=_("Account"),
         domain=[
             ('customer', '=', True),
@@ -35,7 +35,7 @@ class Vehicle(models.Model):
 
     vehicle_type_id = fields.Many2one(
         comodel_name="lgps.vehicle.type",
-        required=True,
+        required=False,
         string=_("Vehicle Type"),
         index=True,
     )
