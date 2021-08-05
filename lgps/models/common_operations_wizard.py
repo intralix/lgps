@@ -176,7 +176,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
         if self.operation_mode == 'loan_substitution':
             self.execute_loan_substitution()
 
-        self.publishMessageToQueue()
+        # self.publishMessageToQueue()
         return {}
 
     def execute_drop(self):
