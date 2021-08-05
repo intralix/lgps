@@ -25,7 +25,7 @@
     <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
   </record>
 
-    <record id="lgps_group_odts_authorizer" model="res.groups">
+  <record id="lgps_group_odts_authorizer" model="res.groups">
     <field name="name">Lgps / ODT / Authorizer</field>
     <field name="category_id" ref="module_lgps_category"/>
     <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
@@ -44,6 +44,14 @@
 
     <record id="lgps_odts_evidences_manager" model="res.groups">
     <field name="name">Manage ODT's Evidences info</field>
+    <field name="users" eval="[
+            (4, ref('base.user_root')),
+            (4, ref('base.user_admin'))
+        ]"/>
+  </record>
+
+  <record id="lgps_group_odts_stock" model="res.groups">
+    <field name="name">Manage ODT's Stock info</field>
     <field name="users" eval="[
             (4, ref('base.user_root')),
             (4, ref('base.user_admin'))

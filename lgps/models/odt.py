@@ -179,20 +179,15 @@ class Odt(models.Model):
         # _logger.warning('Calling Created Method')
         service_date = fields.Date.from_string(values.get('service_date'))
 
-        if not service_date:
-            raise UserError(_("La ODT debe tener una fecha de servicio válida."))
-        else:
+        if service_date:
             today = fields.Date.today()
-            _logger.warning('Today: %s', today)
             difference = today - service_date
-            _logger.warning('Difference: %s', difference)
             time_difference_in_days = difference.days
-            _logger.warning('Time Difference In Days: %s', time_difference_in_days)
 
-        if time_difference_in_days > 2:
-            raise UserError(_("Por políticas de la empresa, no puedes dar de alta un servicio con fecha de servicio anterior a 2 días."))
-        else:
-            return super(Odt, self).write(values)
+            if time_difference_in_days > 2:
+                raise UserError(_("Por políticas de la empresa, no puedes dar de alta un servicio con fecha de servicio anterior a 2 días."))
+
+        return super(Odt, self).write(values)
 
     def action_validate(self):
         self._check_rules()
