@@ -146,6 +146,20 @@ class Odt(models.Model):
         ondelete="set null"
     )
 
+    check_status = fields.Selection(
+        [
+            ('finished_and_authorized', _('Terminado / Autorizado (FTQ)')),
+            ('finished_and_corrected', _('Terminado / Corregido')),
+            ('incomplete', _('Incompleto')),
+        ],
+        string=_("Estatus Calidad"),
+        track_visibility='onchange',
+    )
+
+    check_comment = fields.Text(
+        string=_("Check Comment")
+    )
+
     @api.one
     @api.depends('closed_date')
     def _compute_days_count(self):
