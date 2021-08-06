@@ -40,6 +40,18 @@ class Vehicle(models.Model):
         index=True,
     )
 
+    operative_status = fields.Selection(
+        [
+            ('active', _('Active')),
+            ('inactive', _('Inactive')),
+            ('in_repair', _('In Repair')),
+            ('out_of_service', _('Out of Service')),
+            ('sinister', _('Sinister')),
+        ],
+        string=_("Operative Status"),
+        track_visibility='onchange',
+    )
+
 
 class VehicleType(models.Model):
 

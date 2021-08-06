@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-15 22:21+0000\n"
-"PO-Revision-Date: 2021-03-15 22:21+0000\n"
+"POT-Creation-Date: 2021-08-06 18:23+0000\n"
+"PO-Revision-Date: 2021-08-06 18:23+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,20 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: lgps_vehicle
-#: code:addons/lgps_vehicle/models/vehicle.py:26
+#: code:addons/lgps_vehicle/models/vehicle.py:27
 #, python-format
 msgid "Account"
+msgstr ""
+
+#. module: lgps_vehicle
+#: code:addons/lgps_vehicle/models/vehicle.py:45
+#, python-format
+msgid "Active"
+msgstr ""
+
+#. module: lgps_vehicle
+#: selection:fleet.vehicle,operative_status:0
+msgid "Activo"
 msgstr ""
 
 #. module: lgps_vehicle
@@ -67,12 +78,30 @@ msgid "ID"
 msgstr ""
 
 #. module: lgps_vehicle
+#: code:addons/lgps_vehicle/models/vehicle.py:47
+#: selection:fleet.vehicle,operative_status:0
+#, python-format
+msgid "In Repair"
+msgstr ""
+
+#. module: lgps_vehicle
+#: code:addons/lgps_vehicle/models/vehicle.py:46
+#, python-format
+msgid "Inactive"
+msgstr ""
+
+#. module: lgps_vehicle
+#: selection:fleet.vehicle,operative_status:0
+msgid "Inactivo"
+msgstr ""
+
+#. module: lgps_vehicle
 #: model:ir.model.fields,field_description:lgps_vehicle.field_fleet_vehicle__gpsdevice_id
 msgid "Instalado En"
 msgstr ""
 
 #. module: lgps_vehicle
-#: code:addons/lgps_vehicle/models/vehicle.py:18
+#: code:addons/lgps_vehicle/models/vehicle.py:19
 #, python-format
 msgid "Installed On"
 msgstr ""
@@ -103,24 +132,48 @@ msgid "Name"
 msgstr ""
 
 #. module: lgps_vehicle
-#: code:addons/lgps_vehicle/models/vehicle.py:12
+#: code:addons/lgps_vehicle/models/vehicle.py:13
 #: model:ir.model.fields,field_description:lgps_vehicle.field_fleet_vehicle__nick
 #, python-format
 msgid "Nick"
 msgstr ""
 
 #. module: lgps_vehicle
-#: code:addons/lgps_vehicle/models/device.py:13
+#: code:addons/lgps_vehicle/models/vehicle.py:51
+#: model:ir.model.fields,field_description:lgps_vehicle.field_fleet_vehicle__operative_status
+#, python-format
+msgid "Operative Status"
+msgstr ""
+
+#. module: lgps_vehicle
+#: code:addons/lgps_vehicle/models/vehicle.py:48
+#: selection:fleet.vehicle,operative_status:0
+#, python-format
+msgid "Out of Service"
+msgstr ""
+
+#. module: lgps_vehicle
+#: code:addons/lgps_vehicle/models/vehicle.py:49
+#: selection:fleet.vehicle,operative_status:0
+#, python-format
+msgid "Sinister"
+msgstr ""
+
+#. module: lgps_vehicle
+#: model:ir.model.fields,field_description:lgps_vehicle.field_fleet_vehicle__vehicle_type_id
+msgid "Tipo de Vehículo"
+msgstr ""
+
+#. module: lgps_vehicle
+#: code:addons/lgps_vehicle/models/device.py:14
 #: model:ir.model,name:lgps_vehicle.model_fleet_vehicle
-#: model:ir.model.fields,field_description:lgps_vehicle.field_lgps_gpsdevice__vehicle_id
 #, python-format
 msgid "Vehicle"
 msgstr ""
 
 #. module: lgps_vehicle
-#: code:addons/lgps_vehicle/models/vehicle.py:38
+#: code:addons/lgps_vehicle/models/vehicle.py:39
 #: model:ir.model,name:lgps_vehicle.model_lgps_vehicle_type
-#: model:ir.model.fields,field_description:lgps_vehicle.field_fleet_vehicle__vehicle_type_id
 #, python-format
 msgid "Vehicle Type"
 msgstr ""
@@ -141,13 +194,13 @@ msgid "Vehicle Type List Tree"
 msgstr ""
 
 #. module: lgps_vehicle
-#: model:ir.model,name:lgps_vehicle.model_lgps_vehicle_type_list
-msgid "Vehicle Types List"
+#: sql_constraint:lgps.vehicle.type:0
+msgid "Vehicle type already exist !"
 msgstr ""
 
 #. module: lgps_vehicle
-#: sql_constraint:lgps.vehicle.type:0
-msgid "Vehicle type already exist !"
+#: model:ir.model.fields,field_description:lgps_vehicle.field_lgps_gpsdevice__vehicle_id
+msgid "Vehículo"
 msgstr ""
 
 #. module: lgps_vehicle

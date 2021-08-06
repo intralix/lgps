@@ -9,6 +9,7 @@
                 <field name="nick"/>
                 <field name="client_id"/>
                 <field name="vehicle_type_id"/>
+                <field name="operative_status"/>
             </xpath>
 
             <xpath expr="//sheet" position="inside">
