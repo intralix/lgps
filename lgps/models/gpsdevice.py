@@ -211,6 +211,7 @@ class GpsDevice(models.Model):
             ("Novit", "Novit"),
             ("Position Logic", "Position Logic"),
             ("Sosgps", "Sosgps"),
+            ("Tracksolid", "Tracksolid"),
             ("Utrax", "Utrax"),
         ],
         string=_("Platform"),
