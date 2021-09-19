@@ -160,6 +160,21 @@ class Odt(models.Model):
         string=_("Check Comment")
     )
 
+    cancel_reason = fields.Selection(
+        [
+            ('unit_in_repair', _('Unidad en taller')),
+            ('unit_wrecked', _('Unidad siniestrada')),
+            ('unit_did_not_arrive', _('No llegó la unidad')),
+            ('unit_leaves', _('Se retira unidad')),
+            ('other', _('Otro')),
+        ],
+        string=_("Cancelation Reason")
+    )
+
+    cancel_other_reason = fields.Text(
+        string=_("Other Reason")
+    )
+
     @api.one
     @api.depends('closed_date')
     def _compute_days_count(self):

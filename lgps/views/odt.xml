@@ -53,6 +53,14 @@
                 </group>
             </group>
         </page>
+           <page string="Cancelation">
+                <group>
+                    <field name="cancel_reason"/>
+                    <field name="cancel_other_reason"
+                           attrs="{'invisible':[('cancel_reason', '!=', 'other')],'required':[('cancel_reason','==','other')]}"
+                    />
+                </group>
+           </page>
       </xpath>
 
         <xpath expr="//field[@name='stock_out_id']" position="attributes">
