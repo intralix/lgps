@@ -17,7 +17,6 @@ class Ticket(models.Model):
         index=True,
     )
 
-
     closed_date = fields.Date(
         string=_("Closed Date"),
     )
@@ -26,6 +25,12 @@ class Ticket(models.Model):
         compute='_compute_days_count',
         store=True,
         string=_("Open Days"),
+    )
+
+    ticket_id = fields.Many2one(
+        comodel_name="helpdesk.ticket",
+        string=_("Related Ticket"),
+        ondelete="set null"
     )
 
     @api.one

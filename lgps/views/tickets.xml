@@ -6,6 +6,7 @@
     <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
     <field name="arch" type="xml">
       <xpath expr="//field[@name='priority']" position="after">
+        <field name="ticket_id"/>
         <field name="gpsdevice_id"/>
         <field name="accessory_id"/>
       </xpath>
