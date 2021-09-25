@@ -21,4 +21,4 @@ from . import authorization_request_odt_wizard
 from . import authorization_odt_wizard
 from . import mass_device_comment_wizard
 from . import dolar_history
-
+from . import sale_advance_payment_inv_inherit

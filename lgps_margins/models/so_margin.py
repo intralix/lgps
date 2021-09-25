@@ -40,6 +40,7 @@ class CheckMarginOnSalesOrder(models.Model):
     def create(self, values):
         _logger.warning('Calling Created Method')
         _logger.warning('%s', self)
+        _logger.warning('%s', values)
         new_record = super(CheckMarginOnSalesOrder, self).create(values)
         new_record.check_rules_on_sales_order()
         return new_record
