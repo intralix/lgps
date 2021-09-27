@@ -220,9 +220,11 @@ class Odt(models.Model):
 
     def action_validate(self):
         self._check_rules()
+        self._check_operations_rules()
         self.closed_date = fields.Date.today()
         odt_action_validate = super(Odt, self).action_validate()
         return odt_action_validate
+
 
     def _check_rules(self):
         warranty_was_void = False
@@ -317,3 +319,26 @@ class Odt(models.Model):
         record.message_post(body=operation_log_comment)
 
         return {}
+
+    def _check_operations_rules(self):
+
+        if self.operations:
+            for operation in self.operations:
+                found_error = False
+
+                if operation.type == 'add':
+                    pos = operation.location_id.name.find('Respaldo')
+                    if pos < 0 or operation.location_dest_id.name != 'Customers':
+                        found_error = True
+                elif operation.type == 'remove':
+                    if operation.location_id.name == 'Customers' and operation.location_dest_id.name == 'Customers':
+                        found_error = False
+                    else:
+                        found_error = True
+
+                if found_error:
+                    raise UserError(
+                        _('Verifica que las ubicaciones seleccionadas en tus piezas sean correctas.\n\n'
+                          + operation.location_id.display_name + ' -> ' + operation.location_dest_id.display_name)
+                    )
+        return
