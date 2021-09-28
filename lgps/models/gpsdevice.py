@@ -345,6 +345,24 @@ class GpsDevice(models.Model):
         compute='_compute_tasks_count',
     )
 
+    fuel_tank_type_one_id = fields.Many2one(
+        comodel_name="product.product",
+        string=_("Fuel Tank One"),
+        track_visibility='onchange',
+    )
+
+    fuel_tank_type_two_id = fields.Many2one(
+        comodel_name="product.product",
+        string=_("Fuel Tank Two"),
+        track_visibility='onchange',
+    )
+
+    fuel_tank_type_three_id = fields.Many2one(
+        comodel_name="product.product",
+        string=_("Fuel Tank Three"),
+        track_visibility='onchange',
+    )
+
     @api.multi
     def _compute_accesories_count(self):
         for rec in self:

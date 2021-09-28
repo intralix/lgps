@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-19 02:36+0000\n"
-"PO-Revision-Date: 2021-09-19 02:36+0000\n"
+"POT-Creation-Date: 2021-09-28 00:18+0000\n"
+"PO-Revision-Date: 2021-09-28 00:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -482,6 +482,13 @@ msgid "After Sales"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/sale_advance_payment_inv_inherit.py:22
+#, python-format
+msgid "Al menos un pedido no tiene una cuenta analítica asignada.\n"
+"Completa la información antes de crear la(s) factura(s)."
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/common_operations_wizard.py:26
 #: code:addons/lgps/models/device_history.py:57
 #: selection:lgps.common_operations_device_wizard,operation_mode:0
@@ -726,7 +733,6 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/odt.py:171
-#: model:ir.model.fields,field_description:lgps.field_repair_order__cancel_reason
 #, python-format
 msgid "Cancelation Reason"
 msgstr ""
@@ -811,7 +817,6 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/odt.py:160
-#: model:ir.model.fields,field_description:lgps.field_repair_order__check_comment
 #, python-format
 msgid "Check Comment"
 msgstr ""
@@ -904,6 +909,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:lgps.view_common_operations_device_wizard
 #: model_terms:ir.ui.view,arch_db:lgps.view_mass_device_comment_wizard
 msgid "Comentario / Falla Presentada"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_repair_order__check_comment
+msgid "Comentario de revisión"
 msgstr ""
 
 #. module: lgps
@@ -1542,7 +1552,7 @@ msgid "Días transcurridos"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:271
+#: code:addons/lgps/models/odt.py:273
 #, python-format
 msgid "Each service ODT must have a failure record associated.\n"
 "\n"
@@ -1880,6 +1890,32 @@ msgstr ""
 #: code:addons/lgps/models/gpsdevice.py:63
 #, python-format
 msgid "Fuel"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/gpsdevice.py:350
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel_tank_type_one_id
+#, python-format
+msgid "Fuel Tank One"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/gpsdevice.py:360
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel_tank_type_three_id
+#, python-format
+msgid "Fuel Tank Three"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/gpsdevice.py:355
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel_tank_type_two_id
+#, python-format
+msgid "Fuel Tank Two"
+msgstr ""
+
+#. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
+msgid "Fuel Tanks"
 msgstr ""
 
 #. module: lgps
@@ -2470,7 +2506,7 @@ msgid "Manage ODT's Stock info"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:283
+#: code:addons/lgps/models/odt.py:285
 #, python-format
 msgid "Manipulation detected on:\n"
 "\n"
@@ -2569,6 +2605,11 @@ msgstr ""
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.tracking_form_view
 msgid "More Information"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_repair_order__cancel_reason
+msgid "Motivo de cancelación"
 msgstr ""
 
 #. module: lgps
@@ -2932,7 +2973,6 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/odt.py:175
-#: model:ir.model.fields,field_description:lgps.field_repair_order__cancel_other_reason
 #, python-format
 msgid "Other Reason"
 msgstr ""
@@ -2942,6 +2982,11 @@ msgstr ""
 #: selection:repair.order,cancel_reason:0
 #, python-format
 msgid "Otro"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_repair_order__cancel_other_reason
+msgid "Otro motivo"
 msgstr ""
 
 #. module: lgps
@@ -3282,6 +3327,11 @@ msgid "Reemplazo de equipo por garantía"
 msgstr ""
 
 #. module: lgps
+#: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
+msgid "Registered Tanks"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/tracking.py:33
 #: selection:lgps.tracking,state:0
 #, python-format
@@ -3354,7 +3404,7 @@ msgid "Repair does not have an authorization request"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:295
+#: code:addons/lgps/models/odt.py:297
 #, python-format
 msgid "Repair has not been authorized.\n"
 "\n"
@@ -3362,7 +3412,7 @@ msgid "Repair has not been authorized.\n"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:291
+#: code:addons/lgps/models/odt.py:293
 #, python-format
 msgid "Repair must be authorized before confirmation.\n"
 "\n"
@@ -3370,8 +3420,8 @@ msgid "Repair must be authorized before confirmation.\n"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:243
-#: code:addons/lgps/models/odt.py:257
+#: code:addons/lgps/models/odt.py:245
+#: code:addons/lgps/models/odt.py:259
 #, python-format
 msgid "Repair seems to be a warranty.\n"
 "\n"
@@ -3379,7 +3429,7 @@ msgid "Repair seems to be a warranty.\n"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:299
+#: code:addons/lgps/models/odt.py:301
 #, python-format
 msgid "Repair was not authorized.\n"
 "\n"
@@ -3467,6 +3517,11 @@ msgstr ""
 #. module: lgps
 #: model:ir.model,name:lgps.model_sale_order
 msgid "Sale Order"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
 msgstr ""
 
 #. module: lgps
@@ -4329,6 +4384,14 @@ msgstr ""
 #: selection:lgps.device_history,reason:0
 #, python-format
 msgid "Venta de Unidad"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/odt.py:341
+#, python-format
+msgid "Verifica que las ubicaciones seleccionadas en tus piezas sean correctas.\n"
+"\n"
+" -> "
 msgstr ""
 
 #. module: lgps

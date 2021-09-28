@@ -165,6 +165,17 @@
             <page string="Trackings" attrs="{'invisible': [('trackings_count', '&lt;', 1)]}">
               <field name="tracking_ids" attrs="{'readonly':True}"/>
             </page>
+
+            <page string="Fuel Tanks">
+              <group>
+                <group string="Registered Tanks">
+                    <field name="fuel_tank_type_one_id"/>
+                    <field name="fuel_tank_type_two_id"/>
+                    <field name="fuel_tank_type_three_id"/>
+                  </group>
+              </group>
+            </page>
+
             <page string="Posicionamiento">
               <group>
                 <group string="Last Report">
