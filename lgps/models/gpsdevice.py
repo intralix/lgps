@@ -349,21 +349,34 @@ class GpsDevice(models.Model):
         comodel_name="product.product",
         string=_("Fuel Tank One"),
         track_visibility='onchange',
-        domain=[('default_code', 'like', 'ACCF%'), ('active', '=', True)]
+        domain=[('active', '=', True),
+                '|', '|',
+                ('default_code', 'like', 'ACCFEH%'),
+                ('default_code', 'like', 'ACCFEL%'),
+                ('default_code', 'like', 'ACCFLOP%')]
     )
+
 
     fuel_tank_type_two_id = fields.Many2one(
         comodel_name="product.product",
         string=_("Fuel Tank Two"),
         track_visibility='onchange',
-        domain=[('default_code', 'like', 'ACCF%'), ('active', '=', True)]
+        domain=[('active', '=', True),
+                '|', '|',
+                ('default_code', 'like', 'ACCFEH%'),
+                ('default_code', 'like', 'ACCFEL%'),
+                ('default_code', 'like', 'ACCFLOP%')]
     )
 
     fuel_tank_type_three_id = fields.Many2one(
         comodel_name="product.product",
         string=_("Fuel Tank Three"),
         track_visibility='onchange',
-        domain=[('default_code', 'like', 'ACCF%'), ('active', '=', True)]
+        domain=[('active', '=', True),
+                '|', '|',
+                ('default_code', 'like', 'ACCFEH%'),
+                ('default_code', 'like', 'ACCFEL%'),
+                ('default_code', 'like', 'ACCFLOP%')]
     )
 
     @api.multi
