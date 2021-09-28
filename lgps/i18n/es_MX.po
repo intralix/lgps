@@ -1906,14 +1906,14 @@ msgstr "Tanque 1"
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel_tank_type_three_id
 #, python-format
 msgid "Fuel Tank Three"
-msgstr "Tanque 2"
+msgstr "Tanque 3"
 
 #. module: lgps
 #: code:addons/lgps/models/gpsdevice.py:355
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel_tank_type_two_id
 #, python-format
 msgid "Fuel Tank Two"
-msgstr "Tanque 3"
+msgstr "Tanque 2"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
