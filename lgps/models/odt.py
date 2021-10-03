@@ -327,9 +327,13 @@ class Odt(models.Model):
                 found_error = False
 
                 if operation.type == 'add':
-                    pos = operation.location_id.name.find('Respaldo')
-                    if pos < 0 or operation.location_dest_id.name != 'Customers':
-                        found_error = True
+                    if operation.location_id.name == 'Customers':
+                        if operation.location_dest_id.name != 'Customers':
+                            found_error = True
+                    else:
+                        pos = operation.location_id.name.find('Respaldo')
+                        if pos < 0 or operation.location_dest_id.name != 'Customers':
+                            found_error = True
                 elif operation.type == 'remove':
                     if operation.location_id.name == 'Customers' and operation.location_dest_id.name == 'Customers':
                         found_error = False
