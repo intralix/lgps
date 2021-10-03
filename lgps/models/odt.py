@@ -175,6 +175,15 @@ class Odt(models.Model):
         string=_("Other Reason")
     )
 
+    applicant_deparment = fields.Selection(
+        [
+            ('operations', _('Operaciones')),
+            ('afther_sales', _('Post Ventas')),
+        ],
+        default="operations",
+        string=_("Applicant Department")
+    )
+
     @api.one
     @api.depends('closed_date')
     def _compute_days_count(self):

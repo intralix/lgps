@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-28 00:17+0000\n"
-"PO-Revision-Date: 2021-09-28 00:17+0000\n"
+"POT-Creation-Date: 2021-10-03 01:31+0000\n"
+"PO-Revision-Date: 2021-10-03 01:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -529,6 +529,13 @@ msgstr "Bloqueador Anti Jammer"
 #: model_terms:ir.ui.view,arch_db:lgps.device_history_form_view
 msgid "Aplicado A"
 msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/odt.py:184
+#: model:ir.model.fields,field_description:lgps.field_repair_order__applicant_deparment
+#, python-format
+msgid "Applicant Department"
+msgstr "Dept. Solicitante"
 
 #. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__taken
@@ -1552,7 +1559,7 @@ msgid "Días transcurridos"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:273
+#: code:addons/lgps/models/odt.py:282
 #, python-format
 msgid "Each service ODT must have a failure record associated.\n"
 "\n"
@@ -1896,24 +1903,21 @@ msgstr "Combustible"
 
 #. module: lgps
 #: code:addons/lgps/models/gpsdevice.py:350
-#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel_tank_type_one_id
 #, python-format
 msgid "Fuel Tank One"
 msgstr "Tanque 1"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:360
-#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel_tank_type_three_id
+#: code:addons/lgps/models/gpsdevice.py:373
 #, python-format
 msgid "Fuel Tank Three"
-msgstr "Tanque 3"
+msgstr "Tanque 2"
 
 #. module: lgps
-#: code:addons/lgps/models/gpsdevice.py:355
-#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel_tank_type_two_id
+#: code:addons/lgps/models/gpsdevice.py:362
 #, python-format
 msgid "Fuel Tank Two"
-msgstr "Tanque 2"
+msgstr "Tanque 3"
 
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_form_view
@@ -2309,7 +2313,7 @@ msgid "Iusacell"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:195
+#: code:addons/lgps/models/odt.py:204
 #, python-format
 msgid "La ODT debe tener una fecha de servicio válida."
 msgstr ""
@@ -2508,7 +2512,7 @@ msgid "Manage ODT's Stock info"
 msgstr "Administrar información de Stock en las ODT"
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:285
+#: code:addons/lgps/models/odt.py:294
 #, python-format
 msgid "Manipulation detected on:\n"
 "\n"
@@ -2943,6 +2947,13 @@ msgid "Opening Sensor"
 msgstr "Sensor de Apertura"
 
 #. module: lgps
+#: code:addons/lgps/models/odt.py:180
+#: selection:repair.order,applicant_deparment:0
+#, python-format
+msgid "Operaciones"
+msgstr ""
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_accessory_history__operation_mode
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_accessory_wizard__operation_mode
 #: model:ir.model.fields,field_description:lgps.field_lgps_common_operations_device_wizard__operation_mode
@@ -3120,8 +3131,8 @@ msgid "Por Instalar"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:202
-#: code:addons/lgps/models/odt.py:217
+#: code:addons/lgps/models/odt.py:211
+#: code:addons/lgps/models/odt.py:226
 #, python-format
 msgid "Por políticas de la empresa, no puedes dar de alta un servicio con fecha de servicio anterior a 2 días."
 msgstr ""
@@ -3144,6 +3155,13 @@ msgstr ""
 #: selection:lgps.common_operations_device_wizard,platform:0
 #: selection:lgps.gpsdevice,platform:0
 msgid "Position Logic"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/odt.py:181
+#: selection:repair.order,applicant_deparment:0
+#, python-format
+msgid "Post Ventas"
 msgstr ""
 
 #. module: lgps
@@ -3410,7 +3428,7 @@ msgid "Repair does not have an authorization request"
 msgstr "Esta reparación no tiene una solicitud de autorización."
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:297
+#: code:addons/lgps/models/odt.py:306
 #, python-format
 msgid "Repair has not been authorized.\n"
 "\n"
@@ -3420,7 +3438,7 @@ msgstr "La reparación no ha sido autorizada.\n"
 "Debes esperar la resolución de la solicitud de autorización."
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:293
+#: code:addons/lgps/models/odt.py:302
 #, python-format
 msgid "Repair must be authorized before confirmation.\n"
 "\n"
@@ -3430,8 +3448,8 @@ msgstr "La reparación debe ser autorizada antes de ser confirmada.\n"
 "Puedes solicitar la autorización utilizando el menú de acción."
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:245
-#: code:addons/lgps/models/odt.py:259
+#: code:addons/lgps/models/odt.py:254
+#: code:addons/lgps/models/odt.py:268
 #, python-format
 msgid "Repair seems to be a warranty.\n"
 "\n"
@@ -3441,7 +3459,7 @@ msgstr "Esta reparación parece ser una garantía.\n"
 "Marca la casilla correspondiente para indicar que es una garantía"
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:301
+#: code:addons/lgps/models/odt.py:310
 #, python-format
 msgid "Repair was not authorized.\n"
 "\n"
@@ -3945,6 +3963,21 @@ msgid "Taken"
 msgstr "Asignado"
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel_tank_type_one_id
+msgid "Tanque 1"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel_tank_type_three_id
+msgid "Tanque 2"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__fuel_tank_type_two_id
+msgid "Tanque 3"
+msgstr ""
+
+#. module: lgps
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__tasks_ids
 msgid "Tareas"
 msgstr ""
@@ -4420,7 +4453,7 @@ msgid "Venta de Unidad"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:341
+#: code:addons/lgps/models/odt.py:354
 #, python-format
 msgid "Verifica que las ubicaciones seleccionadas en tus piezas sean correctas.\n"
 "\n"
