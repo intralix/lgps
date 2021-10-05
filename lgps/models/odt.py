@@ -1,5 +1,9 @@
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError, ValidationError
+from datetime import timedelta
+# from dateutil.relativedelta import relativedelta
+# import pytz
+
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -196,35 +200,14 @@ class Odt(models.Model):
 
     @api.model
     def create(self, values):
-        # _logger.warning('Calling Created Method')
-        new_record = super(Odt, self).create(values)
 
-        service_date = fields.Date.from_string(values.get('service_date'))
-        if not service_date:
-            raise UserError(_("La ODT debe tener una fecha de servicio válida."))
-        else:
-            today = fields.Date.today()
-            difference = today - service_date
-            time_difference_in_days = difference.days
-
-        if time_difference_in_days > 2:
-            raise UserError(_("Por políticas de la empresa, no puedes dar de alta un servicio con fecha de servicio anterior a 2 días."))
-
-        return new_record
+        self._check_dates_rule('create', values)
+        return super(Odt, self).create(values)
 
     @api.multi
     def write(self, values):
         # _logger.warning('Calling Created Method')
-        service_date = fields.Date.from_string(values.get('service_date'))
-
-        if service_date:
-            today = fields.Date.today()
-            difference = today - service_date
-            time_difference_in_days = difference.days
-
-            if time_difference_in_days > 2:
-                raise UserError(_("Por políticas de la empresa, no puedes dar de alta un servicio con fecha de servicio anterior a 2 días."))
-
+        self._check_dates_rule('write', values)
         return super(Odt, self).write(values)
 
     def action_validate(self):
@@ -354,4 +337,34 @@ class Odt(models.Model):
                         _('Verifica que las ubicaciones seleccionadas en tus piezas sean correctas.\n\n'
                           + operation.location_id.display_name + ' -> ' + operation.location_dest_id.display_name)
                     )
+        return
+
+    def _check_dates_rule(self, mode, values):
+
+        duration = timedelta(days=2)
+        service_date = None
+        start_date = None
+        # user_tz = pytz.timezone(self.env.context.get('tz') or self.env.user.tz)
+        # _logger.warning('user_tz: %s', user_tz)
+        if mode == 'create':
+            service_date = fields.Date.from_string(values.get('service_date'))
+            start_date = fields.Date.context_today(self) - duration
+        elif mode == 'write':
+            create_date = fields.Datetime.context_timestamp(self, self.create_date)
+            start_date = create_date.date() - duration
+            if 'service_date' in values:
+                service_date = fields.Date.from_string(values.get('service_date'))
+            else:
+                service_date = self.service_date
+        # _logger.warning('mode: %s', mode)
+        # _logger.warning('start_date: %s', start_date)
+        # _logger.warning('service_date: %s', service_date)
+        if not service_date:
+            raise UserError(_("La ODT debe tener una fecha de servicio válida."))
+        else:
+            if service_date < start_date:
+                raise UserError(
+                    _("Por políticas de la empresa, no puedes crear un registro cuya fecha de servicio sea anterior "
+                      "a 2 días de su creación."))
+
         return
