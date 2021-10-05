@@ -200,14 +200,15 @@ class Odt(models.Model):
 
     @api.model
     def create(self, values):
-
         self._check_dates_rule('create', values)
         return super(Odt, self).create(values)
 
     @api.multi
     def write(self, values):
         # _logger.warning('Calling Created Method')
-        self._check_dates_rule('write', values)
+        if self._should_run_dates_rules(values):
+            self._check_dates_rule('write', values)
+
         return super(Odt, self).write(values)
 
     def action_validate(self):
@@ -216,7 +217,6 @@ class Odt(models.Model):
         self.closed_date = fields.Date.today()
         odt_action_validate = super(Odt, self).action_validate()
         return odt_action_validate
-
 
     def _check_rules(self):
         warranty_was_void = False
@@ -343,22 +343,23 @@ class Odt(models.Model):
 
         duration = timedelta(days=2)
         service_date = None
-        start_date = None
-        # user_tz = pytz.timezone(self.env.context.get('tz') or self.env.user.tz)
-        # _logger.warning('user_tz: %s', user_tz)
+        start_date = fields.Date.context_today(self)
+
         if mode == 'create':
             service_date = fields.Date.from_string(values.get('service_date'))
-            start_date = fields.Date.context_today(self) - duration
         elif mode == 'write':
-            create_date = fields.Datetime.context_timestamp(self, self.create_date)
-            start_date = create_date.date() - duration
-            if 'service_date' in values:
-                service_date = fields.Date.from_string(values.get('service_date'))
-            else:
-                service_date = self.service_date
-        # _logger.warning('mode: %s', mode)
-        # _logger.warning('start_date: %s', start_date)
-        # _logger.warning('service_date: %s', service_date)
+            if self.create_date:
+                create_date = fields.Datetime.context_timestamp(self, self.create_date)
+                # _logger.warning('mode: %s', create_date)
+                start_date = create_date.date()
+                if 'service_date' in values:
+                    service_date = fields.Date.from_string(values.get('service_date'))
+                else:
+                    service_date = self.service_date
+
+        # Calculate Start Date
+        start_date = start_date - duration
+
         if not service_date:
             raise UserError(_("La ODT debe tener una fecha de servicio válida."))
         else:
@@ -368,3 +369,10 @@ class Odt(models.Model):
                       "a 2 días de su creación."))
 
         return
+
+    def _should_run_dates_rules(self, values):
+        res = False
+        if 'state' not in values or ('state' in values and values.get('state') != '2binvoiced'):
+            res = True
+
+        return res
