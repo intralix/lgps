@@ -7,6 +7,7 @@ from . import partner
 from . import assign_accesories_wizard
 from . import suscriptions
 from . import tracking
+from . import tracking_logs
 from . import odt
 from . import leads
 from . import helptickets

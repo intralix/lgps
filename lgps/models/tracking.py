@@ -15,17 +15,29 @@ class Tracking(models.Model):
     client_id = fields.Many2one(
         comodel_name="res.partner",
         string=_("Client Account"),
-        index=True,
+        domain=[
+            ('customer', '=', True),
+            ('active', '=', True),
+            ('is_company', '=', True)
+        ],
+        required=True,
     )
 
     gpsdevice_id = fields.Many2one(
         comodel_name="lgps.gpsdevice",
         string=_("Gps Device"),
         index=True,
+        required=True,
     )
 
-    applicant = fields.Char(
-        string=_("Requested By"),
+    applicant_id = fields.Many2one(
+        comodel_name="res.partner",
+        string=_("Client Account"),
+        domain=[
+            ('customer', '=', True),
+            ('active', '=', True),
+            ('company_type', '=', 'person')
+        ],
     )
 
     state = fields.Selection(
@@ -38,6 +50,8 @@ class Tracking(models.Model):
         ],
         string=_("State"),
         default="registered",
+        track_visibility='onchange',
+        required=True,
     )
 
     category = fields.Selection(
@@ -48,6 +62,7 @@ class Tracking(models.Model):
         ],
         string=_("Category"),
         default="event",
+        required=True,
         index=True,
     )
 
@@ -60,7 +75,7 @@ class Tracking(models.Model):
     )
 
     notifications = fields.Text(
-        string=_("Notifications"),
+        string=_("Email Notifications"),
     )
 
     notify = fields.Boolean(
@@ -80,10 +95,12 @@ class Tracking(models.Model):
 
     origin = fields.Text(
         string=_("Origin"),
+        required=True,
     )
 
     destination = fields.Text(
         string=_("Destination"),
+        required=True,
     )
 
     route = fields.Text(
@@ -95,11 +112,37 @@ class Tracking(models.Model):
     )
 
     start_date = fields.Datetime(
-        string=_("Activity Started at")
+        string=_("Activity Started at"),
+        readonly=True
     )
 
     end_date = fields.Datetime(
-        string=_("Activity finished at")
+        string=_("Activity finished at"),
+        readonly=True
+    )
+
+    tracking_log_ids = fields.One2many(
+        comodel_name="lgps.tracking_logs",
+        inverse_name="tracking_id",
+        string=_("Logs"),
+    )
+
+    freight_weight = fields.Float(
+        digits=(10, 1),
+        string=_("Load Weight"),
+        help=_("Freight weight in Kilos")
+    )
+
+    freight_dimensions = fields.Float(
+        digits=(10, 1),
+        string=_("Freight dimensions"),
+        help=_("Freight dimensions in meters")
+    )
+
+    freight_cost = fields.Float(
+        digits=(10, 2),
+        string=_("Freight cost"),
+        help=_("Freight costs")
     )
 
     @api.model
@@ -107,3 +150,18 @@ class Tracking(models.Model):
         seq = self.env['ir.sequence'].next_by_code('lgps.tracking') or '/'
         vals['name'] = seq
         return super(Tracking, self).create(vals)
+
+    def button_do_active(self):
+        for tracking in self:
+            tracking.state = 'active'
+        return True
+
+    def button_do_pause(self):
+        for tracking in self:
+            tracking.state = 'paused'
+        return True
+
+    def button_do_finish(self):
+        for tracking in self:
+            tracking.state = 'finished'
+        return True

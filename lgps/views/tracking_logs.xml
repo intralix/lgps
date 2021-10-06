@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="seq_tracking_logs" model="ir.sequence">
+    <field name="name">Tracking Logs Sequence</field>
+    <field name="code">lgps.tracking_logs</field>
+    <field name="prefix">REC</field>
+    <field name="padding">10</field>
+  </record>
+
+  <record model="ir.ui.view" id="tracking_logs_form_view">
+    <field name="name">tracking_logs.form</field>
+    <field name="model">lgps.tracking_logs</field>
+    <field name="arch" type="xml">
+      <form string="Tracking Log Form">
+        <sheet>
+          <div class="oe_title">
+            <h1><field name="name"/></h1>
+          </div>
+          <group>
+            <group>
+              <separator/>
+              <field name="tracking_id"/>
+              <field name="employee_id"/>
+            </group>
+            <group>
+              <separator/>
+              <field name="comment_date"/>
+              <field name="comment"/>
+            </group>
+          </group>
+          <notebook>
+            <page string="Email Notification" attrs="{'invisible': [('email_sent', '=', False)]}">
+              <group>
+               <field name="email_sent" widget="html" readonly="1"/>
+              </group>
+            </page>
+          </notebook>
+        </sheet>
+        <div class="oe_chatter">
+          <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+          <field name="activity_ids" widget="mail_activity"/>
+          <field name="message_ids" widget="mail_thread"/>
+        </div>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="tracking_logs_search_view">
+    <field name="name">tracking_logs.search</field>
+    <field name="model">lgps.tracking_logs</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="name"/>
+        <field name="tracking_id"/>
+        <field name="employee_id"/>
+        <field name="comment"/>
+        <field name="comment_date"/>
+      </search>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="tracking_logs_tree_view">
+    <field name="name">tracking_logs.tree</field>
+    <field name="model">lgps.tracking_logs</field>
+    <field name="arch" type="xml">
+      <tree string="Trackings Logs Tree">
+        <field name="name"/>
+        <field name="tracking_id"/>
+        <field name="employee_id"/>
+        <field name="comment"/>
+        <field name="comment_date"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="tracking_logs_list_action">
+    <field name="name">tracking Logs</field>
+    <field name="res_model">lgps.tracking_logs</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">Create the first Tracking Log
+      </p>
+    </field>
+  </record>
+
+  <menuitem id="trackings_logs_menu" name="Monitoreos Logs" parent="lgps_monitoreo_menu" action="tracking_logs_list_action" sequence="2"/>
+</odoo>
