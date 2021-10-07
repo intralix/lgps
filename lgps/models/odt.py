@@ -344,6 +344,7 @@ class Odt(models.Model):
         duration = timedelta(days=2)
         service_date = None
         start_date = fields.Date.context_today(self)
+        _logger.warning('values: %s', values)
 
         if mode == 'create':
             service_date = fields.Date.from_string(values.get('service_date'))
@@ -372,7 +373,7 @@ class Odt(models.Model):
 
     def _should_run_dates_rules(self, values):
         res = False
-        if 'state' not in values or ('state' in values and values.get('state') != '2binvoiced'):
+        if 'state' not in values or ('state' in values and values.get('state') not in ['2binvoiced', 'done']):
             res = True
 
         return res

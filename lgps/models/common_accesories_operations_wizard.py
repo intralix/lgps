@@ -133,6 +133,7 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
                 'product_uom': product_id.uom_id.id,
                 'location_id': odt_object._default_stock_location(),
                 'pricelist_id': default_list_price,
+                'service_date': fields.Date.today(),
                 'quotation_notes': repair_internal_notes,
                 'installer_id': self.related_odt.installer_id.id,
                 'assistant_a_id': self.related_odt.assistant_a_id.id,
@@ -419,6 +420,6 @@ class CommonOperationsToAccessoriesWizard(models.TransientModel):
                     destination_accessories_ids.append(accesory.id)
 
             # to assign parter_list value in domain
-            domain = {'destination_accessories_ids': [('id', '=', destination_accessories_ids)]}
+            domain = {'destination_accessories_ids': [('id', 'in', destination_accessories_ids)]}
 
         return {'domain': domain}
