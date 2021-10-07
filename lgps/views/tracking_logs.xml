@@ -26,6 +26,7 @@
               <separator/>
               <field name="comment_date"/>
               <field name="comment"/>
+              <field name="vehicle_location" attrs="{'invisible': [('vehicle_location', '=', False)]}"/>
             </group>
           </group>
           <notebook>

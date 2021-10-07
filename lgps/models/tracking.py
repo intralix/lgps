@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import api, models, fields, _
+from odoo.exceptions import UserError
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class Tracking(models.Model):
@@ -153,7 +156,28 @@ class Tracking(models.Model):
 
     def button_do_active(self):
         for tracking in self:
-            tracking.state = 'active'
+            # tracking.state = 'active'
+            _logger.warning('self %', self)
+            user = self.env['res.users'].search([('name', '=', self.env.user.name)])
+            _logger.warning('user: %', user)
+            # _logger.warning('user name: %', user.name)
+            # _logger.warning('user id: %', user.id)
+            # log_object = self.env['lgps.tracking_logs']
+            # user.id
+            # employee_id = self.env[''].search()
+            raise UserError('Stop execution')
+
+            # dictionary = {
+            #     'name': 'Automatic Generated',
+            #     'comment': 'Monitoreo Iniciado',
+            #     'comment_date': fields.Datetime.now,
+            #     'employee_id': device.client_id.id,
+            #     'email_sent': device.id,
+            #     'tracking_id': self.destination_gpsdevice_ids.id,
+            #     'vehicle_location': self.operation_mode,
+            # }
+            # device_log = log_object.create(dictionary)
+
         return True
 
     def button_do_pause(self):

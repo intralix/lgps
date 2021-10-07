@@ -41,6 +41,10 @@ class TrackingLogs(models.Model):
         required=True,
     )
 
+    vehicle_location = fields.Char(
+        string=_("Vehicle Location"),
+    )
+
     @api.model
     def create(self, vals):
         seq = self.env['ir.sequence'].next_by_code('lgps.tracking_logs') or '/'
