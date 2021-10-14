@@ -65,7 +65,6 @@
             </page>
 
             <page string="Travel Logs">
-               <group>
                   <field name="tracking_log_ids" context="{'default_tracking_id': active_id}">
                     <tree editabe="top" create="0" delete="0" duplicate="0">
                       <field name="name" readonly="1"/>
@@ -74,7 +73,6 @@
                       <field name="comment_date" readonly="1"/>
                     </tree>
                   </field>
-                </group>
             </page>
             <page string="Internal Info">
               <group>
