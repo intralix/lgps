@@ -15,9 +15,6 @@
         <field name="authorization_requested" attrs="{'readonly':True, 'invisible':[('authorization_requested', '!=', True)]}"/>
         <field name="authorized_warranty" attrs="{'readonly':True}"/>
         <field name="authorizations_count" attrs="{'readonly':True}" groups="lgps.lgps_group_odts_authorizer,lgps.lgps_group_manager"/>
-
-        <field name="stock_out_id"/>
-        <field name="stock_in_id"/>
       </xpath>
 
       <xpath expr="//field[@name='invoice_method']" position="after">
@@ -62,6 +59,20 @@
                     />
                 </group>
            </page>
+           <page string="Supplies">
+               <group>
+                   <group>
+                       <field name="stock_out_id"/>
+                       <field name="stock_out_two_id"/>
+                       <field name="stock_out_three_id"/>
+                   </group>
+                   <group>
+                       <field name="stock_in_id"/>
+                       <field name="stock_in_two_id"/>
+                       <field name="stock_in_three_id"/>
+                   </group>
+               </group>
+           </page>
       </xpath>
 
         <xpath expr="//field[@name='stock_out_id']" position="attributes">
@@ -69,6 +80,22 @@
         </xpath>
 
         <xpath expr="//field[@name='stock_in_id']" position="attributes">
+            <attribute name="attrs">{'readonly':1}</attribute>
+        </xpath>
+
+        <xpath expr="//field[@name='stock_out_two_id']" position="attributes">
+            <attribute name="attrs">{'readonly':1}</attribute>
+        </xpath>
+
+        <xpath expr="//field[@name='stock_in_two_id']" position="attributes">
+            <attribute name="attrs">{'readonly':1}</attribute>
+        </xpath>
+
+        <xpath expr="//field[@name='stock_out_three_id']" position="attributes">
+            <attribute name="attrs">{'readonly':1}</attribute>
+        </xpath>
+
+        <xpath expr="//field[@name='stock_in_three_id']" position="attributes">
             <attribute name="attrs">{'readonly':1}</attribute>
         </xpath>
     </field>
@@ -134,6 +161,30 @@
     </field>
    </record>
 
+   <record model="ir.ui.view" id="custom_repairs_form_view_allow_stock_out_two_id">
+    <field name="name">repair.order.lgps.odt</field>
+    <field name="model">repair.order</field>
+    <field name="inherit_id" ref="repair.view_repair_order_form"/>
+    <field name="groups_id" eval="[(6, 0, [ref('lgps.lgps_group_odts_stock') ])]"/>
+    <field name="arch" type="xml">
+        <field name="stock_out_two_id" position="attributes">
+            <attribute name="readonly">0</attribute>
+        </field>
+    </field>
+   </record>
+
+    <record model="ir.ui.view" id="custom_repairs_form_view_allow_stock_out_three_id">
+    <field name="name">repair.order.lgps.odt</field>
+    <field name="model">repair.order</field>
+    <field name="inherit_id" ref="repair.view_repair_order_form"/>
+    <field name="groups_id" eval="[(6, 0, [ref('lgps.lgps_group_odts_stock') ])]"/>
+    <field name="arch" type="xml">
+        <field name="stock_out_three_id" position="attributes">
+            <attribute name="readonly">0</attribute>
+        </field>
+    </field>
+   </record>
+
     <record model="ir.ui.view" id="custom_repairs_form_view_allow_check_status">
     <field name="name">repair.order.lgps.odt</field>
     <field name="model">repair.order</field>
@@ -165,6 +216,30 @@
     <field name="groups_id" eval="[(6, 0, [ref('lgps.lgps_group_odts_stock') ])]"/>
     <field name="arch" type="xml">
         <field name="stock_in_id" position="attributes">
+            <attribute name="readonly">0</attribute>
+        </field>
+    </field>
+   </record>
+
+    <record model="ir.ui.view" id="custom_repairs_form_view_allow_stock_in_two_id">
+    <field name="name">repair.order.lgps.odt</field>
+    <field name="model">repair.order</field>
+    <field name="inherit_id" ref="repair.view_repair_order_form"/>
+    <field name="groups_id" eval="[(6, 0, [ref('lgps.lgps_group_odts_stock') ])]"/>
+    <field name="arch" type="xml">
+        <field name="stock_in_two_id" position="attributes">
+            <attribute name="readonly">0</attribute>
+        </field>
+    </field>
+   </record>
+
+        <record model="ir.ui.view" id="custom_repairs_form_view_allow_stock_in_three_id">
+    <field name="name">repair.order.lgps.odt</field>
+    <field name="model">repair.order</field>
+    <field name="inherit_id" ref="repair.view_repair_order_form"/>
+    <field name="groups_id" eval="[(6, 0, [ref('lgps.lgps_group_odts_stock') ])]"/>
+    <field name="arch" type="xml">
+        <field name="stock_in_three_id" position="attributes">
             <attribute name="readonly">0</attribute>
         </field>
     </field>

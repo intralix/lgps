@@ -118,12 +118,12 @@ class Odt(models.Model):
 
     stock_out_id = fields.Many2one(
         comodel_name="stock.picking",
-        string=_("Stock Out"),
+        string=_("Entrega de Material"),
     )
 
     stock_in_id = fields.Many2one(
         comodel_name="stock.picking",
-        string=_("Stock In"),
+        string=_("Devolución de Material"),
     )
 
     initial_photos = fields.Boolean(
@@ -186,6 +186,26 @@ class Odt(models.Model):
         ],
         default="operations",
         string=_("Applicant Department")
+    )
+
+    stock_out_two_id = fields.Many2one(
+        comodel_name="stock.picking",
+        string=_("Entrega de Material 2"),
+    )
+
+    stock_in_two_id = fields.Many2one(
+        comodel_name="stock.picking",
+        string=_("Dvlución de Material 2"),
+    )
+
+    stock_out_three_id = fields.Many2one(
+        comodel_name="stock.picking",
+        string=_("Entrega de Material 3"),
+    )
+
+    stock_in_three_id = fields.Many2one(
+        comodel_name="stock.picking",
+        string=_("Dvlución de Material 3"),
     )
 
     @api.one
