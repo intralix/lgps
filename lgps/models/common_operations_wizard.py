@@ -43,6 +43,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             ('return_from_loan', _('Regresa a Almacén Estuvo en Comodato')),
             ('on_stock_not_assigned', _('En almacén Intralix sin asignación')),
             ('replacement', _('Por reemplazo de Equipo')),
+            ('platform_change', _('Cambio de plataforma Intralix')),
         ],
     )
 
