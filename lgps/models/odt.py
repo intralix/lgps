@@ -208,6 +208,10 @@ class Odt(models.Model):
         string=_("Dvlución de Material 3"),
     )
 
+    guarantee_limit = fields.Date(
+        required=True,
+    )
+
     @api.one
     @api.depends('closed_date')
     def _compute_days_count(self):
