@@ -83,6 +83,7 @@
               <field name="serialnumber_id"/>
               <field name="imei"/>
               <field name="idf"/>
+              <field name="device_pin"/>
             </group>
             <group string="More Info">
               <separator/>

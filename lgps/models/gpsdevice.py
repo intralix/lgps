@@ -379,6 +379,10 @@ class GpsDevice(models.Model):
                 ('default_code', 'like', 'ACCFLOP%')]
     )
 
+    device_pin = fields.Char(
+        string=_("Device PIN"),
+    )
+
     @api.multi
     def _compute_accesories_count(self):
         for rec in self:
