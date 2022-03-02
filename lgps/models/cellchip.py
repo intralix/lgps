@@ -146,6 +146,27 @@ class Cellchip(models.Model):
         help="Time elapsed since the line was set to suspended expressed in days",
     )
 
+    iccid = fields.Char(
+        string=_("ICCID"),
+    )
+    # Fecha de finalización del Plan Forzoso
+    activation_date = fields.Date(
+        string=_("Activation Date"),
+    )
+
+    client_id = fields.Many2one(
+        comodel_name="res.partner",
+        string=_("Assigned to"),
+        domain=[
+            ('customer', '=', True),
+            ('active', '=', True),
+            ('is_company', '=', True)
+        ],
+        index=True,
+        track_visibility='onchange',
+    )
+
+
     @api.onchange('status')
     def onchange_status_date(self):
         if self.status == 'suspended':

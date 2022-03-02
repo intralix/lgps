@@ -16,6 +16,9 @@
               <field name="purchase_date"/>
               <field name="voice"/>
               <field name="term"/>
+              <field name="iccid"/>
+              <field name="activation_date"/>
+              <field name="client_id"/>
             </group>
             <group string="Provider Info">
               <separator/>
