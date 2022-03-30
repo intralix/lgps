@@ -74,7 +74,8 @@ class DeviceHistory(models.Model):
             ('return_from_loan', _('Regresa a Almacén Estuvo en Comodato')),
             ('on_stock_not_assigned', _('En almacén Intralix sin asignación')),
             ('replacement', _('Por reemplazo de Equipo')),
-            ('platform_change', _('Cambio de plataforma Intralix'))
+            ('platform_change', _('Cambio de plataforma Intralix')),
+            ('financial_debts', _('Baja por falta de pago')),
         ],
     )
 

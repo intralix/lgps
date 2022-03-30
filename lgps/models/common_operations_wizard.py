@@ -44,6 +44,7 @@ class CommonOperationsToDevicesWizard(models.TransientModel):
             ('on_stock_not_assigned', _('En almacén Intralix sin asignación')),
             ('replacement', _('Por reemplazo de Equipo')),
             ('platform_change', _('Cambio de plataforma Intralix')),
+            ('financial_debts', _('Baja por falta de pago')),
         ],
     )
 
