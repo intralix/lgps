@@ -123,6 +123,7 @@
                   <field name="fleetrun"/>
                   <field name="scanner"/>
                   <field name="logistic"/>
+                  <field name="electronics"/>
                 </group>
                 <group string="Complementos">
                   <group>

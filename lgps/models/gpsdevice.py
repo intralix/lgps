@@ -383,6 +383,12 @@ class GpsDevice(models.Model):
         string=_("Device PIN"),
     )
 
+    electronics = fields.Boolean(
+        default=False,
+        string=_("Electronics"),
+        track_visibility='onchange',
+    )
+
     @api.multi
     def _compute_accesories_count(self):
         for rec in self:
