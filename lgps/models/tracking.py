@@ -33,14 +33,18 @@ class Tracking(models.Model):
         required=True,
     )
 
-    applicant_id = fields.Many2one(
-        comodel_name="res.partner",
-        string=_("Client Account"),
-        domain=[
-            ('customer', '=', True),
-            ('active', '=', True),
-            ('company_type', '=', 'person')
-        ],
+    # applicant_id = fields.Many2one(
+    #     comodel_name="res.partner",
+    #     string=_("Account Contact"),
+    #     domain=[
+    #         ('customer', '=', True),
+    #         ('active', '=', True),
+    #         ('company_type', '=', 'person')
+    #     ],
+    # )
+
+    applicant = fields.Char(
+        string=_("Applicant"),
     )
 
     state = fields.Selection(
@@ -60,7 +64,7 @@ class Tracking(models.Model):
     category = fields.Selection(
         [
             ('event', _('Per Event')),
-            ('permanent', _('Permanente')),
+            ('permanent', _('Permanent')),
             ('uninterrupted ', _('Uninterrupted')),
         ],
         string=_("Category"),

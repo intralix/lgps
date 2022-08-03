@@ -29,7 +29,7 @@
             <group string="Client Info">
               <separator/>
               <field name="client_id"/>
-              <field name="applicant_id" domain="[('parent_id', '=', client_id)]"/>
+              <field name="applicant"/>
               <field name="gpsdevice_id"/>
             </group>
             <group string="Tracking Info">
@@ -116,7 +116,7 @@
         <field name="name"/>
         <field name="client_id"/>
         <field name="gpsdevice_id"/>
-        <field name="applicant_id"/>
+        <field name="applicant"/>
         <field name="state"/>
         <field name="category"/>
         <field name="driver"/>
