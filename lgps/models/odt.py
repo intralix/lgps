@@ -52,7 +52,8 @@ class Odt(models.Model):
             ('service', _('Service')),
             ('new_installation', _('New Installation')),
             ('reinstallation', _('Reinstallation')),
-            ('uninstallation', _('Uninstallation'))
+            ('uninstallation', _('Uninstallation')),
+            ('migration', _('Migration'))
         ],
         default="service",
         required=True,
