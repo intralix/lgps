@@ -30,6 +30,7 @@
               <separator/>
               <field name="client_id"/>
               <field name="applicant"/>
+              <field name="notifications"/>
               <field name="gpsdevice_id"/>
             </group>
             <group string="Tracking Info">
@@ -44,7 +45,7 @@
               <group>
                 <group string="Travel Information">
                   <field name="phone"/>
-                  <field name="notifications"/>
+                  <field name="emails"/>
                   <field name="initial_date"/>
                   <field name="final_date"/>
                 </group>

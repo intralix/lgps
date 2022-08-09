@@ -81,7 +81,7 @@ class Tracking(models.Model):
         string=_("Phones"),
     )
 
-    notifications = fields.Text(
+    notifications = fields.Char(
         string=_("Email Notifications"),
     )
 
@@ -90,13 +90,12 @@ class Tracking(models.Model):
         default=False
     )
 
-    initial_date = fields.Date(
-        default=fields.Date.today,
+    initial_date = fields.Datetime(
+        default=fields.Datetime.now,
         string=_("Initial Date"),
     )
 
-    final_date = fields.Date(
-        default=fields.Date.today,
+    final_date = fields.Datetime(
         string=_("Final Date"),
     )
 
@@ -116,6 +115,10 @@ class Tracking(models.Model):
 
     observations = fields.Text(
         string=_("Observations"),
+    )
+
+    emails = fields.Text(
+        string=_("Additional Emails"),
     )
 
     start_date = fields.Datetime(

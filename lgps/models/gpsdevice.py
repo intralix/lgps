@@ -356,7 +356,6 @@ class GpsDevice(models.Model):
                 ('default_code', 'like', 'ACCFLOP%')]
     )
 
-
     fuel_tank_type_two_id = fields.Many2one(
         comodel_name="product.product",
         string=_("Fuel Tank Two"),
