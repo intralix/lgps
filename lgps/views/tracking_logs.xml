@@ -30,7 +30,7 @@
             </group>
           </group>
           <notebook>
-            <page string="Email Notification" attrs="{'invisible': [('email_sent', '=', False)]}">
+            <page string="Email Notification">
               <group>
                <field name="email_sent" widget="html" readonly="1"/>
               </group>
