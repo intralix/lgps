@@ -79,6 +79,7 @@
               <group>
                 <group>
                   <field name="start_date"/>
+                  <field name="comment_period"/>
                 </group>
                 <group>
                   <field name="end_date"/>

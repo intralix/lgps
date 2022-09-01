@@ -155,6 +155,11 @@ class Tracking(models.Model):
         help=_("Freight costs")
     )
 
+    comment_period = fields.Integer(
+        string=_('Comment Period'),
+        default=0,
+    )
+
     @api.model
     def create(self, vals):
         seq = self.env['ir.sequence'].next_by_code('lgps.tracking') or '/'
