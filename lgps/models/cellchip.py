@@ -114,28 +114,33 @@ class Cellchip(models.Model):
 
     # Cuenta de Lineas
     major_account = fields.Char(
-        string=_("Mayor Accounte"),
+        string=_("Mayor Account"),
+        track_visibility='onchange'
     )
 
     # Cuenta de Lineas
     line_account = fields.Char(
         string=_("Line Account"),
+        track_visibility='onchange'
     )
 
     #
     status_date = fields.Date(
         string=_("Status Date"),
+        track_visibility='onchange'
     )
 
     # Fecha de finalización del Plan Forzoso
     end_forced_plan_date = fields.Date(
         string=_("End Forced Plan Date"),
+        track_visibility='onchange'
     )
 
     # Si la linea esta ocupada o no
     taken = fields.Boolean(
         default=False,
         string=_("Taken"),
+        track_visibility='onchange'
     )
 
     # Días desde que la línea se marco como suspendida
@@ -152,6 +157,7 @@ class Cellchip(models.Model):
     # Fecha de finalización del Plan Forzoso
     activation_date = fields.Date(
         string=_("Activation Date"),
+        track_visibility='onchange'
     )
 
     client_id = fields.Many2one(
@@ -165,7 +171,6 @@ class Cellchip(models.Model):
         index=True,
         track_visibility='onchange',
     )
-
 
     @api.onchange('status')
     def onchange_status_date(self):

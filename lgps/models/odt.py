@@ -351,6 +351,7 @@ class Odt(models.Model):
                         pos = operation.location_id.name.find('Respaldo')
                         if pos < 0 or operation.location_dest_id.name != 'Customers':
                             found_error = True
+
                 elif operation.type == 'remove':
                     if operation.location_id.name == 'Customers' and operation.location_dest_id.name == 'Customers':
                         found_error = False
@@ -402,3 +403,19 @@ class Odt(models.Model):
             res = True
 
         return res
+
+
+class CheckProductInRepairOrderLine(models.Model):
+    _inherit = 'repair.line'
+
+    @api.onchange('product_id')
+    def _onchange_product_id(self):
+        line = self
+
+        if line.product_id.default_code and line.product_id.default_code.startswith('MPR'):
+            product_description = line.product_id.default_code + ' - ' + line.product_id.name
+            warning_mess = {
+                'title': _('Estas seleccionando materia prima como material!'),
+                'message': 'Este producto esta marcado como materia prima. ¿Estás seguro que es lo correcto?. \n\nProducto: ' + product_description
+            }
+            return {'warning': warning_mess}

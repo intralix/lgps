@@ -5,6 +5,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+
 class RmaGpsDevice(models.Model):
     _inherit = 'lgps.gpsdevice'
 

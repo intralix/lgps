@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-09 17:40+0000\n"
-"PO-Revision-Date: 2022-08-09 17:40+0000\n"
+"POT-Creation-Date: 2022-09-28 15:51+0000\n"
+"PO-Revision-Date: 2022-09-28 15:51+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -402,7 +402,7 @@ msgid "Action Needed"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:154
+#: code:addons/lgps/models/cellchip.py:159
 #, python-format
 msgid "Activation Date"
 msgstr ""
@@ -437,7 +437,7 @@ msgid "Activities"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:125
+#: code:addons/lgps/models/tracking.py:115
 #, python-format
 msgid "Activity Started at"
 msgstr ""
@@ -455,13 +455,13 @@ msgid "Activity State"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:130
+#: code:addons/lgps/models/tracking.py:120
 #, python-format
 msgid "Activity finished at"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:53
+#: code:addons/lgps/models/tracking.py:43
 #: selection:lgps.cellchip,status:0
 #: selection:lgps.tracking,state:0
 #, python-format
@@ -485,8 +485,7 @@ msgid "Add Accessories"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:121
-#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__emails
+#: code:addons/lgps/models/tracking.py:111
 #, python-format
 msgid "Additional Emails"
 msgstr ""
@@ -547,7 +546,7 @@ msgid "Aplicado A"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:47
+#: code:addons/lgps/models/tracking.py:37
 #: model:ir.model.fields,field_description:lgps.field_lgps_tracking__applicant
 #, python-format
 msgid "Applicant"
@@ -587,7 +586,7 @@ msgid "Assigned Accessories"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:159
+#: code:addons/lgps/models/cellchip.py:165
 #, python-format
 msgid "Assigned to"
 msgstr ""
@@ -808,7 +807,7 @@ msgid "Candado"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:70
+#: code:addons/lgps/models/tracking.py:60
 #, python-format
 msgid "Category"
 msgstr ""
@@ -997,6 +996,13 @@ msgstr ""
 #: code:addons/lgps/models/tracking_logs.py:22
 #, python-format
 msgid "Comment Date"
+msgstr ""
+
+#. module: lgps
+#: code:addons/lgps/models/tracking.py:149
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__comment_period
+#, python-format
+msgid "Comment Period"
 msgstr ""
 
 #. module: lgps
@@ -1229,11 +1235,6 @@ msgstr ""
 #. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.res_config_settings_view_form
 msgid "Cuando un equipo sea hibernado las suscripciones que tenga asociadas serán colocadas en esta etapa."
-msgstr ""
-
-#. module: lgps
-#: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__major_account
-msgid "Cuenta Padre"
 msgstr ""
 
 #. module: lgps
@@ -1497,7 +1498,7 @@ msgid "Desinstalar del Equipo GPS"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:108
+#: code:addons/lgps/models/tracking.py:98
 #, python-format
 msgid "Destination"
 msgstr ""
@@ -1508,7 +1509,7 @@ msgid "Destino"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:54
+#: code:addons/lgps/models/tracking.py:44
 #: selection:lgps.tracking,state:0
 #, python-format
 msgid "Detenido"
@@ -1635,7 +1636,7 @@ msgid "Dolar History Form"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:77
+#: code:addons/lgps/models/tracking.py:67
 #, python-format
 msgid "Driver"
 msgstr ""
@@ -1723,7 +1724,7 @@ msgid "Email Notification"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:85
+#: code:addons/lgps/models/tracking.py:75
 #, python-format
 msgid "Email Notifications"
 msgstr ""
@@ -1740,6 +1741,11 @@ msgid "Email sent"
 msgstr ""
 
 #. module: lgps
+#: model:ir.model.fields,field_description:lgps.field_lgps_tracking__emails
+msgid "Emails Adicionales"
+msgstr ""
+
+#. module: lgps
 #: code:addons/lgps/models/common_operations_wizard.py:44
 #: code:addons/lgps/models/device_history.py:75
 #: selection:lgps.common_operations_device_wizard,reason:0
@@ -1749,7 +1755,7 @@ msgid "En almacén Intralix sin asignación"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:132
+#: code:addons/lgps/models/cellchip.py:135
 #, python-format
 msgid "End Forced Plan Date"
 msgstr ""
@@ -1840,6 +1846,12 @@ msgid "Estado"
 msgstr ""
 
 #. module: lgps
+#: code:addons/lgps/models/odt.py:418
+#, python-format
+msgid "Estas seleccionando materia prima como material!"
+msgstr ""
+
+#. module: lgps
 #: model_terms:ir.ui.view,arch_db:lgps.cellchip_search_view
 #: model_terms:ir.ui.view,arch_db:lgps.gpsdevice_search_view
 msgid "Estatus"
@@ -1904,7 +1916,7 @@ msgid "Factura de Proveedor"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:56
+#: code:addons/lgps/models/tracking.py:46
 #: selection:lgps.tracking,state:0
 #, python-format
 msgid "Facturado"
@@ -2000,13 +2012,13 @@ msgid "Fin de Plazo Forzoso"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:99
+#: code:addons/lgps/models/tracking.py:89
 #, python-format
 msgid "Final Date"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:55
+#: code:addons/lgps/models/tracking.py:45
 #: selection:lgps.tracking,state:0
 #, python-format
 msgid "Finalizado"
@@ -2091,31 +2103,31 @@ msgid "Freight Info"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:154
+#: code:addons/lgps/models/tracking.py:144
 #, python-format
 msgid "Freight cost"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:155
+#: code:addons/lgps/models/tracking.py:145
 #, python-format
 msgid "Freight costs"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:148
+#: code:addons/lgps/models/tracking.py:138
 #, python-format
 msgid "Freight dimensions"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:149
+#: code:addons/lgps/models/tracking.py:139
 #, python-format
 msgid "Freight dimensions in meters"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:143
+#: code:addons/lgps/models/tracking.py:133
 #, python-format
 msgid "Freight weight in Kilos"
 msgstr ""
@@ -2299,7 +2311,7 @@ msgid "History"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:150
+#: code:addons/lgps/models/cellchip.py:155
 #: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__iccid
 #, python-format
 msgid "ICCID"
@@ -2413,7 +2425,7 @@ msgid "Inicio de Garantía"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:95
+#: code:addons/lgps/models/tracking.py:85
 #, python-format
 msgid "Initial Date"
 msgstr ""
@@ -2552,7 +2564,7 @@ msgid "Iusacell"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:390
+#: code:addons/lgps/models/odt.py:391
 #, python-format
 msgid "La ODT debe tener una fecha de servicio válida."
 msgstr ""
@@ -2667,7 +2679,7 @@ msgid "Lgps / User"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:122
+#: code:addons/lgps/models/cellchip.py:123
 #, python-format
 msgid "Line Account"
 msgstr ""
@@ -2706,7 +2718,7 @@ msgid "Lkgps"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:142
+#: code:addons/lgps/models/tracking.py:132
 #, python-format
 msgid "Load Weight"
 msgstr ""
@@ -2724,7 +2736,7 @@ msgid "Logistic"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:137
+#: code:addons/lgps/models/tracking.py:127
 #, python-format
 msgid "Logs"
 msgstr ""
@@ -2794,8 +2806,9 @@ msgstr ""
 
 #. module: lgps
 #: code:addons/lgps/models/cellchip.py:117
+#: model:ir.model.fields,field_description:lgps.field_lgps_cellchip__major_account
 #, python-format
-msgid "Mayor Accounte"
+msgid "Mayor Account"
 msgstr ""
 
 #. module: lgps
@@ -3047,7 +3060,7 @@ msgid "Notificar al Cliente"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:89
+#: code:addons/lgps/models/tracking.py:79
 #, python-format
 msgid "Notify Client"
 msgstr ""
@@ -3178,7 +3191,7 @@ msgid "Observaciones"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:117
+#: code:addons/lgps/models/tracking.py:107
 #, python-format
 msgid "Observations"
 msgstr ""
@@ -3265,7 +3278,7 @@ msgid "Origen"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:103
+#: code:addons/lgps/models/tracking.py:93
 #, python-format
 msgid "Origin"
 msgstr ""
@@ -3312,13 +3325,13 @@ msgid "Panel Solar"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:66
+#: code:addons/lgps/models/tracking.py:56
 #, python-format
 msgid "Per Event"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:67
+#: code:addons/lgps/models/tracking.py:57
 #: selection:lgps.tracking,category:0
 #, python-format
 msgid "Permanent"
@@ -3340,7 +3353,7 @@ msgid "Peso de la carga en kilos"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:81
+#: code:addons/lgps/models/tracking.py:71
 #, python-format
 msgid "Phones"
 msgstr ""
@@ -3430,7 +3443,7 @@ msgid "Por Instalar"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:394
+#: code:addons/lgps/models/odt.py:395
 #, python-format
 msgid "Por políticas de la empresa, no puedes crear un registro cuya fecha de servicio sea anterior a 2 días de su creación."
 msgstr ""
@@ -3653,7 +3666,7 @@ msgid "Registered Tanks"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:52
+#: code:addons/lgps/models/tracking.py:42
 #: selection:lgps.tracking,state:0
 #, python-format
 msgid "Registrado"
@@ -3715,6 +3728,11 @@ msgstr ""
 #: code:addons/lgps/models/helptickets.py:32
 #, python-format
 msgid "Related Ticket"
+msgstr ""
+
+#. module: lgps
+#: model:ir.model,name:lgps.model_repair_line
+msgid "Repair Line (parts)"
 msgstr ""
 
 #. module: lgps
@@ -3817,7 +3835,7 @@ msgid "Revisión de equipo"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:113
+#: code:addons/lgps/models/tracking.py:103
 #, python-format
 msgid "Route"
 msgstr ""
@@ -4085,7 +4103,7 @@ msgid "Start Tracking"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:58
+#: code:addons/lgps/models/tracking.py:48
 #: model:ir.model.fields,field_description:lgps.field_lgps_gpsdevice__state
 #, python-format
 msgid "State"
@@ -4103,13 +4121,13 @@ msgid "Status"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:127
+#: code:addons/lgps/models/cellchip.py:129
 #, python-format
 msgid "Status Date"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:143
+#: code:addons/lgps/models/cellchip.py:148
 #, python-format
 msgid "Status Elpased Days"
 msgstr ""
@@ -4238,7 +4256,7 @@ msgid "TC History"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/cellchip.py:138
+#: code:addons/lgps/models/cellchip.py:142
 #, python-format
 msgid "Taken"
 msgstr ""
@@ -4691,7 +4709,7 @@ msgid "Uninstalled"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/tracking.py:68
+#: code:addons/lgps/models/tracking.py:58
 #, python-format
 msgid "Uninterrupted"
 msgstr ""
@@ -4755,7 +4773,7 @@ msgid "Venta de Unidad"
 msgstr ""
 
 #. module: lgps
-#: code:addons/lgps/models/odt.py:362
+#: code:addons/lgps/models/odt.py:363
 #, python-format
 msgid "Verifica que las ubicaciones seleccionadas en tus piezas sean correctas.\n"
 "\n"
