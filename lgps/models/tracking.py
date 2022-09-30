@@ -44,6 +44,7 @@ class Tracking(models.Model):
             ('paused', _('Detenido')),
             ('finished', _('Finalizado')),
             ('billed', _('Facturado')),
+            ('cancelled', _('Cancelled')),
         ],
         string=_("State"),
         default="registered",
@@ -150,6 +151,8 @@ class Tracking(models.Model):
         default=0,
     )
 
+    active = fields.Boolean(default=True)
+
     @api.model
     def create(self, vals):
         seq = self.env['ir.sequence'].next_by_code('lgps.tracking') or '/'
@@ -190,4 +193,10 @@ class Tracking(models.Model):
     def button_do_finish(self):
         for tracking in self:
             tracking.state = 'finished'
+        return True
+
+    def button_do_cancel(self):
+        for tracking in self:
+            tracking.state = 'cancelled'
+            tracking.active = False
         return True
