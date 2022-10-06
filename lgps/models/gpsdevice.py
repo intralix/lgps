@@ -19,6 +19,10 @@ class GpsDevice(models.Model):
         string=_("Nick"),
     )
 
+    unique_id = fields.Char(
+        string=_("Unique ID"),
+    )
+
     imei = fields.Char(
         string=_("IMEI"),
     )

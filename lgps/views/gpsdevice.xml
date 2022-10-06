@@ -80,6 +80,7 @@
               <field name="name"/>
               <field name="client_id"/>
               <field name="nick"/>
+              <field name="unique_id"/>
               <field name="serialnumber_id"/>
               <field name="imei"/>
               <field name="idf"/>
@@ -220,6 +221,7 @@
         <field name="name"/>
         <field name="nick"/>
         <field name="client_id"/>
+        <field name="unique_id"/>
         <field name="status"/>
         <field name="cellchip_id"/>
         <field name="serialnumber_id"/>
@@ -254,6 +256,7 @@
             decoration-danger="platform != 'Drop' and (last_report&gt;120)">
         <field name="name"/>
         <field name="nick"/>
+        <field name="unique_id"/>
         <field name="client_id"/>
         <field name="status"/>
         <field name="cellchip_id"/>
