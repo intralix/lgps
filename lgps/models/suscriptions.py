@@ -52,3 +52,11 @@ class Suscription(models.Model):
         readonly=True,
         store=True
     )
+
+    device_platform = fields.Selection(
+        string=_('Platform'),
+        store=True,
+        readonly=True,
+        related='gpsdevice_id.platform'
+    )
+
